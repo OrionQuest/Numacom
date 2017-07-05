@@ -6,6 +6,9 @@
 CS323: Numerical Analysis and Computing
 =======================================
 
+.. toctree::
+   :maxdepth: 2
+
 Welcome to CS 323! This course is designed for advanced undergraduates and early
 graduate students, and introduces them to the broad field of numerical
 algorithms, optimization, and differential equations. Real-world examples from
@@ -70,9 +73,6 @@ previous homeworks) we will subtract 15% for every day that is delayed further.
 Contents:
 ---------
 
-.. toctree::
-   :maxdepth: 2
-
 Coding Resources:
 -----------------
 
@@ -88,3 +88,10 @@ Recommended Books:
 2. L\. N\. Trefethen and D\. Bau III, `Numerical Linear Algebra <http://bookstore.siam.org/ot50/>`_, SIAM, 1997\.
 
 3. E\. Matthes, `Python Crash Course: A Hands-On, Project-Based Introduction to Programming <https://www.amazon.com/Python-Crash-Course-Hands-Project-Based/dp/1593276036>`_, No Starch Press, 2015\.
+
+Indices and tables
+------------------
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
