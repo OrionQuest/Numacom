@@ -6,9 +6,6 @@
 CS323: Numerical Analysis and Computing
 =======================================
 
-.. toctree::
-   :maxdepth: 2
-
 Welcome to CS 323! This course is designed for advanced undergraduates and early
 graduate students, and introduces them to the broad field of numerical
 algorithms, optimization, and differential equations. Real-world examples from
@@ -72,6 +69,11 @@ previous homeworks) we will subtract 15% for every day that is delayed further.
 
 Contents:
 ---------
+
+.. toctree::
+   :maxdepth: 2
+
+   Introduction <intro>
 
 Coding Resources:
 -----------------
