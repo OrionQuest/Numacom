@@ -3,8 +3,8 @@ Introduction
 
 This section gives a broad overview of the concepts from linear algebra that
 will be used throughout the course. It is intended as a review of background
-material. It is assumed that most students will already be familiar with these
-topics. However, they are still encouraged to briefly skim through the material
+material. While most students may already be familiar with these
+topics, they are still encouraged to briefly skim through the material
 so as to take note of all the programming concepts that are introduced.
 
 We will be working almost exclusively with the set :math:`\mathbb R` of all `real numbers <https://en.wikipedia.org/wiki/Real_number>`_. In particular, we will
@@ -59,7 +59,7 @@ the following example: ::
     array([7, 7, 3, 7])
 
 Note that vector addition is *not defined* when the two vectors being added
-together have different dimensions! If you tried to add together two vectors of
+together have different dimensions. If you tried to add together two vectors of
 different dimensions in `Python <https://www.python.org/>`_, you will get an error: ::
 
     >>> u = np.array([3,4,2])
@@ -93,4 +93,11 @@ subtracted together to define a new vector as follows:
     v - w = v + (-1)\cdot w = (v_1-w_1,v_2-w_2,\ldots,v_n-w_n)
 
 Again, note that vector subtraction is not defined when the two vectors being
-subtracted together have different dimensions.
+subtracted together have different dimensions. Together, these operations
+allow us to define a *linear combination* of a set of vectors :math:`\{v^k\}`
+as a weighted sum:
+
+.. math::
+    w = \sum_k a_k v^k
+
+where :math:`a_k\in\mathbb R`.
