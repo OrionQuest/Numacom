@@ -11,7 +11,7 @@ INCLUDE(FindPkgConfig)
 find_package(Sphinx)
 if(SPHINX_FOUND)
   add_custom_target(doc
-    ${SPHINX_EXECUTABLE} -b html ${CMAKE_CURRENT_SOURCE_DIR}/docs_src ${CMAKE_CURRENT_BINARY_DIR}/html
+    ${SPHINX_EXECUTABLE} -b html ${CMAKE_CURRENT_SOURCE_DIR}/docs_src ${CMAKE_CURRENT_SOURCE_DIR}/../Numacom_Documentation/html
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     COMMENT "Generating API documentation with Sphinx" VERBATIM
     )
