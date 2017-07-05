@@ -89,9 +89,3 @@ Recommended Books:
 
 3. E\. Matthes, `Python Crash Course: A Hands-On, Project-Based Introduction to Programming <https://www.amazon.com/Python-Crash-Course-Hands-Project-Based/dp/1593276036>`_, No Starch Press, 2015\.
 
-Indices and tables
-------------------
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
