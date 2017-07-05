@@ -71,9 +71,10 @@ Contents:
 ---------
 
 .. toctree::
-   :maxdepth: 2
+    :numbered:
+    :maxdepth: 2
 
-   Introduction <intro>
+    Introduction <intro>
 
 Coding Resources:
 -----------------
