@@ -146,3 +146,6 @@ Here, the second parameter specifies the particular norm that we wish to compute
     10.198039027185569
     >>> np.linalg.norm(v,np.inf)
     7
+
+In what follows, we will *always* denote an :math:`n`-dimensional vector as an
+:math:`n\times 1` column vector.

@@ -24,8 +24,6 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="CS323 1.0 documentation" href="index.html" />
     <link rel="up" title="1. Introduction" href="intro.html" />
     <link rel="prev" title="1.1. Vectors" href="vectors.html" /> 
@@ -52,6 +50,74 @@
             
   <div class="section" id="matrices">
 <span id="sec-matrices"></span><h1>1.2. Matrices<a class="headerlink" href="#matrices" title="Permalink to this headline">¶</a></h1>
+<p>Suppose we have <span class="math">\(n\)</span> vectors <span class="math">\(v^1,v^2,\ldots,v^n\in\mathbb R^m\)</span>.
+There are several options available to us for denoting this set, either by writing each
+one individually as a separate column vector:</p>
+<div class="math">
+\[\begin{split}v^1=\left(
+    \begin{array}{c}
+    v^1_1 \\
+    v^1_2 \\
+    \vdots \\
+    v^1_m
+    \end{array}
+\right), v^2=\left(
+    \begin{array}{c}
+    v^2_1 \\
+    v^2_2 \\
+    \vdots \\
+    v^2_m
+    \end{array}
+\right),\ldots,v^n=\left(
+    \begin{array}{c}
+    v^n_1 \\
+    v^n_2 \\
+    \vdots \\
+    v^n_m
+    \end{array}
+\right)\end{split}\]</div>
+<p>or by adopting the more efficient notation of combining all of them into a single <span class="math">\(m\times n\)</span> matrix:</p>
+<div class="math">
+\[\begin{split}\left(
+\begin{array}{cccc}
+\vert &amp; \vert &amp; &amp; \vert \\
+v^1 &amp; v^2 &amp; \ldots &amp; v^n \\
+\vert &amp; \vert &amp; &amp; \vert
+\end{array}
+\right) = \left(
+\begin{array}{cccc}
+v^1_1 &amp; v^2_1 &amp; \ldots &amp; v^n_1 \\
+v^1_2 &amp; v^2_2 &amp; \ldots &amp; v^n_2 \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+v^1_m &amp; v^2_m &amp; \ldots &amp; v^n_m
+\end{array}
+\right)\end{split}\]</div>
+<p>In general, an <span class="math">\(m\times n\)</span> matrix is written as:</p>
+<div class="math">
+\[\begin{split}\left(
+\begin{array}{cccc}
+a_{11} &amp; a_{12} &amp; \ldots &amp; a_{1n} \\
+a_{21} &amp; a_{22} &amp; \ldots &amp; a_{2n} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
+\end{array}
+\right)\end{split}\]</div>
+<p>In the example above, <span class="math">\(a_{ij}=v^j_i\)</span>. <a class="reference external" href="http://www.numpy.org/">NumPy</a> has a <code class="docutils literal"><span class="pre">matrix</span></code> class to conveniently define
+<span class="math">\(m\times n\)</span> matrices, as shown below:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="s1">&#39;1 2 3;4 5 6;7 8 9&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">matrix([[1, 2, 3],</span>
+<span class="go">        [4, 5, 6],</span>
+<span class="go">        [7, 8, 9]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+<span class="go">    [4, 5, 6],</span>
+<span class="go">    [7, 8, 9]])</span>
+</pre></div>
+</div>
+<p>Note that <a class="reference external" href="http://www.numpy.org/">NumPy</a> defines the individual elements of
+the matrix by specifying the rows, <em>not</em> the columns.</p>
 </div>
 
 
@@ -99,7 +165,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Mridul Aanjaneya.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
     </div>
   </body>
 </html>
