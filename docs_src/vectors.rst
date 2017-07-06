@@ -23,15 +23,14 @@ using ``arrays``. The example below defines a :math:`4`-dimensional vector ``x``
 
 Two vectors can be added together in a component-wise fashion to define a new vector,
 i.e., if :math:`v` and :math:`w` are two vectors, we can define a new vector
-:math:`v+w` as follows:
+:math:`v+w` as:
 
 .. math::
     v+w = (v_1+w_1,v_2+w_2,\ldots,v_n+w_n)
 
 It follows from the above definition that :math:`v+w = w+v`, showing that vector
 addition is `commutative <https://en.wikipedia.org/wiki/Commutative_property>`_.
-Vector addition is supported in `Python <https://www.python.org/>`_, as shown in
-the following example: ::
+Vector addition is supported in `Python <https://www.python.org/>`_, as shown below: ::
 
     >>> v = np.array([2,3,1,0])
     >>> w = np.array([5,4,2,7])
@@ -67,20 +66,20 @@ as shown here: ::
 
 Vector addition and scalar multiplication can together be used to define vector
 *subtraction*, i.e., if :math:`v` and :math:`w` are two vectors, then they can be
-subtracted together to define a new vector as follows:
+subtracted together to define a new vector :math:`v-w` as:
 
 .. math::
     v - w = v + (-1)\cdot w = (v_1-w_1,v_2-w_2,\ldots,v_n-w_n)
 
 Again, note that vector subtraction is not defined when the two vectors being
-subtracted together have different dimensions. Together, these operations
+subtracted have different dimensions. Together, these operations
 allow us to define a *linear combination* of a set :math:`S` of vectors :math:`\{v^k\}`
 as a weighted sum:
 
 .. math::
     w = \sum_k a_k v^k
 
-where :math:`a_k\in\mathbb R`. The set of all linear combinations of vectors in
+where :math:`a_k\in\mathbb R` for all :math:`k`. The set of all linear combinations of vectors in
 :math:`S` constitute the *span* of :math:`S`, denoted as :math:`\textsf{span } S`, i.e.,
 
 .. math::
@@ -93,8 +92,9 @@ and :math:`(0,0,1)`. Thus, the span of these three unit vectors is the entire
 combination, in turn, allows us to define *linear independence*. A set :math:`S` of vectors :math:`\{v^k\}`
 is said to be linearly independent if every non-trivial linear combination of
 vectors in :math:`S` is
-non-zero. In more formal terms, whenever the sum :math:`a_1v^1+\ldots+a_kv^k = 0`, then the coefficients :math:`a_i = 0`
-for all :math:`1\leq i\leq k`. We will discuss linear
+non-zero. More formally, whenever the sum :math:`a_1v^1+\ldots+a_kv^k = 0`, then the coefficients :math:`a_i = 0`
+for all :math:`1\leq i\leq k`. A set of vectors is said to be *linearly dependent*
+if they are not linearly independent. We will discuss linear
 combinations and linear independence in much more detail when we study :ref:`sec-matrices`.
 
 Finally, the space :math:`\mathbb R^n` also comes equipped with a function
@@ -104,15 +104,15 @@ product*, denoted as :math:`v\cdot w` for two vectors :math:`v` and :math:`w`, a
 .. math::
     v\cdot w = \sum_{i=1}^k v_iw_i
 
-`Python <https://www.python.org/>`_ has a function ``dot`` that allows us to
-compute the dot product of two vectors, as shown below: ::
+`NumPy <http://www.numpy.org/>`_ has a function ``dot`` that allows us to
+easily compute the dot product of two vectors, as shown below: ::
 
     >>> v = np.array([3,1,4])
     >>> w = np.array([2,5,7])
     >>> np.dot(v,w)
     39
 
-The dot product allows us to define the *Euclidean* or :math:`L_2`-norm on
+The dot product allows us to define the familiar *Euclidean* or :math:`L_2`-norm on
 :math:`\mathbb R^n` as follows:
 
 .. math::
@@ -126,7 +126,7 @@ to directly compute the :math:`L_2`-norm of a vector, as shown below: ::
     10.198039027185569
 
 Apart from the Euclidean norm, several other kinds of norms can also be defined
-for a vector :math:`v\in\mathbb R^n`. Two kinds that we will frequently encounter in
+for a vector :math:`v\in\mathbb R^n`. Two different kinds that we will frequently encounter in
 subsequent sections are the :math:`L_1`-norm (denoted as :math:`\|v\|_1`) and
 the :math:`L_\infty`-norm (denoted as :math:`\|v\|_\infty`), defined as follows:
 
@@ -135,7 +135,9 @@ the :math:`L_\infty`-norm (denoted as :math:`\|v\|_\infty`), defined as follows:
     \|v\|_\infty    &=& \enspace \textsf{max }|v_i|\mbox{, where }1\leq i\leq n
 
 Interestingly, the ``linalg`` package in `NumPy <http://www.numpy.org/>`_ can
-compute all these different kinds of norms for a given vector, as shown below:  ::
+compute all these different kinds of norms for a given vector, as shown below.
+Here, the second parameter specifies the particular norm that we wish to compute
+(in our case, the :math:`L_1` norm, :math:`L_2` norm, or :math:`L_\infty` norm, respectively): ::
 
     >>> v = v = np.array([3,1,4,5,2,7])
     >>> np.linalg.norm(v,1)
