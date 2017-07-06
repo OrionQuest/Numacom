@@ -24,6 +24,8 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="CS323 1.0 documentation" href="index.html" />
     <link rel="up" title="1. Introduction" href="intro.html" />
     <link rel="next" title="1.2. Matrices" href="matrices.html" />
@@ -74,13 +76,12 @@ using <code class="docutils literal"><span class="pre">arrays</span></code>. The
 </div>
 <p>Two vectors can be added together in a component-wise fashion to define a new vector,
 i.e., if <span class="math">\(v\)</span> and <span class="math">\(w\)</span> are two vectors, we can define a new vector
-<span class="math">\(v+w\)</span> as follows:</p>
+<span class="math">\(v+w\)</span> as:</p>
 <div class="math">
 \[v+w = (v_1+w_1,v_2+w_2,\ldots,v_n+w_n)\]</div>
 <p>It follows from the above definition that <span class="math">\(v+w = w+v\)</span>, showing that vector
 addition is <a class="reference external" href="https://en.wikipedia.org/wiki/Commutative_property">commutative</a>.
-Vector addition is supported in <a class="reference external" href="https://www.python.org/">Python</a>, as shown in
-the following example:</p>
+Vector addition is supported in <a class="reference external" href="https://www.python.org/">Python</a>, as shown below:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">7</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v</span><span class="o">+</span><span class="n">w</span>
@@ -114,16 +115,16 @@ as shown here:</p>
 </div>
 <p>Vector addition and scalar multiplication can together be used to define vector
 <em>subtraction</em>, i.e., if <span class="math">\(v\)</span> and <span class="math">\(w\)</span> are two vectors, then they can be
-subtracted together to define a new vector as follows:</p>
+subtracted together to define a new vector <span class="math">\(v-w\)</span> as:</p>
 <div class="math">
 \[v - w = v + (-1)\cdot w = (v_1-w_1,v_2-w_2,\ldots,v_n-w_n)\]</div>
 <p>Again, note that vector subtraction is not defined when the two vectors being
-subtracted together have different dimensions. Together, these operations
+subtracted have different dimensions. Together, these operations
 allow us to define a <em>linear combination</em> of a set <span class="math">\(S\)</span> of vectors <span class="math">\(\{v^k\}\)</span>
 as a weighted sum:</p>
 <div class="math">
 \[w = \sum_k a_k v^k\]</div>
-<p>where <span class="math">\(a_k\in\mathbb R\)</span>. The set of all linear combinations of vectors in
+<p>where <span class="math">\(a_k\in\mathbb R\)</span> for all <span class="math">\(k\)</span>. The set of all linear combinations of vectors in
 <span class="math">\(S\)</span> constitute the <em>span</em> of <span class="math">\(S\)</span>, denoted as <span class="math">\(\textsf{span } S\)</span>, i.e.,</p>
 <div class="math">
 \[\textsf{span }S \equiv \{a_1v^1+\ldots+a_kv^k : v^i\in S\mbox{ and }a_i\in\mathbb R\mbox{ for all }1\leq i\leq k\}\]</div>
@@ -134,23 +135,24 @@ and <span class="math">\((0,0,1)\)</span>. Thus, the span of these three unit ve
 combination, in turn, allows us to define <em>linear independence</em>. A set <span class="math">\(S\)</span> of vectors <span class="math">\(\{v^k\}\)</span>
 is said to be linearly independent if every non-trivial linear combination of
 vectors in <span class="math">\(S\)</span> is
-non-zero. In more formal terms, whenever the sum <span class="math">\(a_1v^1+\ldots+a_kv^k = 0\)</span>, then the coefficients <span class="math">\(a_i = 0\)</span>
-for all <span class="math">\(1\leq i\leq k\)</span>. We will discuss linear
+non-zero. More formally, whenever the sum <span class="math">\(a_1v^1+\ldots+a_kv^k = 0\)</span>, then the coefficients <span class="math">\(a_i = 0\)</span>
+for all <span class="math">\(1\leq i\leq k\)</span>. A set of vectors is said to be <em>linearly dependent</em>
+if they are not linearly independent. We will discuss linear
 combinations and linear independence in much more detail when we study <a class="reference internal" href="matrices.html#sec-matrices"><span class="std std-ref">Matrices</span></a>.</p>
 <p>Finally, the space <span class="math">\(\mathbb R^n\)</span> also comes equipped with a function
 <span class="math">\(f:\mathbb R^n\times\mathbb R^n\rightarrow\mathbb R\)</span> called the <em>dot
 product</em>, denoted as <span class="math">\(v\cdot w\)</span> for two vectors <span class="math">\(v\)</span> and <span class="math">\(w\)</span>, and formally defined as:</p>
 <div class="math">
 \[v\cdot w = \sum_{i=1}^k v_iw_i\]</div>
-<p><a class="reference external" href="https://www.python.org/">Python</a> has a function <code class="docutils literal"><span class="pre">dot</span></code> that allows us to
-compute the dot product of two vectors, as shown below:</p>
+<p><a class="reference external" href="http://www.numpy.org/">NumPy</a> has a function <code class="docutils literal"><span class="pre">dot</span></code> that allows us to
+easily compute the dot product of two vectors, as shown below:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
 <span class="go">39</span>
 </pre></div>
 </div>
-<p>The dot product allows us to define the <em>Euclidean</em> or <span class="math">\(L_2\)</span>-norm on
+<p>The dot product allows us to define the familiar <em>Euclidean</em> or <span class="math">\(L_2\)</span>-norm on
 <span class="math">\(\mathbb R^n\)</span> as follows:</p>
 <div class="math">
 \[\|v\|_2 = \sqrt{v\cdot v} = \sqrt{v_1^2+\ldots+v_n^2}\]</div>
@@ -162,14 +164,16 @@ to directly compute the <span class="math">\(L_2\)</span>-norm of a vector, as s
 </pre></div>
 </div>
 <p>Apart from the Euclidean norm, several other kinds of norms can also be defined
-for a vector <span class="math">\(v\in\mathbb R^n\)</span>. Two kinds that we will frequently encounter in
+for a vector <span class="math">\(v\in\mathbb R^n\)</span>. Two different kinds that we will frequently encounter in
 subsequent sections are the <span class="math">\(L_1\)</span>-norm (denoted as <span class="math">\(\|v\|_1\)</span>) and
 the <span class="math">\(L_\infty\)</span>-norm (denoted as <span class="math">\(\|v\|_\infty\)</span>), defined as follows:</p>
 <div class="math">
 \[\begin{split}\|v\|_1         &amp;=&amp; \enspace |v_1|+|v_2|+\ldots+|v_n| \\
 \|v\|_\infty    &amp;=&amp; \enspace \textsf{max }|v_i|\mbox{, where }1\leq i\leq n\end{split}\]</div>
 <p>Interestingly, the <code class="docutils literal"><span class="pre">linalg</span></code> package in <a class="reference external" href="http://www.numpy.org/">NumPy</a> can
-compute all these different kinds of norms for a given vector, as shown below:</p>
+compute all these different kinds of norms for a given vector, as shown below.
+Here, the second parameter specifies the particular norm that we wish to compute
+(in our case, the <span class="math">\(L_1\)</span> norm, <span class="math">\(L_2\)</span> norm, or <span class="math">\(L_\infty\)</span> norm, respectively):</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">7</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="go">22</span>
@@ -232,7 +236,7 @@ compute all these different kinds of norms for a given vector, as shown below:</
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Mridul Aanjaneya.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
     </div>
   </body>
 </html>
