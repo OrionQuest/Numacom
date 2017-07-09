@@ -92,32 +92,129 @@ v^1_2 &amp; v^2_2 &amp; \ldots &amp; v^n_2 \\
 v^1_m &amp; v^2_m &amp; \ldots &amp; v^n_m
 \end{array}
 \right)\end{split}\]</div>
-<p>In general, an <span class="math">\(m\times n\)</span> matrix is written as:</p>
+<p>In general, an <span class="math">\(m\times n\)</span> matrix <span class="math">\(A\in\mathbb R^{m\times n}\)</span> is written as:</p>
 <div class="math">
-\[\begin{split}\left(
+\[\begin{split}A = \left(
 \begin{array}{cccc}
-a_{11} &amp; a_{12} &amp; \ldots &amp; a_{1n} \\
-a_{21} &amp; a_{22} &amp; \ldots &amp; a_{2n} \\
+A_{11} &amp; A_{12} &amp; \ldots &amp; A_{1n} \\
+A_{21} &amp; A_{22} &amp; \ldots &amp; A_{2n} \\
 \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
+A_{m1} &amp; A_{m2} &amp; \ldots &amp; A_{mn}
 \end{array}
 \right)\end{split}\]</div>
-<p>In the example above, <span class="math">\(a_{ij}=v^j_i\)</span>. <a class="reference external" href="http://www.numpy.org/">NumPy</a> has a <code class="docutils literal"><span class="pre">matrix</span></code> class to conveniently define
+<p>In the example above, <span class="math">\(A_{ij}=v^j_i\)</span>. <a class="reference external" href="http://www.numpy.org/">NumPy</a> has a <code class="docutils literal"><span class="pre">matrix</span></code> class to conveniently define
 <span class="math">\(m\times n\)</span> matrices, as shown below:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="s1">&#39;1 2 3;4 5 6;7 8 9&#39;</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
-<span class="go">matrix([[1, 2, 3],</span>
-<span class="go">        [4, 5, 6],</span>
-<span class="go">        [7, 8, 9]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
 <span class="go">    [4, 5, 6],</span>
 <span class="go">    [7, 8, 9]])</span>
 </pre></div>
 </div>
 <p>Note that <a class="reference external" href="http://www.numpy.org/">NumPy</a> defines the individual elements of
-the matrix by specifying the rows, <em>not</em> the columns.</p>
+the matrix by specifying the rows, <em>not</em> the columns. You are probably familiar
+with the <span class="math">\(n\times n\)</span> <em>identity matrix</em> defined as:</p>
+<div class="math">
+\[\begin{split}I_{n\times n} = \left(\begin{array}{cccc}
+\vert &amp; \vert &amp; &amp; \vert \\
+e^1 &amp; e^2 &amp; \ldots &amp; e^n \\
+\vert &amp; \vert &amp; &amp; \vert
+\end{array}
+\right) = \left(\begin{array}{ccccc}
+1 &amp; 0 &amp; \ldots &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; \ldots &amp; 0 &amp; 0 \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots \\
+0 &amp; 0 &amp; \ldots &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; \ldots &amp; 0 &amp; 1
+\end{array}
+\right)\end{split}\]</div>
+<p>Let <span class="math">\(x\in\mathbb R^{n\times 1}\)</span> be an <span class="math">\(n\)</span>-dimensional column vector
+and <span class="math">\(A\in\mathbb R^{m\times n}\)</span> be an <span class="math">\(m\times n\)</span> matrix. The
+matrix-vector product <span class="math">\(b=Ax\)</span> is the <span class="math">\(m\)</span>-dimensional vector defined
+as:</p>
+<div class="math">
+\[\begin{split}b = \left(\begin{array}{c}
+b_1 \\
+b_2 \\
+\vdots \\
+b_m
+\end{array}
+\right),\mbox{ where }b_i = \sum_{j=1}^n A_{ij}x_j\mbox{ for all }1\leq i\leq m\end{split}\]</div>
+<p>Note that <em>all</em> matrices are <em>linear</em> operators, i.e., if <span class="math">\(x,y\in\mathbb R^{n\times 1}\)</span>
+are two arbitrary <span class="math">\(n\)</span>-dimensional vectors, and <span class="math">\(\alpha\in\mathbb R\)</span>
+is an arbitrary scalar, then it follows that:</p>
+<div class="math">
+\[\begin{split}A(x+y) &amp;=&amp; \enspace Ax + Ay \\
+A(\alpha x) &amp;=&amp; \enspace \alpha Ax\end{split}\]</div>
+<p>Matrix-vector products can be computed in <a class="reference external" href="http://www.numpy.org/">NumPy</a> using
+the <code class="docutils literal"><span class="pre">dot</span></code> operator, as shown below:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="go">array([ 41,  95, 149])</span>
+</pre></div>
+</div>
+<p>Suppose we consider the individual columns <span class="math">\(v^1,v^2,\ldots,v^n\)</span> of
+<span class="math">\(A\)</span>, as shown above. Then the matrix-vector product <span class="math">\(b\)</span> can be
+re-written as a <em>linear combination</em> of the columns of <span class="math">\(A\)</span>, i.e., <span class="math">\(b=Ax=\sum_{i=1}^n x_iv^i\)</span>.
+This relation can be schematically depicted as follows:</p>
+<div class="math">
+\[\begin{split}\left(\begin{array}{c}
+\vert \\
+b \\
+\vert
+\end{array}\right) = \left(\begin{array}{cccc}
+\vert &amp; \vert &amp; &amp; \vert \\
+v^1 &amp; v^2 &amp; \ldots &amp; v^n \\
+\vert &amp; \vert &amp; &amp; \vert
+\end{array}\right)\left(\begin{array}{c}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{array}\right) = x_1\left(\begin{array}{c}
+\vert \\
+v^1 \\
+\vert
+\end{array}\right) + x_2\left(\begin{array}{c}
+\vert \\
+v^2 \\
+\vert
+\end{array}\right) + \ldots + x_n\left(\begin{array}{c}
+\vert \\
+v^n \\
+\vert
+\end{array}\right)\end{split}\]</div>
+<p>Traditionally, we are used to viewing the relation <span class="math">\(Ax=b\)</span> as the <em>action</em>
+of <span class="math">\(A\)</span> on <span class="math">\(x\)</span> to produce <span class="math">\(b\)</span>. The equation above is a
+different interpretation that suggests, in contrast, that <span class="math">\(x\)</span> acts on
+<span class="math">\(A\)</span> to produce <span class="math">\(b\)</span>. Also, note how the dimensions of the result
+<span class="math">\(b\)</span> are dependent on the dimensions of <span class="math">\(A\)</span> and <span class="math">\(x\)</span>:</p>
+<div class="math">
+\[b_{m\times 1} = A_{m\times n}\cdot x_{n\times 1}\]</div>
+<p>The &#8220;middle&#8221; dimension <span class="math">\(n\)</span> has to be the same for both <span class="math">\(A\)</span> and
+<span class="math">\(x\)</span> and is consumed as a result of the multiplication. This same principle also applies to the case of multiplying two arbitrary matrices,
+i.e., if <span class="math">\(A\in\mathbb R^{m\times n}\)</span> and <span class="math">\(B\in\mathbb R^{n\times
+p}\)</span> are two matrices, then their product <span class="math">\(C=A\cdot B\in\mathbb R^{m\times p}\)</span>. The <code class="docutils literal"><span class="pre">dot</span></code> operator
+in <a class="reference external" href="http://www.numpy.org/">NumPy</a> can also be used for multiplying two
+matrices, as shown below:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">],[</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">matrix([[ 1,  2,  3,  4],</span>
+<span class="go">        [ 5,  6,  7,  8],</span>
+<span class="go">        [ 9, 10, 11, 12]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">],[</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="go">matrix([[ 1,  2,  3],</span>
+<span class="go">        [ 4,  5,  6],</span>
+<span class="go">        [ 7,  8,  9],</span>
+<span class="go">        [10, 11, 12]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="go">matrix([[ 70,  80,  90],</span>
+<span class="go">        [158, 184, 210],</span>
+<span class="go">        [246, 288, 330]])</span>
+</pre></div>
+</div>
 </div>
 
 
