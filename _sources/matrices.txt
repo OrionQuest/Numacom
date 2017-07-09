@@ -191,3 +191,31 @@ matrices, as shown below: ::
     matrix([[ 70,  80,  90],
             [158, 184, 210],
             [246, 288, 330]])
+
+Another operator on matrices that is quite useful is the *transpose* operator.
+The transpose of a matrix :math:`A\in\mathbb R^{m\times n}` is denoted as
+:math:`A^T\in\mathbb R^{n\times m}`, and is defined as:
+
+.. math::
+
+    A^T = \left(\begin{array}{cccc}
+    A_{11} & A_{21} & \ldots & A_{m1} \\
+    A_{12} & A_{22} & \ldots & A_{m2} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    A_{1n} & A_{2n} & \ldots & A_{mn}
+    \end{array}\right)
+
+Thus, :math:`(A^T)_{ij}=A_{ji}`, i.e., the transpose of a matrix is obtained by
+*flipping* the original matrix over its diagonal. The ``transpose`` operator in `NumPy <http://www.numpy.org/>`_
+can be used for computing the transpose of a given matrix, as shown below: ::
+
+    >>> a = np.matrix([[1,2,3,4],[5,6,7,8],[9,10,11,12]])
+    >>> a
+    matrix([[ 1,  2,  3,  4],
+            [ 5,  6,  7,  8],
+            [ 9, 10, 11, 12]])
+    >>> a.transpose()
+    matrix([[ 1,  5,  9],
+            [ 2,  6, 10],
+            [ 3,  7, 11],
+            [ 4,  8, 12]])

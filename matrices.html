@@ -215,6 +215,31 @@ matrices, as shown below:</p>
 <span class="go">        [246, 288, 330]])</span>
 </pre></div>
 </div>
+<p>Another operator on matrices that is quite useful is the <em>transpose</em> operator.
+The transpose of a matrix <span class="math">\(A\in\mathbb R^{m\times n}\)</span> is denoted as
+<span class="math">\(A^T\in\mathbb R^{n\times m}\)</span>, and is defined as:</p>
+<div class="math">
+\[\begin{split}A^T = \left(\begin{array}{cccc}
+A_{11} &amp; A_{21} &amp; \ldots &amp; A_{m1} \\
+A_{12} &amp; A_{22} &amp; \ldots &amp; A_{m2} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+A_{1n} &amp; A_{2n} &amp; \ldots &amp; A_{mn}
+\end{array}\right)\end{split}\]</div>
+<p>Thus, <span class="math">\((A^T)_{ij}=A_{ji}\)</span>, i.e., the transpose of a matrix is obtained by
+<em>flipping</em> the original matrix over its diagonal. The <code class="docutils literal"><span class="pre">transpose</span></code> operator in <a class="reference external" href="http://www.numpy.org/">NumPy</a>
+can be used for computing the transpose of a given matrix, as shown below:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">],[</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">matrix([[ 1,  2,  3,  4],</span>
+<span class="go">        [ 5,  6,  7,  8],</span>
+<span class="go">        [ 9, 10, 11, 12]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+<span class="go">matrix([[ 1,  5,  9],</span>
+<span class="go">        [ 2,  6, 10],</span>
+<span class="go">        [ 3,  7, 11],</span>
+<span class="go">        [ 4,  8, 12]])</span>
+</pre></div>
+</div>
 </div>
 
 
