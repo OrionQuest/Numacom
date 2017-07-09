@@ -1,7 +1,7 @@
 Vectors
 -------
 
-This Cartesian product on :math:`\mathbb R` allows us to define the space :math:`\mathbb R^n` of all :math:`n`-dimensional *vectors*
+The Cartesian product on :math:`\mathbb R` allows us to define the space :math:`\mathbb R^n` of all :math:`n`-dimensional *vectors*
 as follows:
 
 .. math::
