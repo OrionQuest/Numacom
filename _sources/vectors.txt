@@ -1,7 +1,19 @@
 Vectors
 -------
 
-The Cartesian product on :math:`\mathbb R` allows us to define the space :math:`\mathbb R^n` of all :math:`n`-dimensional *vectors*
+We will be working almost exclusively with the set :math:`\mathbb R` of all `real numbers <https://en.wikipedia.org/wiki/Real_number>`_. In particular, we will
+consider the *Cartesian product* of two sets :math:`A` and :math:`B` defined as:
+
+.. math::
+    A\times B = \{(a,b) : a\in A \mbox{ and } b\in B\}
+
+The Cartesian product can be used to define *powers* of sets as follows:
+
+.. math::
+    A^n = \underbrace{A \times A\times \ldots \times A}_{n \mbox{ times}}
+
+
+This allows us to define the space :math:`\mathbb R^n` of all :math:`n`-dimensional *vectors*
 as follows:
 
 .. math::

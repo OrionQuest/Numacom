@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1. Introduction &#8212; CS323 1.0 documentation</title>
+    <title>1.1. Motivation &#8212; CS323 1.0 documentation</title>
     
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -27,8 +27,9 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="CS323 1.0 documentation" href="index.html" />
-    <link rel="next" title="1.1. Motivation" href="motivation.html" />
-    <link rel="prev" title="CS323: Numerical Analysis and Computing" href="index.html" /> 
+    <link rel="up" title="1. Introduction" href="intro.html" />
+    <link rel="next" title="1.2. Vectors" href="vectors.html" />
+    <link rel="prev" title="1. Introduction" href="intro.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -38,12 +39,13 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="motivation.html" title="1.1. Motivation"
+          <a href="vectors.html" title="1.2. Vectors"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="CS323: Numerical Analysis and Computing"
+          <a href="intro.html" title="1. Introduction"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS323 1.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS323 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">1. Introduction</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -52,15 +54,23 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="introduction">
-<h1>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p>This chapter gives a broad overview of the concepts from linear algebra that
-will be used throughout the course. It is intended as a review of background
-material. While most students may already be familiar with these
-topics, they are still encouraged to briefly skim through the material
-so as to take note of all the programming concepts that are introduced.</p>
-<div class="toctree-wrapper compound">
-</div>
+  <div class="section" id="motivation">
+<h1>1.1. Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h1>
+<p>In many instances, we are faced with mathematical problems where the conventional
+method &#8220;on paper&#8221; does not perform as well when implemented on the computer.
+Take, for example, the quadratic equation:</p>
+<div class="math">
+\[ax^2 + bx + c = 0\]</div>
+<p>In theory, we have a perfectly conclusive method for determining the roots of
+this equation; simply use the quadratic formula:</p>
+<div class="math">
+\[x_{1,2} = \frac{-b\pm\sqrt{b^2-4ac}}{2a}\]</div>
+<p>In fact, let us consider a very specific example:</p>
+<div class="math">
+\[0.0501x^2 -98.78x +5.015 = 0\]</div>
+<p>The actual roots of this equation, rounded to <span class="math">\(10\)</span> digits of accuracy, are</p>
+<div class="math">
+\[x_1 = 1971.605916, \enspace\enspace\enspace\enspace x_2 = 0.05077069387\]</div>
 </div>
 
 
@@ -70,15 +80,15 @@ so as to take note of all the programming concepts that are introduced.</p>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="index.html"
-                        title="previous chapter">CS323: Numerical Analysis and Computing</a></p>
+  <p class="topless"><a href="intro.html"
+                        title="previous chapter">1. Introduction</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="motivation.html"
-                        title="next chapter">1.1. Motivation</a></p>
+  <p class="topless"><a href="vectors.html"
+                        title="next chapter">1.2. Vectors</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/intro.txt"
+      <li><a href="_sources/motivation.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -103,12 +113,13 @@ so as to take note of all the programming concepts that are introduced.</p>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="motivation.html" title="1.1. Motivation"
+          <a href="vectors.html" title="1.2. Vectors"
              >next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="CS323: Numerical Analysis and Computing"
+          <a href="intro.html" title="1. Introduction"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS323 1.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS323 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="intro.html" >1. Introduction</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
