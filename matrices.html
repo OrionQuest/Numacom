@@ -24,6 +24,8 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="CS323 1.0 documentation" href="index.html" />
     <link rel="up" title="1. Introduction" href="intro.html" />
     <link rel="prev" title="1.1. Vectors" href="vectors.html" /> 
@@ -112,7 +114,9 @@ A_{m1} &amp; A_{m2} &amp; \ldots &amp; A_{mn}
 </pre></div>
 </div>
 <p>Note that <a class="reference external" href="http://www.numpy.org/">NumPy</a> defines the individual elements of
-the matrix by specifying the rows, <em>not</em> the columns. You are probably familiar
+the matrix by specifying the rows, <em>not</em> the columns. Such an ordering of the
+matrix elements is called a <em>row-major</em> ordering. On the other hand, if the data was specified
+column-by-column, it would be called a <em>column-major</em> ordering. You are probably familiar
 with the <span class="math">\(n\times n\)</span> <em>identity matrix</em> defined as:</p>
 <div class="math">
 \[\begin{split}I_{n\times n} = \left(\begin{array}{cccc}
@@ -188,7 +192,12 @@ v^n \\
 <p>Traditionally, we are used to viewing the relation <span class="math">\(Ax=b\)</span> as the <em>action</em>
 of <span class="math">\(A\)</span> on <span class="math">\(x\)</span> to produce <span class="math">\(b\)</span>. The equation above is a
 different interpretation that suggests, in contrast, that <span class="math">\(x\)</span> acts on
-<span class="math">\(A\)</span> to produce <span class="math">\(b\)</span>. Also, note how the dimensions of the result
+<span class="math">\(A\)</span> to produce <span class="math">\(b\)</span>. The set of all <span class="math">\(m\)</span>-dimensional vectors
+<span class="math">\(b\)</span> that can be written as <span class="math">\(Ax\)</span> for some <span class="math">\(n\)</span>-dimensional
+vector <span class="math">\(x\)</span> constitute the <em>column space</em> of <span class="math">\(A\)</span>. The <em>rank</em> of
+<span class="math">\(A\)</span> is the dimension of its column space, i.e., the number of linearly
+independent columns of <span class="math">\(A\)</span>.
+Also, note how the dimensions of the result
 <span class="math">\(b\)</span> are dependent on the dimensions of <span class="math">\(A\)</span> and <span class="math">\(x\)</span>:</p>
 <div class="math">
 \[b_{m\times 1} = A_{m\times n}\cdot x_{n\times 1}\]</div>
@@ -287,7 +296,7 @@ can be used for computing the transpose of a given matrix, as shown below:</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Mridul Aanjaneya.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
     </div>
   </body>
 </html>
