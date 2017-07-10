@@ -74,7 +74,9 @@ In the example above, :math:`A_{ij}=v^j_i`. `NumPy <http://www.numpy.org/>`_ has
         [7, 8, 9]])
 
 Note that `NumPy <http://www.numpy.org/>`_ defines the individual elements of
-the matrix by specifying the rows, *not* the columns. You are probably familiar
+the matrix by specifying the rows, *not* the columns. Such an ordering of the
+matrix elements is called a *row-major* ordering. On the other hand, if the data was specified
+column-by-column, it would be called a *column-major* ordering. You are probably familiar
 with the :math:`n\times n` *identity matrix* defined as:
 
 .. math::
@@ -162,7 +164,12 @@ This relation can be schematically depicted as follows:
 Traditionally, we are used to viewing the relation :math:`Ax=b` as the *action*
 of :math:`A` on :math:`x` to produce :math:`b`. The equation above is a
 different interpretation that suggests, in contrast, that :math:`x` acts on
-:math:`A` to produce :math:`b`. Also, note how the dimensions of the result
+:math:`A` to produce :math:`b`. The set of all :math:`m`-dimensional vectors
+:math:`b` that can be written as :math:`Ax` for some :math:`n`-dimensional
+vector :math:`x` constitute the *column space* of :math:`A`. The *rank* of
+:math:`A` is the dimension of its column space, i.e., the number of linearly
+independent columns of :math:`A`.
+Also, note how the dimensions of the result
 :math:`b` are dependent on the dimensions of :math:`A` and :math:`x`:
 
 .. math::
