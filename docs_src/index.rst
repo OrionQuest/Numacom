@@ -73,7 +73,7 @@ Contents:
 .. toctree::
     :numbered:
     :includehidden:
-    :maxdepth: 2
+    :maxdepth: 3
 
     Introduction <intro>
 
