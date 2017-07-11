@@ -12,5 +12,6 @@ so as to take note of all the programming concepts that are introduced.
     :maxdepth: 2
 
     Motivation <motivation>
+    Floating-point Arithmetic <precision>
     Vectors  <vectors>
     Matrices <matrices>

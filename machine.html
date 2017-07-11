@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1.2.1. Machine Numbers &#8212; CS 323 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
+    <link rel="up" title="1.2. Floating-point Arithmetic" href="precision.html" />
+    <link rel="next" title="1.3. Vectors" href="vectors.html" />
+    <link rel="prev" title="1.2. Floating-point Arithmetic" href="precision.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="vectors.html" title="1.3. Vectors"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="precision.html" title="1.2. Floating-point Arithmetic"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="intro.html" >1. Introduction</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="precision.html" accesskey="U">1.2. Floating-point Arithmetic</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="machine-numbers">
+<h1>1.2.1. Machine Numbers<a class="headerlink" href="#machine-numbers" title="Permalink to this headline">¶</a></h1>
+<p>This is an abbreviation for binary floating-point numbers, which is how real
+numbers are stored on modern digital computers. In scientific notation,
+<span class="math">\(x=\pm a\times 2^b\)</span>, where <span class="math">\(a\)</span> is called the <em>mantissa</em> and <span class="math">\(b\)</span> the <em>exponent</em>.
+We also follow the convention that <span class="math">\(1\leq a&lt;2\)</span>; the idea being that for
+any number <span class="math">\(x\)</span>, we can always divide it by an appropriate power of
+<span class="math">\(2\)</span>, such that the result will be within <span class="math">\([1,2)\)</span>. For example:</p>
+<div class="math">
+\[x = 5_{(10)} = 1.25_{(10)}\times 2^2 = 1.01_{(2)}\times 2^2\]</div>
+<p>Thus, a machine number is stored as:</p>
+<div class="math">
+\[x=\pm 1.a_1 a_2\ldots a_{k-1}a_k\times 2^b\]</div>
+<ul class="simple">
+<li>In <em>single precision</em> we store <span class="math">\(k=23\)</span> binary digits, and the exponent
+<span class="math">\(b\)</span> ranges between <span class="math">\(-126\leq b\leq 127\)</span>. The largest number we can
+thus represent is <span class="math">\((2-2^{-23})\times 2^{127}\approx 3.4\times 10^{38}\)</span>.</li>
+<li>In <em>double precision</em> we store <span class="math">\(k=52\)</span> binary digits, and the exponent
+<span class="math">\(b\)</span> ranges between <span class="math">\(-1022\leq b\leq 1023\)</span>. The largest number we
+can thus represent is <span class="math">\((2-2^{-52})\times 2^{1023}\approx 1.8\times 10^{308}\)</span>.</li>
+</ul>
+<p>In other words, single precision provides <span class="math">\(23\)</span> binary significant digits.
+In order to translate it to familiar decimal terms we note that
+<span class="math">\(2^{10}\approx 10^3\)</span>, thus, <span class="math">\(10\)</span> binary significant digits are roughly
+equivalent to <span class="math">\(3\)</span> decimal significant digits. Using this, we can say that
+single precision provides approximately <span class="math">\(7\)</span> decimal significant digits,
+while double precision offers slightly more than <span class="math">\(15\)</span>.</p>
+</div>
+<div class="section" id="absolute-and-relative-error">
+<h1>1.2.2. Absolute and Relative Error<a class="headerlink" href="#absolute-and-relative-error" title="Permalink to this headline">¶</a></h1>
+<p>As we saw before, all computations on a computer are approximate by nature, due
+to the limited precision available. As a consequence, some amount of <em>error</em> has
+to be tolerated in all computation. In order to better understand these errors,
+the absolute and relative error measures are used. Let <span class="math">\(q\)</span> denote the
+exact (analytic) quantity that we expect out of a computation, and let
+<span class="math">\(\hat q\)</span> denote the (likely compromised) value actually generated by the
+computer.</p>
+<p>The <em>absolute error</em> is <span class="math">\(e=\vert q - \hat q\vert\)</span>. This is useful for
+framing the result within a certain interval, since <span class="math">\(e\leq\delta\)</span> implies
+<span class="math">\(q\in[\hat q-\delta,\hat q + \delta]\)</span>. The <em>relative error</em> is
+<span class="math">\(e=\vert q - \hat q\vert / \vert q\vert\)</span>. The result may be expressed as a
+percentile and is useful for assessing the error relative to the value of the
+exact quantity. For example, an absolute error of <span class="math">\(10^{-3}\)</span> may be
+insignificant when the intended value of <span class="math">\(q\)</span> is in the order of
+<span class="math">\(10^6\)</span>, but would be very severe if <span class="math">\(q\approx 10^{-2}\)</span>.</p>
+</div>
+<div class="section" id="rounding-and-truncation">
+<h1>1.2.3. Rounding and Truncation<a class="headerlink" href="#rounding-and-truncation" title="Permalink to this headline">¶</a></h1>
+<p>When storing a number on the computer, if the number happens to contain more
+digits than it is possible to represent via a machine number, an approximation
+is made via <em>rounding</em> or <em>truncation</em>. When using truncated results, the
+machine number is constructed by simply discarding significant digits that
+cannot be stored; rounding approximates a quantity with the <em>closest</em>
+machine-precision number. For example, when approximating
+<span class="math">\(\pi=3.1415926535\ldots\)</span> to <span class="math">\(5\)</span> decimal significant digits,
+truncation would give <span class="math">\(\pi\approx 3.1415\)</span> while the rounded result would
+be <span class="math">\(\pi\approx 3.1416\)</span>. Rounding and truncation are similarly defined for
+binary numbers. For example, <span class="math">\(0.1011011101110\ldots_{(2)}\)</span> would be
+approximated to <span class="math">\(5\)</span> binary significant digits as <span class="math">\(x\approx
+0.10110_{(2)}\)</span> using truncation, and <span class="math">\(x\approx 0.10111_{(2)}\)</span> when
+rounded.</p>
+<p><a class="reference external" href="https://www.python.org/">Python</a> has a built-in function <code class="docutils literal"><span class="pre">round</span></code> for
+rounding decimal numbers, as shown below:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">math</span> <span class="k">import</span> <span class="n">pi</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pi</span>
+<span class="go">3.141592653589793</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="n">pi</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">3.142</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="n">pi</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">3.14159</span>
+</pre></div>
+</div>
+<p>There are no built-in functions for truncating a number. However, the following
+<code class="docutils literal"><span class="pre">truncate</span></code> function can be readily defined and allows us to truncate numbers similar to the
+<code class="docutils literal"><span class="pre">round</span></code> function shown above.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">math</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">truncate</span><span class="p">(</span><span class="n">number</span><span class="p">,</span><span class="n">digits</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">stepper</span><span class="o">=</span><span class="nb">pow</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span><span class="n">digits</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">trunc</span><span class="p">(</span><span class="n">stepper</span><span class="o">*</span><span class="n">number</span><span class="p">)</span><span class="o">/</span><span class="n">stepper</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">truncate</span><span class="p">(</span><span class="n">pi</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">3.141</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">truncate</span><span class="p">(</span><span class="n">pi</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">3.14159</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">1.2.1. Machine Numbers</a></li>
+<li><a class="reference internal" href="#absolute-and-relative-error">1.2.2. Absolute and Relative Error</a></li>
+<li><a class="reference internal" href="#rounding-and-truncation">1.2.3. Rounding and Truncation</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="precision.html"
+                        title="previous chapter">1.2. Floating-point Arithmetic</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="vectors.html"
+                        title="next chapter">1.3. Vectors</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/machine.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="vectors.html" title="1.3. Vectors"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="precision.html" title="1.2. Floating-point Arithmetic"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="intro.html" >1. Introduction</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="precision.html" >1.2. Floating-point Arithmetic</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
+    </div>
+  </body>
+</html>
