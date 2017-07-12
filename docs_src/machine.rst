@@ -91,3 +91,55 @@ There are no built-in functions for truncating a number. However, the following
     3.141
     >>> truncate(pi,5)
     3.14159
+
+Machine Epsilon
+---------------
+
+A concept that is useful in quantifying the error caused by rounding or
+truncation is the notion of *machine* :math:`\varepsilon` *(epsilon)*. There are
+a number of (slightly different) definitions in the literature, depending on
+whether truncation or rounding is used, specific rounding rules, etc. Here, we
+will define the machine :math:`\varepsilon` as the smallest positive machine
+number, such that:
+
+.. math::
+    1 + \varepsilon \neq 1,\enspace\enspace\enspace\enspace\mbox{(on the computer)}
+
+Why isn't the above inequality always true, for any :math:`\varepsilon > 0`? The
+reason is that when subject to limitations imposed by the computer precision,
+some numbers are "too small" to affect the result of an operation, for example:
+
+.. math::
+    1                       &=& \enspace 1.\underbrace{000\ldots 000}_{\mbox{23 digits}}\times 2^0 \\
+    2^{-25}                 &=& \enspace 0.\underbrace{000\ldots 000}_{\mbox{23 digits}}01\times 2^0 \\
+    \Rightarrow 1 + 2^{-25} &=& \enspace 1.\underbrace{000\ldots 000}_{\mbox{23 digits}}01\times 2^0
+
+When rounding (or truncating) the last number to :math:`23` binary significant
+digits corresponding to single precision, the result would be exactly the same
+as the representation of the number :math:`x=1`! Thus, on the computer, we have
+:math:`1+2^{-25} = 1`, and consequently :math:`2^{-25}` is smaller than the
+machine epsilon. Notice that the smallest positive number that would actually
+achieve :math:`1+\varepsilon\neq 1` with single precision machine numbers is
+:math:`\varepsilon=2^{-24}` (and we are even relying on a "round upwards"
+convention for tie breaking to come up with a value this small), which will be
+called the machine :math:`\varepsilon` in this case. For double precision, the
+machine :math:`\varepsilon` is :math:`2^{-53}`.
+
+The significance of the machine :math:`\varepsilon` is that it provides an upper
+bound for the relative error of representing any number to the precision
+available on the computer. Thus, if :math:`q>0` is the intended numerical
+quantity, and :math:`\hat q` is the closest machine-precision approximation,
+then:
+
+.. math::
+    (1-\varepsilon)q\leq \hat q\leq (1+\varepsilon)q
+
+where :math:`\varepsilon` is the machine epsilon for the degree of precision
+used; a similar expression holds for :math:`q<0`. `NumPy <http://www.numpy.org/>`_
+provides the function ``finfo`` to retrieve the machine epsilon, as shown below: ::
+
+    >>> import numpy as np
+    >>> print(np.finfo(np.float32).eps)     # single precision
+    1.19209e-07
+    >>> print(np.finfo(float).eps)          # double precision
+    2.22044604925e-16
