@@ -15,3 +15,4 @@ so as to take note of all the programming concepts that are introduced.
     Floating-point Arithmetic <precision>
     Vectors  <vectors>
     Matrices <matrices>
+    Norms <norms>

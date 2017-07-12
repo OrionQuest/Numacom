@@ -123,3 +123,6 @@ easily compute the dot product of two vectors, as shown below: ::
     >>> w = np.array([2,5,7])
     >>> np.dot(v,w)
     39
+
+In what follows, we will *always* denote an :math:`n`-dimensional vector as an
+:math:`n\times 1` column vector.
