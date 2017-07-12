@@ -140,6 +140,51 @@ rounding decimal numbers, as shown below:</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="machine-epsilon">
+<h1>1.2.4. Machine Epsilon<a class="headerlink" href="#machine-epsilon" title="Permalink to this headline">¶</a></h1>
+<p>A concept that is useful in quantifying the error caused by rounding or
+truncation is the notion of <em>machine</em> <span class="math">\(\varepsilon\)</span> <em>(epsilon)</em>. There are
+a number of (slightly different) definitions in the literature, depending on
+whether truncation or rounding is used, specific rounding rules, etc. Here, we
+will define the machine <span class="math">\(\varepsilon\)</span> as the smallest positive machine
+number, such that:</p>
+<div class="math">
+\[1 + \varepsilon \neq 1,\enspace\enspace\enspace\enspace\mbox{(on the computer)}\]</div>
+<p>Why isn&#8217;t the above inequality always true, for any <span class="math">\(\varepsilon &gt; 0\)</span>? The
+reason is that when subject to limitations imposed by the computer precision,
+some numbers are &#8220;too small&#8221; to affect the result of an operation, for example:</p>
+<div class="math">
+\[\begin{split}1                       &amp;=&amp; \enspace 1.\underbrace{000\ldots 000}_{\mbox{23 digits}}\times 2^0 \\
+2^{-25}                 &amp;=&amp; \enspace 0.\underbrace{000\ldots 000}_{\mbox{23 digits}}01\times 2^0 \\
+\Rightarrow 1 + 2^{-25} &amp;=&amp; \enspace 1.\underbrace{000\ldots 000}_{\mbox{23 digits}}01\times 2^0\end{split}\]</div>
+<p>When rounding (or truncating) the last number to <span class="math">\(23\)</span> binary significant
+digits corresponding to single precision, the result would be exactly the same
+as the representation of the number <span class="math">\(x=1\)</span>! Thus, on the computer, we have
+<span class="math">\(1+2^{-25} = 1\)</span>, and consequently <span class="math">\(2^{-25}\)</span> is smaller than the
+machine epsilon. Notice that the smallest positive number that would actually
+achieve <span class="math">\(1+\varepsilon\neq 1\)</span> with single precision machine numbers is
+<span class="math">\(\varepsilon=2^{-24}\)</span> (and we are even relying on a &#8220;round upwards&#8221;
+convention for tie breaking to come up with a value this small), which will be
+called the machine <span class="math">\(\varepsilon\)</span> in this case. For double precision, the
+machine <span class="math">\(\varepsilon\)</span> is <span class="math">\(2^{-53}\)</span>.</p>
+<p>The significance of the machine <span class="math">\(\varepsilon\)</span> is that it provides an upper
+bound for the relative error of representing any number to the precision
+available on the computer. Thus, if <span class="math">\(q&gt;0\)</span> is the intended numerical
+quantity, and <span class="math">\(\hat q\)</span> is the closest machine-precision approximation,
+then:</p>
+<div class="math">
+\[(1-\varepsilon)q\leq \hat q\leq (1+\varepsilon)q\]</div>
+<p>where <span class="math">\(\varepsilon\)</span> is the machine epsilon for the degree of precision
+used; a similar expression holds for <span class="math">\(q&lt;0\)</span>. <a class="reference external" href="http://www.numpy.org/">NumPy</a>
+provides the function <code class="docutils literal"><span class="pre">finfo</span></code> to retrieve the machine epsilon, as shown below:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span>     <span class="c1"># single precision</span>
+<span class="go">1.19209e-07</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span>          <span class="c1"># double precision</span>
+<span class="go">2.22044604925e-16</span>
+</pre></div>
+</div>
+</div>
 
 
           </div>
@@ -152,6 +197,7 @@ rounding decimal numbers, as shown below:</p>
 <li><a class="reference internal" href="#">1.2.1. Machine Numbers</a></li>
 <li><a class="reference internal" href="#absolute-and-relative-error">1.2.2. Absolute and Relative Error</a></li>
 <li><a class="reference internal" href="#rounding-and-truncation">1.2.3. Rounding and Truncation</a></li>
+<li><a class="reference internal" href="#machine-epsilon">1.2.4. Machine Epsilon</a></li>
 </ul>
 
   <h4>Previous topic</h4>
