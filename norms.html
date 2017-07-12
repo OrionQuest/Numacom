@@ -160,7 +160,7 @@ matrix norms <em>induced by</em> vector norms.</p>
 \[\lVert M\rVert_\star = \max_{x\in\mathbb R^n,x\neq 0} \frac{\lVert Mx\rVert_\star}{\lVert x\rVert_\star}\]</div>
 <p>or equivalently,</p>
 <div class="math">
-\[\lVert M\rVert_\star = \max_{x\in\mathbb R^n,x=1} \lVert Mx\rVert_\star\]</div>
+\[\lVert M\rVert_\star = \max_{x\in\mathbb R^n,\lVert x\rVert=1} \lVert Mx\rVert_\star\]</div>
 <p>Note again, that <em>not all</em> valid matrix norms are induced by vector norms. One
 notable example is the very commonly used <em>Frobenius norm</em>:</p>
 <div class="math">
@@ -170,6 +170,28 @@ notable example is the very commonly used <em>Frobenius norm</em>:</p>
 <div class="math">
 \[\begin{split}\lVert M+N\rVert &amp;=&amp; \max_{x\neq 0} \frac{\lVert (M+N)x\rVert}{\lVert x\rVert} \leq \max_{x\neq 0} \frac{\lVert Mx\rVert + \lVert Nx\rVert}{\lVert x\rVert} \\
                  &amp;=&amp; \max_{x\neq 0} \frac{\lVert Mx\rVert}{\lVert x\rVert} + \max_{x\neq 0} \frac{\lVert Nx\rVert}{\lVert x\rVert} = \lVert M\rVert + \lVert N\rVert\end{split}\]</div>
+<p>Property <span class="math">\((4)\)</span> is slightly trickier to show. First, a lemma:</p>
+<p><strong>Lemma:</strong> If <span class="math">\(\lVert\cdot\rVert\)</span> is a matrix norm induced by a vector
+norm <span class="math">\(\lVert\cdot\rVert\)</span>, then</p>
+<div class="math">
+\[\lVert Ax\rVert \leq \lVert A\rVert\cdot \lVert x\rVert\]</div>
+<p><em>Proof:</em> Since <span class="math">\(\lVert A\rVert = \max_{x\neq 0}\lVert Ax\rVert/\lVert x\rVert\)</span>, we have that for an arbitrary <span class="math">\(y\in\mathbb R^n (y\neq 0)\)</span></p>
+<div class="math">
+\[\lVert A\rVert = \max_{x\neq 0}\frac{\lVert Ax\rVert}{\lVert x\rVert}\geq \frac{\lVert Ay\rVert}{\lVert y\rVert} \Rightarrow \lVert Ay\rVert \leq \lVert A\rVert\cdot\lVert y\rVert\]</div>
+<p>This holds for <span class="math">\(y\neq 0\)</span>, but we can see that it is also true for <span class="math">\(y=0\)</span>.</p>
+<p>Now property <span class="math">\((4)\)</span> can be easily proved using the above lemma:</p>
+<div class="math">
+\[\begin{split}\lVert MN\rVert &amp;=&amp; \max_{\lVert x\rVert=1} \lVert MNx\rVert \leq \max_{\lVert x\rVert=1} \lVert M\rVert\cdot \lVert Nx\rVert \\
+                &amp;=&amp; \lVert M\rVert\cdot \max_{\lVert x\rVert=1} \lVert Nx\rVert = \lVert M\rVert\cdot\lVert N\rVert \\
+\Rightarrow \lVert MN\rVert &amp;\leq&amp; \lVert M\rVert\cdot\lVert N\rVert\end{split}\]</div>
+<p>Although the definition of an induced norm allowed us to prove certain
+properties, it does not necessarily provide a convenient formula for evaluating
+the matrix norm. Fortunately, such formulas do exist for the <span class="math">\(L_1\)</span> and
+<span class="math">\(L_\infty\)</span> induced matrix norms. Given here (without proof):</p>
+<div class="math">
+\[\begin{split}\lVert A\rVert_1        &amp;=&amp; \max_j \sum_{i=1}^n \vert A_{ij}\vert \enspace\enspace\enspace\mbox{(maximum absolute column sum)} \\
+\lVert A\rVert_\infty   &amp;=&amp; \max_i \sum_{i=1}^n \vert A_{ij}\vert \enspace\enspace\enspace\mbox{(maximum absolute row sum)}\end{split}\]</div>
+<p>The formula for the <span class="math">\(L_2\)</span> induced matrix norm is more complicated. We will see it when we study eigenvalues.</p>
 </div>
 </div>
 

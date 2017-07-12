@@ -123,7 +123,7 @@ matrix norms *induced by* vector norms.
 or equivalently,
 
 .. math::
-    \lVert M\rVert_\star = \max_{x\in\mathbb R^n,x=1} \lVert Mx\rVert_\star
+    \lVert M\rVert_\star = \max_{x\in\mathbb R^n,\lVert x\rVert=1} \lVert Mx\rVert_\star
 
 Note again, that *not all* valid matrix norms are induced by vector norms. One
 notable example is the very commonly used *Frobenius norm*:
@@ -137,3 +137,36 @@ We can easily show that induced norms satify properties :math:`(1)` through
 .. math::
     \lVert M+N\rVert &=& \max_{x\neq 0} \frac{\lVert (M+N)x\rVert}{\lVert x\rVert} \leq \max_{x\neq 0} \frac{\lVert Mx\rVert + \lVert Nx\rVert}{\lVert x\rVert} \\
                      &=& \max_{x\neq 0} \frac{\lVert Mx\rVert}{\lVert x\rVert} + \max_{x\neq 0} \frac{\lVert Nx\rVert}{\lVert x\rVert} = \lVert M\rVert + \lVert N\rVert
+
+Property :math:`(4)` is slightly trickier to show. First, a lemma:
+
+**Lemma:** If :math:`\lVert\cdot\rVert` is a matrix norm induced by a vector
+norm :math:`\lVert\cdot\rVert`, then
+
+.. math::
+    \lVert Ax\rVert \leq \lVert A\rVert\cdot \lVert x\rVert
+
+*Proof:* Since :math:`\lVert A\rVert = \max_{x\neq 0}\lVert Ax\rVert/\lVert x\rVert`, we have that for an arbitrary :math:`y\in\mathbb R^n (y\neq 0)`
+
+.. math::
+    \lVert A\rVert = \max_{x\neq 0}\frac{\lVert Ax\rVert}{\lVert x\rVert}\geq \frac{\lVert Ay\rVert}{\lVert y\rVert} \Rightarrow \lVert Ay\rVert \leq \lVert A\rVert\cdot\lVert y\rVert
+
+This holds for :math:`y\neq 0`, but we can see that it is also true for :math:`y=0`.
+
+Now property :math:`(4)` can be easily proved using the above lemma:
+
+.. math::
+    \lVert MN\rVert &=& \max_{\lVert x\rVert=1} \lVert MNx\rVert \leq \max_{\lVert x\rVert=1} \lVert M\rVert\cdot \lVert Nx\rVert \\
+                    &=& \lVert M\rVert\cdot \max_{\lVert x\rVert=1} \lVert Nx\rVert = \lVert M\rVert\cdot\lVert N\rVert \\
+    \Rightarrow \lVert MN\rVert &\leq& \lVert M\rVert\cdot\lVert N\rVert
+
+Although the definition of an induced norm allowed us to prove certain
+properties, it does not necessarily provide a convenient formula for evaluating
+the matrix norm. Fortunately, such formulas do exist for the :math:`L_1` and
+:math:`L_\infty` induced matrix norms. Given here (without proof):
+
+.. math::
+    \lVert A\rVert_1        &=& \max_j \sum_{i=1}^n \vert A_{ij}\vert \enspace\enspace\enspace\mbox{(maximum absolute column sum)} \\
+    \lVert A\rVert_\infty   &=& \max_i \sum_{i=1}^n \vert A_{ij}\vert \enspace\enspace\enspace\mbox{(maximum absolute row sum)}
+
+The formula for the :math:`L_2` induced matrix norm is more complicated. We will see it when we study eigenvalues.
