@@ -1,8 +1,8 @@
 Vectors
 -------
 
-We will be working almost exclusively with the set :math:`\mathbb R` of all `real numbers <https://en.wikipedia.org/wiki/Real_number>`_. In particular, we will
-consider the *Cartesian product* of two sets :math:`A` and :math:`B` defined as:
+Consider the set :math:`\mathbb R` of all `real numbers <https://en.wikipedia.org/wiki/Real_number>`_.
+The *Cartesian product* of two sets :math:`A` and :math:`B` is defined as:
 
 .. math::
     A\times B = \{(a,b) : a\in A \mbox{ and } b\in B\}
@@ -10,7 +10,7 @@ consider the *Cartesian product* of two sets :math:`A` and :math:`B` defined as:
 The Cartesian product can be used to define *powers* of sets as follows:
 
 .. math::
-    A^n = \underbrace{A \times A\times \ldots \times A}_{n \mbox{ times}}
+    A^n = \underbrace{A \times A\times \ldots \times A}_{\mbox{$n$ times}}
 
 
 This allows us to define the space :math:`\mathbb R^n` of all :math:`n`-dimensional *vectors*
@@ -123,41 +123,6 @@ easily compute the dot product of two vectors, as shown below: ::
     >>> w = np.array([2,5,7])
     >>> np.dot(v,w)
     39
-
-The dot product allows us to define the familiar *Euclidean* or :math:`L_2`-norm on
-:math:`\mathbb R^n` as follows:
-
-.. math::
-    \|v\|_2 = \sqrt{v\cdot v} = \sqrt{v_1^2+\ldots+v_n^2}
-
-`NumPy <http://www.numpy.org/>`_ has a package called ``linalg`` that allows us
-to directly compute the :math:`L_2`-norm of a vector, as shown below: ::
-
-    >>> v = np.array([3,1,4,5,2,7])
-    >>> np.linalg.norm(v)
-    10.198039027185569
-
-Apart from the Euclidean norm, several other kinds of norms can also be defined
-for a vector :math:`v\in\mathbb R^n`. Two different kinds that we will frequently encounter in
-subsequent sections are the :math:`L_1`-norm (denoted as :math:`\|v\|_1`) and
-the :math:`L_\infty`-norm (denoted as :math:`\|v\|_\infty`), defined as follows:
-
-.. math::
-    \|v\|_1         &=& \enspace |v_1|+|v_2|+\ldots+|v_n| \\
-    \|v\|_\infty    &=& \enspace \textsf{max }|v_i|\mbox{, where }1\leq i\leq n
-
-Interestingly, the ``linalg`` package in `NumPy <http://www.numpy.org/>`_ can
-compute all these different kinds of norms for a given vector, as shown below.
-Here, the second parameter specifies the particular norm that we wish to compute
-(in our case, the :math:`L_1` norm, :math:`L_2` norm, or :math:`L_\infty` norm, respectively): ::
-
-    >>> v = v = np.array([3,1,4,5,2,7])
-    >>> np.linalg.norm(v,1)
-    22
-    >>> np.linalg.norm(v,2)
-    10.198039027185569
-    >>> np.linalg.norm(v,np.inf)
-    7
 
 In what follows, we will *always* denote an :math:`n`-dimensional vector as an
 :math:`n\times 1` column vector.

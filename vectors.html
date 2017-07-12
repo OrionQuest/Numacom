@@ -27,7 +27,7 @@
     <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
     <link rel="up" title="1. Introduction" href="intro.html" />
     <link rel="next" title="1.4. Matrices" href="matrices.html" />
-    <link rel="prev" title="1.2.1. Machine Numbers" href="machine.html" /> 
+    <link rel="prev" title="1.2. Floating-point Arithmetic" href="precision.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -40,7 +40,7 @@
           <a href="matrices.html" title="1.4. Matrices"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="machine.html" title="1.2.1. Machine Numbers"
+          <a href="precision.html" title="1.2. Floating-point Arithmetic"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">1. Introduction</a> &#187;</li> 
@@ -54,13 +54,13 @@
             
   <div class="section" id="vectors">
 <h1>1.3. Vectors<a class="headerlink" href="#vectors" title="Permalink to this headline">¶</a></h1>
-<p>We will be working almost exclusively with the set <span class="math">\(\mathbb R\)</span> of all <a class="reference external" href="https://en.wikipedia.org/wiki/Real_number">real numbers</a>. In particular, we will
-consider the <em>Cartesian product</em> of two sets <span class="math">\(A\)</span> and <span class="math">\(B\)</span> defined as:</p>
+<p>Consider the set <span class="math">\(\mathbb R\)</span> of all <a class="reference external" href="https://en.wikipedia.org/wiki/Real_number">real numbers</a>.
+The <em>Cartesian product</em> of two sets <span class="math">\(A\)</span> and <span class="math">\(B\)</span> is defined as:</p>
 <div class="math">
 \[A\times B = \{(a,b) : a\in A \mbox{ and } b\in B\}\]</div>
 <p>The Cartesian product can be used to define <em>powers</em> of sets as follows:</p>
 <div class="math">
-\[A^n = \underbrace{A \times A\times \ldots \times A}_{n \mbox{ times}}\]</div>
+\[A^n = \underbrace{A \times A\times \ldots \times A}_{\mbox{$n$ times}}\]</div>
 <p>This allows us to define the space <span class="math">\(\mathbb R^n\)</span> of all <span class="math">\(n\)</span>-dimensional <em>vectors</em>
 as follows:</p>
 <div class="math">
@@ -157,37 +157,6 @@ easily compute the dot product of two vectors, as shown below:</p>
 <span class="go">39</span>
 </pre></div>
 </div>
-<p>The dot product allows us to define the familiar <em>Euclidean</em> or <span class="math">\(L_2\)</span>-norm on
-<span class="math">\(\mathbb R^n\)</span> as follows:</p>
-<div class="math">
-\[\|v\|_2 = \sqrt{v\cdot v} = \sqrt{v_1^2+\ldots+v_n^2}\]</div>
-<p><a class="reference external" href="http://www.numpy.org/">NumPy</a> has a package called <code class="docutils literal"><span class="pre">linalg</span></code> that allows us
-to directly compute the <span class="math">\(L_2\)</span>-norm of a vector, as shown below:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">7</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-<span class="go">10.198039027185569</span>
-</pre></div>
-</div>
-<p>Apart from the Euclidean norm, several other kinds of norms can also be defined
-for a vector <span class="math">\(v\in\mathbb R^n\)</span>. Two different kinds that we will frequently encounter in
-subsequent sections are the <span class="math">\(L_1\)</span>-norm (denoted as <span class="math">\(\|v\|_1\)</span>) and
-the <span class="math">\(L_\infty\)</span>-norm (denoted as <span class="math">\(\|v\|_\infty\)</span>), defined as follows:</p>
-<div class="math">
-\[\begin{split}\|v\|_1         &amp;=&amp; \enspace |v_1|+|v_2|+\ldots+|v_n| \\
-\|v\|_\infty    &amp;=&amp; \enspace \textsf{max }|v_i|\mbox{, where }1\leq i\leq n\end{split}\]</div>
-<p>Interestingly, the <code class="docutils literal"><span class="pre">linalg</span></code> package in <a class="reference external" href="http://www.numpy.org/">NumPy</a> can
-compute all these different kinds of norms for a given vector, as shown below.
-Here, the second parameter specifies the particular norm that we wish to compute
-(in our case, the <span class="math">\(L_1\)</span> norm, <span class="math">\(L_2\)</span> norm, or <span class="math">\(L_\infty\)</span> norm, respectively):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">7</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="go">22</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="go">10.198039027185569</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
-<span class="go">7</span>
-</pre></div>
-</div>
 <p>In what follows, we will <em>always</em> denote an <span class="math">\(n\)</span>-dimensional vector as an
 <span class="math">\(n\times 1\)</span> column vector.</p>
 </div>
@@ -199,8 +168,8 @@ Here, the second parameter specifies the particular norm that we wish to compute
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="machine.html"
-                        title="previous chapter">1.2.1. Machine Numbers</a></p>
+  <p class="topless"><a href="precision.html"
+                        title="previous chapter">1.2. Floating-point Arithmetic</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="matrices.html"
                         title="next chapter">1.4. Matrices</a></p>
@@ -235,7 +204,7 @@ Here, the second parameter specifies the particular norm that we wish to compute
           <a href="matrices.html" title="1.4. Matrices"
              >next</a> |</li>
         <li class="right" >
-          <a href="machine.html" title="1.2.1. Machine Numbers"
+          <a href="precision.html" title="1.2. Floating-point Arithmetic"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="intro.html" >1. Introduction</a> &#187;</li> 

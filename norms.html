@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1.5. Norms &#8212; CS 323 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
+    <link rel="up" title="1. Introduction" href="intro.html" />
+    <link rel="prev" title="1.4. Matrices" href="matrices.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="matrices.html" title="1.4. Matrices"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">1. Introduction</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="norms">
+<h1>1.5. Norms<a class="headerlink" href="#norms" title="Permalink to this headline">¶</a></h1>
+<p>Norms are valuable tools for arguing about the extent and magnitude of error. We
+introduce some concepts that we will broadly use later on:</p>
+<p><strong>Definition:</strong> A <em>vector norm</em> is a function from <span class="math">\(\mathbb R^n\)</span> to
+<span class="math">\(\mathbb R\)</span>, with a certain number of properties. If <span class="math">\(x\in\mathbb R^n\)</span>,
+we symbolize its norm by <span class="math">\(\lVert x\rVert\)</span>. The defining properties of a
+norm are:</p>
+<ol class="arabic simple">
+<li><span class="math">\(\lVert x\rVert\geq 0\)</span> for all <span class="math">\(x\in\mathbb R^n\)</span>, also <span class="math">\(\lVert x\rVert=0\)</span>
+if and only if <span class="math">\(x=0\)</span>.</li>
+<li><span class="math">\(\lVert \alpha x\rVert = \lvert\alpha\rvert\cdot \lVert x\rVert\)</span> for
+all <span class="math">\(\alpha\in\mathbb R,x\in\mathbb R^n\)</span>.</li>
+<li><span class="math">\(\lVert x+y\rVert\leq \lVert x\rVert + \lVert y\rVert\)</span> for all
+<span class="math">\(x,y\in\mathbb R^n\)</span>.</li>
+</ol>
+<p>Note that the properties above do not determine a <em>unique</em> form of a &#8220;norm&#8221;
+function. In fact, many different valid norms exist. Typically, we will use
+subscripts (for example, <span class="math">\(\lVert \cdot\rVert_a\)</span>) to denote different types
+of norms.</p>
+<div class="section" id="why-are-vector-norms-needed">
+<h2>1.5.1. Why are vector norms needed?<a class="headerlink" href="#why-are-vector-norms-needed" title="Permalink to this headline">¶</a></h2>
+<p>In many applications, such as the solution of a nonlinear equation <span class="math">\(f(x)=0\)</span>,
+the error <span class="math">\(e=x_\textsf{approx}-x_\textsf{exact}\)</span> is a single number. Thus,
+the absolute value of <span class="math">\(\vert e\vert\)</span> gives us a good idea of the &#8220;extent&#8221;
+of the error.</p>
+<p>When solving a system of linear equations <span class="math">\(Ax=b\)</span>, the exact solution
+<span class="math">\(x_\textsf{exact}\)</span> as well as any approximation <span class="math">\(x_\textsf{approx}\)</span>
+are vectors, and the error <span class="math">\(e=x_\textsf{approx}-x_\textsf{exact}\)</span> is a
+vector too. It is not as straightforward to assess the &#8220;magnitude&#8221; of such a
+vector-valued error. For example, consider <span class="math">\(e_1,e_2\in\mathbb R^{1000}\)</span>,
+and</p>
+<div class="math">
+\[\begin{split}e_1=\left(\begin{array}{c}
+0.1 \\
+0.1 \\
+0.1 \\
+\vdots \\
+0.1
+\end{array}\right), e_2 = \left(\begin{array}{c}
+100 \\
+0 \\
+0 \\
+\vdots \\
+0
+\end{array}\right)\end{split}\]</div>
+<p>Which one is worse? While <span class="math">\(e_1\)</span> has a modest amount of error uniformly
+distributed over all components, all components of <span class="math">\(e_2\)</span> are exact, but
+one of them has a huge discrepancy! Exactly how we quantify and assess the
+extent of error is application-dependent. Vectors norms are alternative ways to
+measure this magnitude, and different norms would be appropriate for different
+tasks.</p>
+</div>
+<div class="section" id="types-of-vector-norms">
+<h2>1.5.2. Types of Vector Norms<a class="headerlink" href="#types-of-vector-norms" title="Permalink to this headline">¶</a></h2>
+<p>Consider a vector <span class="math">\(v\in\mathbb R^n\)</span>. Some norms which satisfy the
+properties of vector norms are:</p>
+<ol class="arabic simple">
+<li>The <span class="math">\(L_1\)</span>-norm (or <span class="math">\(1\)</span>-norm):</li>
+</ol>
+<div class="math">
+\[\lVert v\rVert_1         = \sum_{i=1}^n \vert v_i\vert\]</div>
+<ol class="arabic simple" start="2">
+<li>The <span class="math">\(L_2\)</span>-norm (or <span class="math">\(2\)</span>-norm, or Euclidean norm)</li>
+</ol>
+<div class="math">
+\[\lVert v\rVert_2 = \sqrt{\sum_{i=1}^n v_i^2}\]</div>
+<ol class="arabic simple" start="3">
+<li>The infinity norm (or max-norm)</li>
+</ol>
+<div class="math">
+\[\lVert v\rVert_\infty    = \enspace \max_{1\leq i\leq n}\vert v_i\vert\]</div>
+<ol class="arabic simple" start="4">
+<li>(Less common) <span class="math">\(L_p\)</span>-norm</li>
+</ol>
+<div class="math">
+\[\lVert v\rVert_p = \left(\sum_{i=1}^n \vert v_i\vert^p\right)^{1/p}\]</div>
+<p><a class="reference external" href="http://www.numpy.org/">NumPy</a> has a package called <code class="docutils literal"><span class="pre">linalg</span></code> that allows us
+to directly compute all these different kinds of norms for a given vector, as shown below.
+Here, the second parameter specifies the particular norm that we wish to compute
+(in our case, the <span class="math">\(L_1\)</span> norm, <span class="math">\(L_2\)</span> norm, or <span class="math">\(L_\infty\)</span> norm, respectively):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">7</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">22</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">10.198039027185569</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
+<span class="go">7</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="matrix-norms">
+<h2>1.5.3. Matrix Norms<a class="headerlink" href="#matrix-norms" title="Permalink to this headline">¶</a></h2>
+<p>We can actually define norms for (square) matrices as well. A matrix norm is a
+function <span class="math">\(\lVert\cdot\rVert : \mathbb R^{n\times n}\rightarrow \mathbb R\)</span>
+that satisfies:</p>
+<ol class="arabic simple">
+<li><span class="math">\(\lVert M\rVert\geq 0\)</span> for all <span class="math">\(M\in\mathbb R^{n\times n}\)</span>, <span class="math">\(\lVert M\rVert = 0\)</span>
+if and only if <span class="math">\(M=O\)</span>.</li>
+<li><span class="math">\(\lVert \alpha M\rVert = \vert\alpha\vert\cdot\lVert M\rVert\)</span></li>
+<li><span class="math">\(\lVert M+N\rVert\leq \lVert M\rVert + \lVert N\rVert\)</span></li>
+<li><span class="math">\(\lVert M\cdot N\rVert \leq \lVert M\rVert\cdot\lVert N\rVert\)</span></li>
+</ol>
+<p>Property <span class="math">\((4)\)</span> above has slightly different flavor than vector
+norms. Although more types of matrix norms exist, one common category is that of
+matrix norms <em>induced by</em> vector norms.</p>
+<p><strong>Definition:</strong> If <span class="math">\(\lVert\cdot\rVert_\star\)</span> is a valid vactor norm, its
+<em>induced</em> matrix norm is defined as:</p>
+<div class="math">
+\[\lVert M\rVert_\star = \max_{x\in\mathbb R^n,x\neq 0} \frac{\lVert Mx\rVert_\star}{\lVert x\rVert_\star}\]</div>
+<p>or equivalently,</p>
+<div class="math">
+\[\lVert M\rVert_\star = \max_{x\in\mathbb R^n,x=1} \lVert Mx\rVert_\star\]</div>
+<p>Note again, that <em>not all</em> valid matrix norms are induced by vector norms. One
+notable example is the very commonly used <em>Frobenius norm</em>:</p>
+<div class="math">
+\[\lVert M\rVert_F = \sqrt{\sum_{i,j=1}^n M_{ij}^2}\]</div>
+<p>We can easily show that induced norms satify properties <span class="math">\((1)\)</span> through
+<span class="math">\((4)\)</span>. Properties <span class="math">\((1)-(3)\)</span> are rather trivial, for example,</p>
+<div class="math">
+\[\begin{split}\lVert M+N\rVert &amp;=&amp; \max_{x\neq 0} \frac{\lVert (M+N)x\rVert}{\lVert x\rVert} \leq \max_{x\neq 0} \frac{\lVert Mx\rVert + \lVert Nx\rVert}{\lVert x\rVert} \\
+                 &amp;=&amp; \max_{x\neq 0} \frac{\lVert Mx\rVert}{\lVert x\rVert} + \max_{x\neq 0} \frac{\lVert Nx\rVert}{\lVert x\rVert} = \lVert M\rVert + \lVert N\rVert\end{split}\]</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">1.5. Norms</a><ul>
+<li><a class="reference internal" href="#why-are-vector-norms-needed">1.5.1. Why are vector norms needed?</a></li>
+<li><a class="reference internal" href="#types-of-vector-norms">1.5.2. Types of Vector Norms</a></li>
+<li><a class="reference internal" href="#matrix-norms">1.5.3. Matrix Norms</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="matrices.html"
+                        title="previous chapter">1.4. Matrices</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/norms.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="matrices.html" title="1.4. Matrices"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="intro.html" >1. Introduction</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
+    </div>
+  </body>
+</html>
