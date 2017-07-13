@@ -20,14 +20,15 @@ In fact, let us consider a very specific example:
 .. math::
     0.0501x^2 -98.78x +5.015 = 0
 
-The actual roots of this equation, rounded to :math:`10` digits of accuracy, are
+The actual roots of this equation, rounded to :math:`10` digits of accuracy,
+are:
 
 .. math::
     x_1 = 1971.605916, \enspace\enspace\enspace\enspace x_2 = 0.05077069387
 
 We then proceed to evaluate formula :eq:`quadratic` on the computer. Let us assume
 that the computer stores all intermediate results of this computation with
-:math:`4` significant digits. Thus, we obtain the following answers:
+:math:`4` `significant digits <https://www.google.com/>`_. Thus, we obtain the following answers:
 
 .. math::
     x_1=1972, \enspace\enspace\enspace\enspace x_2=0.0998
@@ -44,7 +45,7 @@ value into the quadratic formula yields:
 .. math::
     x_{1,2} = \frac{98.78\pm 98.77}{0.1002}
 
-The numerator involves either a sum or a difference of two near-equal
+The numerator involves either a sum or a difference of two nearly equal
 quantities. When adding the two values, we compute the reasonably accurate
 :math:`x_1=1972`. When subtracting, all the information that was discarded by
 truncating :math:`\sqrt{b^2-4ac}\approx 98.77` is now dominating the computed
@@ -52,7 +53,7 @@ value of the numerator. As a consequence, we obtain the compromised value
 :math:`x_2=0.0998`. In general, subtraction *reveals* the error, and division by
 a small number *amplifies* it.
 
-So, subtracting two near-equal quantities is risky :math:`\ldots` can we avoid
+So, subtracting two nearly equal quantities is risky :math:`\ldots` can we avoid
 doing so? There is, in fact, an alternative formulation:
 
 .. math::
@@ -127,6 +128,6 @@ into two broad classes:
 * **Iterative methods:** These methods obtain better approximations to the
   solution through successive iterations.
 
-The traits and trade-offs of such methods will be a point of focus for CS 323,
-and are central to the field we call *numerical analysis* and *scientific
+The traits and trade-offs of such methods will be a point of focus for this
+class, and are central to the field we call *numerical analysis* and *scientific
 computing*.

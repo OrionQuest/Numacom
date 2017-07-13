@@ -65,7 +65,7 @@ final grade. Homework problems will be posted every second week on this webpage,
 and will be due at **midnight** on the Tuesday lecture two weeks later. Each
 student is also granted **3 late days** total for submitting their homeworks.
 After this grace period has expired (either for the current homework or from
-previous homeworks) we will subtract 15% for every day that is delayed further.
+previous homeworks) we will subtract 15% for each day that is delayed further.
 
 Contents:
 ---------

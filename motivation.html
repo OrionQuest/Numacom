@@ -24,6 +24,8 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
     <link rel="up" title="1. Introduction" href="intro.html" />
     <link rel="next" title="1.2. Floating-point Arithmetic" href="precision.html" />
@@ -66,12 +68,13 @@ this equation; simply use the quadratic formula:</p>
 <p>In fact, let us consider a very specific example:</p>
 <div class="math">
 \[0.0501x^2 -98.78x +5.015 = 0\]</div>
-<p>The actual roots of this equation, rounded to <span class="math">\(10\)</span> digits of accuracy, are</p>
+<p>The actual roots of this equation, rounded to <span class="math">\(10\)</span> digits of accuracy,
+are:</p>
 <div class="math">
 \[x_1 = 1971.605916, \enspace\enspace\enspace\enspace x_2 = 0.05077069387\]</div>
 <p>We then proceed to evaluate formula <a href="#equation-quadratic">(1)</a> on the computer. Let us assume
 that the computer stores all intermediate results of this computation with
-<span class="math">\(4\)</span> significant digits. Thus, we obtain the following answers:</p>
+<span class="math">\(4\)</span> <a class="reference external" href="https://www.google.com/">significant digits</a>. Thus, we obtain the following answers:</p>
 <div class="math">
 \[x_1=1972, \enspace\enspace\enspace\enspace x_2=0.0998\]</div>
 <p>Although the value of <span class="math">\(x_1\)</span> is reasonably accurate (in fact, it is the
@@ -84,14 +87,14 @@ any subsequent digits due to its limited available precision. Substituting this
 value into the quadratic formula yields:</p>
 <div class="math">
 \[x_{1,2} = \frac{98.78\pm 98.77}{0.1002}\]</div>
-<p>The numerator involves either a sum or a difference of two near-equal
+<p>The numerator involves either a sum or a difference of two nearly equal
 quantities. When adding the two values, we compute the reasonably accurate
 <span class="math">\(x_1=1972\)</span>. When subtracting, all the information that was discarded by
 truncating <span class="math">\(\sqrt{b^2-4ac}\approx 98.77\)</span> is now dominating the computed
 value of the numerator. As a consequence, we obtain the compromised value
 <span class="math">\(x_2=0.0998\)</span>. In general, subtraction <em>reveals</em> the error, and division by
 a small number <em>amplifies</em> it.</p>
-<p>So, subtracting two near-equal quantities is risky <span class="math">\(\ldots\)</span> can we avoid
+<p>So, subtracting two nearly equal quantities is risky <span class="math">\(\ldots\)</span> can we avoid
 doing so? There is, in fact, an alternative formulation:</p>
 <div class="math" id="equation-derationalized">
 <span class="eqno">(2)</span>\[\begin{split}x_{1,2} &amp;=&amp; \frac{(-b\pm\sqrt{b^2-4ac})(-b\mp\sqrt{b^2-4ac})}{2a(-b\mp\sqrt{b^2-4ac})} \\
@@ -153,8 +156,8 @@ quadratic equation fall in this category.</li>
 <li><strong>Iterative methods:</strong> These methods obtain better approximations to the
 solution through successive iterations.</li>
 </ul>
-<p>The traits and trade-offs of such methods will be a point of focus for CS 323,
-and are central to the field we call <em>numerical analysis</em> and <em>scientific
+<p>The traits and trade-offs of such methods will be a point of focus for this
+class, and are central to the field we call <em>numerical analysis</em> and <em>scientific
 computing</em>.</p>
 </div>
 
@@ -209,7 +212,7 @@ computing</em>.</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Mridul Aanjaneya.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
     </div>
   </body>
 </html>
