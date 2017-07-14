@@ -42,8 +42,8 @@ where every digit :math:`b_i` is now only allowed to equal :math:`0` or :math:`1
 * :math:`5.75_{(10)} = 4+1+0.5+0.25 = 1\times2^2 + 1\times 2^0 + 1\times 2^{-1} +1\times 2^{-2} = 101.11_{(2)}`
 * :math:`17.5_{(10)} = 16 + 1 + 0.5 = 1\times 2^4 + 1\times 2^0 + 1\times 2^{-1} = 10001.1_{(2)}`
 
-Note that certain numbers that are finite (terminating) decimals actually are
-periodic in binary, e.g.
+Note that certain numbers that are finite (terminating) decimals are actually
+periodic (or `repeating <https://en.wikipedia.org/wiki/Repeating_decimal>`_) in binary, for example,
 
 .. math::
     0.4_{(10)} = 0.01100110011\ldots_{(2)} = 0.011\overline{0011}_{(2)}
