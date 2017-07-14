@@ -145,6 +145,7 @@ norm :math:`\lVert\cdot\rVert`, then
 
 .. math::
     \lVert Ax\rVert \leq \lVert A\rVert\cdot \lVert x\rVert
+    :label: vector-norm-inequality
 
 *Proof:* Since :math:`\lVert A\rVert = \max_{x\neq 0}\lVert Ax\rVert/\lVert x\rVert`, we have that for an arbitrary :math:`y\in\mathbb R^n (y\neq 0)`
 
@@ -159,6 +160,23 @@ Now property :math:`(4)` can be easily proved using the above lemma:
     \lVert MN\rVert &=& \max_{\lVert x\rVert=1} \lVert MNx\rVert \leq \max_{\lVert x\rVert=1} \lVert M\rVert\cdot \lVert Nx\rVert \\
                     &=& \lVert M\rVert\cdot \max_{\lVert x\rVert=1} \lVert Nx\rVert = \lVert M\rVert\cdot\lVert N\rVert \\
     \Rightarrow \lVert MN\rVert &\leq& \lVert M\rVert\cdot\lVert N\rVert
+
+Note that when writing an expression such as :eq:`vector-norm-inequality`, the
+matrix norm :math:`\lVert A\rVert` is understood to be the inferred norm from the
+vector norm used in :math:`\lVert Ax\rVert` and :math:`\lVert x\rVert`. Thus,
+
+.. math::
+    \lVert Ax\rVert_1 \leq \lVert A\rVert_1\cdot \lVert x\rVert_1
+
+and
+
+.. math::
+    \lVert Ax\rVert_\infty \leq \lVert A\rVert_\infty\cdot \lVert x\rVert_\infty
+
+are both valid, but we *cannot* mix and match, for example:
+
+.. math::
+    \lVert Ax\rVert_\infty \leq \lVert A\rVert_2\cdot \lVert x\rVert_1
 
 Although the definition of an induced norm allowed us to prove certain
 properties, it does not necessarily provide a convenient formula for evaluating

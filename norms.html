@@ -24,8 +24,6 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
     <link rel="up" title="1. Introduction" href="intro.html" />
     <link rel="prev" title="1.4. Matrices" href="matrices.html" /> 
@@ -175,8 +173,8 @@ notable example is the very commonly used <em>Frobenius norm</em>:</p>
 <p>Property <span class="math">\((4)\)</span> is slightly trickier to show. First, a lemma:</p>
 <p><strong>Lemma:</strong> If <span class="math">\(\lVert\cdot\rVert\)</span> is a matrix norm induced by a vector
 norm <span class="math">\(\lVert\cdot\rVert\)</span>, then</p>
-<div class="math">
-\[\lVert Ax\rVert \leq \lVert A\rVert\cdot \lVert x\rVert\]</div>
+<div class="math" id="equation-vector-norm-inequality">
+<span class="eqno">(1)</span>\[\lVert Ax\rVert \leq \lVert A\rVert\cdot \lVert x\rVert\]</div>
 <p><em>Proof:</em> Since <span class="math">\(\lVert A\rVert = \max_{x\neq 0}\lVert Ax\rVert/\lVert x\rVert\)</span>, we have that for an arbitrary <span class="math">\(y\in\mathbb R^n (y\neq 0)\)</span></p>
 <div class="math">
 \[\lVert A\rVert = \max_{x\neq 0}\frac{\lVert Ax\rVert}{\lVert x\rVert}\geq \frac{\lVert Ay\rVert}{\lVert y\rVert} \Rightarrow \lVert Ay\rVert \leq \lVert A\rVert\cdot\lVert y\rVert\]</div>
@@ -186,6 +184,17 @@ norm <span class="math">\(\lVert\cdot\rVert\)</span>, then</p>
 \[\begin{split}\lVert MN\rVert &amp;=&amp; \max_{\lVert x\rVert=1} \lVert MNx\rVert \leq \max_{\lVert x\rVert=1} \lVert M\rVert\cdot \lVert Nx\rVert \\
                 &amp;=&amp; \lVert M\rVert\cdot \max_{\lVert x\rVert=1} \lVert Nx\rVert = \lVert M\rVert\cdot\lVert N\rVert \\
 \Rightarrow \lVert MN\rVert &amp;\leq&amp; \lVert M\rVert\cdot\lVert N\rVert\end{split}\]</div>
+<p>Note that when writing an expression such as <a href="#equation-vector-norm-inequality">(1)</a>, the
+matrix norm <span class="math">\(\lVert A\rVert\)</span> is understood to be the inferred norm from the
+vector norm used in <span class="math">\(\lVert Ax\rVert\)</span> and <span class="math">\(\lVert x\rVert\)</span>. Thus,</p>
+<div class="math">
+\[\lVert Ax\rVert_1 \leq \lVert A\rVert_1\cdot \lVert x\rVert_1\]</div>
+<p>and</p>
+<div class="math">
+\[\lVert Ax\rVert_\infty \leq \lVert A\rVert_\infty\cdot \lVert x\rVert_\infty\]</div>
+<p>are both valid, but we <em>cannot</em> mix and match, for example:</p>
+<div class="math">
+\[\lVert Ax\rVert_\infty \leq \lVert A\rVert_2\cdot \lVert x\rVert_1\]</div>
 <p>Although the definition of an induced norm allowed us to prove certain
 properties, it does not necessarily provide a convenient formula for evaluating
 the matrix norm. Fortunately, such formulas do exist for the <span class="math">\(L_1\)</span> and
@@ -252,7 +261,7 @@ the matrix norm. Fortunately, such formulas do exist for the <span class="math">
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Mridul Aanjaneya.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
     </div>
   </body>
 </html>
