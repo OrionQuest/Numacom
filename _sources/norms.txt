@@ -4,17 +4,18 @@ Norms
 Norms are valuable tools for arguing about the extent and magnitude of error. We
 introduce some concepts that we will broadly use later on:
 
-**Definition:** A *vector norm* is a function from :math:`\mathbb R^n` to
-:math:`\mathbb R`, with a certain number of properties. If :math:`x\in\mathbb R^n`,
-we symbolize its norm by :math:`\lVert x\rVert`. The defining properties of a
-norm are:
+.. topic:: Definition
 
-#. :math:`\lVert x\rVert\geq 0` for all :math:`x\in\mathbb R^n`, also :math:`\lVert x\rVert=0`
-   if and only if :math:`x=0`.
-#. :math:`\lVert \alpha x\rVert = \lvert\alpha\rvert\cdot \lVert x\rVert` for
-   all :math:`\alpha\in\mathbb R,x\in\mathbb R^n`.
-#. :math:`\lVert x+y\rVert\leq \lVert x\rVert + \lVert y\rVert` for all
-   :math:`x,y\in\mathbb R^n`.
+    A *vector norm* is a function from :math:`\mathbb R^n` to
+    :math:`\mathbb R`. If :math:`x\in\mathbb R^n`,
+    we symbolize its norm by :math:`\lVert x\rVert`, and its defining properties are:
+    
+    #. :math:`\lVert x\rVert\geq 0` for all :math:`x\in\mathbb R^n`, also :math:`\lVert x\rVert=0`
+       if and only if :math:`x=0`.
+    #. :math:`\lVert \alpha x\rVert = \lvert\alpha\rvert\cdot \lVert x\rVert` for
+       all :math:`\alpha\in\mathbb R,x\in\mathbb R^n`.
+    #. :math:`\lVert x+y\rVert\leq \lVert x\rVert + \lVert y\rVert` for all
+       :math:`x,y\in\mathbb R^n`.
 
 Note that the properties above do not determine a *unique* form of a "norm"
 function. In fact, many different valid norms exist. Typically, we will use
@@ -43,7 +44,7 @@ and
     0.1 \\
     \vdots \\
     0.1
-    \end{array}\right), e_2 = \left(\begin{array}{c}
+    \end{array}\right), \enspace\enspace\enspace e_2 = \left(\begin{array}{c}
     100 \\
     0 \\
     0 \\
@@ -100,30 +101,34 @@ Here, the second parameter specifies the particular norm that we wish to compute
 Matrix Norms
 ~~~~~~~~~~~~
 
-We can actually define norms for (square) matrices as well. A matrix norm is a
-function :math:`\lVert\cdot\rVert : \mathbb R^{n\times n}\rightarrow \mathbb R`
-that satisfies:
+We can actually define norms for (square) matrices as well.
 
-1. :math:`\lVert M\rVert\geq 0` for all :math:`M\in\mathbb R^{n\times n}`, :math:`\lVert M\rVert = 0`
-   if and only if :math:`M=O`.
-2. :math:`\lVert \alpha M\rVert = \vert\alpha\vert\cdot\lVert M\rVert`
-3. :math:`\lVert M+N\rVert\leq \lVert M\rVert + \lVert N\rVert`
-4. :math:`\lVert M\cdot N\rVert \leq \lVert M\rVert\cdot\lVert N\rVert`
+.. topic:: Definition
+
+    A matrix norm is a function :math:`\lVert\cdot\rVert : \mathbb R^{n\times n}\rightarrow \mathbb R` that satisfies:
+
+    1. :math:`\lVert M\rVert\geq 0` for all :math:`M\in\mathbb R^{n\times n}`, :math:`\lVert M\rVert = 0`
+       if and only if :math:`M=O`.
+    2. :math:`\lVert \alpha M\rVert = \vert\alpha\vert\cdot\lVert M\rVert`
+    3. :math:`\lVert M+N\rVert\leq \lVert M\rVert + \lVert N\rVert`
+    4. :math:`\lVert M\cdot N\rVert \leq \lVert M\rVert\cdot\lVert N\rVert`
 
 Property :math:`(4)` above has slightly different flavor than vector
 norms. Although more types of matrix norms exist, one common category is that of
 matrix norms *induced by* vector norms.
 
-**Definition:** If :math:`\lVert\cdot\rVert_\star` is a valid vactor norm, its
-*induced* matrix norm is defined as:
+.. topic:: Definition
 
-.. math::
-    \lVert M\rVert_\star = \max_{x\in\mathbb R^n,x\neq 0} \frac{\lVert Mx\rVert_\star}{\lVert x\rVert_\star}
+    If :math:`\lVert\cdot\rVert_\star` is a valid vactor norm, its
+    *induced* matrix norm is defined as:
 
-or equivalently,
+    .. math::
+        \lVert M\rVert_\star = \max_{x\in\mathbb R^n,x\neq 0} \frac{\lVert Mx\rVert_\star}{\lVert x\rVert_\star}
 
-.. math::
-    \lVert M\rVert_\star = \max_{x\in\mathbb R^n,\lVert x\rVert=1} \lVert Mx\rVert_\star
+    or equivalently,
+
+    .. math::
+        \lVert M\rVert_\star = \max_{x\in\mathbb R^n,\lVert x\rVert=1} \lVert Mx\rVert_\star
 
 Note again, that *not all* valid matrix norms are induced by vector norms. One
 notable example is the very commonly used *Frobenius norm*:
@@ -140,19 +145,21 @@ We can easily show that induced norms satify properties :math:`(1)` through
 
 Property :math:`(4)` is slightly trickier to show. First, a lemma:
 
-**Lemma:** If :math:`\lVert\cdot\rVert` is a matrix norm induced by a vector
-norm :math:`\lVert\cdot\rVert`, then
+.. topic:: Lemma
 
-.. math::
-    \lVert Ax\rVert \leq \lVert A\rVert\cdot \lVert x\rVert
-    :label: vector-norm-inequality
+    If :math:`\lVert\cdot\rVert` is a matrix norm induced by a vector
+    norm :math:`\lVert\cdot\rVert`, then
 
-*Proof:* Since :math:`\lVert A\rVert = \max_{x\neq 0}\lVert Ax\rVert/\lVert x\rVert`, we have that for an arbitrary :math:`y\in\mathbb R^n (y\neq 0)`
+    .. math::
+        \lVert Ax\rVert \leq \lVert A\rVert\cdot \lVert x\rVert
+        :label: vector-norm-inequality
 
-.. math::
-    \lVert A\rVert = \max_{x\neq 0}\frac{\lVert Ax\rVert}{\lVert x\rVert}\geq \frac{\lVert Ay\rVert}{\lVert y\rVert} \Rightarrow \lVert Ay\rVert \leq \lVert A\rVert\cdot\lVert y\rVert
+    *Proof:* Since :math:`\lVert A\rVert = \max_{x\neq 0}\lVert Ax\rVert/\lVert x\rVert`, we have that for an arbitrary :math:`y\in\mathbb R^n (y\neq 0)`
 
-This holds for :math:`y\neq 0`, but we can see that it is also true for :math:`y=0`.
+    .. math::
+        \lVert A\rVert = \max_{x\neq 0}\frac{\lVert Ax\rVert}{\lVert x\rVert}\geq \frac{\lVert Ay\rVert}{\lVert y\rVert} \Rightarrow \lVert Ay\rVert \leq \lVert A\rVert\cdot\lVert y\rVert
+
+    This holds for :math:`y\neq 0`, but we can see that it is also true for :math:`y=0`.
 
 Now property :math:`(4)` can be easily proved using the above lemma:
 
