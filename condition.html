@@ -95,7 +95,45 @@ samples <span class="math">\((y_1,y_2,\ldots,y_n)\)</span>, where <span class="m
 measuring device that was supposed to sample <span class="math">\(f(x)\)</span> could lead to
 erroneous readings <span class="math">\(y_i^\star\)</span> instead of <span class="math">\(y_i\)</span>. In general,
 measuring inaccuracies can lead to the right hand side vector <span class="math">\(b\)</span> being
-misrepresented as <span class="math">\(b^\star (\neq b)\)</span>.</p>
+misrepresented as <span class="math">\(b^\star (\neq b)\)</span>. In this case, instead of the
+intended solution <span class="math">\(x=A^{-1}b\)</span>, we in fact compute the solution to a
+different system <span class="math">\(x^\star=A^{-1}b^\star\)</span>. How important is the error
+<span class="math">\(e=x^\star-x\)</span> that is caused by this misrepresentation of <span class="math">\(b\)</span>?
+Let <span class="math">\(\delta b=b^\star-b, \delta x=x^\star-x,Ax=b,Ax^\star=b^\star\)</span>. Then,
+we have:</p>
+<div class="math">
+\[\begin{split}A(x^\star-x)            \enspace &amp;=&amp; \enspace b^\star-b \\
+A\delta x               \enspace &amp;=&amp; \enspace \delta b \\
+\Rightarrow \delta x    \enspace &amp;=&amp; \enspace A^{-1}\delta b\end{split}\]</div>
+<p>Taking norms,</p>
+<div class="math" id="equation-error-norm">
+<span class="eqno">(2)</span>\[\lVert \delta x\rVert = \lVert A^{-1}\delta b\rVert \leq \lVert A^{-1}\rVert\cdot\lVert \delta b\rVert\]</div>
+<p>Thus, the error in the computed solution <span class="math">\(\delta x\)</span> is proportional to the
+error in <span class="math">\(b\)</span>. An even more relevant question is: how does the <em>relative</em>
+error <span class="math">\(\lVert \delta x\rVert/\lVert x\rVert = \lVert
+x^\star-x\rVert/\lVert x\rVert\)</span> compare to the relative error in <span class="math">\(b\)</span>
+(<span class="math">\(\lVert\delta b\rVert/\lVert b\rVert\)</span>)? This may be more useful to know,
+since <span class="math">\(\lVert\delta b\rVert\)</span> may be impossible to compute (if we don&#8217;t
+know the real <span class="math">\(b\)</span>). For this, we write:</p>
+<div class="math" id="equation-error-reciprocal">
+<span class="eqno">(3)</span>\[\begin{split}Ax = b  &amp;\Rightarrow&amp; \lVert b\rVert = \lVert Ax\rVert \leq \lVert A\rVert\cdot\lVert x\rVert \\
+        &amp;\Rightarrow&amp; \frac{1}{\lVert x\rVert} \leq \lVert A\rVert\cdot\frac{1}{\lVert b\rVert}\end{split}\]</div>
+<p>Multiplying equation <a href="#equation-error-norm">(2)</a> and <a href="#equation-error-reciprocal">(3)</a> gives</p>
+<div class="math">
+\[\frac{\lVert\delta x\rVert}{\lVert x\rVert} \leq \underbrace{\lVert A\rVert\cdot\lVert A^{-1}\rVert}_{\kappa (A)}\cdot\frac{\lVert \delta b\rVert}{\lVert b\rVert}\]</div>
+<p>Thus, the relative error in <span class="math">\(x\)</span> is bounded by a multiple of the relative
+error in <span class="math">\(b\)</span>. Thus multiplicative constant <span class="math">\(\kappa (A)=\lVert A\rVert\cdot\lVert A^{-1}\rVert\)</span>
+is called the <em>condition number</em> of <span class="math">\(A\)</span>, and is an important measure of
+the sensitivity of a linear system <span class="math">\(Ax=b\)</span> to being solved on a computer
+in the presence of inaccurate values.</p>
+</div>
+<div class="section" id="why-is-all-this-relevant">
+<h2>1.6.2. Why is all this relevant?<a class="headerlink" href="#why-is-all-this-relevant" title="Permalink to this headline">¶</a></h2>
+<p>Simply put, <em>any</em> <span class="math">\(b\)</span> will have <em>some</em> small relative error due to the
+fact that it is represented on a computer up to machine precision. The relative
+error will be at least as much as the machine epsilon due to round-off.</p>
+<div class="math">
+\[\frac{\lVert\delta b\rVert_\infty}{\lVert b\rVert_\infty} \geq\varepsilon\approx 10^{-7} \enspace\enspace\enspace\enspace\mbox{(in single precision)}\]</div>
 </div>
 </div>
 
@@ -109,6 +147,7 @@ misrepresented as <span class="math">\(b^\star (\neq b)\)</span>.</p>
   <ul>
 <li><a class="reference internal" href="#">1.6. Condition Numbers</a><ul>
 <li><a class="reference internal" href="#a-different-source-of-error">1.6.1. A Different Source of Error</a></li>
+<li><a class="reference internal" href="#why-is-all-this-relevant">1.6.2. Why is all this relevant?</a></li>
 </ul>
 </li>
 </ul>
