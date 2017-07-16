@@ -16,3 +16,4 @@ so as to take note of all the programming concepts that are introduced.
     Vectors  <vectors>
     Matrices <matrices>
     Norms <norms>
+    Condition Numbers <condition>

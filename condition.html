@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1.6. Condition Numbers &#8212; CS 323 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
+    <link rel="up" title="1. Introduction" href="intro.html" />
+    <link rel="prev" title="1.5. Norms" href="norms.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="norms.html" title="1.5. Norms"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">1. Introduction</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="condition-numbers">
+<h1>1.6. Condition Numbers<a class="headerlink" href="#condition-numbers" title="Permalink to this headline">¶</a></h1>
+<p>When solving a linear system <span class="math">\(Ax=b\)</span>, computer algorithms are only
+providing an approximation <span class="math">\(x_\textsf{approx}\)</span> to the exact solution
+<span class="math">\(x_\textsf{exact}\)</span>. This is due to factors such as finite precision,
+round-off errors, or even imperfect solution algorithms. In either case, we have
+an <em>error</em> (in fact, an error vector) defined as:</p>
+<div class="math">
+\[e = x_\textsf{approx} - x_\textsf{exact}\]</div>
+<p>Naturally, we would like to have an understanding of the <em>magnitude</em> of this
+error (for example, some appropriate norm <span class="math">\(\lVert e\rVert\)</span>). However, the
+error cannot be directly measured because the exact solution <span class="math">\(x_\textsf{exact}\)</span> is unknown.</p>
+<p>One remedy is offered via the <em>residual vector</em> defined as:</p>
+<div class="math">
+\[r = b-Ax_\textsf{approx}\]</div>
+<p>The vector <span class="math">\(r\)</span> is something we <em>can</em> compute practically since it involves
+only the known quantities <span class="math">\(b, A, x_\textsf{approx}\)</span>. Moreover, we have:</p>
+<div class="math" id="equation-error-vs-residual">
+<span class="eqno">(1)</span>\[\begin{split}r               \enspace &amp;=&amp; \enspace b-Ax_\textsf{approx} \nonumber \\
+                \enspace &amp;=&amp; \enspace Ax_\textsf{exact} - Ax_\textsf{approx} \\
+                \enspace &amp;=&amp; \enspace -A(x_\textsf{approx} - x_\textsf{exact}) \\
+                \enspace &amp;=&amp; \enspace -Ae \\
+\Rightarrow r   \enspace &amp;=&amp; \enspace -Ae \\
+\Rightarrow e   \enspace &amp;=&amp; \enspace -A^{-1}r\end{split}\]</div>
+<p>Equation <a href="#equation-error-vs-residual">(1)</a> links the error with the residual. This allows
+us to write:</p>
+<div class="math">
+\[\lVert e\rVert = \lVert A^{-1}r\rVert \leq \lVert A^{-1}\rVert\cdot\lVert r\rVert\]</div>
+<p>This equation provides a <em>bound</em> for the error, as a function of <span class="math">\(\lVert A^{-1}\rVert\)</span>
+and the norm of the computable vector <span class="math">\(r\)</span>. Note that:</p>
+<ul class="simple">
+<li>We can obtain this estimate <em>without</em> knowing the exact solution, but</li>
+<li>We need <span class="math">\(\lVert A^{-1}\rVert\)</span> and generally, computing <span class="math">\(\lVert A^{-1}\rVert\)</span>
+is just as difficult (if not more) than finding <span class="math">\(x_\textsf{exact}\)</span>. However, there
+<em>are</em> special cases where an estimate of <span class="math">\(\lVert A^{-1}\rVert\)</span> can be obtained.</li>
+</ul>
+<div class="section" id="a-different-source-of-error">
+<h2>1.6.1. A Different Source of Error<a class="headerlink" href="#a-different-source-of-error" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes, the right hand side <span class="math">\(b\)</span> of the system of equations <span class="math">\(Ax=b\)</span>
+has errors that make it deviate from its intended value. For example, in the
+Vandermonde matrix method for polynomial interpolation, <span class="math">\(b\)</span> contains the
+samples <span class="math">\((y_1,y_2,\ldots,y_n)\)</span>, where <span class="math">\(y_i = f(x_i)\)</span>. An error in a
+measuring device that was supposed to sample <span class="math">\(f(x)\)</span> could lead to
+erroneous readings <span class="math">\(y_i^\star\)</span> instead of <span class="math">\(y_i\)</span>. In general,
+measuring inaccuracies can lead to the right hand side vector <span class="math">\(b\)</span> being
+misrepresented as <span class="math">\(b^\star (\neq b)\)</span>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">1.6. Condition Numbers</a><ul>
+<li><a class="reference internal" href="#a-different-source-of-error">1.6.1. A Different Source of Error</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="norms.html"
+                        title="previous chapter">1.5. Norms</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/condition.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="norms.html" title="1.5. Norms"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="intro.html" >1. Introduction</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>
