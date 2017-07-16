@@ -24,8 +24,6 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
     <link rel="up" title="1. Introduction" href="intro.html" />
     <link rel="prev" title="1.5. Norms" href="norms.html" /> 
@@ -61,8 +59,8 @@ an <em>error</em> (in fact, an error vector) defined as:</p>
 \[e = x_\textsf{approx} - x_\textsf{exact}\]</div>
 <p>Naturally, we would like to have an understanding of the <em>magnitude</em> of this
 error (for example, some appropriate norm <span class="math">\(\lVert e\rVert\)</span>). However, the
-error cannot be directly measured because the exact solution <span class="math">\(x_\textsf{exact}\)</span> is unknown.</p>
-<p>One remedy is offered via the <em>residual vector</em> defined as:</p>
+error cannot be directly measured because the exact solution <span class="math">\(x_\textsf{exact}\)</span> is unknown.
+One remedy is offered via the <em>residual vector</em> defined as:</p>
 <div class="math">
 \[r = b-Ax_\textsf{approx}\]</div>
 <p>The vector <span class="math">\(r\)</span> is something we <em>can</em> compute practically since it involves
@@ -84,7 +82,7 @@ and the norm of the computable vector <span class="math">\(r\)</span>. Note that
 <li>We can obtain this estimate <em>without</em> knowing the exact solution, but</li>
 <li>We need <span class="math">\(\lVert A^{-1}\rVert\)</span> and generally, computing <span class="math">\(\lVert A^{-1}\rVert\)</span>
 is just as difficult (if not more) than finding <span class="math">\(x_\textsf{exact}\)</span>. However, there
-<em>are</em> special cases where an estimate of <span class="math">\(\lVert A^{-1}\rVert\)</span> can be obtained.</li>
+<em>are</em> some special cases where an estimate of <span class="math">\(\lVert A^{-1}\rVert\)</span> can be obtained.</li>
 </ul>
 <div class="section" id="a-different-source-of-error">
 <h2>1.6.1. A Different Source of Error<a class="headerlink" href="#a-different-source-of-error" title="Permalink to this headline">¶</a></h2>
@@ -96,7 +94,7 @@ measuring device that was supposed to sample <span class="math">\(f(x)\)</span> 
 erroneous readings <span class="math">\(y_i^\star\)</span> instead of <span class="math">\(y_i\)</span>. In general,
 measuring inaccuracies can lead to the right hand side vector <span class="math">\(b\)</span> being
 misrepresented as <span class="math">\(b^\star (\neq b)\)</span>. In this case, instead of the
-intended solution <span class="math">\(x=A^{-1}b\)</span>, we in fact compute the solution to a
+intended solution <span class="math">\(x=A^{-1}b\)</span>, we compute the solution to a
 different system <span class="math">\(x^\star=A^{-1}b^\star\)</span>. How important is the error
 <span class="math">\(e=x^\star-x\)</span> that is caused by this misrepresentation of <span class="math">\(b\)</span>?
 Let <span class="math">\(\delta b=b^\star-b, \delta x=x^\star-x,Ax=b,Ax^\star=b^\star\)</span>. Then,
@@ -122,7 +120,7 @@ know the real <span class="math">\(b\)</span>). For this, we write:</p>
 <div class="math">
 \[\frac{\lVert\delta x\rVert}{\lVert x\rVert} \leq \underbrace{\lVert A\rVert\cdot\lVert A^{-1}\rVert}_{\kappa (A)}\cdot\frac{\lVert \delta b\rVert}{\lVert b\rVert}\]</div>
 <p>Thus, the relative error in <span class="math">\(x\)</span> is bounded by a multiple of the relative
-error in <span class="math">\(b\)</span>. Thus multiplicative constant <span class="math">\(\kappa (A)=\lVert A\rVert\cdot\lVert A^{-1}\rVert\)</span>
+error in <span class="math">\(b\)</span>. This multiplicative constant <span class="math">\(\kappa (A)=\lVert A\rVert\cdot\lVert A^{-1}\rVert\)</span>
 is called the <em>condition number</em> of <span class="math">\(A\)</span>, and is an important measure of
 the sensitivity of a linear system <span class="math">\(Ax=b\)</span> to being solved on a computer
 in the presence of inaccurate values.</p>
@@ -130,10 +128,66 @@ in the presence of inaccurate values.</p>
 <div class="section" id="why-is-all-this-relevant">
 <h2>1.6.2. Why is all this relevant?<a class="headerlink" href="#why-is-all-this-relevant" title="Permalink to this headline">¶</a></h2>
 <p>Simply put, <em>any</em> <span class="math">\(b\)</span> will have <em>some</em> small relative error due to the
-fact that it is represented on a computer up to machine precision. The relative
+fact that it is represented on a computer only up to machine precision. The relative
 error will be at least as much as the machine epsilon due to round-off.</p>
 <div class="math">
 \[\frac{\lVert\delta b\rVert_\infty}{\lVert b\rVert_\infty} \geq\varepsilon\approx 10^{-7} \enspace\enspace\enspace\enspace\mbox{(in single precision)}\]</div>
+<p>But how bad can the condition number get? <em>Very bad</em> at times. For example,
+<a class="reference external" href="https://en.wikipedia.org/wiki/Hilbert_matrix">Hilbert matrices</a>
+<span class="math">\(H_n\in\mathbb R^{n\times n}\)</span> are defined as:</p>
+<div class="math">
+\[(H_n)_{ij} = \frac{1}{i+j-1}\]</div>
+<p>Considering a specific instance for <span class="math">\(n=5\)</span>,</p>
+<div class="math">
+\[\begin{split}H_5=\left[\begin{array}{ccccc}
+1 &amp; 1/2 &amp; 1/3 &amp; 1/4 &amp; 1/5 \\
+1/2 &amp; 1/3 &amp; 1/4 &amp; 1/5 &amp; 1/6 \\
+1/3 &amp; 1/4 &amp; 1/5 &amp; 1/6 &amp; 1/7 \\
+1/4 &amp; 1/5 &amp; 1/6 &amp; 1/7 &amp; 1/8 \\
+1/5 &amp; 1/6 &amp; 1/7 &amp; 1/8 &amp; 1/9
+\end{array}\right], \enspace\enspace\enspace\enspace\enspace \kappa_\infty(H_5) = \lVert H_5\rVert_\infty\cdot\lVert H_5^{-1}\rVert_\infty\approx 10^{-6}\end{split}\]</div>
+<p>Thus, any attempt at solving <span class="math">\(H_5 x = b\)</span> would be subject to a relative
+error of up to <span class="math">\(10\%\)</span> <em>just due to</em> round-off errors in <span class="math">\(b\)</span>! Another
+case is that of near-singular matrices, for example:</p>
+<div class="math">
+\[\begin{split}A=\left[\begin{array}{cc}
+1 &amp; 2 \\
+3 &amp; 6+\varepsilon
+\end{array}\right]\end{split}\]</div>
+<p>As <span class="math">\(\varepsilon\rightarrow 0\)</span>, the matrix <span class="math">\(A\)</span> becomes <em>singular</em>
+(non-invertible). In this case, <span class="math">\(\kappa (A)\rightarrow\infty\)</span>.</p>
+<p>So far, we have considered upper bounds on the condition number. One may also
+ask what is the best case scenario for <span class="math">\(\kappa (A)\)</span>? Before we answer this
+question, a lemma:</p>
+<div class="topic">
+<p class="topic-title first">Lemma</p>
+<p>For any vector-induced matrix norm, <span class="math">\(\lVert I\rVert = 1\)</span>.</p>
+<p><em>Proof:</em>  From the definition,</p>
+<div class="math">
+\[\lVert I\rVert = \max_{x\neq 0}\frac{\lVert Ix\rVert}{\lVert x\rVert} = \max_{x\neq 0} \frac{\lVert x\rVert}{\lVert x\rVert} = 1\]</div>
+</div>
+<p>Using property (4) of matrix norms, we have:</p>
+<div class="math">
+\[I = A\cdot A^{-1} \Rightarrow 1 = \lVert I\rVert = \lVert A\cdot A^{-1}\rVert \leq \lVert A\rVert\cdot\lVert A^{-1}\rVert\]</div>
+<p>Thus, <span class="math">\(\kappa (A)\geq 1\)</span>. The &#8220;best&#8221; conditioned matrices are of the form
+<span class="math">\(A=c\cdot I\)</span>, where <span class="math">\(c\in\mathbb R\)</span> is a non-zero constant, and have
+<span class="math">\(\kappa (A)=1\)</span>. The <code class="docutils literal"><span class="pre">linalg</span></code> package of <a class="reference external" href="http://www.numpy.org/">NumPy</a>
+has an in-built function <code class="docutils literal"><span class="pre">cond</span></code> for computing the condition number of any square matrix, as
+shown below. The second parameter specifies the particular norm to use
+for evaluating the condition number.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">matrix([[ 1,  0, -1],</span>
+<span class="go">        [ 0,  1,  0],</span>
+<span class="go">        [ 1,  0,  1]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">2.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">1.4142135623730951</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
+<span class="go">2.0</span>
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -191,7 +245,7 @@ error will be at least as much as the machine epsilon due to round-off.</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Mridul Aanjaneya.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
     </div>
   </body>
 </html>
