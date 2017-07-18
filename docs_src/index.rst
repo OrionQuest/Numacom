@@ -76,6 +76,7 @@ Contents:
     :maxdepth: 3
 
     Introduction <intro>
+    Getting Started with Python <python>
 
 Coding Resources:
 -----------------
