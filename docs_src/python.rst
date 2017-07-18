@@ -45,7 +45,14 @@ Two strings can be conveniently concatenated together using the ``+`` operator.
 `Python <https://www.python.org/>`_ provides many in-built functions for string processing also, such as ``title``
 which capitalizes the first letter of every word, ``upper`` which capitalizes
 all letters, ``lower`` which converts all characters to lower case, or ``rstrip``
-which deletes all whitespaces, just to name a few. Since scientific computing
+which deletes all whitespaces, just to name a few. Note that a number can also
+be converted into string using the ``str`` keyword, as shown below: ::
+
+    >>> mystring = "Index "+str(23)+" has value: "+str(1.5)
+    >>> mystring
+    'Index 23 has value: 1.5'
+
+Since scientific computing
 algorithms will primarily consider numeric values, we will not dive too deep into
 string processing with `Python <https://www.python.org/>`_.
 
