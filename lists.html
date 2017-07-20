@@ -61,8 +61,8 @@ data type as well. Some examples are given below:</p>
 </div>
 <p>The elements within a list are indexed starting from <code class="docutils literal"><span class="pre">0</span></code> and can be accessed using the
 square bracket (<code class="docutils literal"><span class="pre">[]</span></code>) operator, as shown below. Unlike arrays in <a class="reference external" href="https://en.wikipedia.org/wiki/Java_(programming_language)">Java</a>
-or <a class="reference external" href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a>, negative elements are <em>also</em>
-valid and point to elements from the end of the list. For example:</p>
+or <a class="reference external" href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a>, negative indices are <em>also</em>
+valid and point to elements from the end of the list.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="go">2</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">a</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -84,12 +84,74 @@ anywhere within the list by using the <code class="docutils literal"><span class
 <span class="go">&#39;wow&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <span class="go">[4, 2, 5.0]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">[4, 2, &#39;hello&#39;, 5.0]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">del</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
-<span class="go">[4, 5.0]</span>
+<span class="go">[4, &#39;hello&#39;, 5.0]</span>
 </pre></div>
 </div>
-<p>Note that, unlike the <code class="docutils literal"><span class="pre">append</span></code> operator, the <code class="docutils literal"><span class="pre">pop</span></code> operator returns back the element deleted from the list.</p>
+<p>Note that, unlike the <code class="docutils literal"><span class="pre">append</span></code> operator, the <code class="docutils literal"><span class="pre">pop</span></code> operator returns back the element deleted from the list. If an index is supplied to the <code class="docutils literal"><span class="pre">pop</span></code>
+operator, then it can also be used for deleting an element from anywhere inside the list. Elements can also be deleted <em>by value</em> using the <code class="docutils literal"><span class="pre">remove</span></code>
+operator. For example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mystring</span> <span class="o">=</span> <span class="s2">&quot;Old McDonald had a farm, Duda!&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">words</span> <span class="o">=</span> <span class="n">mystring</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">words</span>
+<span class="go">[&#39;Old&#39;, &#39;McDonald&#39;, &#39;had&#39;, &#39;a&#39;, &#39;farm,&#39;, &#39;Duda!&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">words</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">&#39;Old&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">words</span>
+<span class="go">[&#39;McDonald&#39;, &#39;had&#39;, &#39;a&#39;, &#39;farm,&#39;, &#39;Duda!&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">words</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;Duda!&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">words</span>
+<span class="go">[&#39;McDonald&#39;, &#39;had&#39;, &#39;a&#39;, &#39;farm,&#39;]</span>
+</pre></div>
+</div>
+<p>Note how we used the <code class="docutils literal"><span class="pre">split</span></code> operator to generate a list of all the words in a string. A list can also be sorted using the <code class="docutils literal"><span class="pre">sort</span></code> operator. Elements
+can be arranged in either ascending or descending order, depending on whether the <code class="docutils literal"><span class="pre">reverse</span></code> argument is set. A list can also be easily reversed using
+the <code class="docutils literal"><span class="pre">reverse</span></code> operator. For example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">[2, 4, 5, 7, 9]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">[9, 7, 5, 4, 2]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mystring</span> <span class="o">=</span> <span class="s2">&quot;Old McDonald had a farm, Duda!&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">words</span> <span class="o">=</span> <span class="n">mystring</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">words</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">words</span>
+<span class="go">[&#39;Duda!&#39;, &#39;McDonald&#39;, &#39;Old&#39;, &#39;a&#39;, &#39;farm,&#39;, &#39;had&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">words</span> <span class="o">=</span> <span class="n">mystring</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">words</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">words</span>
+<span class="go">[&#39;Duda!&#39;, &#39;farm,&#39;, &#39;a&#39;, &#39;had&#39;, &#39;McDonald&#39;, &#39;Old&#39;]</span>
+</pre></div>
+</div>
+<p>Similar to <a class="reference external" href="https://en.wikipedia.org/wiki/Java_(programming_language)">Java</a> or <a class="reference external" href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a>,
+<a class="reference external" href="https://www.python.org/">Python</a> assigns an <a class="reference external" href="https://en.wikipedia.org/wiki/ASCII">ASCII</a> code to all <a class="reference external" href="https://en.wikipedia.org/wiki/Alphanumeric">alphanumeric</a> characters,
+where all capitalized letters have a lower ASCII code compared to their non-capitalized counterparts. This is why, for example, <code class="docutils literal"><span class="pre">'Old'</span></code> appears before <code class="docutils literal"><span class="pre">'a'</span></code>
+in the sorted list above.
+The <code class="docutils literal"><span class="pre">sort</span></code> operator sorts all the elements of a list <em>in-place</em>,
+so the order of the elements does change. One can also use the <code class="docutils literal"><span class="pre">sorted</span></code>
+operator that acts on a list and returns another list which is the sorted
+version of the original list. Elements can also be sorted in reverse if the
+<code class="docutils literal"><span class="pre">reverse</span></code> argument is set. Finally, the length of a list can be obtained by
+using the <code class="docutils literal"><span class="pre">len</span></code> keyword.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="go">[2, 4, 5, 7, 9]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="go">[9, 7, 5, 4, 2]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">[5, 2, 7, 4, 9]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">5</span>
+</pre></div>
+</div>
 </div>
 
 
