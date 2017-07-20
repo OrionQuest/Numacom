@@ -25,6 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
+    <link rel="next" title="2.1. Variables and Data Types" href="variables.html" />
     <link rel="prev" title="1.6. Condition Numbers" href="condition.html" /> 
   </head>
   <body role="document">
@@ -34,6 +35,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="variables.html" title="2.1. Variables and Data Types"
+             accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="condition.html" title="1.6. Condition Numbers"
              accesskey="P">previous</a> |</li>
@@ -53,109 +57,10 @@ familiar with the basics. The author&#8217;s aim was to dive right into scientif
 computing to give the reader a taste of the field.  With that out of our way
 now, this chapter aims to provide a refresher course to <a class="reference external" href="https://www.python.org/">Python</a> for all beginners. We will cover all the different
 concepts and language traits that will be used throughout in later chapters.
-Note that this chapter is intentionally agnostic to a particular <a class="reference external" href="https://en.wikipedia.org/wiki/Operating_system">operating system</a>
+This chapter is intentionally agnostic to a particular <a class="reference external" href="https://en.wikipedia.org/wiki/Operating_system">operating system</a>
 or <a class="reference external" href="https://en.wikipedia.org/wiki/Text_editor">text editor</a>, as these things
 are always in flux and everyone has different preferences.</p>
-<div class="section" id="variables-and-data-types">
-<h2>2.1. Variables and Data Types<a class="headerlink" href="#variables-and-data-types" title="Permalink to this headline">¶</a></h2>
-<p>Unlike <a class="reference external" href="https://en.wikipedia.org/wiki/Java_(programming_language)">Java</a> or <a class="reference external" href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a>,
-which are <a class="reference external" href="https://en.wikipedia.org/wiki/Compiler">compiler-based</a> languages, <a class="reference external" href="https://www.python.org/">Python</a> is an <a class="reference external" href="https://en.wikipedia.org/wiki/Interpreter_(computing)">interpreter-based</a> language.
-In layman&#8217;s terms, this means that each program is executed <em>line-by-line</em> with
-no preprocessing for speeding up the execution time. As a consequence, the
-developer does not have to specify the variable type before a given variable
-name. <a class="reference external" href="https://www.python.org/">Python</a> follows the same rules for
-naming variables as <a class="reference external" href="https://en.wikipedia.org/wiki/Java_(programming_language)">Java</a> or <a class="reference external" href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a>,
-so we will not repeat them here for brevity. Some examples of variable
-assignments are given below:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myint</span> <span class="o">=</span> <span class="mi">7</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myfloat</span> <span class="o">=</span> <span class="mf">7.0</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mystring</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span>
-</pre></div>
-</div>
-<div class="section" id="strings">
-<h3>2.1.1. Strings<a class="headerlink" href="#strings" title="Permalink to this headline">¶</a></h3>
-<p>A string is simply a sequence of characters. All characters inside single or
-double quotes constitute a string in <a class="reference external" href="https://www.python.org/">Python</a>. This
-gives flexibility in using both quotes and apostrophes within strings, as shown
-below:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mystring</span> <span class="o">=</span> <span class="s1">&#39;&quot;Come into my parlor&quot;, said the spider to the fly.&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">mystring</span>
-<span class="go">&quot;Come into my parlor&quot;, said the spider to the fly.</span>
-</pre></div>
-</div>
-<p>Two strings can be conveniently concatenated together using the <code class="docutils literal"><span class="pre">+</span></code> operator.
-<a class="reference external" href="https://www.python.org/">Python</a> provides many in-built functions for string processing also, such as <code class="docutils literal"><span class="pre">title</span></code>
-which capitalizes the first letter of every word, <code class="docutils literal"><span class="pre">upper</span></code> which capitalizes
-all letters, <code class="docutils literal"><span class="pre">lower</span></code> which converts all characters to lower case, or <code class="docutils literal"><span class="pre">rstrip</span></code>
-which deletes all whitespaces, just to name a few. Note that a number can also
-be converted into string using the <code class="docutils literal"><span class="pre">str</span></code> keyword, as shown below:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mystring</span> <span class="o">=</span> <span class="s2">&quot;Index &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; has value: &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mystring</span>
-<span class="go">&#39;Index 23 has value: 1.5&#39;</span>
-</pre></div>
-</div>
-<p>Since scientific computing
-algorithms will primarily consider numeric values, we will not dive too deep into
-string processing with <a class="reference external" href="https://www.python.org/">Python</a>.</p>
-</div>
-<div class="section" id="integers">
-<h3>2.1.2. Integers<a class="headerlink" href="#integers" title="Permalink to this headline">¶</a></h3>
-<p>Integers types are supported in <a class="reference external" href="https://www.python.org/">Python</a> with all the
-usual addition (<code class="docutils literal"><span class="pre">+</span></code>), subtraction (<code class="docutils literal"><span class="pre">-</span></code>), multiplication (<code class="docutils literal"><span class="pre">*</span></code>),
-division (<code class="docutils literal"><span class="pre">/</span></code>), and modulo (<code class="docutils literal"><span class="pre">%</span></code>) operators. Additionally, one can raise a number to a specified
-power using the double-multiplication (<code class="docutils literal"><span class="pre">**</span></code>) operator.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">+</span><span class="n">b</span>
-<span class="go">8</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">-</span><span class="n">b</span>
-<span class="go">2</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">*</span><span class="n">b</span>
-<span class="go">15</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">/</span><span class="n">b</span>
-<span class="go">1</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">%</span><span class="n">b</span>
-<span class="go">2</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">**</span><span class="n">b</span>
-<span class="go">125</span>
-</pre></div>
-</div>
-<p>Note that <code class="docutils literal"><span class="pre">a/b</span></code> gives us a value of <code class="docutils literal"><span class="pre">1</span></code> because both the arguments are
-integers, so the <code class="docutils literal"><span class="pre">/</span></code> operator corresponds to <em>integer division</em>. If we wanted
-a floating-point value, we can explicitly convert one argument to <code class="docutils literal"><span class="pre">float</span></code>, as
-shown below:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">float</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">b</span>
-<span class="go">1.6666666666666667</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-<span class="go">1.6666666666666667</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="floats">
-<h3>2.1.3. Floats<a class="headerlink" href="#floats" title="Permalink to this headline">¶</a></h3>
-<p>We have already discussed floating-point numbers at length in the previous
-chapter. Such numbers support all the usual arithmetic operators as integers.
-The modulo (<code class="docutils literal"><span class="pre">%</span></code>) operator generalizes to <em>include</em> the fractional part in this case. A floating-point number can be explicitly
-converted to an integer using the <code class="docutils literal"><span class="pre">int</span></code> keyword. This is also useful for
-extracting the fractional part, as shown below:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mf">5.3</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="go">5</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">-</span><span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="go">0.2999999999999998</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">%</span><span class="n">b</span>
-<span class="go">2.3</span>
-</pre></div>
-</div>
-<p>Note how <a class="reference external" href="https://www.python.org/">Python</a> approximates the simple value of
-<code class="docutils literal"><span class="pre">0.3</span></code> with the more complex expression <code class="docutils literal"><span class="pre">0.2999999999999998</span></code> as shown above.
-As explained in the previous chapter, this happens because of limited precision
-available on the computer. In later chapters, we will discuss this issue at length and
-specifically study the design of algorithms that do not produce wrong results
-because of cancellations between approximate (limited precision)
-representations.</p>
-</div>
+<div class="toctree-wrapper compound">
 </div>
 </div>
 
@@ -165,22 +70,12 @@ representations.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">2. Getting Started with Python</a><ul>
-<li><a class="reference internal" href="#variables-and-data-types">2.1. Variables and Data Types</a><ul>
-<li><a class="reference internal" href="#strings">2.1.1. Strings</a></li>
-<li><a class="reference internal" href="#integers">2.1.2. Integers</a></li>
-<li><a class="reference internal" href="#floats">2.1.3. Floats</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
   <h4>Previous topic</h4>
   <p class="topless"><a href="condition.html"
                         title="previous chapter">1.6. Condition Numbers</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="variables.html"
+                        title="next chapter">2.1. Variables and Data Types</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -208,6 +103,9 @@ representations.</p>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="variables.html" title="2.1. Variables and Data Types"
+             >next</a> |</li>
         <li class="right" >
           <a href="condition.html" title="1.6. Condition Numbers"
              >previous</a> |</li>

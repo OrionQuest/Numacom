@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2.2. Lists &#8212; CS 323 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
+    <link rel="up" title="2. Getting Started with Python" href="python.html" />
+    <link rel="prev" title="2.1. Variables and Data Types" href="variables.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="variables.html" title="2.1. Variables and Data Types"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="python.html" accesskey="U">2. Getting Started with Python</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lists">
+<h1>2.2. Lists<a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h1>
+<p>A <em>list</em> is an ordered collection of items, and is indicated in <a class="reference external" href="https://www.python.org/">Python</a> via square brackets (<code class="docutils literal"><span class="pre">[]</span></code>),
+all individual elements being separated by commas. There need not be any
+particular relation between the elements, and each element can be of a different
+data type as well. Some examples are given below:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="nb">float</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">[&#39;hello&#39;, 2, 5.0]</span>
+</pre></div>
+</div>
+<p>The elements within a list are indexed starting from <code class="docutils literal"><span class="pre">0</span></code> and can be accessed using the
+square bracket (<code class="docutils literal"><span class="pre">[]</span></code>) operator, as shown below. Unlike arrays in <a class="reference external" href="https://en.wikipedia.org/wiki/Java_(programming_language)">Java</a>
+or <a class="reference external" href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a>, negative elements are <em>also</em>
+valid and point to elements from the end of the list. For example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">a</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">5.0</span>
+</pre></div>
+</div>
+<p>Individual elements can be modified in a straightforward manner by using the
+assignment operator (<code class="docutils literal"><span class="pre">=</span></code>). Elements can be added to the end of the list using
+the <code class="docutils literal"><span class="pre">append</span></code> operator, and anywhere within the list using the <code class="docutils literal"><span class="pre">insert</span></code>
+operator. Likewise, elements can be deleted from the end by using the <code class="docutils literal"><span class="pre">pop</span></code> operator, or
+anywhere within the list by using the <code class="docutils literal"><span class="pre">del</span></code> keyword.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">[4, 2, 5.0]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;wow&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">[4, 2, 5.0, &#39;wow&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="go">&#39;wow&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">[4, 2, 5.0]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">del</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">[4, 5.0]</span>
+</pre></div>
+</div>
+<p>Note that, unlike the <code class="docutils literal"><span class="pre">append</span></code> operator, the <code class="docutils literal"><span class="pre">pop</span></code> operator returns back the element deleted from the list.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="variables.html"
+                        title="previous chapter">2.1. Variables and Data Types</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/lists.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="variables.html" title="2.1. Variables and Data Types"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="python.html" >2. Getting Started with Python</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
+    </div>
+  </body>
+</html>
