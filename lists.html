@@ -24,8 +24,6 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
     <link rel="up" title="2. Getting Started with Python" href="python.html" />
     <link rel="prev" title="2.1. Variables and Data Types" href="variables.html" /> 
@@ -62,7 +60,8 @@ data type as well. Some examples are given below:</p>
 </pre></div>
 </div>
 <p>The elements within a list are indexed starting from <code class="docutils literal"><span class="pre">0</span></code> and can be accessed using the
-square bracket (<code class="docutils literal"><span class="pre">[]</span></code>) operator, as shown below. Unlike arrays in <a class="reference external" href="https://en.wikipedia.org/wiki/Java_(programming_language)">Java</a>
+square bracket (<code class="docutils literal"><span class="pre">[]</span></code>) operator, as shown below. <a class="reference external" href="https://www.python.org/">Python</a> also allows us to compute the index
+of an entry by passing the value to the <code class="docutils literal"><span class="pre">index</span></code> operator. Unlike arrays in <a class="reference external" href="https://en.wikipedia.org/wiki/Java_(programming_language)">Java</a>
 or <a class="reference external" href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a>, negative indices <em>are</em>
 valid and point to elements from the end of the list, i.e., an index of <code class="docutils literal"><span class="pre">-1</span></code> points to the <em>last</em> element, an index of <code class="docutils literal"><span class="pre">-2</span></code> points to the second last element, and so on.
 A list can also be <em>sliced through</em> using the operator <code class="docutils literal"><span class="pre">[start:end]</span></code>, which includes all
@@ -73,6 +72,8 @@ the end of the list. For example:</p>
 <span class="go">2</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">a</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 <span class="go">8</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">a</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+<span class="go">3</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
 <span class="go">[2, 5.0, 9]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -173,8 +174,7 @@ The <code class="docutils literal"><span class="pre">sort</span></code> operator
 so the order of the elements does change. One can also use the <code class="docutils literal"><span class="pre">sorted</span></code>
 operator that acts on a list and returns another list which is the sorted
 version of the original list. Elements can also be sorted in reverse if the
-<code class="docutils literal"><span class="pre">reverse</span></code> argument is set. Finally, the length of a list can be obtained by
-using the <code class="docutils literal"><span class="pre">len</span></code> keyword.</p>
+<code class="docutils literal"><span class="pre">reverse</span></code> argument is set.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
@@ -184,8 +184,27 @@ using the <code class="docutils literal"><span class="pre">len</span></code> key
 <span class="go">[9, 7, 5, 4, 2]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <span class="go">[5, 2, 7, 4, 9]</span>
+</pre></div>
+</div>
+<p>The length of a list can be obtained by using the <code class="docutils literal"><span class="pre">len</span></code> keyword. The addition
+operator (<code class="docutils literal"><span class="pre">+</span></code>) is overloaded for lists to mean concatenation. Note that
+multiplying a list by a constant does not scale the individual elements by the
+given constant, instead, it concatenates the original list to itself that many
+times. The operators <code class="docutils literal"><span class="pre">+=</span></code> and <code class="docutils literal"><span class="pre">*=</span></code> are likewise defined. For example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 <span class="go">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">+</span><span class="n">b</span>
+<span class="go">[5, 2, 7, 4, 9, 2, 11, 7]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">*</span><span class="mi">3</span>
+<span class="go">[2, 11, 7, 2, 11, 7, 2, 11, 7]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">+=</span><span class="n">b</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">[5, 2, 7, 4, 9, 2, 11, 7]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">*=</span><span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="go">[2, 11, 7, 2, 11, 7]</span>
 </pre></div>
 </div>
 </div>
@@ -235,7 +254,7 @@ using the <code class="docutils literal"><span class="pre">len</span></code> key
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Mridul Aanjaneya.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
     </div>
   </body>
 </html>

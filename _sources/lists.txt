@@ -11,7 +11,8 @@ data type as well. Some examples are given below: ::
     ['hello', 2, 5.0, 9, 7, 'wow', 8]
 
 The elements within a list are indexed starting from ``0`` and can be accessed using the
-square bracket (``[]``) operator, as shown below. Unlike arrays in `Java <https://en.wikipedia.org/wiki/Java_(programming_language)>`_
+square bracket (``[]``) operator, as shown below. `Python <https://www.python.org/>`_ also allows us to compute the index
+of an entry by passing the value to the ``index`` operator. Unlike arrays in `Java <https://en.wikipedia.org/wiki/Java_(programming_language)>`_
 or `C++ <https://en.wikipedia.org/wiki/C%2B%2B>`_, negative indices *are*
 valid and point to elements from the end of the list, i.e., an index of ``-1`` points to the *last* element, an index of ``-2`` points to the second last element, and so on.
 A list can also be *sliced through* using the operator ``[start:end]``, which includes all
@@ -23,6 +24,8 @@ the end of the list. For example: ::
     2
     >>> print a[-1]
     8
+    >>> print a.index(9)
+    3
     >>> a[1:4]
     [2, 5.0, 9]
     >>> a[1:-1]
@@ -121,8 +124,7 @@ The ``sort`` operator sorts all the elements of a list *in-place*,
 so the order of the elements does change. One can also use the ``sorted``
 operator that acts on a list and returns another list which is the sorted
 version of the original list. Elements can also be sorted in reverse if the
-``reverse`` argument is set. Finally, the length of a list can be obtained by
-using the ``len`` keyword. ::
+``reverse`` argument is set. ::
 
     >>> a = [5,2,7,4,9]
     >>> b = sorted(a)
@@ -133,5 +135,24 @@ using the ``len`` keyword. ::
     [9, 7, 5, 4, 2]
     >>> a
     [5, 2, 7, 4, 9]
+
+The length of a list can be obtained by using the ``len`` keyword. The addition
+operator (``+``) is overloaded for lists to mean concatenation. Note that
+multiplying a list by a constant does not scale the individual elements by the
+given constant, instead, it concatenates the original list to itself that many
+times. The operators ``+=`` and ``*=`` are likewise defined. For example: ::
+
+    >>> a = [5,2,7,4,9]
     >>> len(a)
     5
+    >>> b = [2,11,7]
+    >>> a+b
+    [5, 2, 7, 4, 9, 2, 11, 7]
+    >>> b*3
+    [2, 11, 7, 2, 11, 7, 2, 11, 7]
+    >>> a+=b
+    >>> a
+    [5, 2, 7, 4, 9, 2, 11, 7]
+    >>> b*=2
+    >>> b
+    [2, 11, 7, 2, 11, 7]
