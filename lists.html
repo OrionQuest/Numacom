@@ -24,6 +24,8 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
     <link rel="up" title="2. Getting Started with Python" href="python.html" />
     <link rel="prev" title="2.1. Variables and Data Types" href="variables.html" /> 
@@ -54,27 +56,44 @@
 all individual elements being separated by commas. There need not be any
 particular relation between the elements, and each element can be of a different
 data type as well. Some examples are given below:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="nb">float</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="nb">float</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span><span class="mi">9</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="s1">&#39;wow&#39;</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
-<span class="go">[&#39;hello&#39;, 2, 5.0]</span>
+<span class="go">[&#39;hello&#39;, 2, 5.0, 9, 7, &#39;wow&#39;, 8]</span>
 </pre></div>
 </div>
 <p>The elements within a list are indexed starting from <code class="docutils literal"><span class="pre">0</span></code> and can be accessed using the
 square bracket (<code class="docutils literal"><span class="pre">[]</span></code>) operator, as shown below. Unlike arrays in <a class="reference external" href="https://en.wikipedia.org/wiki/Java_(programming_language)">Java</a>
-or <a class="reference external" href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a>, negative indices are <em>also</em>
-valid and point to elements from the end of the list.</p>
+or <a class="reference external" href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a>, negative indices <em>are</em>
+valid and point to elements from the end of the list, i.e., an index of <code class="docutils literal"><span class="pre">-1</span></code> points to the <em>last</em> element, an index of <code class="docutils literal"><span class="pre">-2</span></code> points to the second last element, and so on.
+A list can also be <em>sliced through</em> using the operator <code class="docutils literal"><span class="pre">[start:end]</span></code>, which includes all
+elements with indices between <code class="docutils literal"><span class="pre">start</span></code> and <code class="docutils literal"><span class="pre">end-1</span></code>. If <code class="docutils literal"><span class="pre">start</span></code> is not
+specified, it defaults to <code class="docutils literal"><span class="pre">0</span></code>, and if <code class="docutils literal"><span class="pre">end</span></code> is not specified, it defaults to
+the end of the list. For example:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="go">2</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">a</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="go">5.0</span>
+<span class="go">8</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+<span class="go">[2, 5.0, 9]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">[2, 5.0, 9, 7, &#39;wow&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+<span class="go">[&#39;hello&#39;, 2, 5.0, 9, 7]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+<span class="go">[5.0, 9, 7, &#39;wow&#39;, 8]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[:]</span>
+<span class="go">[&#39;hello&#39;, 2, 5.0, 9, 7, &#39;wow&#39;, 8]</span>
 </pre></div>
 </div>
 <p>Individual elements can be modified in a straightforward manner by using the
 assignment operator (<code class="docutils literal"><span class="pre">=</span></code>). Elements can be added to the end of the list using
 the <code class="docutils literal"><span class="pre">append</span></code> operator, and anywhere within the list using the <code class="docutils literal"><span class="pre">insert</span></code>
-operator. Likewise, elements can be deleted from the end by using the <code class="docutils literal"><span class="pre">pop</span></code> operator, or
-anywhere within the list by using the <code class="docutils literal"><span class="pre">del</span></code> keyword.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
+operator. Likewise, elements can be deleted from the end of the list by using the <code class="docutils literal"><span class="pre">pop</span></code> operator, or
+anywhere within the list by using the <code class="docutils literal"><span class="pre">del</span></code> keyword.
+Multiple elements can be added at the same time from the end of the
+list using the <code class="docutils literal"><span class="pre">extend</span></code> operator.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="nb">float</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <span class="go">[4, 2, 5.0]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;wow&#39;</span><span class="p">)</span>
@@ -90,7 +109,24 @@ anywhere within the list by using the <code class="docutils literal"><span class
 <span class="gp">&gt;&gt;&gt; </span><span class="k">del</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <span class="go">[4, &#39;hello&#39;, 5.0]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="mi">9</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="s1">&#39;wow&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">[4, &#39;hello&#39;, 5.0, 9, 7, &#39;wow&#39;]</span>
 </pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>Note that if the <code class="docutils literal"><span class="pre">append</span></code> operator is used in place of the <code class="docutils literal"><span class="pre">extend</span></code>
+operator above, then it will append a <em>new</em> list to the original list. This
+is a common error that should be avoided at all costs. The flexibility of
+a list to simultaneously contain elements of different data types can also
+be a hazard at times, as no error will be reported back. For example:</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="mi">9</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="s1">&#39;wow&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">[4, &#39;hello&#39;, 5.0, [9, 7, &#39;wow&#39;]]</span>
+</pre></div>
+</div>
 </div>
 <p>Note that, unlike the <code class="docutils literal"><span class="pre">append</span></code> operator, the <code class="docutils literal"><span class="pre">pop</span></code> operator returns back the element deleted from the list. If an index is supplied to the <code class="docutils literal"><span class="pre">pop</span></code>
 operator, then it can also be used for deleting an element from anywhere inside the list. Elements can also be deleted <em>by value</em> using the <code class="docutils literal"><span class="pre">remove</span></code>
@@ -199,7 +235,7 @@ using the <code class="docutils literal"><span class="pre">len</span></code> key
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Mridul Aanjaneya.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
     </div>
   </body>
 </html>
