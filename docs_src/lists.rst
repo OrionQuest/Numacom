@@ -6,26 +6,43 @@ all individual elements being separated by commas. There need not be any
 particular relation between the elements, and each element can be of a different
 data type as well. Some examples are given below: ::
 
-    >>> a = ['hello',2,float(5)]
+    >>> a = ['hello',2,float(5),9,7,'wow',8]
     >>> a
-    ['hello', 2, 5.0]
+    ['hello', 2, 5.0, 9, 7, 'wow', 8]
 
 The elements within a list are indexed starting from ``0`` and can be accessed using the
 square bracket (``[]``) operator, as shown below. Unlike arrays in `Java <https://en.wikipedia.org/wiki/Java_(programming_language)>`_
-or `C++ <https://en.wikipedia.org/wiki/C%2B%2B>`_, negative indices are *also*
-valid and point to elements from the end of the list. ::
+or `C++ <https://en.wikipedia.org/wiki/C%2B%2B>`_, negative indices *are*
+valid and point to elements from the end of the list, i.e., an index of ``-1`` points to the *last* element, an index of ``-2`` points to the second last element, and so on.
+A list can also be *sliced through* using the operator ``[start:end]``, which includes all
+elements with indices between ``start`` and ``end-1``. If ``start`` is not
+specified, it defaults to ``0``, and if ``end`` is not specified, it defaults to
+the end of the list. For example: ::
 
     >>> print a[1]
     2
     >>> print a[-1]
-    5.0
+    8
+    >>> a[1:4]
+    [2, 5.0, 9]
+    >>> a[1:-1]
+    [2, 5.0, 9, 7, 'wow']
+    >>> a[:5]
+    ['hello', 2, 5.0, 9, 7]
+    >>> a[2:]
+    [5.0, 9, 7, 'wow', 8]
+    >>> a[:]
+    ['hello', 2, 5.0, 9, 7, 'wow', 8]
 
 Individual elements can be modified in a straightforward manner by using the
 assignment operator (``=``). Elements can be added to the end of the list using
 the ``append`` operator, and anywhere within the list using the ``insert``
-operator. Likewise, elements can be deleted from the end by using the ``pop`` operator, or
-anywhere within the list by using the ``del`` keyword. ::
+operator. Likewise, elements can be deleted from the end of the list by using the ``pop`` operator, or
+anywhere within the list by using the ``del`` keyword. 
+Multiple elements can be added at the same time from the end of the
+list using the ``extend`` operator. ::
 
+    >>> a = ['hello',2,float(5)]
     >>> a[0] = 4
     >>> a
     [4, 2, 5.0]
@@ -42,6 +59,22 @@ anywhere within the list by using the ``del`` keyword. ::
     >>> del a[1]
     >>> a
     [4, 'hello', 5.0]
+    >>> a.extend([9,7,'wow'])
+    >>> a
+    [4, 'hello', 5.0, 9, 7, 'wow']
+
+.. warning::
+
+    Note that if the ``append`` operator is used in place of the ``extend``
+    operator above, then it will append a *new* list to the original list. This
+    is a common error that should be avoided at all costs. The flexibility of
+    a list to simultaneously contain elements of different data types can also
+    be a hazard at times, as no error will be reported back. For example: ::
+
+        >>> a = [4, 'hello', 5.0]
+        >>> a.append([9,7,'wow'])
+        >>> a
+        [4, 'hello', 5.0, [9, 7, 'wow']]
 
 Note that, unlike the ``append`` operator, the ``pop`` operator returns back the element deleted from the list. If an index is supplied to the ``pop``
 operator, then it can also be used for deleting an element from anywhere inside the list. Elements can also be deleted *by value* using the ``remove``
