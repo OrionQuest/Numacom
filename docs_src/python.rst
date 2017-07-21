@@ -18,3 +18,4 @@ are always in flux and everyone has different preferences.
 
     Variables and Data Types <variables>
     Lists <lists>
+    for Loops <for_loops>
