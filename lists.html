@@ -24,8 +24,11 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
     <link rel="up" title="2. Getting Started with Python" href="python.html" />
+    <link rel="next" title="2.3. for Loops" href="for_loops.html" />
     <link rel="prev" title="2.1. Variables and Data Types" href="variables.html" /> 
   </head>
   <body role="document">
@@ -35,6 +38,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="for_loops.html" title="2.3. for Loops"
+             accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="variables.html" title="2.1. Variables and Data Types"
              accesskey="P">previous</a> |</li>
@@ -129,7 +135,7 @@ be a hazard at times, as no error will be reported back. For example:</p>
 </pre></div>
 </div>
 </div>
-<p>Note that, unlike the <code class="docutils literal"><span class="pre">append</span></code> operator, the <code class="docutils literal"><span class="pre">pop</span></code> operator returns back the element deleted from the list. If an index is supplied to the <code class="docutils literal"><span class="pre">pop</span></code>
+<p>Unlike the <code class="docutils literal"><span class="pre">append</span></code> operator, the <code class="docutils literal"><span class="pre">pop</span></code> operator returns back the element deleted from the list. If an index is supplied to the <code class="docutils literal"><span class="pre">pop</span></code>
 operator, then it can also be used for deleting an element from anywhere inside the list. Elements can also be deleted <em>by value</em> using the <code class="docutils literal"><span class="pre">remove</span></code>
 operator. For example:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mystring</span> <span class="o">=</span> <span class="s2">&quot;Old McDonald had a farm, Duda!&quot;</span>
@@ -147,7 +153,7 @@ operator. For example:</p>
 </div>
 <p>Note how we used the <code class="docutils literal"><span class="pre">split</span></code> operator to generate a list of all the words in a string. A list can also be sorted using the <code class="docutils literal"><span class="pre">sort</span></code> operator. Elements
 can be arranged in either ascending or descending order, depending on whether the <code class="docutils literal"><span class="pre">reverse</span></code> argument is set. A list can also be easily reversed using
-the <code class="docutils literal"><span class="pre">reverse</span></code> operator. For example:</p>
+the <code class="docutils literal"><span class="pre">reverse</span></code> operator.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
@@ -218,6 +224,9 @@ times. The operators <code class="docutils literal"><span class="pre">+=</span><
   <h4>Previous topic</h4>
   <p class="topless"><a href="variables.html"
                         title="previous chapter">2.1. Variables and Data Types</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="for_loops.html"
+                        title="next chapter">2.3. <code class="docutils literal"><span class="pre">for</span></code> Loops</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -246,6 +255,9 @@ times. The operators <code class="docutils literal"><span class="pre">+=</span><
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
+          <a href="for_loops.html" title="2.3. for Loops"
+             >next</a> |</li>
+        <li class="right" >
           <a href="variables.html" title="2.1. Variables and Data Types"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
@@ -254,7 +266,7 @@ times. The operators <code class="docutils literal"><span class="pre">+=</span><
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Mridul Aanjaneya.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
     </div>
   </body>
 </html>

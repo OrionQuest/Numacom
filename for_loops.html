@@ -24,6 +24,8 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
     <link rel="up" title="2. Getting Started with Python" href="python.html" />
     <link rel="prev" title="2.2. Lists" href="lists.html" /> 
@@ -60,14 +62,16 @@ elements in a list. For example:</p>
 </pre></div>
 </div>
 <p>The dots above signify a continuation from the previous line.
-<code class="docutils literal"><span class="pre">for</span></code> loops require indentation, which is why we use a <code class="docutils literal"><span class="pre">tab</span></code> space
+<code class="docutils literal"><span class="pre">for</span></code> loops require <em>indentation</em>, which is why we use a <code class="docutils literal"><span class="pre">tab</span></code> space
 immediately after the line specifying the <code class="docutils literal"><span class="pre">for</span></code> loop. It is customary to leave
 an empty line after all commands of the loop have been specified, as this
 notifies <a class="reference external" href="https://www.python.org/">Python</a> about the particular block that
-lies inside the loop. Note the comma after the <code class="docutils literal"><span class="pre">print</span></code> statement. Had we
+lies inside the loop. Needless to say, if any of these conventions are not
+followed, then <a class="reference external" href="https://www.python.org/">Python</a> will report a syntax error.
+Note the comma after the <code class="docutils literal"><span class="pre">print</span></code> statement. Had we
 omitted it, all the numbers would have been printed on a <em>separate</em> line.
 As noted in the previous section, multiplying a list by a constant does not
-have the effect of scaling all elements inside the list, but this can be
+have the effect of scaling all the individual elements, but this can be
 easily achieved using <code class="docutils literal"><span class="pre">for</span></code> loops, as shown below:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span><span class="p">]</span>
@@ -81,13 +85,39 @@ provided, it is interpreted as the <code class="docutils literal"><span class="p
 of <code class="docutils literal"><span class="pre">range</span></code> are all numbers between <code class="docutils literal"><span class="pre">0</span></code> and <code class="docutils literal"><span class="pre">end-1</span></code> (endpoints inclusive). If two arguments are
 provided, the first is interpreted as the <code class="docutils literal"><span class="pre">start</span></code> of the list, while the
 second is interpreted as the <code class="docutils literal"><span class="pre">end</span></code> of the list. In this case, the output of
-<code class="docutils literal"><span class="pre">range</span></code> are all numbers between <code class="docutils literal"><span class="pre">start</span></code> and <code class="docutils literal"><span class="pre">end-1</span></code>. For example:</p>
+<code class="docutils literal"><span class="pre">range</span></code> are all numbers between <code class="docutils literal"><span class="pre">start</span></code> and <code class="docutils literal"><span class="pre">end-1</span></code>. Using the <code class="docutils literal"><span class="pre">range</span></code> function,
+the <code class="docutils literal"><span class="pre">for</span></code> loop above can be reimplemented as shown below:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <span class="go">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <span class="go">[2, 3, 4, 5, 6, 7, 8, 9]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span> <span class="n">i</span><span class="p">,</span>
+<span class="gp">...</span>
+<span class="go">1 2 3 4 5 6 7 8 9</span>
+</pre></div>
+</div>
+<p>There are several built-in functions in <a class="reference external" href="https://www.python.org/">Python</a> for
+computing simple statistics on a list of numbers. Note that, unlike basic data
+types such as <code class="docutils literal"><span class="pre">int</span></code>, <code class="docutils literal"><span class="pre">float</span></code>, or <code class="docutils literal"><span class="pre">string</span></code>,  the assignment
+operator (<code class="docutils literal"><span class="pre">=</span></code>) gives a <em>reference</em> for lists, i.e., both variables refer to the
+<em>same</em> list. So any modifications to either variable is reflected in the
+original list as well. For example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">min</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">max</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">9</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">45</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">[1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</span>
 </pre></div>
 </div>
 </div>
@@ -137,7 +167,7 @@ second is interpreted as the <code class="docutils literal"><span class="pre">en
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Mridul Aanjaneya.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
     </div>
   </body>
 </html>

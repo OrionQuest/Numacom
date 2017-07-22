@@ -79,7 +79,7 @@ list using the ``extend`` operator. ::
         >>> a
         [4, 'hello', 5.0, [9, 7, 'wow']]
 
-Note that, unlike the ``append`` operator, the ``pop`` operator returns back the element deleted from the list. If an index is supplied to the ``pop``
+Unlike the ``append`` operator, the ``pop`` operator returns back the element deleted from the list. If an index is supplied to the ``pop``
 operator, then it can also be used for deleting an element from anywhere inside the list. Elements can also be deleted *by value* using the ``remove``
 operator. For example: ::
 
@@ -97,7 +97,7 @@ operator. For example: ::
 
 Note how we used the ``split`` operator to generate a list of all the words in a string. A list can also be sorted using the ``sort`` operator. Elements
 can be arranged in either ascending or descending order, depending on whether the ``reverse`` argument is set. A list can also be easily reversed using
-the ``reverse`` operator. For example: ::
+the ``reverse`` operator. ::
 
     >>> a = [5,2,7,4,9]
     >>> a.sort()
