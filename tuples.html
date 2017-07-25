@@ -24,8 +24,6 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
     <link rel="up" title="2. Getting Started with Python" href="python.html" />
     <link rel="prev" title="2.3. for Loops" href="for_loops.html" /> 
@@ -54,9 +52,32 @@
 <h1>2.4. Tuples<a class="headerlink" href="#tuples" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference internal" href="lists.html#sec-lists"><span class="std std-ref">Lists</span></a> allow storage of items that can change over time. However,
 sometimes the developer requires a list that remains constant over time.
-<a class="reference external" href="https://www.python.org/">Python</a> defines <em>tuples</em> to accommodate this need.
+<a class="reference external" href="https://www.python.org/">Python</a> defines <em>tuples</em> to accommodate this need,
+and this is also the reason why tuples are faster than lists.
 Objects that remain constant over time are referred to as <em>immutable</em> in <a class="reference external" href="https://www.python.org/">Python</a>.
-Thus, a tuple can be defined as an <em>immutable list</em>.</p>
+Thus, a tuple can be defined as an <em>immutable list</em>. In terms of code, a tuple
+looks just like a list except the square brackets are replaced by
+parentheses. For example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">100</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">&#39;a&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">TypeError</span>: <span class="n">&#39;tuple&#39; object does not support item assignment</span>
+</pre></div>
+</div>
+<p>As shown above, the individual elements can be accessed by specifying the element index within square brackets, exactly as lists. Note how <a class="reference external" href="https://www.python.org/">Python</a>
+reports an error whenever an attempt is made to alter the value of an element. While the elements within a tuple cannot be changed, the variable holding the tuple can <em>always</em>
+be assigned a new tuple, as shown below:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">(0, 1, 2, 3, 4)</span>
+</pre></div>
+</div>
 </div>
 
 
@@ -104,7 +125,7 @@ Thus, a tuple can be defined as an <em>immutable list</em>.</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Mridul Aanjaneya.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
     </div>
   </body>
 </html>
