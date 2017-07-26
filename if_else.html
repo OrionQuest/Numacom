@@ -50,10 +50,52 @@
             
   <div class="section" id="if-else-statements">
 <h1>2.5. <code class="docutils literal"><span class="pre">if/else</span></code> Statements<a class="headerlink" href="#if-else-statements" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://www.python.org/">Python</a> provides <code class="docutils literal"><span class="pre">if/else</span></code> statements to support conditional branching,
-similar to other high-level languages. An <code class="docutils literal"><span class="pre">else</span></code> block is not mandatory,
-although similar to <code class="docutils literal"><span class="pre">for</span></code> loops, all statements within the <code class="docutils literal"><span class="pre">if</span></code> block
-should be indented.</p>
+<p>Similar to other high-level languages, <a class="reference external" href="https://www.python.org/">Python</a> provides <code class="docutils literal"><span class="pre">if/else</span></code>
+statements to support conditional branching. If the condition within the <code class="docutils literal"><span class="pre">if</span></code>
+clause evaluates to <code class="docutils literal"><span class="pre">True</span></code>, the <code class="docutils literal"><span class="pre">if</span></code> block is executed, otherwise the <code class="docutils literal"><span class="pre">else</span></code> block is executed (if it exists).
+<a class="reference external" href="https://www.python.org/">Python</a> recognizes the keywords <code class="docutils literal"><span class="pre">True</span></code>
+and <code class="docutils literal"><span class="pre">False</span></code> to correspond to true and false boolean values.
+An <code class="docutils literal"><span class="pre">else</span></code> block is not mandatory,
+although similar to <code class="docutils literal"><span class="pre">for</span></code> loops, all statements within the <code class="docutils literal"><span class="pre">if/else</span></code> blocks
+should be indented. For example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="mi">5</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="nb">print</span> <span class="s1">&#39;Key found: </span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">i</span>
+<span class="gp">... </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="nb">print</span> <span class="s1">&#39;Key not found: </span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">i</span>
+<span class="gp">...</span>
+<span class="go">Key not found: 1</span>
+<span class="go">Key not found: 2</span>
+<span class="go">Key not found: 3</span>
+<span class="go">Key not found: 4</span>
+<span class="go">Key found: 5</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">if</span></code> and <code class="docutils literal"><span class="pre">else</span></code> clauses were indented inside the <code class="docutils literal"><span class="pre">for</span></code> loop, but the statements inside these blocks were indented <em>again</em>.
+This is necessary to let <a class="reference external" href="https://www.python.org/">Python</a> know the intended code structure, as there is no explicit scoping
+available via the use of curly braces (<code class="docutils literal"><span class="pre">{}</span></code>) as in <a class="reference external" href="https://en.wikipedia.org/wiki/Java_(programming_language)">Java</a>
+or <a class="reference external" href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a>. The <code class="docutils literal"><span class="pre">==</span></code> operator above
+denotes a <em>conditional test</em>, as opposed to the <code class="docutils literal"><span class="pre">=</span></code> operator, which denotes
+assignment.
+The <code class="docutils literal"><span class="pre">print</span></code> statements above
+use the <code class="docutils literal"><span class="pre">%</span></code> operator to pass in an integer value, while the associated string had a
+generic argument <code class="docutils literal"><span class="pre">%d</span></code> inside it to specify that the value being passed in was an integer. Such a usage of <code class="docutils literal"><span class="pre">print</span></code> statements is quite
+common in <a class="reference external" href="https://www.python.org/">Python</a> and can also be used to pass in
+<em>multiple</em> values of different types. We will see many more examples of this usage
+in later sections. <a class="reference external" href="https://www.python.org/">Python</a> provides the <code class="docutils literal"><span class="pre">in</span></code> operator to test membership
+within a list. In fact, the <code class="docutils literal"><span class="pre">in</span></code> operator can be used to
+remove the <code class="docutils literal"><span class="pre">for</span></code> loop above altogether.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">i</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span> <span class="s1">&#39;Key found: </span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">i</span>
+<span class="gp">... </span><span class="k">else</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span> <span class="s1">&#39;Key not found: </span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">i</span>
+<span class="gp">...</span>
+<span class="go">Key found: 5</span>
+</pre></div>
+</div>
 </div>
 
 
