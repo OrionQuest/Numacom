@@ -21,3 +21,4 @@ are always in flux and everyone has different preferences.
     for Loops <for_loops>
     Tuples <tuples>
     if/else Statements <if_else>
+    Dictionaries <dictionaries>
