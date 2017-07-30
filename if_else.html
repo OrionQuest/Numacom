@@ -1,40 +1,42 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>2.5. if/else Statements &#8212; CS 323 1.0 documentation</title>
-    
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
-    <link rel="up" title="2. Getting Started with Python" href="python.html" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2.6. Dictionaries" href="dictionaries.html" />
     <link rel="prev" title="2.4. Tuples" href="tuples.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dictionaries.html" title="2.6. Dictionaries"
+             accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="tuples.html" title="2.4. Tuples"
              accesskey="P">previous</a> |</li>
@@ -56,7 +58,7 @@ clause evaluates to <code class="docutils literal"><span class="pre">True</span>
 <a class="reference external" href="https://www.python.org/">Python</a> recognizes the keywords <code class="docutils literal"><span class="pre">True</span></code>
 and <code class="docutils literal"><span class="pre">False</span></code> to correspond to true and false boolean values.
 An <code class="docutils literal"><span class="pre">else</span></code> block is not mandatory,
-although similar to <code class="docutils literal"><span class="pre">for</span></code> loops, all statements within the <code class="docutils literal"><span class="pre">if/else</span></code> blocks
+and similar to <code class="docutils literal"><span class="pre">for</span></code> loops, all statements within the <code class="docutils literal"><span class="pre">if/else</span></code> blocks
 should be indented. For example:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
@@ -74,19 +76,19 @@ should be indented. For example:</p>
 </div>
 <p>The <code class="docutils literal"><span class="pre">if</span></code> and <code class="docutils literal"><span class="pre">else</span></code> clauses were indented inside the <code class="docutils literal"><span class="pre">for</span></code> loop, but the statements inside these blocks were indented <em>again</em>.
 This is necessary to let <a class="reference external" href="https://www.python.org/">Python</a> know the intended code structure, as there is no explicit scoping
-available via the use of curly braces (<code class="docutils literal"><span class="pre">{}</span></code>) as in <a class="reference external" href="https://en.wikipedia.org/wiki/Java_(programming_language)">Java</a>
+available via the use of curly braces (<code class="docutils literal"><span class="pre">{}</span></code>) as supported in <a class="reference external" href="https://en.wikipedia.org/wiki/Java_(programming_language)">Java</a>
 or <a class="reference external" href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a>. The <code class="docutils literal"><span class="pre">==</span></code> operator above
 denotes a <em>conditional test</em>, as opposed to the <code class="docutils literal"><span class="pre">=</span></code> operator, which denotes
-assignment.
+assignment. (Note that <code class="docutils literal"><span class="pre">!=</span></code> denotes the “not equals” operator in <a class="reference external" href="https://www.python.org/">Python</a>.)
 The <code class="docutils literal"><span class="pre">print</span></code> statements above
 use the <code class="docutils literal"><span class="pre">%</span></code> operator to pass in an integer value, while the associated string had a
 generic argument <code class="docutils literal"><span class="pre">%d</span></code> inside it to specify that the value being passed in was an integer. Such a usage of <code class="docutils literal"><span class="pre">print</span></code> statements is quite
 common in <a class="reference external" href="https://www.python.org/">Python</a> and can also be used to pass in
-<em>multiple</em> values of different types. We will see many more examples of this usage
+multiple values of different types. We will see many more examples of this usage
 in later sections. <a class="reference external" href="https://www.python.org/">Python</a> provides the <code class="docutils literal"><span class="pre">in</span></code> operator to test membership
-within a list. In fact, the <code class="docutils literal"><span class="pre">in</span></code> operator can be used to
-remove the <code class="docutils literal"><span class="pre">for</span></code> loop above altogether.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">)]</span>
+within a list. In fact, the <code class="docutils literal"><span class="pre">in</span></code> operator can be used above to
+remove the <code class="docutils literal"><span class="pre">for</span></code> loop altogether.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">i</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="nb">print</span> <span class="s1">&#39;Key found: </span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">i</span>
@@ -94,6 +96,67 @@ remove the <code class="docutils literal"><span class="pre">for</span></code> lo
 <span class="gp">... </span>    <span class="nb">print</span> <span class="s1">&#39;Key not found: </span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">i</span>
 <span class="gp">...</span>
 <span class="go">Key found: 5</span>
+</pre></div>
+</div>
+<p>Similar to the <code class="docutils literal"><span class="pre">in</span></code> operator, <a class="reference external" href="https://www.python.org/">Python</a> also
+provides a <code class="docutils literal"><span class="pre">not</span> <span class="pre">in</span></code> operator to test non-membership within a list. For example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">[1, 2, 3, 4, 5]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">i</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span> <span class="s1">&#39;Key </span><span class="si">%d</span><span class="s1"> not found&#39;</span><span class="o">%</span><span class="n">i</span>
+<span class="gp">... </span><span class="k">else</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span> <span class="s1">&#39;Key </span><span class="si">%d</span><span class="s1"> found&#39;</span><span class="o">%</span><span class="n">i</span>
+<span class="gp">...</span>
+<span class="go">Key 10 not found</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">not</span></code> keyword is an example of a <em>logical</em> operator in <a class="reference external" href="https://www.python.org/">Python</a>. Other logical
+operators are specified by the <code class="docutils literal"><span class="pre">and</span></code> and <code class="docutils literal"><span class="pre">or</span></code> keywords
+which can be used to check multiple conditions at the same time. The <code class="docutils literal"><span class="pre">and</span></code>
+operator returns true if all the conditions being checked are
+<em>simultaneously</em> true. The <code class="docutils literal"><span class="pre">or</span></code> operator, on the other hand, returns true if <em>any
+one</em> of the conditions being checked is true.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">i</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">i</span><span class="o">&gt;=</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">i</span><span class="o">&lt;=</span><span class="mi">10</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">i</span><span class="o">&gt;=</span><span class="mi">1</span> <span class="ow">or</span> <span class="n">i</span><span class="o">&lt;=</span><span class="mi">5</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">i</span><span class="o">&gt;=</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">i</span><span class="o">&lt;=</span><span class="mi">5</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>Often times one needs to check more than two possible situations, i.e.,
+one <code class="docutils literal"><span class="pre">if-else</span></code> branch is not sufficient and deeper nesting is required.
+<a class="reference external" href="https://www.python.org/">Python</a> makes this possible using the <code class="docutils literal"><span class="pre">if-elif-else</span></code>
+construct, where the last <code class="docutils literal"><span class="pre">else</span></code> block can be skipped if desired. As soon as
+<a class="reference external" href="https://www.python.org/">Python</a> finds one condition that is satisfied, it
+skips the rest.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">i</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">i</span><span class="o">&lt;=</span><span class="mi">1</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span> <span class="s1">&#39;Value </span><span class="si">%d</span><span class="s1"> is less than or equal to 1&#39;</span><span class="o">%</span><span class="n">i</span>
+<span class="gp">... </span><span class="k">elif</span> <span class="n">i</span><span class="o">&gt;</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">i</span><span class="o">&lt;=</span><span class="mi">5</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span> <span class="s1">&#39;Value </span><span class="si">%d</span><span class="s1"> is greater than 1 and less than or equal to 5&#39;</span><span class="o">%</span><span class="n">i</span>
+<span class="gp">... </span><span class="k">elif</span> <span class="n">i</span><span class="o">&gt;</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">i</span><span class="o">&lt;=</span><span class="mi">10</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span> <span class="s1">&#39;Value </span><span class="si">%d</span><span class="s1"> is greater than 5 and less than or equal to 10&#39;</span><span class="o">%</span><span class="n">i</span>
+<span class="gp">... </span><span class="k">else</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span> <span class="s1">&#39;Value </span><span class="si">%d</span><span class="s1"> is greater than 10&#39;</span><span class="o">%</span><span class="n">i</span>
+<span class="gp">...</span>
+<span class="go">Value 4 is greater than 1 and less than or equal to 5</span>
+</pre></div>
+</div>
+<p>So far, we have only worked with non-empty lists, but a list can be empty as
+well. <a class="reference external" href="https://www.python.org/">Python</a> allows the name of a list to be used
+in place of a condition in an <code class="docutils literal"><span class="pre">if</span></code> statement. In this case, the result is <code class="docutils literal"><span class="pre">True</span></code>
+if the list is not empty, otherwise the result is <code class="docutils literal"><span class="pre">False</span></code>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">a</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span> <span class="s1">&#39;The list is non-empty&#39;</span>
+<span class="gp">... </span><span class="k">else</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span> <span class="s1">&#39;The list is empty!&#39;</span>
+<span class="gp">...</span>
+<span class="go">The list is empty!</span>
 </pre></div>
 </div>
 </div>
@@ -107,10 +170,13 @@ remove the <code class="docutils literal"><span class="pre">for</span></code> lo
   <h4>Previous topic</h4>
   <p class="topless"><a href="tuples.html"
                         title="previous chapter">2.4. Tuples</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dictionaries.html"
+                        title="next chapter">2.6. Dictionaries</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/if_else.txt"
+      <li><a href="_sources/if_else.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -135,6 +201,9 @@ remove the <code class="docutils literal"><span class="pre">for</span></code> lo
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
+          <a href="dictionaries.html" title="2.6. Dictionaries"
+             >next</a> |</li>
+        <li class="right" >
           <a href="tuples.html" title="2.4. Tuples"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
@@ -143,7 +212,7 @@ remove the <code class="docutils literal"><span class="pre">for</span></code> lo
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Mridul Aanjaneya.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>

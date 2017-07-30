@@ -1,35 +1,33 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>1.4. Matrices &#8212; CS 323 1.0 documentation</title>
-    
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
-    <link rel="up" title="1. Introduction" href="intro.html" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="1.5. Norms" href="norms.html" />
     <link rel="prev" title="1.3. Vectors" href="vectors.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -203,7 +201,7 @@ Also, note how the dimensions of the result
 <span class="math">\(b\)</span> are dependent on the dimensions of <span class="math">\(A\)</span> and <span class="math">\(x\)</span>:</p>
 <div class="math">
 \[b_{m\times 1} = A_{m\times n}\cdot x_{n\times 1}\]</div>
-<p>The &#8220;middle&#8221; dimension <span class="math">\(n\)</span> has to be the same for both <span class="math">\(A\)</span> and
+<p>The “middle” dimension <span class="math">\(n\)</span> has to be the same for both <span class="math">\(A\)</span> and
 <span class="math">\(x\)</span> and is consumed as a result of the multiplication. This same principle also applies to the case of multiplying two arbitrary matrices,
 i.e., if <span class="math">\(A\in\mathbb R^{m\times n}\)</span> and <span class="math">\(B\in\mathbb R^{n\times
 p}\)</span> are two matrices, then their product <span class="math">\(C=A\cdot B\in\mathbb R^{m\times p}\)</span>. The <code class="docutils literal"><span class="pre">dot</span></code> operator
@@ -268,7 +266,7 @@ can be used for computing the transpose of a given matrix, as shown below:</p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/matrices.txt"
+      <li><a href="_sources/matrices.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -304,7 +302,7 @@ can be used for computing the transpose of a given matrix, as shown below:</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Mridul Aanjaneya.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>

@@ -1,35 +1,33 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>1.5. Norms &#8212; CS 323 1.0 documentation</title>
-    
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
-    <link rel="up" title="1. Introduction" href="intro.html" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="1.6. Condition Numbers" href="condition.html" />
     <link rel="prev" title="1.4. Matrices" href="matrices.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -70,7 +68,7 @@ all <span class="math">\(\alpha\in\mathbb R,x\in\mathbb R^n\)</span>.</li>
 <span class="math">\(x,y\in\mathbb R^n\)</span>.</li>
 </ol>
 </div>
-<p>Note that the properties above do not determine a <em>unique</em> form of a &#8220;norm&#8221;
+<p>Note that the properties above do not determine a <em>unique</em> form of a “norm”
 function. In fact, many different valid norms exist. Typically, we will use
 subscripts (for example, <span class="math">\(\lVert \cdot\rVert_a\)</span>) to denote different types
 of norms.</p>
@@ -78,12 +76,12 @@ of norms.</p>
 <h2>1.5.1. Why are vector norms needed?<a class="headerlink" href="#why-are-vector-norms-needed" title="Permalink to this headline">¶</a></h2>
 <p>In many applications, such as the solution of a nonlinear equation <span class="math">\(f(x)=0\)</span>,
 the error <span class="math">\(e=x_\textsf{approx}-x_\textsf{exact}\)</span> is a single number. Thus,
-the absolute value of <span class="math">\(\vert e\vert\)</span> gives us a good idea of the &#8220;extent&#8221;
+the absolute value of <span class="math">\(\vert e\vert\)</span> gives us a good idea of the “extent”
 of the error.</p>
 <p>When solving a system of linear equations <span class="math">\(Ax=b\)</span>, the exact solution
 <span class="math">\(x_\textsf{exact}\)</span> as well as any approximation <span class="math">\(x_\textsf{approx}\)</span>
 are vectors, and the error <span class="math">\(e=x_\textsf{approx}-x_\textsf{exact}\)</span> is a
-vector too. It is not as straightforward to assess the &#8220;magnitude&#8221; of such a
+vector too. It is not as straightforward to assess the “magnitude” of such a
 vector-valued error. For example, consider <span class="math">\(e_1,e_2\in\mathbb R^{1000}\)</span>,
 and</p>
 <div class="math">
@@ -187,7 +185,7 @@ notable example is the very commonly used <em>Frobenius norm</em>:</p>
 <p>If <span class="math">\(\lVert\cdot\rVert\)</span> is a matrix norm induced by a vector
 norm <span class="math">\(\lVert\cdot\rVert\)</span>, then</p>
 <div class="math" id="equation-vector-norm-inequality">
-<span class="eqno">(1)</span>\[\lVert Ax\rVert \leq \lVert A\rVert\cdot \lVert x\rVert\]</div>
+<span class="eqno">(1)<a class="headerlink" href="#equation-vector-norm-inequality" title="Permalink to this equation">¶</a></span>\[\lVert Ax\rVert \leq \lVert A\rVert\cdot \lVert x\rVert\]</div>
 <p><em>Proof:</em> Since <span class="math">\(\lVert A\rVert = \max_{x\neq 0}\lVert Ax\rVert/\lVert x\rVert\)</span>, we have that for an arbitrary <span class="math">\(y\in\mathbb R^n (y\neq 0)\)</span></p>
 <div class="math">
 \[\lVert A\rVert = \max_{x\neq 0}\frac{\lVert Ax\rVert}{\lVert x\rVert}\geq \frac{\lVert Ay\rVert}{\lVert y\rVert} \Rightarrow \lVert Ay\rVert \leq \lVert A\rVert\cdot\lVert y\rVert\]</div>
@@ -198,7 +196,7 @@ norm <span class="math">\(\lVert\cdot\rVert\)</span>, then</p>
 \[\begin{split}\lVert MN\rVert &amp;=&amp; \max_{\lVert x\rVert=1} \lVert MNx\rVert \leq \max_{\lVert x\rVert=1} \lVert M\rVert\cdot \lVert Nx\rVert \\
                 &amp;=&amp; \lVert M\rVert\cdot \max_{\lVert x\rVert=1} \lVert Nx\rVert = \lVert M\rVert\cdot\lVert N\rVert \\
 \Rightarrow \lVert MN\rVert &amp;\leq&amp; \lVert M\rVert\cdot\lVert N\rVert\end{split}\]</div>
-<p>Note that when writing an expression such as <a href="#equation-vector-norm-inequality">(1)</a>, the
+<p>Note that when writing an expression such as <a class="reference internal" href="#equation-vector-norm-inequality">(1)</a>, the
 matrix norm <span class="math">\(\lVert A\rVert\)</span> is understood to be the inferred norm from the
 vector norm used in <span class="math">\(\lVert Ax\rVert\)</span> and <span class="math">\(\lVert x\rVert\)</span>. Thus,</p>
 <div class="math">
@@ -245,7 +243,7 @@ the matrix norm. Fortunately, such formulas do exist for the <span class="math">
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/norms.txt"
+      <li><a href="_sources/norms.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -281,7 +279,7 @@ the matrix norm. Fortunately, such formulas do exist for the <span class="math">
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Mridul Aanjaneya.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>
