@@ -50,8 +50,9 @@
 <h1>2.6. Dictionaries<a class="headerlink" href="#dictionaries" title="Permalink to this headline">¶</a></h1>
 <p>A dictionary is a mapping from a set of keys to a set of values. The data type
 of a key or a value is not restricted in any way, and they can be either
-integers, floats, or strings. Unlike a list, a dictionary begins with
-curly braces <code class="docutils literal"><span class="pre">({})</span></code>, where each key-value pair is specified using the <code class="docutils literal"><span class="pre">:</span></code> operator.
+integers, floats, strings, lists, or even another dictionary (although in this
+case it is typically the value that is a dictionary, not the key). Unlike a list, a dictionary begins with
+curly braces <code class="docutils literal"><span class="pre">({})</span></code>, where each key-value pair is specified using the colon <code class="docutils literal"><span class="pre">:</span></code> operator.
 For example:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">scorecard</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s1">&#39;CS 323&#39;</span><span class="p">,</span><span class="s1">&#39;hw&#39;</span><span class="p">:</span><span class="mi">92</span><span class="p">,</span><span class="s1">&#39;midterm&#39;</span><span class="p">:</span><span class="mi">85</span><span class="p">,</span><span class="s1">&#39;final&#39;</span><span class="p">:</span><span class="mi">95</span><span class="p">,</span><span class="s1">&#39;grade&#39;</span><span class="p">:</span><span class="s1">&#39;A&#39;</span><span class="p">}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">scorecard</span>
@@ -61,7 +62,8 @@ For example:</p>
 <p>The square bracket operator <code class="docutils literal"><span class="pre">([])</span></code> can be used
 to retrieve the value associated with a given key. If the key is not already
 present in the dictionary, then a new key-value pair is added to it, otherwise the original
-value is modified to the newly specified value.</p>
+value is modified to the newly specified value. Similar to lists, entries within a dictionary
+can also be deleted using the <code class="docutils literal"><span class="pre">del</span></code> operator.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">scorecard</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span>
 <span class="go">&#39;CS 323&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">scorecard</span><span class="p">[</span><span class="s1">&#39;hw&#39;</span><span class="p">]</span>
@@ -69,6 +71,34 @@ value is modified to the newly specified value.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">scorecard</span><span class="p">[</span><span class="s1">&#39;class-participation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>    <span class="c1"># Very bad! :-(</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">scorecard</span>
 <span class="go">{&#39;midterm&#39;: 85, &#39;grade&#39;: &#39;A&#39;, &#39;class-participation&#39;: 0, &#39;hw&#39;: 92, &#39;class&#39;: &#39;CS 323&#39;, &#39;final&#39;: 95}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">del</span> <span class="n">scorecard</span><span class="p">[</span><span class="s1">&#39;midterm&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scorecard</span>
+<span class="go">{&#39;grade&#39;: &#39;A&#39;, &#39;class-participation&#39;: 0, &#39;hw&#39;: 92, &#39;class&#39;: &#39;CS 323&#39;, &#39;final&#39;: 95}</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://www.python.org/">Python</a> provides an <code class="docutils literal"><span class="pre">items</span></code> function in every
+dictionary which returns a list of all stored key-value pairs, and can be used to
+conveniently loop over all the individual entries.
+Note that the variable names <code class="docutils literal"><span class="pre">key</span></code> and <code class="docutils literal"><span class="pre">value</span></code> are not fixed, and one can
+choose any other name as well. Since both the keys and the values can be of any
+arbitrary data type, we explicitly convert them into a string for ease of
+display. If only the keys are desired, but not the values, then the function
+<code class="docutils literal"><span class="pre">keys</span></code> can be used instead, which returns a list of all keys in the
+dictionary. Likewise, if only the values are desired, but not the keys, then the
+function <code class="docutils literal"><span class="pre">values</span></code> can be used which returns a list of all values in the
+dictionary.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">scorecard</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="nb">print</span> <span class="s1">&#39;Key: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;, Value: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">Key: grade, Value: A</span>
+<span class="go">Key: class-participation, Value: 0</span>
+<span class="go">Key: hw, Value: 92</span>
+<span class="go">Key: class, Value: CS 323</span>
+<span class="go">Key: final, Value: 95</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scorecard</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="go">[&#39;grade&#39;, &#39;class-participation&#39;, &#39;hw&#39;, &#39;class&#39;, &#39;final&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scorecard</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+<span class="go">[&#39;A&#39;, 0, 92, &#39;CS 323&#39;, 95]</span>
 </pre></div>
 </div>
 </div>
