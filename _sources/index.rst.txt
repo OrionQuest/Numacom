@@ -6,8 +6,7 @@
 CS323: Numerical Analysis and Computing
 =======================================
 
-Welcome to CS 323! This course is designed for advanced undergraduates and early
-graduate students, and introduces them to the broad field of numerical
+Welcome to CS 323! This course is an introduction to the broad field of numerical
 algorithms, optimization, and differential equations. Real-world examples from
 different fields such as computer vision, machine learning, and data analysis will
 be given alongside each topic to illustrate the wide applicability of the various
@@ -31,11 +30,8 @@ issues. Please start your subject line with \"**CS 323:**\". However, please do
 not always count on an immediate reply. Although most questions will be answered
 quickly, in the worst case you will receive a reply during (or shortly after)
 the instructors' *next* scheduled office hours. It is also recommended to post
-homework-related questions on the discussion forum instead of emailing the
+homework-related questions on `Piazza <https://piazza.com/class/j76v13g42b15y8>`_ instead of emailing the
 instructor so that other fellow students can benefit from it.
-
-**Appointment Policy:** If you need to approach the instructor or the TA outside
-of their office hours, please schedule an appointment ahead of time.
 
 **Grading Policy:** Grades will be awarded based on class participation, bi-weekly homeworks, two 75
 minute in-class midterms and an **optional final**. The final grade will be computed as follows:
@@ -66,6 +62,11 @@ and will be due at **midnight** on the Tuesday lecture two weeks later. Each
 student is also granted **3 late days** total for submitting their homeworks.
 After this grace period has expired (either for the current homework or from
 previous homeworks) we will subtract 15% for each day that is delayed further.
+
+News:
+-----
+
+* (09/05) Discussion is now open on `Piazza <https://piazza.com/class/j76v13g42b15y8>`_.
 
 Contents:
 ---------
