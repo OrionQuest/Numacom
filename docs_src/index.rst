@@ -63,10 +63,11 @@ student is also granted **3 late days** total for submitting their homeworks.
 After this grace period has expired (either for the current homework or from
 previous homeworks) we will subtract 15% for each day that is delayed further.
 
-News:
------
+News and Announcements:
+-----------------------
 
 * (09/05) Discussion is now open on `Piazza <https://piazza.com/class/j76v13g42b15y8>`_.
+* (09/05) There is no recitation on Thursday (09/07).
 
 Contents:
 ---------
