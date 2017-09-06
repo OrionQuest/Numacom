@@ -23,7 +23,7 @@ course, we will be covering all the basics in class on an as needed basis. There
 | **Place:** Lucy Stone Hall Auditorium
 | **Instructor:** `Mridul Aanjaneya <http://pages.cs.wisc.edu/~aanjneya>`_
 | **Office:** CBIM 18
-| **Office hours:** TBD
+| **Office hours:** Monday/Friday (4PM - 5PM)
 
 **Email Policy:** You are welcome to email the instructor about class-related
 issues. Please start your subject line with \"**CS 323:**\". However, please do
