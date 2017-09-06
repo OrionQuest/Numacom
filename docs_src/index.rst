@@ -20,9 +20,9 @@ course, we will be covering all the basics in class on an as needed basis. There
 **no required text** for this course, although some recommendations are given below.
 
 | **Time:** 5PM - 8PM, Tuesdays, Fall 2017
-| **Place:** TBD
+| **Place:** Lucy Stone Hall Auditorium
 | **Instructor:** `Mridul Aanjaneya <http://pages.cs.wisc.edu/~aanjneya>`_
-| **Office:** TBD
+| **Office:** CBIM 18
 | **Office hours:** TBD
 
 **Email Policy:** You are welcome to email the instructor about class-related
