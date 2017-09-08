@@ -21,9 +21,18 @@ course, we will be covering all the basics in class on an as needed basis. There
 
 | **Time:** 5PM - 8PM, Tuesdays, Fall 2017
 | **Place:** Lucy Stone Hall Auditorium
+
 | **Instructor:** `Mridul Aanjaneya <http://pages.cs.wisc.edu/~aanjneya>`_
 | **Office:** CBIM 18
 | **Office hours:** Monday/Friday (4PM - 5PM)
+
+| **TA:** Carlos Muniz
+| **Office:** TBD
+| **Office hours:** Thursday (5PM - 6PM) and also by appointment
+
+| **TA:** Mihee Lee
+| **Office:** TBD
+| **Office hours:** TBD
 
 **Email Policy:** You are welcome to email the instructor about class-related
 issues. Please start your subject line with \"**CS 323:**\". However, please do
