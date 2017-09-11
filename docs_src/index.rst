@@ -27,12 +27,12 @@ course, we will be covering all the basics in class on an as needed basis. There
 | **Office hours:** Monday/Friday (4PM - 5PM)
 
 | **TA:** Carlos Muniz
-| **Office:** TBD
-| **Office hours:** Thursday (5PM - 6PM) and also by appointment
+| **Office:** Hill 270
+| **Office hours:** Tuesday (3PM - 4PM) and also by appointment
 
 | **TA:** Mihee Lee
-| **Office:** TBD
-| **Office hours:** TBD
+| **Office:** CBIM
+| **Office hours:** Wednesday (3PM - 4PM)
 
 **Email Policy:** You are welcome to email the instructor about class-related
 issues. Please start your subject line with \"**CS 323:**\". However, please do
