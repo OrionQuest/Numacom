@@ -37,7 +37,7 @@ choose any other name as well. Since both the keys and the values can be of any
 arbitrary data type, we explicitly convert them into a string for ease of
 display. If only the keys are desired, but not the values, then the function
 ``keys`` can be used instead, which returns a list of all keys in the
-dictionary. Likewise, if only the values are desired, but not the keys, then the
+dictionary. Likewise, if only the values are desired but not the keys, then the
 function ``values`` can be used which returns a list of all values in the
 dictionary. ::
 
