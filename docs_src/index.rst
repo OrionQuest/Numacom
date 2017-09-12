@@ -23,7 +23,7 @@ course, we will be covering all the basics in class on an as needed basis. There
 | **Place:** Lucy Stone Hall Auditorium
 
 | **Instructor:** `Mridul Aanjaneya <http://pages.cs.wisc.edu/~aanjneya>`_
-| **Office:** CBIM 18
+| **Office:** CBIM Room 18
 | **Office hours:** Monday/Friday (4PM - 5PM)
 
 | **TA:** Carlos Muniz
@@ -31,7 +31,7 @@ course, we will be covering all the basics in class on an as needed basis. There
 | **Office hours:** Tuesday (3PM - 4PM) and also by appointment
 
 | **TA:** Mihee Lee
-| **Office:** CBIM
+| **Office:** CBIM-cubic G
 | **Office hours:** Wednesday (3PM - 4PM)
 
 **Email Policy:** You are welcome to email the instructor about class-related

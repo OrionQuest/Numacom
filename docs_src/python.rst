@@ -22,3 +22,5 @@ are always in flux and everyone has different preferences.
     Tuples <tuples>
     if/else Statements <if_else>
     Dictionaries <dictionaries>
+    User Inputs <user_input>
+    while Loops <while>
