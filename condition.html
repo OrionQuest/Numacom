@@ -89,13 +89,13 @@ is just as difficult (if not more) than finding <span class="math">\(x_\textsf{e
 <div class="section" id="a-different-source-of-error">
 <h2>1.6.1. A Different Source of Error<a class="headerlink" href="#a-different-source-of-error" title="Permalink to this headline">¶</a></h2>
 <p>Sometimes, the right hand side <span class="math">\(b\)</span> of the system of equations <span class="math">\(Ax=b\)</span>
-has errors that make it deviate from its intended value. For example, in the
-Vandermonde matrix method for polynomial interpolation, <span class="math">\(b\)</span> contains the
-samples <span class="math">\((y_1,y_2,\ldots,y_n)\)</span>, where <span class="math">\(y_i = f(x_i)\)</span>. An error in a
+has errors that make it deviate from its intended value. For example, if each
+component of <span class="math">\(b\)</span> was defined as <span class="math">\(b_i=f(x_i)\)</span>, where <span class="math">\(f\)</span> is an
+unknown function, then an error in a
 measuring device that was supposed to sample <span class="math">\(f(x)\)</span> could lead to
-erroneous readings <span class="math">\(y_i^\star\)</span> instead of <span class="math">\(y_i\)</span>. In general,
+erroneous readings <span class="math">\(b_i^\star (\neq b_i)\)</span>. Thus,
 measuring inaccuracies can lead to the right hand side vector <span class="math">\(b\)</span> being
-misrepresented as <span class="math">\(b^\star (\neq b)\)</span>. In this case, instead of the
+misrepresented as <span class="math">\(b^\star\)</span>. In this case, instead of the
 intended solution <span class="math">\(x=A^{-1}b\)</span>, we compute the solution to a
 different system <span class="math">\(x^\star=A^{-1}b^\star\)</span>. How important is the error
 <span class="math">\(e=x^\star-x\)</span> that is caused by this misrepresentation of <span class="math">\(b\)</span>?
@@ -147,7 +147,7 @@ error will be at least as much as the machine epsilon due to round-off.</p>
 1/3 &amp; 1/4 &amp; 1/5 &amp; 1/6 &amp; 1/7 \\
 1/4 &amp; 1/5 &amp; 1/6 &amp; 1/7 &amp; 1/8 \\
 1/5 &amp; 1/6 &amp; 1/7 &amp; 1/8 &amp; 1/9
-\end{array}\right], \enspace\enspace\enspace\enspace\enspace \kappa_\infty(H_5) = \lVert H_5\rVert_\infty\cdot\lVert H_5^{-1}\rVert_\infty\approx 10^{-6}\end{split}\]</div>
+\end{array}\right], \enspace\enspace\enspace\enspace\enspace \kappa_\infty(H_5) = \lVert H_5\rVert_\infty\cdot\lVert H_5^{-1}\rVert_\infty\approx 10^{6}\end{split}\]</div>
 <p>Thus, any attempt at solving <span class="math">\(H_5 x = b\)</span> would be subject to a relative
 error of up to <span class="math">\(10\%\)</span> <em>just due to</em> round-off errors in <span class="math">\(b\)</span>! Another
 case is that of near-singular matrices, for example:</p>

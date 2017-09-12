@@ -48,13 +48,13 @@ A Different Source of Error
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Sometimes, the right hand side :math:`b` of the system of equations :math:`Ax=b`
-has errors that make it deviate from its intended value. For example, in the
-Vandermonde matrix method for polynomial interpolation, :math:`b` contains the
-samples :math:`(y_1,y_2,\ldots,y_n)`, where :math:`y_i = f(x_i)`. An error in a
+has errors that make it deviate from its intended value. For example, if each
+component of :math:`b` was defined as :math:`b_i=f(x_i)`, where :math:`f` is an
+unknown function, then an error in a 
 measuring device that was supposed to sample :math:`f(x)` could lead to
-erroneous readings :math:`y_i^\star` instead of :math:`y_i`. In general,
+erroneous readings :math:`b_i^\star (\neq b_i)`. Thus,
 measuring inaccuracies can lead to the right hand side vector :math:`b` being
-misrepresented as :math:`b^\star (\neq b)`. In this case, instead of the
+misrepresented as :math:`b^\star`. In this case, instead of the
 intended solution :math:`x=A^{-1}b`, we compute the solution to a
 different system :math:`x^\star=A^{-1}b^\star`. How important is the error
 :math:`e=x^\star-x` that is caused by this misrepresentation of :math:`b`?
@@ -122,7 +122,7 @@ Considering a specific instance for :math:`n=5`,
     1/3 & 1/4 & 1/5 & 1/6 & 1/7 \\
     1/4 & 1/5 & 1/6 & 1/7 & 1/8 \\
     1/5 & 1/6 & 1/7 & 1/8 & 1/9
-    \end{array}\right], \enspace\enspace\enspace\enspace\enspace \kappa_\infty(H_5) = \lVert H_5\rVert_\infty\cdot\lVert H_5^{-1}\rVert_\infty\approx 10^{-6}
+    \end{array}\right], \enspace\enspace\enspace\enspace\enspace \kappa_\infty(H_5) = \lVert H_5\rVert_\infty\cdot\lVert H_5^{-1}\rVert_\infty\approx 10^{6}
 
 Thus, any attempt at solving :math:`H_5 x = b` would be subject to a relative
 error of up to :math:`10\%` *just due to* round-off errors in :math:`b`! Another
