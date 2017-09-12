@@ -119,7 +119,7 @@ matrix norms *induced by* vector norms.
 
 .. topic:: Definition
 
-    If :math:`\lVert\cdot\rVert_\star` is a valid vactor norm, its
+    If :math:`\lVert\cdot\rVert_\star` is a valid vector norm, its
     *induced* matrix norm is defined as:
 
     .. math::

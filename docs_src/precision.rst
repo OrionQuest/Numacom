@@ -5,7 +5,7 @@ As shown in the previous section, fractional numbers are a common
 occurence in scientific computing, which naturally brings up the
 question of how much *precision* is sufficient for a particular application.
 Digital computers use the *floating-point* number system to represent the set of real
-numbers :math:`\mathbb R` using the "scientific notation". For any decimal
+numbers :math:`\mathbb R` using the *scientific notation*. For any decimal
 number :math:`x` (assuming :math:`x` is a terminating decimal number, with
 finite non-zero digits) we can write:
 

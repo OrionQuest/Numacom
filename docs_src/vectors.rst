@@ -24,7 +24,7 @@ of :math:`n` real numbers :math:`a_i`, where :math:`1\leq i\leq n`. Each element
 is called a *component* of :math:`v`. In what follows, we will exclusively refer
 to the :math:`i`-th component of a vector :math:`v` as :math:`v_i`, so :math:`v` can be written as :math:`v=(v_1,v_2,\ldots,v_n)`.
 A vector of dimension :math:`1` is commonly referred to as a *scalar*.
-In `Python <https://www.python.org/>`_
+In `Python <https://www.python.org/>`_,
 vectors are particularly easy to define with `NumPy <http://www.numpy.org/>`_
 using ``arrays``. The example below defines a :math:`4`-dimensional vector ``x``: ::
 
