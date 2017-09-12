@@ -32,7 +32,7 @@ course, we will be covering all the basics in class on an as needed basis. There
 
 | **TA:** Mihee Lee
 | **Office:** CBIM-cubic G
-| **Office hours:** Wednesday (3PM - 4PM)
+| **Office hours:** Wednesday (3PM - 4PM)  and also by appointment
 
 **Email Policy:** You are welcome to email the instructor about class-related
 issues. Please start your subject line with \"**CS 323:**\". However, please do
@@ -71,6 +71,14 @@ and will be due at **midnight** on the Tuesday lecture two weeks later. Each
 student is also granted **3 late days** total for submitting their homeworks.
 After this grace period has expired (either for the current homework or from
 previous homeworks) we will subtract 15% for each day that is delayed further.
+
+**Typing resources:** All homework should be typed. Students can choose their favorite
+platform for typing out their homework, some commonly used softwares are
+`Microsoft Word <https://products.office.com/en-us/word>`_, `LaTeX <https://www.latex-project.org/get/>`_,
+and `LyX <http://www.lyx.org/>`_. Thanks to a former student, Alex Ames, here is
+a `LyX guide <https://www.cs.rutgers.edu/~ma635/courses/cs412-s15/lyx_guide/lyx_tips.pdf>`_
+and associated `source files <https://www.cs.rutgers.edu/~ma635/courses/cs412-s15/lyx_guide/lyx_tips.zip>`_
+used to generate it.
 
 News and Announcements:
 -----------------------
