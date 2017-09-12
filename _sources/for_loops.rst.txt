@@ -1,3 +1,5 @@
+.. _sec-for-loops:
+
 ``for`` Loops
 -------------
 
