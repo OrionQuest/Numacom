@@ -208,10 +208,14 @@ bound for the relative error of representing any number to the precision
 available on the computer. Thus, if <span class="math">\(q&gt;0\)</span> is the intended numerical
 quantity, and <span class="math">\(\hat q\)</span> is the closest machine-precision approximation,
 then:</p>
-<div class="math">
-\[(1-\varepsilon)q\leq \hat q\leq (1+\varepsilon)q\]</div>
+<div class="math" id="equation-relative-error">
+<span class="eqno">(1)<a class="headerlink" href="#equation-relative-error" title="Permalink to this equation">¶</a></span>\[\left|\frac{q-\hat q}{q}\right| \leq \varepsilon\]</div>
 <p>where <span class="math">\(\varepsilon\)</span> is the machine epsilon for the degree of precision
-used; a similar expression holds for <span class="math">\(q&lt;0\)</span>. <a class="reference external" href="http://www.numpy.org/">NumPy</a>
+used. By letting <span class="math">\(\delta = (\hat q-q)/q\)</span>, we can write inequality
+<a class="reference internal" href="#equation-relative-error">(1)</a> in the following form:</p>
+<div class="math">
+\[\hat q = q(1+\delta),\enspace\enspace\enspace |\delta|\leq\varepsilon\]</div>
+<p><a class="reference external" href="http://www.numpy.org/">NumPy</a>
 provides the function <code class="docutils literal"><span class="pre">finfo</span></code> to retrieve the machine epsilon, as shown below:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span>     <span class="c1"># single precision</span>
