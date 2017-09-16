@@ -182,10 +182,17 @@ quantity, and :math:`\hat q` is the closest machine-precision approximation,
 then:
 
 .. math::
-    (1-\varepsilon)q\leq \hat q\leq (1+\varepsilon)q
+    \left|\frac{q-\hat q}{q}\right| \leq \varepsilon
+    :label: relative-error
 
 where :math:`\varepsilon` is the machine epsilon for the degree of precision
-used; a similar expression holds for :math:`q<0`. `NumPy <http://www.numpy.org/>`_
+used. By letting :math:`\delta = (\hat q-q)/q`, we can write inequality
+:eq:`relative-error` in the following form:
+
+.. math::
+    \hat q = q(1+\delta),\enspace\enspace\enspace |\delta|\leq\varepsilon
+
+`NumPy <http://www.numpy.org/>`_
 provides the function ``finfo`` to retrieve the machine epsilon, as shown below: ::
 
     >>> import numpy as np
