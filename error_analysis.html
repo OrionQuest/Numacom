@@ -24,7 +24,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="1.4. Vectors" href="vectors.html" />
+    <link rel="next" title="2. Vector and Matrix Algebra" href="algebra.html" />
     <link rel="prev" title="1.2. Floating-point Arithmetic" href="precision.html" /> 
   </head>
   <body>
@@ -35,7 +35,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="vectors.html" title="1.4. Vectors"
+          <a href="algebra.html" title="2. Vector and Matrix Algebra"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="precision.html" title="1.2. Floating-point Arithmetic"
@@ -63,7 +63,7 @@ there exist real numbers <span class="math">\(0\leq\delta_1,\delta_2,\delta_3\le
 \bar y \enspace &amp;=&amp; \enspace y(1+\delta_2) \\
 \overline{\bar x\odot\bar y} \enspace &amp;=&amp; \enspace (\bar x\odot\bar y)(1+\delta_3) = (x(1+\delta_1) \odot y(1+\delta_2))(1+\delta_3)\end{split}\]</div>
 <div class="topic">
-<p class="topic-title first">Example</p>
+<p class="topic-title first">Example 1</p>
 <p>To illustrate this process, let us use a decimal machine operating with five
 significant digits in its floating-point number representation, and
 determine the relative errors in adding, subtracting, multiplying, and
@@ -117,6 +117,25 @@ and <span class="math">\(y=\theta\)</span>, so <span class="math">\(x-y=\theta\)
 \[\begin{split}\frac{\overline{\bar x - \bar y} - (x-y)}{x-y} \enspace &amp;=&amp; \enspace \frac{\theta(1+\delta_3) + a(\delta_1 - \delta_2)(1+\delta_3) + \theta\delta_1(1+\delta_3) - \theta}{\theta} \\
 &amp;=&amp; \enspace \delta_3 + \delta_1(1+\delta_3) + \frac{a}{\theta}(\delta_1 - \delta_2)(1+\delta_3)\end{split}\]</div>
 <p>which becomes unbounded as <span class="math">\(\theta\rightarrow 0\)</span>.</p>
+<div class="topic">
+<p class="topic-title first">Example 2</p>
+<p>Suppose we wish to subtract two real numbers <span class="math">\(x\)</span> and <span class="math">\(y\)</span> whose
+exact value in the decimal representation is as follows:</p>
+<div class="math">
+\[x = 3.212435, \enspace\enspace\enspace\enspace y = 3.21243499999\]</div>
+<p>Assume that the floating-point number system on the computer only allows for
+<span class="math">\(5\)</span> significant digits. So <span class="math">\(x\)</span> and <span class="math">\(y\)</span> will have the
+following values in machine precision:</p>
+<div class="math">
+\[\bar x = 3.21244, \enspace\enspace\enspace\enspace \bar y = 3.21243\]</div>
+<p>The difference <span class="math">\(\bar x - \bar y = 10^{-5}\)</span> can be stored exactly in machine
+precision. However, the actual difference is <span class="math">\(x-y = 10^{-11}\)</span>. Thus,
+the relative error in subtracting <span class="math">\(y\)</span> from <span class="math">\(x\)</span> is:</p>
+<div class="math">
+\[\frac{\overline{\bar x - \bar y} - (x-y)}{x-y} = \frac{10^{-5} - 10^{-11}}{10^{-11}} \approx 10^6\]</div>
+<p>Note that the relative error can grow arbitrarily if we add more digits with
+value <span class="math">\(9\)</span> in the decimal representation of <span class="math">\(y\)</span>.</p>
+</div>
 </div>
 <div class="section" id="multiplication">
 <h2>1.3.3. Multiplication<a class="headerlink" href="#multiplication" title="Permalink to this headline">¶</a></h2>
@@ -174,8 +193,8 @@ precision.</p>
   <p class="topless"><a href="precision.html"
                         title="previous chapter">1.2. Floating-point Arithmetic</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="vectors.html"
-                        title="next chapter">1.4. Vectors</a></p>
+  <p class="topless"><a href="algebra.html"
+                        title="next chapter">2. Vector and Matrix Algebra</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -204,7 +223,7 @@ precision.</p>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="vectors.html" title="1.4. Vectors"
+          <a href="algebra.html" title="2. Vector and Matrix Algebra"
              >next</a> |</li>
         <li class="right" >
           <a href="precision.html" title="1.2. Floating-point Arithmetic"
