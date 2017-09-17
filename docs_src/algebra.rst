@@ -15,4 +15,4 @@ practice.
     Vectors  <vectors>
     Matrices <matrices>
     Norms <norms>
-    Condition Numbers <condition>
+    Matrix Norms and Condition Numbers <condition>

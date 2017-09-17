@@ -1,5 +1,110 @@
+Matrix Norms and Condition Numbers
+----------------------------------
+
+Similar to vectors, norms can also be defined for (square) matrices. These norms
+allow us to measure the *nicety* of a linear system in terms of admitting stable
+numerical algorithms. It turns out these norms allow us to precisly quantify the
+convergence behavior of many iterative schemes, as we will see in later
+sections.
+
+Matrix Norms
+~~~~~~~~~~~~
+
+.. topic:: Definition
+
+    A matrix norm is a function :math:`\lVert\cdot\rVert : \mathbb R^{n\times n}\rightarrow \mathbb R` that satisfies:
+
+    1. :math:`\lVert M\rVert\geq 0` for all :math:`M\in\mathbb R^{n\times n}`, :math:`\lVert M\rVert = 0`
+       if and only if :math:`M=O`.
+    2. :math:`\lVert \alpha M\rVert = \vert\alpha\vert\cdot\lVert M\rVert`
+    3. :math:`\lVert M+N\rVert\leq \lVert M\rVert + \lVert N\rVert`
+    4. :math:`\lVert M\cdot N\rVert \leq \lVert M\rVert\cdot\lVert N\rVert`
+
+Property :math:`(4)` above has slightly different flavor than vector
+norms. Although more types of matrix norms exist, one common category is that of
+matrix norms *induced by* vector norms.
+
+.. topic:: Definition
+
+    If :math:`\lVert\cdot\rVert_\star` is a valid vector norm, its
+    *induced* matrix norm is defined as:
+
+    .. math::
+        \lVert M\rVert_\star = \max_{x\in\mathbb R^n,x\neq 0} \frac{\lVert Mx\rVert_\star}{\lVert x\rVert_\star}
+
+    or equivalently,
+
+    .. math::
+        \lVert M\rVert_\star = \max_{x\in\mathbb R^n,\lVert x\rVert=1} \lVert Mx\rVert_\star
+
+Note again, that *not all* valid matrix norms are induced by vector norms. One
+notable example is the very commonly used *Frobenius norm*:
+
+.. math::
+    \lVert M\rVert_F = \sqrt{\sum_{i,j=1}^n M_{ij}^2}
+
+We can easily show that induced norms satify properties :math:`(1)` through
+:math:`(4)`. Properties :math:`(1)-(3)` are rather trivial, for example,
+
+.. math::
+    \lVert M+N\rVert &=& \max_{x\neq 0} \frac{\lVert (M+N)x\rVert}{\lVert x\rVert} \leq \max_{x\neq 0} \frac{\lVert Mx\rVert + \lVert Nx\rVert}{\lVert x\rVert} \\
+                     &=& \max_{x\neq 0} \frac{\lVert Mx\rVert}{\lVert x\rVert} + \max_{x\neq 0} \frac{\lVert Nx\rVert}{\lVert x\rVert} = \lVert M\rVert + \lVert N\rVert
+
+Property :math:`(4)` is slightly trickier to show. First, a lemma:
+
+.. topic:: Lemma
+
+    If :math:`\lVert\cdot\rVert` is a matrix norm induced by a vector
+    norm :math:`\lVert\cdot\rVert`, then
+
+    .. math::
+        \lVert Ax\rVert \leq \lVert A\rVert\cdot \lVert x\rVert
+        :label: vector-norm-inequality
+
+    *Proof:* Since :math:`\lVert A\rVert = \max_{x\neq 0}\lVert Ax\rVert/\lVert x\rVert`, we have that for an arbitrary :math:`y\in\mathbb R^n (y\neq 0)`
+
+    .. math::
+        \lVert A\rVert = \max_{x\neq 0}\frac{\lVert Ax\rVert}{\lVert x\rVert}\geq \frac{\lVert Ay\rVert}{\lVert y\rVert} \Rightarrow \lVert Ay\rVert \leq \lVert A\rVert\cdot\lVert y\rVert
+
+    This holds for :math:`y\neq 0`, but we can see that it is also true for :math:`y=0`.
+
+Now property :math:`(4)` can be easily proved using the above lemma:
+
+.. math::
+    \lVert MN\rVert &=& \max_{\lVert x\rVert=1} \lVert MNx\rVert \leq \max_{\lVert x\rVert=1} \lVert M\rVert\cdot \lVert Nx\rVert \\
+                    &=& \lVert M\rVert\cdot \max_{\lVert x\rVert=1} \lVert Nx\rVert = \lVert M\rVert\cdot\lVert N\rVert \\
+    \Rightarrow \lVert MN\rVert &\leq& \lVert M\rVert\cdot\lVert N\rVert
+
+Note that when writing an expression such as :eq:`vector-norm-inequality`, the
+matrix norm :math:`\lVert A\rVert` is understood to be the inferred norm from the
+vector norm used in :math:`\lVert Ax\rVert` and :math:`\lVert x\rVert`. Thus,
+
+.. math::
+    \lVert Ax\rVert_1 \leq \lVert A\rVert_1\cdot \lVert x\rVert_1
+
+and
+
+.. math::
+    \lVert Ax\rVert_\infty \leq \lVert A\rVert_\infty\cdot \lVert x\rVert_\infty
+
+are both valid, but we *cannot* mix and match, for example:
+
+.. math::
+    \lVert Ax\rVert_\infty \leq \lVert A\rVert_2\cdot \lVert x\rVert_1
+
+Although the definition of an induced norm allowed us to prove certain
+properties, it does not necessarily provide a convenient formula for evaluating
+the matrix norm. Fortunately, such formulas do exist for the :math:`L_1` and
+:math:`L_\infty` induced matrix norms. Given here (without proof):
+
+.. math::
+    \lVert A\rVert_1        &=& \max_j \sum_{i=1}^n \vert A_{ij}\vert \enspace\enspace\enspace\mbox{(maximum absolute column sum)} \\
+    \lVert A\rVert_\infty   &=& \max_i \sum_{i=1}^n \vert A_{ij}\vert \enspace\enspace\enspace\mbox{(maximum absolute row sum)}
+
+The formula for the :math:`L_2` induced matrix norm is more complicated. We will see it when we study eigenvalues.
+
 Condition Numbers
------------------
+~~~~~~~~~~~~~~~~~
 
 When solving a linear system :math:`Ax=b`, computer algorithms are only
 providing an approximation :math:`x_\textsf{approx}` to the exact solution
