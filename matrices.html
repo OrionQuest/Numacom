@@ -132,6 +132,8 @@ e^1 &amp; e^2 &amp; \ldots &amp; e^n \\
 0 &amp; 0 &amp; \ldots &amp; 0 &amp; 1
 \end{array}
 \right)\end{split}\]</div>
+<div class="section" id="matrix-vector-product">
+<h2>2.2.1. Matrix-Vector Product<a class="headerlink" href="#matrix-vector-product" title="Permalink to this headline">¶</a></h2>
 <p>Let <span class="math">\(x\in\mathbb R^{n\times 1}\)</span> be an <span class="math">\(n\)</span>-dimensional column vector
 and <span class="math">\(A\in\mathbb R^{m\times n}\)</span> be an <span class="math">\(m\times n\)</span> matrix. The
 matrix-vector product <span class="math">\(b=Ax\)</span> is the <span class="math">\(m\)</span>-dimensional vector defined
@@ -157,6 +159,123 @@ the <code class="docutils literal"><span class="pre">dot</span></code> operator,
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 <span class="go">array([ 41,  95, 149])</span>
 </pre></div>
+</div>
+<div class="topic">
+<p class="topic-title first">Example: Image Blurring</p>
+<p>To illustrate the power of the abstraction that matrix-vector products
+provide, we will show an example from image processing where we will
+blur an image by casting the problem as a matrix-vector multiplication.
+However, first we must outline how to read an image in <a class="reference external" href="https://www.python.org/">Python</a>
+using the <code class="docutils literal"><span class="pre">matplotlib</span></code> package. Consider reading this <a class="reference external" href="_images/chill.jpg">image</a>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">I</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;chill.jpg&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+<span class="go">&lt;matplotlib.image.AxesImage object at 0x7f22b353d390&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The above sequence of commands should display the following image:</p>
+<a class="reference internal image-reference" href="_images/color_plot.png"><img alt="_images/color_plot.png" class="align-center" src="_images/color_plot.png" style="width: 609.0px; height: 459.0px;" /></a>
+<p>In our case, it is more convenient to operate on grayscale images. We
+will use the <a class="reference external" href="http://www.pythonware.com/products/pil/">PIL</a> package in <a class="reference external" href="https://www.python.org/">Python</a>
+for this purpose.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">PIL</span> <span class="k">import</span> <span class="n">Image</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fname</span><span class="o">=</span><span class="s1">&#39;chill.jpg&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;L&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="go">&lt;matplotlib.image.AxesImage object at 0x7fa3da005390&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The above commands should display the following image:</p>
+<a class="reference internal image-reference" href="_images/grayscale_plot.png"><img alt="_images/grayscale_plot.png" class="align-center" src="_images/grayscale_plot.png" style="width: 609.0px; height: 459.0px;" /></a>
+<p>To blur the image, we will perform the following simple operation, which
+replaces the grayscale value at every pixel by the weighted average of
+its neighbors:</p>
+<div class="math">
+\[\textsf{pixel} \leftarrow \frac{1}{8}(4\cdot\textsf{pixel} + \textsf{pixel}_\textsf{north} + \textsf{pixel}_\textsf{south} + \textsf{pixel}_\textsf{east} + \textsf{pixel}_\textsf{west})\]</div>
+<p>Since our blurring code is substantially more complex than anything else we
+have encountered so far, for convenience of execution, we will copy all the
+code into a file named <code class="docutils literal"><span class="pre">blur.py</span></code>, as shown below:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># blur.py</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="k">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="k">import</span> <span class="n">lil_matrix</span>
+
+<span class="c1"># read image file</span>
+<span class="n">fname</span> <span class="o">=</span> <span class="s1">&#39;chill.jpg&#39;</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;L&quot;</span><span class="p">)</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+<span class="n">arr</span><span class="o">.</span><span class="n">setflags</span><span class="p">(</span><span class="n">write</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># initialize blurring matrix</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">dofs</span> <span class="o">=</span> <span class="n">m</span><span class="o">*</span><span class="n">n</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">lil_matrix</span><span class="p">((</span><span class="n">dofs</span><span class="p">,</span><span class="n">dofs</span><span class="p">))</span>
+<span class="n">A</span><span class="o">.</span><span class="n">setdiag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">dofs</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">n</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mf">4.</span><span class="o">/</span><span class="mf">8.</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="mf">8.</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="mf">8.</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">n</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="mf">8.</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">n</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="mf">8.</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">tocsr</span><span class="p">()</span>
+
+<span class="c1"># Blurring function - converts image to a vector, multiplies by</span>
+<span class="c1"># the blurring matrix, and copies the result back into the image</span>
+<span class="k">def</span> <span class="nf">blur</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">dofs</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">m</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">m</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">]</span>
+
+<span class="c1"># Execute the blurring function 20 times</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">):</span>
+    <span class="n">blur</span><span class="p">()</span>
+
+<span class="c1"># Display the blurred image</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Several new concepts have been introduced in the code above. The image array
+<code class="docutils literal"><span class="pre">arr</span></code> can be thought of as a column vector <code class="docutils literal"><span class="pre">x</span></code> so that it can be
+multiplied by a matrix. Here, we see the generality of the concept of a
+vector – an <span class="math">\(m\times n\)</span> image corresponds to a <span class="math">\(mn\)</span>-dimensional
+vector. We first construct a <span class="math">\(mn\times mn\)</span> matrix <span class="math">\(A\)</span> to encode
+the blurring action. Since densely allocating this matrix would incur a
+substantial memory overhead, we allocate a <em>sparse</em> matrix instead using the
+<code class="docutils literal"><span class="pre">scipy.sparse</span></code> package. A sparse matrix only stores non-zero entries in a
+matrix, resulting in significant memory savings. The <code class="docutils literal"><span class="pre">lil_matrix</span></code> format
+allows us to set individual elements in the matrix, and the <code class="docutils literal"><span class="pre">tocsr</span></code>
+function converts it to the <em>compressed sparse row</em> format. Several other
+formats are available, as explained <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/sparse.html">here</a>.
+The <code class="docutils literal"><span class="pre">blur</span></code> function first converts the <span class="math">\(m\times n\)</span> image array into a
+<span class="math">\(mn\times 1\)</span> vector, multiplies it by the blurring matrix,
+and stores the result back into the image. We run this function <span class="math">\(20\)</span>
+times to exaggerate the overall effect. To run the above code, simply
+execute the following command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="n">blur</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>This might take some time depending upon the speed of your computer, because
+the size of the matrices and vectors is somewhat large.
+Finally, the following blurred result should be displayed upon completion:</p>
+<a class="reference internal image-reference" href="_images/blurred_plot.png"><img alt="_images/blurred_plot.png" class="align-center" src="_images/blurred_plot.png" style="width: 609.0px; height: 459.0px;" /></a>
+<p>Sparse matrices are extremely useful in practice, because the majority of
+matrices encountered in real world applications tend to be sparse. We will
+see many more examples of their usage in later sections.</p>
 </div>
 <p>Suppose we consider the individual columns <span class="math">\(v^1,v^2,\ldots,v^n\)</span> of
 <span class="math">\(A\)</span>, as shown above. Then the matrix-vector product <span class="math">\(b\)</span> can be
@@ -224,6 +343,9 @@ matrices, as shown below:</p>
 <span class="go">        [246, 288, 330]])</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="matrix-transpose">
+<h2>2.2.2. Matrix Transpose<a class="headerlink" href="#matrix-transpose" title="Permalink to this headline">¶</a></h2>
 <p>Another operator on matrices that is quite useful is the <em>transpose</em> operator.
 The transpose of a matrix <span class="math">\(A\in\mathbb R^{m\times n}\)</span> is denoted as
 <span class="math">\(A^T\in\mathbb R^{n\times m}\)</span>, and is defined as:</p>
@@ -250,6 +372,7 @@ can be used for computing the transpose of a given matrix, as shown below:</p>
 </pre></div>
 </div>
 </div>
+</div>
 
 
           </div>
@@ -257,6 +380,15 @@ can be used for computing the transpose of a given matrix, as shown below:</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2.2. Matrices</a><ul>
+<li><a class="reference internal" href="#matrix-vector-product">2.2.1. Matrix-Vector Product</a></li>
+<li><a class="reference internal" href="#matrix-transpose">2.2.2. Matrix Transpose</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="vectors.html"
                         title="previous chapter">2.1. Vectors</a></p>
