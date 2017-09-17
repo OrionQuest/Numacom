@@ -14,7 +14,3 @@ so as to take note of all the programming concepts that are introduced.
     Motivation <motivation>
     Floating-point Arithmetic <precision>
     Error Analysis <error_analysis>
-    Vectors  <vectors>
-    Matrices <matrices>
-    Norms <norms>
-    Condition Numbers <condition>

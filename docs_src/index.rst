@@ -95,6 +95,7 @@ Contents:
     :maxdepth: 3
 
     Introduction <intro>
+    Vector and Matrix Algebra <algebra>
     Getting Started with Python <python>
 
 Coding Resources:
