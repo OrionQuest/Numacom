@@ -253,7 +253,7 @@ the ``dot`` operator, as shown below: ::
 
         >>> python blur.py
 
-    This might take some time depending upon the speed of your computer, because
+    This may take some time depending upon the speed of your computer, because
     the size of the matrices and vectors is somewhat large.
     Finally, the following blurred result should be displayed upon completion:
 

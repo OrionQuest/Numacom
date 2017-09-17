@@ -14,7 +14,7 @@ there exist real numbers :math:`0\leq\delta_1,\delta_2,\delta_3\leq\varepsilon`,
     \overline{\bar x\odot\bar y} \enspace &=& \enspace (\bar x\odot\bar y)(1+\delta_3) = (x(1+\delta_1) \odot y(1+\delta_2))(1+\delta_3)
     :label: general-operation
 
-.. topic:: Example
+.. topic:: Example 1
 
     To illustrate this process, let us use a decimal machine operating with five
     significant digits in its floating-point number representation, and
@@ -86,6 +86,31 @@ Then the relative error is given by
     &=& \enspace \delta_3 + \delta_1(1+\delta_3) + \frac{a}{\theta}(\delta_1 - \delta_2)(1+\delta_3)
 
 which becomes unbounded as :math:`\theta\rightarrow 0`.
+
+.. topic:: Example 2
+
+    Suppose we wish to subtract two real numbers :math:`x` and :math:`y` whose
+    exact value in the decimal representation is as follows:
+
+    .. math::
+        x = 3.212435, \enspace\enspace\enspace\enspace y = 3.21243499999
+
+    Assume that the floating-point number system on the computer only allows for
+    :math:`5` significant digits. So :math:`x` and :math:`y` will have the
+    following values in machine precision:
+
+    .. math::
+        \bar x = 3.21244, \enspace\enspace\enspace\enspace \bar y = 3.21243
+
+    The difference :math:`\bar x - \bar y = 10^{-5}` can be stored exactly in machine
+    precision. However, the actual difference is :math:`x-y = 10^{-11}`. Thus,
+    the relative error in subtracting :math:`y` from :math:`x` is:
+
+    .. math::
+        \frac{\overline{\bar x - \bar y} - (x-y)}{x-y} = \frac{10^{-5} - 10^{-11}}{10^{-11}} \approx 10^6
+
+    Note that the relative error can grow arbitrarily if we add more digits with
+    value :math:`9` in the decimal representation of :math:`y`.
 
 Multiplication
 ~~~~~~~~~~~~~~
