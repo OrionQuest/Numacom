@@ -24,7 +24,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="2.4. Condition Numbers" href="condition.html" />
+    <link rel="next" title="2.4. Matrix Norms and Condition Numbers" href="condition.html" />
     <link rel="prev" title="2.2. Matrices" href="matrices.html" /> 
   </head>
   <body>
@@ -35,7 +35,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="condition.html" title="2.4. Condition Numbers"
+          <a href="condition.html" title="2.4. Matrix Norms and Condition Numbers"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="matrices.html" title="2.2. Matrices"
@@ -143,79 +143,6 @@ Here, the second parameter specifies the particular norm that we wish to compute
 </pre></div>
 </div>
 </div>
-<div class="section" id="matrix-norms">
-<h2>2.3.3. Matrix Norms<a class="headerlink" href="#matrix-norms" title="Permalink to this headline">¶</a></h2>
-<p>We can actually define norms for (square) matrices as well.</p>
-<div class="topic">
-<p class="topic-title first">Definition</p>
-<p>A matrix norm is a function <span class="math">\(\lVert\cdot\rVert : \mathbb R^{n\times n}\rightarrow \mathbb R\)</span> that satisfies:</p>
-<ol class="arabic simple">
-<li><span class="math">\(\lVert M\rVert\geq 0\)</span> for all <span class="math">\(M\in\mathbb R^{n\times n}\)</span>, <span class="math">\(\lVert M\rVert = 0\)</span>
-if and only if <span class="math">\(M=O\)</span>.</li>
-<li><span class="math">\(\lVert \alpha M\rVert = \vert\alpha\vert\cdot\lVert M\rVert\)</span></li>
-<li><span class="math">\(\lVert M+N\rVert\leq \lVert M\rVert + \lVert N\rVert\)</span></li>
-<li><span class="math">\(\lVert M\cdot N\rVert \leq \lVert M\rVert\cdot\lVert N\rVert\)</span></li>
-</ol>
-</div>
-<p>Property <span class="math">\((4)\)</span> above has slightly different flavor than vector
-norms. Although more types of matrix norms exist, one common category is that of
-matrix norms <em>induced by</em> vector norms.</p>
-<div class="topic">
-<p class="topic-title first">Definition</p>
-<p>If <span class="math">\(\lVert\cdot\rVert_\star\)</span> is a valid vector norm, its
-<em>induced</em> matrix norm is defined as:</p>
-<div class="math">
-\[\lVert M\rVert_\star = \max_{x\in\mathbb R^n,x\neq 0} \frac{\lVert Mx\rVert_\star}{\lVert x\rVert_\star}\]</div>
-<p>or equivalently,</p>
-<div class="math">
-\[\lVert M\rVert_\star = \max_{x\in\mathbb R^n,\lVert x\rVert=1} \lVert Mx\rVert_\star\]</div>
-</div>
-<p>Note again, that <em>not all</em> valid matrix norms are induced by vector norms. One
-notable example is the very commonly used <em>Frobenius norm</em>:</p>
-<div class="math">
-\[\lVert M\rVert_F = \sqrt{\sum_{i,j=1}^n M_{ij}^2}\]</div>
-<p>We can easily show that induced norms satify properties <span class="math">\((1)\)</span> through
-<span class="math">\((4)\)</span>. Properties <span class="math">\((1)-(3)\)</span> are rather trivial, for example,</p>
-<div class="math">
-\[\begin{split}\lVert M+N\rVert &amp;=&amp; \max_{x\neq 0} \frac{\lVert (M+N)x\rVert}{\lVert x\rVert} \leq \max_{x\neq 0} \frac{\lVert Mx\rVert + \lVert Nx\rVert}{\lVert x\rVert} \\
-                 &amp;=&amp; \max_{x\neq 0} \frac{\lVert Mx\rVert}{\lVert x\rVert} + \max_{x\neq 0} \frac{\lVert Nx\rVert}{\lVert x\rVert} = \lVert M\rVert + \lVert N\rVert\end{split}\]</div>
-<p>Property <span class="math">\((4)\)</span> is slightly trickier to show. First, a lemma:</p>
-<div class="topic">
-<p class="topic-title first">Lemma</p>
-<p>If <span class="math">\(\lVert\cdot\rVert\)</span> is a matrix norm induced by a vector
-norm <span class="math">\(\lVert\cdot\rVert\)</span>, then</p>
-<div class="math" id="equation-vector-norm-inequality">
-<span class="eqno">(1)<a class="headerlink" href="#equation-vector-norm-inequality" title="Permalink to this equation">¶</a></span>\[\lVert Ax\rVert \leq \lVert A\rVert\cdot \lVert x\rVert\]</div>
-<p><em>Proof:</em> Since <span class="math">\(\lVert A\rVert = \max_{x\neq 0}\lVert Ax\rVert/\lVert x\rVert\)</span>, we have that for an arbitrary <span class="math">\(y\in\mathbb R^n (y\neq 0)\)</span></p>
-<div class="math">
-\[\lVert A\rVert = \max_{x\neq 0}\frac{\lVert Ax\rVert}{\lVert x\rVert}\geq \frac{\lVert Ay\rVert}{\lVert y\rVert} \Rightarrow \lVert Ay\rVert \leq \lVert A\rVert\cdot\lVert y\rVert\]</div>
-<p>This holds for <span class="math">\(y\neq 0\)</span>, but we can see that it is also true for <span class="math">\(y=0\)</span>.</p>
-</div>
-<p>Now property <span class="math">\((4)\)</span> can be easily proved using the above lemma:</p>
-<div class="math">
-\[\begin{split}\lVert MN\rVert &amp;=&amp; \max_{\lVert x\rVert=1} \lVert MNx\rVert \leq \max_{\lVert x\rVert=1} \lVert M\rVert\cdot \lVert Nx\rVert \\
-                &amp;=&amp; \lVert M\rVert\cdot \max_{\lVert x\rVert=1} \lVert Nx\rVert = \lVert M\rVert\cdot\lVert N\rVert \\
-\Rightarrow \lVert MN\rVert &amp;\leq&amp; \lVert M\rVert\cdot\lVert N\rVert\end{split}\]</div>
-<p>Note that when writing an expression such as <a class="reference internal" href="#equation-vector-norm-inequality">(1)</a>, the
-matrix norm <span class="math">\(\lVert A\rVert\)</span> is understood to be the inferred norm from the
-vector norm used in <span class="math">\(\lVert Ax\rVert\)</span> and <span class="math">\(\lVert x\rVert\)</span>. Thus,</p>
-<div class="math">
-\[\lVert Ax\rVert_1 \leq \lVert A\rVert_1\cdot \lVert x\rVert_1\]</div>
-<p>and</p>
-<div class="math">
-\[\lVert Ax\rVert_\infty \leq \lVert A\rVert_\infty\cdot \lVert x\rVert_\infty\]</div>
-<p>are both valid, but we <em>cannot</em> mix and match, for example:</p>
-<div class="math">
-\[\lVert Ax\rVert_\infty \leq \lVert A\rVert_2\cdot \lVert x\rVert_1\]</div>
-<p>Although the definition of an induced norm allowed us to prove certain
-properties, it does not necessarily provide a convenient formula for evaluating
-the matrix norm. Fortunately, such formulas do exist for the <span class="math">\(L_1\)</span> and
-<span class="math">\(L_\infty\)</span> induced matrix norms. Given here (without proof):</p>
-<div class="math">
-\[\begin{split}\lVert A\rVert_1        &amp;=&amp; \max_j \sum_{i=1}^n \vert A_{ij}\vert \enspace\enspace\enspace\mbox{(maximum absolute column sum)} \\
-\lVert A\rVert_\infty   &amp;=&amp; \max_i \sum_{i=1}^n \vert A_{ij}\vert \enspace\enspace\enspace\mbox{(maximum absolute row sum)}\end{split}\]</div>
-<p>The formula for the <span class="math">\(L_2\)</span> induced matrix norm is more complicated. We will see it when we study eigenvalues.</p>
-</div>
 </div>
 
 
@@ -229,7 +156,6 @@ the matrix norm. Fortunately, such formulas do exist for the <span class="math">
 <li><a class="reference internal" href="#">2.3. Norms</a><ul>
 <li><a class="reference internal" href="#why-are-vector-norms-needed">2.3.1. Why are vector norms needed?</a></li>
 <li><a class="reference internal" href="#types-of-vector-norms">2.3.2. Types of Vector Norms</a></li>
-<li><a class="reference internal" href="#matrix-norms">2.3.3. Matrix Norms</a></li>
 </ul>
 </li>
 </ul>
@@ -239,7 +165,7 @@ the matrix norm. Fortunately, such formulas do exist for the <span class="math">
                         title="previous chapter">2.2. Matrices</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="condition.html"
-                        title="next chapter">2.4. Condition Numbers</a></p>
+                        title="next chapter">2.4. Matrix Norms and Condition Numbers</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -268,7 +194,7 @@ the matrix norm. Fortunately, such formulas do exist for the <span class="math">
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="condition.html" title="2.4. Condition Numbers"
+          <a href="condition.html" title="2.4. Matrix Norms and Condition Numbers"
              >next</a> |</li>
         <li class="right" >
           <a href="matrices.html" title="2.2. Matrices"

@@ -130,7 +130,7 @@ the ``dot`` operator, as shown below: ::
     >>> a.dot(b)
     array([ 41,  95, 149])
 
-.. topic:: Example: Image Blurring
+.. topic:: Example 1: Image Blurring
 
     To illustrate the power of the abstraction that matrix-vector products
     provide, we will show an example from image processing where we will
@@ -307,10 +307,46 @@ of :math:`A` on :math:`x` to produce :math:`b`. The equation above is a
 different interpretation that suggests, in contrast, that :math:`x` acts on
 :math:`A` to produce :math:`b`. The set of all :math:`m`-dimensional vectors
 :math:`b` that can be written as :math:`Ax` for some :math:`n`-dimensional
-vector :math:`x` constitute the *column space* of :math:`A`. The *rank* of
+vector :math:`x` constitute the *column space* of :math:`A`.
+
+.. topic:: Example 2
+
+    Consider the following matrix:
+
+    .. math::
+        A = \left[\begin{array}{ccc}
+        1 & 0 & 0 \\
+        0 & 1 & 0 \\
+        0 & 0 & 0
+        \end{array}\right]
+
+    For any :math:`3`-dimensional vector :math:`(u,v,w)`, the following matrix
+    zeroes out the Z-component, essentially projecting the vector onto the XY-plane.
+    In this case, the XY-plane corresponds to the column space of :math:`A`.
+    Further, any vector of the form :math:`(0,0,w)` is projected to the :math:`0`-vector
+    (or *null* vector). The set of all such vectors comprise the *null space* of
+    :math:`A`.
+
+As shown in Example 2, the set of all vectors :math:`x` such that :math:`Ax=0`
+comprise the *null space* of :math:`A`.
+The *rank* of
 :math:`A` is the dimension of its column space, i.e., the number of linearly
-independent columns of :math:`A`.
-Also, note how the dimensions of the result
+independent columns of :math:`A`, and is denoted by :math:`\textsf{rank }A`.
+Likewise, the dimension of the null space of :math:`A` is noted by
+:math:`\textsf{null }A`. In Example 2, :math:`\textsf{rank }A=2` and
+:math:`\textsf{null }A=1`, and :math:`\textsf{rank }A + \textsf{null }A = 3`,
+which is the number of columns in :math:`A`. In fact, this generalizes to
+arbitrary matrices and is often regarded as one of the fundamental theorems in
+Algebra:
+
+.. topic:: Rank-Nullity Theorem
+
+    If :math:`A` is an :math:`m\times n` matrix, then
+
+    .. math::
+        \textsf{rank }A + \textsf{null }A = n
+
+Note how the dimensions of the result
 :math:`b` are dependent on the dimensions of :math:`A` and :math:`x`:
 
 .. math::
@@ -370,3 +406,9 @@ can be used for computing the transpose of a given matrix, as shown below: ::
             [ 2,  6, 10],
             [ 3,  7, 11],
             [ 4,  8, 12]])
+
+The number of linearly independent columns in :math:`A` is *equal* to the number
+of linearly independent rows in :math:`A`. Thus, it follows that
+
+.. math::
+    \textsf{rank }A = \textsf{rank }A^T

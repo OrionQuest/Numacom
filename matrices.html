@@ -161,7 +161,7 @@ the <code class="docutils literal"><span class="pre">dot</span></code> operator,
 </pre></div>
 </div>
 <div class="topic">
-<p class="topic-title first">Example: Image Blurring</p>
+<p class="topic-title first">Example 1: Image Blurring</p>
 <p>To illustrate the power of the abstraction that matrix-vector products
 provide, we will show an example from image processing where we will
 blur an image by casting the problem as a matrix-vector multiplication.
@@ -313,10 +313,41 @@ of <span class="math">\(A\)</span> on <span class="math">\(x\)</span> to produce
 different interpretation that suggests, in contrast, that <span class="math">\(x\)</span> acts on
 <span class="math">\(A\)</span> to produce <span class="math">\(b\)</span>. The set of all <span class="math">\(m\)</span>-dimensional vectors
 <span class="math">\(b\)</span> that can be written as <span class="math">\(Ax\)</span> for some <span class="math">\(n\)</span>-dimensional
-vector <span class="math">\(x\)</span> constitute the <em>column space</em> of <span class="math">\(A\)</span>. The <em>rank</em> of
+vector <span class="math">\(x\)</span> constitute the <em>column space</em> of <span class="math">\(A\)</span>.</p>
+<div class="topic">
+<p class="topic-title first">Example 2</p>
+<p>Consider the following matrix:</p>
+<div class="math">
+\[\begin{split}A = \left[\begin{array}{ccc}
+1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0
+\end{array}\right]\end{split}\]</div>
+<p>For any <span class="math">\(3\)</span>-dimensional vector <span class="math">\((u,v,w)\)</span>, the following matrix
+zeroes out the Z-component, essentially projecting the vector onto the XY-plane.
+In this case, the XY-plane corresponds to the column space of <span class="math">\(A\)</span>.
+Further, any vector of the form <span class="math">\((0,0,w)\)</span> is projected to the <span class="math">\(0\)</span>-vector
+(or <em>null</em> vector). The set of all such vectors comprise the <em>null space</em> of
+<span class="math">\(A\)</span>.</p>
+</div>
+<p>As shown in Example 2, the set of all vectors <span class="math">\(x\)</span> such that <span class="math">\(Ax=0\)</span>
+comprise the <em>null space</em> of <span class="math">\(A\)</span>.
+The <em>rank</em> of
 <span class="math">\(A\)</span> is the dimension of its column space, i.e., the number of linearly
-independent columns of <span class="math">\(A\)</span>.
-Also, note how the dimensions of the result
+independent columns of <span class="math">\(A\)</span>, and is denoted by <span class="math">\(\textsf{rank }A\)</span>.
+Likewise, the dimension of the null space of <span class="math">\(A\)</span> is noted by
+<span class="math">\(\textsf{null }A\)</span>. In Example 2, <span class="math">\(\textsf{rank }A=2\)</span> and
+<span class="math">\(\textsf{null }A=1\)</span>, and <span class="math">\(\textsf{rank }A + \textsf{null }A = 3\)</span>,
+which is the number of columns in <span class="math">\(A\)</span>. In fact, this generalizes to
+arbitrary matrices and is often regarded as one of the fundamental theorems in
+Algebra:</p>
+<div class="topic">
+<p class="topic-title first">Rank-Nullity Theorem</p>
+<p>If <span class="math">\(A\)</span> is an <span class="math">\(m\times n\)</span> matrix, then</p>
+<div class="math">
+\[\textsf{rank }A + \textsf{null }A = n\]</div>
+</div>
+<p>Note how the dimensions of the result
 <span class="math">\(b\)</span> are dependent on the dimensions of <span class="math">\(A\)</span> and <span class="math">\(x\)</span>:</p>
 <div class="math">
 \[b_{m\times 1} = A_{m\times n}\cdot x_{n\times 1}\]</div>
@@ -371,6 +402,10 @@ can be used for computing the transpose of a given matrix, as shown below:</p>
 <span class="go">        [ 4,  8, 12]])</span>
 </pre></div>
 </div>
+<p>The number of linearly independent columns in <span class="math">\(A\)</span> is <em>equal</em> to the number
+of linearly independent rows in <span class="math">\(A\)</span>. Thus, it follows that</p>
+<div class="math">
+\[\textsf{rank }A = \textsf{rank }A^T\]</div>
 </div>
 </div>
 

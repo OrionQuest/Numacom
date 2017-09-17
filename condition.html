@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>2.4. Condition Numbers &#8212; CS 323 1.0 documentation</title>
+    <title>2.4. Matrix Norms and Condition Numbers &#8212; CS 323 1.0 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -50,8 +50,87 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="condition-numbers">
-<h1>2.4. Condition Numbers<a class="headerlink" href="#condition-numbers" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="matrix-norms-and-condition-numbers">
+<h1>2.4. Matrix Norms and Condition Numbers<a class="headerlink" href="#matrix-norms-and-condition-numbers" title="Permalink to this headline">¶</a></h1>
+<p>Similar to vectors, norms can also be defined for (square) matrices. These norms
+allow us to measure the <em>nicety</em> of a linear system in terms of admitting stable
+numerical algorithms. It turns out these norms allow us to precisly quantify the
+convergence behavior of many iterative schemes, as we will see in later
+sections.</p>
+<div class="section" id="matrix-norms">
+<h2>2.4.1. Matrix Norms<a class="headerlink" href="#matrix-norms" title="Permalink to this headline">¶</a></h2>
+<div class="topic">
+<p class="topic-title first">Definition</p>
+<p>A matrix norm is a function <span class="math">\(\lVert\cdot\rVert : \mathbb R^{n\times n}\rightarrow \mathbb R\)</span> that satisfies:</p>
+<ol class="arabic simple">
+<li><span class="math">\(\lVert M\rVert\geq 0\)</span> for all <span class="math">\(M\in\mathbb R^{n\times n}\)</span>, <span class="math">\(\lVert M\rVert = 0\)</span>
+if and only if <span class="math">\(M=O\)</span>.</li>
+<li><span class="math">\(\lVert \alpha M\rVert = \vert\alpha\vert\cdot\lVert M\rVert\)</span></li>
+<li><span class="math">\(\lVert M+N\rVert\leq \lVert M\rVert + \lVert N\rVert\)</span></li>
+<li><span class="math">\(\lVert M\cdot N\rVert \leq \lVert M\rVert\cdot\lVert N\rVert\)</span></li>
+</ol>
+</div>
+<p>Property <span class="math">\((4)\)</span> above has slightly different flavor than vector
+norms. Although more types of matrix norms exist, one common category is that of
+matrix norms <em>induced by</em> vector norms.</p>
+<div class="topic">
+<p class="topic-title first">Definition</p>
+<p>If <span class="math">\(\lVert\cdot\rVert_\star\)</span> is a valid vector norm, its
+<em>induced</em> matrix norm is defined as:</p>
+<div class="math">
+\[\lVert M\rVert_\star = \max_{x\in\mathbb R^n,x\neq 0} \frac{\lVert Mx\rVert_\star}{\lVert x\rVert_\star}\]</div>
+<p>or equivalently,</p>
+<div class="math">
+\[\lVert M\rVert_\star = \max_{x\in\mathbb R^n,\lVert x\rVert=1} \lVert Mx\rVert_\star\]</div>
+</div>
+<p>Note again, that <em>not all</em> valid matrix norms are induced by vector norms. One
+notable example is the very commonly used <em>Frobenius norm</em>:</p>
+<div class="math">
+\[\lVert M\rVert_F = \sqrt{\sum_{i,j=1}^n M_{ij}^2}\]</div>
+<p>We can easily show that induced norms satify properties <span class="math">\((1)\)</span> through
+<span class="math">\((4)\)</span>. Properties <span class="math">\((1)-(3)\)</span> are rather trivial, for example,</p>
+<div class="math">
+\[\begin{split}\lVert M+N\rVert &amp;=&amp; \max_{x\neq 0} \frac{\lVert (M+N)x\rVert}{\lVert x\rVert} \leq \max_{x\neq 0} \frac{\lVert Mx\rVert + \lVert Nx\rVert}{\lVert x\rVert} \\
+                 &amp;=&amp; \max_{x\neq 0} \frac{\lVert Mx\rVert}{\lVert x\rVert} + \max_{x\neq 0} \frac{\lVert Nx\rVert}{\lVert x\rVert} = \lVert M\rVert + \lVert N\rVert\end{split}\]</div>
+<p>Property <span class="math">\((4)\)</span> is slightly trickier to show. First, a lemma:</p>
+<div class="topic">
+<p class="topic-title first">Lemma</p>
+<p>If <span class="math">\(\lVert\cdot\rVert\)</span> is a matrix norm induced by a vector
+norm <span class="math">\(\lVert\cdot\rVert\)</span>, then</p>
+<div class="math" id="equation-vector-norm-inequality">
+<span class="eqno">(1)<a class="headerlink" href="#equation-vector-norm-inequality" title="Permalink to this equation">¶</a></span>\[\lVert Ax\rVert \leq \lVert A\rVert\cdot \lVert x\rVert\]</div>
+<p><em>Proof:</em> Since <span class="math">\(\lVert A\rVert = \max_{x\neq 0}\lVert Ax\rVert/\lVert x\rVert\)</span>, we have that for an arbitrary <span class="math">\(y\in\mathbb R^n (y\neq 0)\)</span></p>
+<div class="math">
+\[\lVert A\rVert = \max_{x\neq 0}\frac{\lVert Ax\rVert}{\lVert x\rVert}\geq \frac{\lVert Ay\rVert}{\lVert y\rVert} \Rightarrow \lVert Ay\rVert \leq \lVert A\rVert\cdot\lVert y\rVert\]</div>
+<p>This holds for <span class="math">\(y\neq 0\)</span>, but we can see that it is also true for <span class="math">\(y=0\)</span>.</p>
+</div>
+<p>Now property <span class="math">\((4)\)</span> can be easily proved using the above lemma:</p>
+<div class="math">
+\[\begin{split}\lVert MN\rVert &amp;=&amp; \max_{\lVert x\rVert=1} \lVert MNx\rVert \leq \max_{\lVert x\rVert=1} \lVert M\rVert\cdot \lVert Nx\rVert \\
+                &amp;=&amp; \lVert M\rVert\cdot \max_{\lVert x\rVert=1} \lVert Nx\rVert = \lVert M\rVert\cdot\lVert N\rVert \\
+\Rightarrow \lVert MN\rVert &amp;\leq&amp; \lVert M\rVert\cdot\lVert N\rVert\end{split}\]</div>
+<p>Note that when writing an expression such as <a class="reference internal" href="#equation-vector-norm-inequality">(1)</a>, the
+matrix norm <span class="math">\(\lVert A\rVert\)</span> is understood to be the inferred norm from the
+vector norm used in <span class="math">\(\lVert Ax\rVert\)</span> and <span class="math">\(\lVert x\rVert\)</span>. Thus,</p>
+<div class="math">
+\[\lVert Ax\rVert_1 \leq \lVert A\rVert_1\cdot \lVert x\rVert_1\]</div>
+<p>and</p>
+<div class="math">
+\[\lVert Ax\rVert_\infty \leq \lVert A\rVert_\infty\cdot \lVert x\rVert_\infty\]</div>
+<p>are both valid, but we <em>cannot</em> mix and match, for example:</p>
+<div class="math">
+\[\lVert Ax\rVert_\infty \leq \lVert A\rVert_2\cdot \lVert x\rVert_1\]</div>
+<p>Although the definition of an induced norm allowed us to prove certain
+properties, it does not necessarily provide a convenient formula for evaluating
+the matrix norm. Fortunately, such formulas do exist for the <span class="math">\(L_1\)</span> and
+<span class="math">\(L_\infty\)</span> induced matrix norms. Given here (without proof):</p>
+<div class="math">
+\[\begin{split}\lVert A\rVert_1        &amp;=&amp; \max_j \sum_{i=1}^n \vert A_{ij}\vert \enspace\enspace\enspace\mbox{(maximum absolute column sum)} \\
+\lVert A\rVert_\infty   &amp;=&amp; \max_i \sum_{i=1}^n \vert A_{ij}\vert \enspace\enspace\enspace\mbox{(maximum absolute row sum)}\end{split}\]</div>
+<p>The formula for the <span class="math">\(L_2\)</span> induced matrix norm is more complicated. We will see it when we study eigenvalues.</p>
+</div>
+<div class="section" id="condition-numbers">
+<h2>2.4.2. Condition Numbers<a class="headerlink" href="#condition-numbers" title="Permalink to this headline">¶</a></h2>
 <p>When solving a linear system <span class="math">\(Ax=b\)</span>, computer algorithms are only
 providing an approximation <span class="math">\(x_\textsf{approx}\)</span> to the exact solution
 <span class="math">\(x_\textsf{exact}\)</span>. This is due to factors such as finite precision,
@@ -68,13 +147,13 @@ One remedy is offered via the <em>residual vector</em> defined as:</p>
 <p>The vector <span class="math">\(r\)</span> is something we <em>can</em> compute practically since it involves
 only the known quantities <span class="math">\(b, A, x_\textsf{approx}\)</span>. Moreover, we have:</p>
 <div class="math" id="equation-error-vs-residual">
-<span class="eqno">(1)<a class="headerlink" href="#equation-error-vs-residual" title="Permalink to this equation">¶</a></span>\[\begin{split}r               \enspace &amp;=&amp; \enspace b-Ax_\textsf{approx} \nonumber \\
+<span class="eqno">(2)<a class="headerlink" href="#equation-error-vs-residual" title="Permalink to this equation">¶</a></span>\[\begin{split}r               \enspace &amp;=&amp; \enspace b-Ax_\textsf{approx} \nonumber \\
                 \enspace &amp;=&amp; \enspace Ax_\textsf{exact} - Ax_\textsf{approx} \\
                 \enspace &amp;=&amp; \enspace -A(x_\textsf{approx} - x_\textsf{exact}) \\
                 \enspace &amp;=&amp; \enspace -Ae \\
 \Rightarrow r   \enspace &amp;=&amp; \enspace -Ae \\
 \Rightarrow e   \enspace &amp;=&amp; \enspace -A^{-1}r\end{split}\]</div>
-<p>Equation <a class="reference internal" href="#equation-error-vs-residual">(1)</a> links the error with the residual. This allows
+<p>Equation <a class="reference internal" href="#equation-error-vs-residual">(2)</a> links the error with the residual. This allows
 us to write:</p>
 <div class="math">
 \[\lVert e\rVert = \lVert A^{-1}r\rVert \leq \lVert A^{-1}\rVert\cdot\lVert r\rVert\]</div>
@@ -86,8 +165,9 @@ and the norm of the computable vector <span class="math">\(r\)</span>. Note that
 is just as difficult (if not more) than finding <span class="math">\(x_\textsf{exact}\)</span>. However, there
 <em>are</em> some special cases where an estimate of <span class="math">\(\lVert A^{-1}\rVert\)</span> can be obtained.</li>
 </ul>
+</div>
 <div class="section" id="a-different-source-of-error">
-<h2>2.4.1. A Different Source of Error<a class="headerlink" href="#a-different-source-of-error" title="Permalink to this headline">¶</a></h2>
+<h2>2.4.3. A Different Source of Error<a class="headerlink" href="#a-different-source-of-error" title="Permalink to this headline">¶</a></h2>
 <p>Sometimes, the right hand side <span class="math">\(b\)</span> of the system of equations <span class="math">\(Ax=b\)</span>
 has errors that make it deviate from its intended value. For example, if each
 component of <span class="math">\(b\)</span> was defined as <span class="math">\(b_i=f(x_i)\)</span>, where <span class="math">\(f\)</span> is an
@@ -107,7 +187,7 @@ A\delta x               \enspace &amp;=&amp; \enspace \delta b \\
 \Rightarrow \delta x    \enspace &amp;=&amp; \enspace A^{-1}\delta b\end{split}\]</div>
 <p>Taking norms,</p>
 <div class="math" id="equation-error-norm">
-<span class="eqno">(2)<a class="headerlink" href="#equation-error-norm" title="Permalink to this equation">¶</a></span>\[\lVert \delta x\rVert = \lVert A^{-1}\delta b\rVert \leq \lVert A^{-1}\rVert\cdot\lVert \delta b\rVert\]</div>
+<span class="eqno">(3)<a class="headerlink" href="#equation-error-norm" title="Permalink to this equation">¶</a></span>\[\lVert \delta x\rVert = \lVert A^{-1}\delta b\rVert \leq \lVert A^{-1}\rVert\cdot\lVert \delta b\rVert\]</div>
 <p>Thus, the error in the computed solution <span class="math">\(\delta x\)</span> is proportional to the
 error in <span class="math">\(b\)</span>. An even more relevant question is: how does the <em>relative</em>
 error <span class="math">\(\lVert \delta x\rVert/\lVert x\rVert = \lVert
@@ -116,9 +196,9 @@ x^\star-x\rVert/\lVert x\rVert\)</span> compare to the relative error in <span c
 since <span class="math">\(\lVert\delta b\rVert\)</span> may be impossible to compute (if we don’t
 know the real <span class="math">\(b\)</span>). For this, we write:</p>
 <div class="math" id="equation-error-reciprocal">
-<span class="eqno">(3)<a class="headerlink" href="#equation-error-reciprocal" title="Permalink to this equation">¶</a></span>\[\begin{split}Ax = b  &amp;\Rightarrow&amp; \lVert b\rVert = \lVert Ax\rVert \leq \lVert A\rVert\cdot\lVert x\rVert \\
+<span class="eqno">(4)<a class="headerlink" href="#equation-error-reciprocal" title="Permalink to this equation">¶</a></span>\[\begin{split}Ax = b  &amp;\Rightarrow&amp; \lVert b\rVert = \lVert Ax\rVert \leq \lVert A\rVert\cdot\lVert x\rVert \\
         &amp;\Rightarrow&amp; \frac{1}{\lVert x\rVert} \leq \lVert A\rVert\cdot\frac{1}{\lVert b\rVert}\end{split}\]</div>
-<p>Multiplying equation <a class="reference internal" href="#equation-error-norm">(2)</a> and <a class="reference internal" href="#equation-error-reciprocal">(3)</a> gives</p>
+<p>Multiplying equation <a class="reference internal" href="#equation-error-norm">(3)</a> and <a class="reference internal" href="#equation-error-reciprocal">(4)</a> gives</p>
 <div class="math">
 \[\frac{\lVert\delta x\rVert}{\lVert x\rVert} \leq \underbrace{\lVert A\rVert\cdot\lVert A^{-1}\rVert}_{\kappa (A)}\cdot\frac{\lVert \delta b\rVert}{\lVert b\rVert}\]</div>
 <p>Thus, the relative error in <span class="math">\(x\)</span> is bounded by a multiple of the relative
@@ -128,7 +208,7 @@ the sensitivity of a linear system <span class="math">\(Ax=b\)</span> to being s
 in the presence of inaccurate values.</p>
 </div>
 <div class="section" id="why-is-all-this-relevant">
-<h2>2.4.2. Why is all this relevant?<a class="headerlink" href="#why-is-all-this-relevant" title="Permalink to this headline">¶</a></h2>
+<h2>2.4.4. Why is all this relevant?<a class="headerlink" href="#why-is-all-this-relevant" title="Permalink to this headline">¶</a></h2>
 <p>Simply put, <em>any</em> <span class="math">\(b\)</span> will have <em>some</em> small relative error due to the
 fact that it is represented on a computer only up to machine precision. The relative
 error will be at least as much as the machine epsilon due to round-off.</p>
@@ -201,9 +281,11 @@ for evaluating the condition number.</p>
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">2.4. Condition Numbers</a><ul>
-<li><a class="reference internal" href="#a-different-source-of-error">2.4.1. A Different Source of Error</a></li>
-<li><a class="reference internal" href="#why-is-all-this-relevant">2.4.2. Why is all this relevant?</a></li>
+<li><a class="reference internal" href="#">2.4. Matrix Norms and Condition Numbers</a><ul>
+<li><a class="reference internal" href="#matrix-norms">2.4.1. Matrix Norms</a></li>
+<li><a class="reference internal" href="#condition-numbers">2.4.2. Condition Numbers</a></li>
+<li><a class="reference internal" href="#a-different-source-of-error">2.4.3. A Different Source of Error</a></li>
+<li><a class="reference internal" href="#why-is-all-this-relevant">2.4.4. Why is all this relevant?</a></li>
 </ul>
 </li>
 </ul>
