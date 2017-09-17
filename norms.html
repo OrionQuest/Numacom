@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>1.5. Norms &#8212; CS 323 1.0 documentation</title>
+    <title>1.6. Norms &#8212; CS 323 1.0 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -24,8 +24,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="1.6. Condition Numbers" href="condition.html" />
-    <link rel="prev" title="1.4. Matrices" href="matrices.html" /> 
+    <link rel="next" title="1.7. Condition Numbers" href="condition.html" />
+    <link rel="prev" title="1.5. Matrices" href="matrices.html" /> 
   </head>
   <body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -35,10 +35,10 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="condition.html" title="1.6. Condition Numbers"
+          <a href="condition.html" title="1.7. Condition Numbers"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="matrices.html" title="1.4. Matrices"
+          <a href="matrices.html" title="1.5. Matrices"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">1. Introduction</a> &#187;</li> 
@@ -51,7 +51,7 @@
           <div class="body" role="main">
             
   <div class="section" id="norms">
-<h1>1.5. Norms<a class="headerlink" href="#norms" title="Permalink to this headline">¶</a></h1>
+<h1>1.6. Norms<a class="headerlink" href="#norms" title="Permalink to this headline">¶</a></h1>
 <p>Norms are valuable tools for arguing about the extent and magnitude of error. We
 introduce some concepts that we will broadly use later on:</p>
 <div class="topic">
@@ -73,7 +73,7 @@ function. In fact, many different valid norms exist. Typically, we will use
 subscripts (for example, <span class="math">\(\lVert \cdot\rVert_a\)</span>) to denote different types
 of norms.</p>
 <div class="section" id="why-are-vector-norms-needed">
-<h2>1.5.1. Why are vector norms needed?<a class="headerlink" href="#why-are-vector-norms-needed" title="Permalink to this headline">¶</a></h2>
+<h2>1.6.1. Why are vector norms needed?<a class="headerlink" href="#why-are-vector-norms-needed" title="Permalink to this headline">¶</a></h2>
 <p>In many applications, such as the solution of a nonlinear equation <span class="math">\(f(x)=0\)</span>,
 the error <span class="math">\(e=x_\textsf{approx}-x_\textsf{exact}\)</span> is a single number. Thus,
 the absolute value of <span class="math">\(\vert e\vert\)</span> gives us a good idea of the “extent”
@@ -106,7 +106,7 @@ measure this magnitude, and different norms would be appropriate for different
 tasks.</p>
 </div>
 <div class="section" id="types-of-vector-norms">
-<h2>1.5.2. Types of Vector Norms<a class="headerlink" href="#types-of-vector-norms" title="Permalink to this headline">¶</a></h2>
+<h2>1.6.2. Types of Vector Norms<a class="headerlink" href="#types-of-vector-norms" title="Permalink to this headline">¶</a></h2>
 <p>Consider a vector <span class="math">\(v\in\mathbb R^n\)</span>. Some norms which satisfy the
 properties of vector norms are:</p>
 <ol class="arabic simple">
@@ -144,7 +144,7 @@ Here, the second parameter specifies the particular norm that we wish to compute
 </div>
 </div>
 <div class="section" id="matrix-norms">
-<h2>1.5.3. Matrix Norms<a class="headerlink" href="#matrix-norms" title="Permalink to this headline">¶</a></h2>
+<h2>1.6.3. Matrix Norms<a class="headerlink" href="#matrix-norms" title="Permalink to this headline">¶</a></h2>
 <p>We can actually define norms for (square) matrices as well.</p>
 <div class="topic">
 <p class="topic-title first">Definition</p>
@@ -226,20 +226,20 @@ the matrix norm. Fortunately, such formulas do exist for the <span class="math">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">1.5. Norms</a><ul>
-<li><a class="reference internal" href="#why-are-vector-norms-needed">1.5.1. Why are vector norms needed?</a></li>
-<li><a class="reference internal" href="#types-of-vector-norms">1.5.2. Types of Vector Norms</a></li>
-<li><a class="reference internal" href="#matrix-norms">1.5.3. Matrix Norms</a></li>
+<li><a class="reference internal" href="#">1.6. Norms</a><ul>
+<li><a class="reference internal" href="#why-are-vector-norms-needed">1.6.1. Why are vector norms needed?</a></li>
+<li><a class="reference internal" href="#types-of-vector-norms">1.6.2. Types of Vector Norms</a></li>
+<li><a class="reference internal" href="#matrix-norms">1.6.3. Matrix Norms</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="matrices.html"
-                        title="previous chapter">1.4. Matrices</a></p>
+                        title="previous chapter">1.5. Matrices</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="condition.html"
-                        title="next chapter">1.6. Condition Numbers</a></p>
+                        title="next chapter">1.7. Condition Numbers</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -268,10 +268,10 @@ the matrix norm. Fortunately, such formulas do exist for the <span class="math">
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="condition.html" title="1.6. Condition Numbers"
+          <a href="condition.html" title="1.7. Condition Numbers"
              >next</a> |</li>
         <li class="right" >
-          <a href="matrices.html" title="1.4. Matrices"
+          <a href="matrices.html" title="1.5. Matrices"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="intro.html" >1. Introduction</a> &#187;</li> 

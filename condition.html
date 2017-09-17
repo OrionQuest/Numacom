@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>1.6. Condition Numbers &#8212; CS 323 1.0 documentation</title>
+    <title>1.7. Condition Numbers &#8212; CS 323 1.0 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -25,7 +25,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="2. Getting Started with Python" href="python.html" />
-    <link rel="prev" title="1.5. Norms" href="norms.html" /> 
+    <link rel="prev" title="1.6. Norms" href="norms.html" /> 
   </head>
   <body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -38,7 +38,7 @@
           <a href="python.html" title="2. Getting Started with Python"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="norms.html" title="1.5. Norms"
+          <a href="norms.html" title="1.6. Norms"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">1. Introduction</a> &#187;</li> 
@@ -51,7 +51,7 @@
           <div class="body" role="main">
             
   <div class="section" id="condition-numbers">
-<h1>1.6. Condition Numbers<a class="headerlink" href="#condition-numbers" title="Permalink to this headline">¶</a></h1>
+<h1>1.7. Condition Numbers<a class="headerlink" href="#condition-numbers" title="Permalink to this headline">¶</a></h1>
 <p>When solving a linear system <span class="math">\(Ax=b\)</span>, computer algorithms are only
 providing an approximation <span class="math">\(x_\textsf{approx}\)</span> to the exact solution
 <span class="math">\(x_\textsf{exact}\)</span>. This is due to factors such as finite precision,
@@ -87,7 +87,7 @@ is just as difficult (if not more) than finding <span class="math">\(x_\textsf{e
 <em>are</em> some special cases where an estimate of <span class="math">\(\lVert A^{-1}\rVert\)</span> can be obtained.</li>
 </ul>
 <div class="section" id="a-different-source-of-error">
-<h2>1.6.1. A Different Source of Error<a class="headerlink" href="#a-different-source-of-error" title="Permalink to this headline">¶</a></h2>
+<h2>1.7.1. A Different Source of Error<a class="headerlink" href="#a-different-source-of-error" title="Permalink to this headline">¶</a></h2>
 <p>Sometimes, the right hand side <span class="math">\(b\)</span> of the system of equations <span class="math">\(Ax=b\)</span>
 has errors that make it deviate from its intended value. For example, if each
 component of <span class="math">\(b\)</span> was defined as <span class="math">\(b_i=f(x_i)\)</span>, where <span class="math">\(f\)</span> is an
@@ -128,7 +128,7 @@ the sensitivity of a linear system <span class="math">\(Ax=b\)</span> to being s
 in the presence of inaccurate values.</p>
 </div>
 <div class="section" id="why-is-all-this-relevant">
-<h2>1.6.2. Why is all this relevant?<a class="headerlink" href="#why-is-all-this-relevant" title="Permalink to this headline">¶</a></h2>
+<h2>1.7.2. Why is all this relevant?<a class="headerlink" href="#why-is-all-this-relevant" title="Permalink to this headline">¶</a></h2>
 <p>Simply put, <em>any</em> <span class="math">\(b\)</span> will have <em>some</em> small relative error due to the
 fact that it is represented on a computer only up to machine precision. The relative
 error will be at least as much as the machine epsilon due to round-off.</p>
@@ -201,16 +201,16 @@ for evaluating the condition number.</p>
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">1.6. Condition Numbers</a><ul>
-<li><a class="reference internal" href="#a-different-source-of-error">1.6.1. A Different Source of Error</a></li>
-<li><a class="reference internal" href="#why-is-all-this-relevant">1.6.2. Why is all this relevant?</a></li>
+<li><a class="reference internal" href="#">1.7. Condition Numbers</a><ul>
+<li><a class="reference internal" href="#a-different-source-of-error">1.7.1. A Different Source of Error</a></li>
+<li><a class="reference internal" href="#why-is-all-this-relevant">1.7.2. Why is all this relevant?</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="norms.html"
-                        title="previous chapter">1.5. Norms</a></p>
+                        title="previous chapter">1.6. Norms</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="python.html"
                         title="next chapter">2. Getting Started with Python</a></p>
@@ -245,7 +245,7 @@ for evaluating the condition number.</p>
           <a href="python.html" title="2. Getting Started with Python"
              >next</a> |</li>
         <li class="right" >
-          <a href="norms.html" title="1.5. Norms"
+          <a href="norms.html" title="1.6. Norms"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="intro.html" >1. Introduction</a> &#187;</li> 

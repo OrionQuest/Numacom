@@ -1,0 +1,221 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>1.3. Error Analysis &#8212; CS 323 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1.4. Vectors" href="vectors.html" />
+    <link rel="prev" title="1.2. Floating-point Arithmetic" href="precision.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="vectors.html" title="1.4. Vectors"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="precision.html" title="1.2. Floating-point Arithmetic"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">1. Introduction</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="error-analysis">
+<h1>1.3. Error Analysis<a class="headerlink" href="#error-analysis" title="Permalink to this headline">¶</a></h1>
+<p>Let <span class="math">\(x\)</span> and <span class="math">\(y\)</span> be two real numbers, and <span class="math">\(\bar x\)</span> and <span class="math">\(\bar y\)</span>
+be their corresponding machine number representations. We will assume that
+whenever <span class="math">\(\bar x\)</span> and <span class="math">\(\bar y\)</span> are combined using an arithmetic
+operation <span class="math">\(\odot\)</span>, the result <span class="math">\(\bar x\odot\bar y\)</span> is first computed <em>exactly</em> and then
+discretized using machine precision. It follows from <a class="reference internal" href="precision.html#equation-machine-error">(2)</a> that
+there exist real numbers <span class="math">\(0\leq\delta_1,\delta_2,\delta_3\leq\varepsilon\)</span>, such that:</p>
+<div class="math" id="equation-general-operation">
+<span class="eqno">(1)<a class="headerlink" href="#equation-general-operation" title="Permalink to this equation">¶</a></span>\[\begin{split}\bar x \enspace &amp;=&amp; \enspace x(1+\delta_1) \\
+\bar y \enspace &amp;=&amp; \enspace y(1+\delta_2) \\
+\overline{\bar x\odot\bar y} \enspace &amp;=&amp; \enspace (\bar x\odot\bar y)(1+\delta_3) = (x(1+\delta_1) \odot y(1+\delta_2))(1+\delta_3)\end{split}\]</div>
+<div class="topic">
+<p class="topic-title first">Example</p>
+<p>To illustrate this process, let us use a decimal machine operating with five
+significant digits in its floating-point number representation, and
+determine the relative errors in adding, subtracting, multiplying, and
+dividing the two machine numbers</p>
+<div class="math">
+\[x=0.31426\times 10^3\enspace\enspace\enspace\enspace y=0.92577\times 10^5\]</div>
+<p>Using a higher precision accumulator (double in length) for the intermediate
+results gives</p>
+<div class="math">
+\[\begin{split}x+y \enspace &amp;=&amp;        \enspace 0.9289126000\times 10^5 \\
+x-y \enspace &amp;=&amp;        \enspace -0.9226274000\times 10^5 \\
+x*y \enspace &amp;=&amp;        \enspace 0.2909324802\times 10^8 \\
+x/y \enspace &amp;\approx&amp;  \enspace 0.3394579647\times 10^{-2}\end{split}\]</div>
+<p>The computer with five significant digits stores these in rounded form as</p>
+<div class="math">
+\[\begin{split}x+y \enspace &amp;=&amp;        \enspace 0.92891\times 10^5 \\
+x-y \enspace &amp;=&amp;        \enspace -0.92263\times 10^5 \\
+x*y \enspace &amp;=&amp;        \enspace 0.29093\times 10^8 \\
+x/y \enspace &amp;\approx&amp;  \enspace 0.33946\times 10^{-2}\end{split}\]</div>
+<p>The relative errors in these results are <span class="math">\(2.8\times 10^{-6}, 2.8\times
+10^{-6}, 8.5\times 10^{-6},\)</span> and <span class="math">\(6.0\times 10^{-6}\)</span>, respectively –
+all less than <span class="math">\(10^{-5}\)</span>.</p>
+</div>
+<p>While the above example gives comparable results for all four operations of addition,
+subtraction, multiplication, and division, it does not provide any insight into
+the size of the relative error. Let us try to theoretically analyze
+each of these operations.</p>
+<div class="section" id="addition">
+<h2>1.3.1. Addition<a class="headerlink" href="#addition" title="Permalink to this headline">¶</a></h2>
+<p>Using equation <a class="reference internal" href="#equation-general-operation">(1)</a>, we have</p>
+<div class="math">
+\[\overline{\bar x + \bar y} = (x(1+\delta_1)+y(1+\delta_2))(1+\delta_3)\]</div>
+<p>Subsituting <span class="math">\(\delta=\max\{\delta_1,\delta_2,\delta_3\}\)</span> in the above
+equation gives</p>
+<div class="math">
+\[\begin{split}\overline{\bar x + \bar y}                                  \enspace &amp;\leq&amp; \enspace (x+y)(1+\delta)^2 \\
+\Rightarrow \frac{\overline{\bar x + \bar y} - (x+y)}{x+y}  \enspace &amp;\leq&amp; \enspace (1+\delta)^2 - 1 = 2\delta + \delta^2\end{split}\]</div>
+<p>Since <span class="math">\(|\delta|\leq \varepsilon\)</span>, the relative error in addition is
+on the order of the machine epsilon. Thus, the addition operation is as accurate
+as it can be with the available precision.</p>
+</div>
+<div class="section" id="subtraction">
+<h2>1.3.2. Subtraction<a class="headerlink" href="#subtraction" title="Permalink to this headline">¶</a></h2>
+<p>We will show that there is no bound on the relative error. Let <span class="math">\(x=a+\theta\)</span>
+and <span class="math">\(y=\theta\)</span>, so <span class="math">\(x-y=\theta\)</span>. Then,</p>
+<div class="math">
+\[\begin{split}\bar x - \bar y                         \enspace &amp;=&amp; \enspace (a+\theta)(1+\delta_1)-a(1+\delta_2) = \theta + a(\delta_1 - \delta_2) + \theta\delta_1 \\
+\Rightarrow \overline{\bar x - \bar y}  \enspace &amp;=&amp; \enspace \theta(1+\delta_3) + a(\delta_1 - \delta_2)(1+\delta_3) + \theta\delta_1(1+\delta_3)\end{split}\]</div>
+<p>Then the relative error is given by</p>
+<div class="math">
+\[\begin{split}\frac{\overline{\bar x - \bar y} - (x-y)}{x-y} \enspace &amp;=&amp; \enspace \frac{\theta(1+\delta_3) + a(\delta_1 - \delta_2)(1+\delta_3) + \theta\delta_1(1+\delta_3) - \theta}{\theta} \\
+&amp;=&amp; \enspace \delta_3 + \delta_1(1+\delta_3) + \frac{a}{\theta}(\delta_1 - \delta_2)(1+\delta_3)\end{split}\]</div>
+<p>which becomes unbounded as <span class="math">\(\theta\rightarrow 0\)</span>.</p>
+</div>
+<div class="section" id="multiplication">
+<h2>1.3.3. Multiplication<a class="headerlink" href="#multiplication" title="Permalink to this headline">¶</a></h2>
+<p>Using equation <a class="reference internal" href="#equation-general-operation">(1)</a>, we have</p>
+<div class="math">
+\[\overline{\bar x\cdot\bar y} = x\cdot y(1+\delta_1)(1+\delta_2)(1+\delta_3)\]</div>
+<p>Subsituting <span class="math">\(\delta=\max\{\delta_1,\delta_2,\delta_3\}\)</span> in the above
+equation gives</p>
+<div class="math">
+\[\begin{split}\overline{\bar x\cdot\bar y} \enspace &amp;\leq&amp; \enspace  x\cdot y (1+\delta)^3 \\
+\Rightarrow \frac{\overline{\bar x\cdot\bar y} - x\cdot y}{x\cdot y} \enspace &amp;\leq&amp; \enspace (1+\delta)^3-1 = 3\delta + 3\delta^2 + \delta^3\end{split}\]</div>
+<p>Since <span class="math">\(|\delta|\leq \varepsilon\)</span>, the relative error in multiplication is
+on the order of the machine epsilon. Thus, similar to addition, the multiplication operation is as accurate
+as possible with the available precision.</p>
+</div>
+<div class="section" id="division">
+<h2>1.3.4. Division<a class="headerlink" href="#division" title="Permalink to this headline">¶</a></h2>
+<p>Using equation <a class="reference internal" href="#equation-general-operation">(1)</a>, we have</p>
+<div class="math" id="equation-division-operation">
+<span class="eqno">(2)<a class="headerlink" href="#equation-division-operation" title="Permalink to this equation">¶</a></span>\[\overline{\frac{\bar x}{\bar y}} = \frac{x(1+\delta_1)}{y(1+\delta_2)}(1+\delta_3)\]</div>
+<p>The denominator in the above equation can be eliminated by using the following
+geometric series</p>
+<div class="math">
+\[\frac{1}{1-\theta} = 1+\theta+\theta^2+\theta^3+\ldots\]</div>
+<p>where <span class="math">\(|\theta|&lt;1\)</span>. Substituting the above series in equation
+<a class="reference internal" href="#equation-division-operation">(2)</a>, gives</p>
+<div class="math">
+\[\overline{\frac{\bar x}{\bar y}} = \frac{x}{y}(1+\delta_1)(1+\delta_3)(1-\delta_2+\delta_2^2-\delta_2^3+\delta_4^2-\ldots)\]</div>
+<p>Let <span class="math">\(\delta=\max\{\delta_1,\delta_2,\delta_3\}\)</span>. Computing the relative
+error using the above expression gives a result on the order of <span class="math">\(\delta\)</span>,
+which is comparable to the machine epsilon. Thus, similar to addition and
+multiplication, division is also as accurate as possible with the available
+precision.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">1.3. Error Analysis</a><ul>
+<li><a class="reference internal" href="#addition">1.3.1. Addition</a></li>
+<li><a class="reference internal" href="#subtraction">1.3.2. Subtraction</a></li>
+<li><a class="reference internal" href="#multiplication">1.3.3. Multiplication</a></li>
+<li><a class="reference internal" href="#division">1.3.4. Division</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="precision.html"
+                        title="previous chapter">1.2. Floating-point Arithmetic</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="vectors.html"
+                        title="next chapter">1.4. Vectors</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/error_analysis.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="vectors.html" title="1.4. Vectors"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="precision.html" title="1.2. Floating-point Arithmetic"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="intro.html" >1. Introduction</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+  </body>
+</html>
