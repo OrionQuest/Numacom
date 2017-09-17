@@ -122,26 +122,54 @@ subtracted together to define a new vector <span class="math">\(v-w\)</span> as:
 <div class="math">
 \[v - w = v + (-1)\cdot w = (v_1-w_1,v_2-w_2,\ldots,v_n-w_n)\]</div>
 <p>Again, note that vector subtraction is not defined when the two vectors being
-subtracted have different dimensions. Together, these operations
+subtracted have different dimensions.</p>
+<div class="section" id="linear-combination-span-and-linear-independence">
+<h2>2.1.1. Linear Combination, Span, and Linear Independence<a class="headerlink" href="#linear-combination-span-and-linear-independence" title="Permalink to this headline">¶</a></h2>
+<p>Together, these operations
 allow us to define a <em>linear combination</em> of a set <span class="math">\(S\)</span> of vectors <span class="math">\(\{v^k\}\)</span>
 as a weighted sum:</p>
 <div class="math">
 \[w = \sum_k a_k v^k\]</div>
-<p>where <span class="math">\(a_k\in\mathbb R\)</span> for all <span class="math">\(k\)</span>. The set of all linear combinations of vectors in
+<p>where <span class="math">\(a_k\in\mathbb R\)</span> for all <span class="math">\(k\)</span>.</p>
+<div class="topic">
+<p class="topic-title first">Example 1</p>
+<p>Consider the unit vectors <span class="math">\((1,0,0)\)</span>, <span class="math">\((0,1,0)\)</span>, and
+<span class="math">\((0,0,1)\)</span> in three dimensions. Any vector <span class="math">\((u,v,w)\)</span> can be
+written as:</p>
+<div class="math">
+\[(u,v,w) = u(1,0,0) + v(0,1,0) + w(0,0,1)\]</div>
+<p>Thus, any <span class="math">\(3\)</span>-dimensional vector is a linear combination of the three
+unit vectors along the X, Y, and Z axes.</p>
+</div>
+<p>The set of all linear combinations of vectors in
 <span class="math">\(S\)</span> constitute the <em>span</em> of <span class="math">\(S\)</span>, denoted as <span class="math">\(\textsf{span } S\)</span>, i.e.,</p>
 <div class="math">
 \[\textsf{span }S \equiv \{a_1v^1+\ldots+a_kv^k : v^i\in S\mbox{ and }a_i\in\mathbb R\mbox{ for all }1\leq i\leq k\}\]</div>
-<p>Perhaps you may recall that any <span class="math">\(3\)</span>-dimensional vector <span class="math">\(v\)</span> can be written as
+<p>From Example 1, any <span class="math">\(3\)</span>-dimensional vector <span class="math">\(v\)</span> can be written as
 a linear combination of the three unit vectors <span class="math">\((1,0,0)\)</span>, <span class="math">\((0,1,0)\)</span>,
 and <span class="math">\((0,0,1)\)</span>. Thus, the span of these three unit vectors is the entire
 <span class="math">\(3\)</span>-dimensional Euclidean space <span class="math">\(\mathbb R^3\)</span>. The notion of linear
 combination, in turn, allows us to define <em>linear independence</em>. A set <span class="math">\(S\)</span> of vectors <span class="math">\(\{v^k\}\)</span>
-is said to be linearly independent if every non-trivial linear combination of
+is linearly independent if every non-trivial linear combination of
 vectors in <span class="math">\(S\)</span> is
-non-zero. More formally, whenever the sum <span class="math">\(a_1v^1+\ldots+a_kv^k = 0\)</span>, then the coefficients <span class="math">\(a_i = 0\)</span>
+non-zero, i.e., <span class="math">\(0\notin\textsf{span }S\)</span>. More formally, whenever the sum
+<span class="math">\(a_1v^1+\ldots+a_kv^k = 0\)</span>, then the coefficients <span class="math">\(a_i = 0\)</span>
 for all <span class="math">\(1\leq i\leq k\)</span>. A set of vectors is said to be <em>linearly dependent</em>
-if they are not linearly independent. We will discuss linear
-combinations and linear independence in much more detail when we study <a class="reference internal" href="matrices.html#sec-matrices"><span class="std std-ref">Matrices</span></a>.</p>
+if they are not linearly independent.</p>
+<div class="topic">
+<p class="topic-title first">Example 2</p>
+<p>Consider the three vectors <span class="math">\((2,1,4)\)</span>, <span class="math">\((5,2,8)\)</span>, and
+<span class="math">\((1,0,0)\)</span> in <span class="math">\(\mathbb R^3\)</span>. These vectors are not
+linearly independent (i.e., they are linearly dependent) because
+of the following identity:</p>
+<div class="math">
+\[2\cdot(2,1,4) - 1\cdot(5,2,8) + 1\cdot(1,0,0) = (0,0,0)\]</div>
+<p>In this particular case, all the coefficients <span class="math">\(2\)</span>, <span class="math">\(-1\)</span>, and
+<span class="math">\(1\)</span> are non-zero, so the zero-vector <span class="math">\(0\in\textsf{span }S\)</span>.</p>
+</div>
+</div>
+<div class="section" id="dot-product">
+<h2>2.1.2. Dot Product<a class="headerlink" href="#dot-product" title="Permalink to this headline">¶</a></h2>
 <p>Finally, the space <span class="math">\(\mathbb R^n\)</span> also comes equipped with a function
 <span class="math">\(f:\mathbb R^n\times\mathbb R^n\rightarrow\mathbb R\)</span> called the <em>dot
 product</em>, denoted as <span class="math">\(v\cdot w\)</span> for two vectors <span class="math">\(v\)</span> and <span class="math">\(w\)</span>, and formally defined as:</p>
@@ -158,6 +186,7 @@ easily compute the dot product of two vectors, as shown below:</p>
 <p>In what follows, we will <em>always</em> denote an <span class="math">\(n\)</span>-dimensional vector as an
 <span class="math">\(n\times 1\)</span> column vector.</p>
 </div>
+</div>
 
 
           </div>
@@ -165,6 +194,15 @@ easily compute the dot product of two vectors, as shown below:</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2.1. Vectors</a><ul>
+<li><a class="reference internal" href="#linear-combination-span-and-linear-independence">2.1.1. Linear Combination, Span, and Linear Independence</a></li>
+<li><a class="reference internal" href="#dot-product">2.1.2. Dot Product</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="algebra.html"
                         title="previous chapter">2. Vector and Matrix Algebra</a></p>
