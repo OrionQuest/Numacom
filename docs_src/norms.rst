@@ -97,3 +97,80 @@ Here, the second parameter specifies the particular norm that we wish to compute
     10.198039027185569
     >>> np.linalg.norm(v,np.inf)
     7
+
+Equivalence of different norms
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Several inequalities can be proved for the :math:`L_1`, :math:`L_2`, and
+:math:`L_\infty`-norms, respectively. We start by showing that :math:`\lVert
+x\rVert_\infty\leq \lVert x\rVert_1`.
+
+.. math::
+    \lVert x\rVert_\infty = \max_{i=1}^n \vert x_i\vert \leq \sum_{i=1}^n \vert x_i\vert = \lVert x\rVert_1
+
+The inequality above follows from the fact that the sum of the absolute values
+:math:`\sum_{i=1}^n \vert x_i\vert` *contains* the maximum absolute value :math:`\max_{i=1}^n
+\vert x_i\vert`. Furthermore, the absolute value :math:`\vert x_i\vert` of each component
+is less than or equal to the maximum of the absolute values over all components. This allows us to prove an
+inequality in the reverse direction as well, albeit with the multiplicative factor
+of :math:`n`.
+
+.. math::
+    \sum_{i=1}^n \vert x_i\vert \leq \sum_{i=1}^n \max_{i=1}^n \vert x_i\vert = \sum_{i=1}^n \lVert x\rVert_\infty = n\cdot\lVert x\rVert_\infty
+
+The above two inequalities can be compactly written as :math:`\lVert x\rVert_\infty \leq \lVert x\rVert_1\leq n\cdot\lVert x\rVert_\infty`.
+The equality holds when all components of :math:`x` are equal, as can be easily verified.
+
+.. topic:: Example 1
+
+    Consider the vector :math:`v = (5,2,1,4,3)`. The :math:`L_1` and
+    :math:`L_\infty`-norms of :math:`v` are
+
+    .. math::
+        \lVert v\rVert_1 = 15\enspace\enspace\enspace\enspace \mbox{and} \enspace\enspace\enspace\enspace \lVert v\rVert_\infty = 5
+
+    respectively. Note that :math:`\lVert v\rVert_\infty = 5\leq \lVert v\rVert_1 = 15 \leq 5\cdot\lVert v\rVert_\infty = 5\cdot 5 = 25`.
+
+.. topic:: Definition
+
+    Two vector norms :math:`\lVert x\rVert_a` and :math:`\lVert x\rVert_b` are
+    called *equivalent* if there exist real numbers :math:`c,d>0`, such that
+
+    .. math::
+        c\lVert x\rVert_a \leq \lVert x\rVert_b \leq \lVert x\rVert_a
+
+It follows from this definition that the :math:`L_1` and :math:`L_\infty`-norms are
+equivalent, as proved above. Now consider the square of the :math:`L_1`-norm
+
+.. math::
+    \lVert x\rVert_1^2 = (\vert x_1\vert + \vert x_2\vert + \ldots + \vert x_n\vert)^2 = \sum_{i=1}^n\vert x_i\vert^2 + 2\sum_{i<j} \vert x_i\vert\cdot\vert x_j\vert \geq \sum_{i=1}^n\vert x_i\vert^2 = \lVert x\rVert_2^2
+
+The above inequality implies that :math:`\lVert x\rVert_1\geq \lVert x\rVert_2`.
+For the reverse direction of the inequality, consider the `AM-GM inequality <https://en.wikipedia.org/wiki/Inequality_of_arithmetic_and_geometric_means>`_:
+
+.. math::
+    2\vert x_i\vert\cdot\vert x_j\vert \enspace &\leq& \enspace \vert x_i\vert^2 + \vert x_j\vert^2 \\
+    \Rightarrow 2\sum_{i<j} \vert x_i\vert\cdot\vert x_j\vert \enspace &\leq& \enspace (n-1)\cdot\sum_{i=1}^n \vert x_i\vert^2
+
+The second inequality follows from the fact that each :math:`x_i` appears with
+*exactly* :math:`n-1` other components :math:`x_j`.
+Using the above inequality with the square of the :math:`L_1`-norm gives
+
+.. math::
+    \lVert x\rVert_1^2 = \sum_{i=1}^n\vert x_i\vert^2 + 2\sum_{i<j} \vert x_i\vert\cdot\vert x_j\vert \leq n\sum_{i=1}^n\vert x_i\vert^2 = n\cdot\lVert x\rVert_2^2
+
+This implies that :math:`\lVert x\rVert_1\leq\sqrt{n}\lVert x\rVert_2`.
+Combining the two inequalities gives :math:`\lVert x\rVert_2\leq\lVert
+x\rVert_1\leq\sqrt{n}\lVert x\rVert_2`, proving that the :math:`L_1` and
+:math:`L_2`-norms are equivalent as well. Again, equality holds when all components of
+:math:`x` are equal.
+
+.. topic:: Example 2
+
+    Consider the same vector :math:`v = (5,2,1,4,3)`. The :math:`L_1` and
+    :math:`L_2`-norms of :math:`v` are
+
+    .. math::
+        \lVert v\rVert_1 = 15 \enspace\enspace\enspace\enspace \mbox{and} \enspace\enspace\enspace\enspace \lVert v\rVert_2 = 7.4162
+
+    respectively. Note that :math:`\lVert v\rVert_2 = 7.4162 \leq \lVert v\rVert_1 = 15 \leq \sqrt{5}\cdot 7.4162 = 16.5831`.
