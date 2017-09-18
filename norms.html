@@ -143,6 +143,66 @@ Here, the second parameter specifies the particular norm that we wish to compute
 </pre></div>
 </div>
 </div>
+<div class="section" id="equivalence-of-different-norms">
+<h2>2.3.3. Equivalence of different norms<a class="headerlink" href="#equivalence-of-different-norms" title="Permalink to this headline">¶</a></h2>
+<p>Several inequalities can be proved for the <span class="math">\(L_1\)</span>, <span class="math">\(L_2\)</span>, and
+<span class="math">\(L_\infty\)</span>-norms, respectively. We start by showing that <span class="math">\(\lVert
+x\rVert_\infty\leq \lVert x\rVert_1\)</span>.</p>
+<div class="math">
+\[\lVert x\rVert_\infty = \max_{i=1}^n \vert x_i\vert \leq \sum_{i=1}^n \vert x_i\vert = \lVert x\rVert_1\]</div>
+<p>The inequality above follows from the fact that the sum of the absolute values
+<span class="math">\(\sum_{i=1}^n \vert x_i\vert\)</span> <em>contains</em> the maximum absolute value <span class="math">\(\max_{i=1}^n
+\vert x_i\vert\)</span>. Furthermore, the absolute value <span class="math">\(\vert x_i\vert\)</span> of each component
+is less than or equal to the maximum of the absolute values over all components. This allows us to prove an
+inequality in the reverse direction as well, albeit with the multiplicative factor
+of <span class="math">\(n\)</span>.</p>
+<div class="math">
+\[\sum_{i=1}^n \vert x_i\vert \leq \sum_{i=1}^n \max_{i=1}^n \vert x_i\vert = \sum_{i=1}^n \lVert x\rVert_\infty = n\cdot\lVert x\rVert_\infty\]</div>
+<p>The above two inequalities can be compactly written as <span class="math">\(\lVert x\rVert_\infty \leq \lVert x\rVert_1\leq n\cdot\lVert x\rVert_\infty\)</span>.
+The equality holds when all components of <span class="math">\(x\)</span> are equal, as can be easily verified.</p>
+<div class="topic">
+<p class="topic-title first">Example 1</p>
+<p>Consider the vector <span class="math">\(v = (5,2,1,4,3)\)</span>. The <span class="math">\(L_1\)</span> and
+<span class="math">\(L_\infty\)</span>-norms of <span class="math">\(v\)</span> are</p>
+<div class="math">
+\[\lVert v\rVert_1 = 15\enspace\enspace\enspace\enspace \mbox{and} \enspace\enspace\enspace\enspace \lVert v\rVert_\infty = 5\]</div>
+<p>respectively. Note that <span class="math">\(\lVert v\rVert_\infty = 5\leq \lVert v\rVert_1 = 15 \leq 5\cdot\lVert v\rVert_\infty = 5\cdot 5 = 25\)</span>.</p>
+</div>
+<div class="topic">
+<p class="topic-title first">Definition</p>
+<p>Two vector norms <span class="math">\(\lVert x\rVert_a\)</span> and <span class="math">\(\lVert x\rVert_b\)</span> are
+called <em>equivalent</em> if there exist real numbers <span class="math">\(c,d&gt;0\)</span>, such that</p>
+<div class="math">
+\[c\lVert x\rVert_a \leq \lVert x\rVert_b \leq \lVert x\rVert_a\]</div>
+</div>
+<p>It follows from this definition that the <span class="math">\(L_1\)</span> and <span class="math">\(L_\infty\)</span>-norms are
+equivalent, as proved above. Now consider the square of the <span class="math">\(L_1\)</span>-norm</p>
+<div class="math">
+\[\lVert x\rVert_1^2 = (\vert x_1\vert + \vert x_2\vert + \ldots + \vert x_n\vert)^2 = \sum_{i=1}^n\vert x_i\vert^2 + 2\sum_{i&lt;j} \vert x_i\vert\cdot\vert x_j\vert \geq \sum_{i=1}^n\vert x_i\vert^2 = \lVert x\rVert_2^2\]</div>
+<p>The above inequality implies that <span class="math">\(\lVert x\rVert_1\geq \lVert x\rVert_2\)</span>.
+For the reverse direction of the inequality, consider the <a class="reference external" href="https://en.wikipedia.org/wiki/Inequality_of_arithmetic_and_geometric_means">AM-GM inequality</a>:</p>
+<div class="math">
+\[\begin{split}2\vert x_i\vert\cdot\vert x_j\vert \enspace &amp;\leq&amp; \enspace \vert x_i\vert^2 + \vert x_j\vert^2 \\
+\Rightarrow 2\sum_{i&lt;j} \vert x_i\vert\cdot\vert x_j\vert \enspace &amp;\leq&amp; \enspace (n-1)\cdot\sum_{i=1}^n \vert x_i\vert^2\end{split}\]</div>
+<p>The second inequality follows from the fact that each <span class="math">\(x_i\)</span> appears with
+<em>exactly</em> <span class="math">\(n-1\)</span> other components <span class="math">\(x_j\)</span>.
+Using the above inequality with the square of the <span class="math">\(L_1\)</span>-norm gives</p>
+<div class="math">
+\[\lVert x\rVert_1^2 = \sum_{i=1}^n\vert x_i\vert^2 + 2\sum_{i&lt;j} \vert x_i\vert\cdot\vert x_j\vert \leq n\sum_{i=1}^n\vert x_i\vert^2 = n\cdot\lVert x\rVert_2^2\]</div>
+<p>This implies that <span class="math">\(\lVert x\rVert_1\leq\sqrt{n}\lVert x\rVert_2\)</span>.
+Combining the two inequalities gives <span class="math">\(\lVert x\rVert_2\leq\lVert
+x\rVert_1\leq\sqrt{n}\lVert x\rVert_2\)</span>, proving that the <span class="math">\(L_1\)</span> and
+<span class="math">\(L_2\)</span>-norms are equivalent as well. Again, equality holds when all components of
+<span class="math">\(x\)</span> are equal.</p>
+<div class="topic">
+<p class="topic-title first">Example 2</p>
+<p>Consider the same vector <span class="math">\(v = (5,2,1,4,3)\)</span>. The <span class="math">\(L_1\)</span> and
+<span class="math">\(L_2\)</span>-norms of <span class="math">\(v\)</span> are</p>
+<div class="math">
+\[\lVert v\rVert_1 = 15 \enspace\enspace\enspace\enspace \mbox{and} \enspace\enspace\enspace\enspace \lVert v\rVert_2 = 7.4162\]</div>
+<p>respectively. Note that <span class="math">\(\lVert v\rVert_2 = 7.4162 \leq \lVert v\rVert_1 = 15 \leq \sqrt{5}\cdot 7.4162 = 16.5831\)</span>.</p>
+</div>
+</div>
 </div>
 
 
@@ -156,6 +216,7 @@ Here, the second parameter specifies the particular norm that we wish to compute
 <li><a class="reference internal" href="#">2.3. Norms</a><ul>
 <li><a class="reference internal" href="#why-are-vector-norms-needed">2.3.1. Why are vector norms needed?</a></li>
 <li><a class="reference internal" href="#types-of-vector-norms">2.3.2. Types of Vector Norms</a></li>
+<li><a class="reference internal" href="#equivalence-of-different-norms">2.3.3. Equivalence of different norms</a></li>
 </ul>
 </li>
 </ul>
