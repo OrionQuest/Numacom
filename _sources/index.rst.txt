@@ -85,6 +85,14 @@ News and Announcements:
 
 * (09/05) Discussion is now open on `Piazza <https://piazza.com/class/j76v13g42b15y8>`_.
 * (09/05) There is no recitation on Thursday (09/07).
+* (09/19) `Homework #1 <homeworks/homework1.html>`_ is out.
+
+.. toctree::
+    :numbered:
+    :hidden:
+    :maxdepth: 3
+
+    Homework #1 <homeworks/homework1>
 
 Contents:
 ---------
