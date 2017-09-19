@@ -64,7 +64,7 @@ by helping the instructor improve his set of lecture notes. :-)
 **Homework:** Students are encouraged to collaborate with each other on homework
 problems in teams of size at most 3. However, they must individually turn in
 their solutions and also mention the names of their collaborators on their
-homework. Note that no two people can collaborate with each other on more than
+homework. All homework should be typed, and no two people should collaborate with each other on more than
 two homeworks. We will not consider the lowest homework score when evaluating your
 final grade. Homework problems will be posted every second week on this webpage,
 and will be due at **midnight** on the Tuesday lecture two weeks later. Each
@@ -85,7 +85,7 @@ News and Announcements:
 
 * (09/05) Discussion is now open on `Piazza <https://piazza.com/class/j76v13g42b15y8>`_.
 * (09/05) There is no recitation on Thursday (09/07).
-* (09/19) `Homework #1 <homeworks/homework1.html>`_ is out.
+* (09/19) `Homework #1 <homeworks/homework1.html>`_ is out. Due on (10/03).
 
 .. toctree::
     :numbered:
