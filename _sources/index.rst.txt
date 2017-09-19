@@ -22,7 +22,7 @@ course, we will be covering all the basics in class on an as needed basis. There
 | **Time:** 5PM - 8PM, Tuesdays, Fall 2017
 | **Place:** Lucy Stone Hall Auditorium
 
-| **Instructor:** `Mridul Aanjaneya <http://pages.cs.wisc.edu/~aanjneya>`_
+| **Instructor:** `Mridul Aanjaneya <https://www.cs.rutgers.edu/~ma635/>`_
 | **Office:** CBIM Room 18
 | **Office hours:** Monday/Friday (4PM - 5PM)
 
