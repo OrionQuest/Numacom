@@ -1,0 +1,174 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>4.1. Upper Triangular Systems &#8212; CS 323 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="4. Linear Systems of Equations" href="linear.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="linear.html" title="4. Linear Systems of Equations"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="linear.html" accesskey="U">4. Linear Systems of Equations</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="upper-triangular-systems">
+<h1>4.1. Upper Triangular Systems<a class="headerlink" href="#upper-triangular-systems" title="Permalink to this headline">¶</a></h1>
+<p>The simplest system to solve is a <em>triangular</em> system <span class="math">\(Ux=b\)</span>, where</p>
+<div class="math">
+\[\begin{split}U = \left[\begin{array}{cccc}
+u_{11} &amp; u_{12} &amp; \ldots &amp; u_{1n} \\
+0 &amp; u_{22} &amp; \ldots &amp; u_{2n} \\
+\vdots &amp; O &amp; \ddots &amp; \vdots \\
+0 &amp; \ldots &amp; 0 &amp; u_{nn}
+\end{array}\right]\end{split}\]</div>
+<p>is an upper triangular matrix. Here is an example, illustrating how such systems
+are easy to solve:</p>
+<div class="math">
+\[\begin{split}\left[\begin{array}{ccc}
+1 &amp; 2 &amp; 2 \\
+0 &amp; -4 &amp; -6 \\
+0 &amp; 0 &amp; -1
+\end{array}
+\right]\left[\begin{array}{c}
+x_1 \\
+x_2 \\
+x_3
+\end{array}
+\right]=\left[\begin{array}{c}
+3 \\
+-6 \\
+1
+\end{array}
+\right]\end{split}\]</div>
+<p>From the third row, solve <span class="math">\(x_3=-1\)</span> and replace <span class="math">\(x_3\)</span> in the previous
+(second) equation to give:</p>
+<div class="math">
+\[\begin{split}\left[\begin{array}{ccc}
+1 &amp; 2 &amp; 0 \\
+0 &amp; -4 &amp; 0 \\
+0 &amp; 0 &amp; 1 \\
+\end{array}
+\right]\left[\begin{array}{c}
+x_1 \\
+x_2 \\
+x_3
+\end{array}
+\right]=\left[\begin{array}{c}
+5 \\
+-12 \\
+-1
+\end{array}\right]\end{split}\]</div>
+<p>From the second row, solve <span class="math">\(x_2=3\)</span> and replace <span class="math">\(x_2\)</span> in the previous
+(first) equation to give:</p>
+<div class="math">
+\[\begin{split}\left[\begin{array}{ccc}
+1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{array}\right]\left[\begin{array}{c}
+x_1 \\
+x_2 \\
+x_3
+\end{array}\right]=\left[\begin{array}{c}
+-1 \\
+-3 \\
+-1
+\end{array}\right]\end{split}\]</div>
+<p>We can write this procedure formally in code:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Back substitution for upper triangular system</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">u</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span>        <span class="c1"># matrix is singular</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">/</span><span class="n">u</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">):</span>
+        <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>By counting how many times the loops are executed, we see that <span class="math">\(n\)</span>
+divisions are required, and <span class="math">\(\sum_{j=1}^n (j-1) = O(n^2)\)</span> multiplications
+and substractions. Overall, the cost of back substitution is <span class="math">\(O(n^2)\)</span>.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="linear.html"
+                        title="previous chapter">4. Linear Systems of Equations</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/upper.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="linear.html" title="4. Linear Systems of Equations"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="linear.html" >4. Linear Systems of Equations</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+  </body>
+</html>

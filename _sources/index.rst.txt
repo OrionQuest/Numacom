@@ -105,6 +105,7 @@ Contents:
     Introduction <intro>
     Vector and Matrix Algebra <algebra>
     Getting Started with Python <python>
+    Linear Systems of Equations <linear>
 
 Coding Resources:
 -----------------
