@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>1. Introduction &#8212; CS 323 1.0 documentation</title>
+    <title>1.2. Order Notation &#8212; CS 323 1.0 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -24,8 +24,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="1.1. Motivation" href="motivation.html" />
-    <link rel="prev" title="1. Homework #1" href="homeworks/homework1.html" /> 
+    <link rel="next" title="1.3. Floating-point Arithmetic" href="precision.html" />
+    <link rel="prev" title="1.1. Motivation" href="motivation.html" /> 
   </head>
   <body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -35,12 +35,13 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="motivation.html" title="1.1. Motivation"
+          <a href="precision.html" title="1.3. Floating-point Arithmetic"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="homeworks/homework1.html" title="1. Homework #1"
+          <a href="motivation.html" title="1.1. Motivation"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">1. Introduction</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -49,15 +50,34 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="introduction">
-<h1>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p>This chapter gives a broad overview of the concepts from linear algebra that
-will be used throughout the course. It is intended as a review of background
-material. While most students may already be familiar with some (or all) of these
-topics, they are still encouraged to briefly skim through the material
-so as to take note of all the programming concepts that are introduced.</p>
-<div class="toctree-wrapper compound">
-</div>
+  <div class="section" id="order-notation">
+<h1>1.2. Order Notation<a class="headerlink" href="#order-notation" title="Permalink to this headline">¶</a></h1>
+<p>Let <span class="math">\(f,g:\mathbb R\rightarrow\mathbb R\)</span> be two functions.
+We say that <span class="math">\(f(n) = O(g(n))\)</span>, read as “<span class="math">\(f\)</span> is <em>big-oh</em> of <span class="math">\(g\)</span>”
+or “<span class="math">\(f\)</span> is of <em>order</em> <span class="math">\(g\)</span>“, if there is a positive constant <span class="math">\(C\)</span>
+such that</p>
+<div class="math">
+\[\vert f(n)\vert\leq C\vert g(n)\vert\]</div>
+<p>for all sufficiently large <span class="math">\(n\)</span>. For example,</p>
+<div class="math">
+\[2n^3 + 3n^2 + n = O(n^3)\]</div>
+<p>because as <span class="math">\(n\)</span> becomes large, the terms of order lower than <span class="math">\(n^3\)</span>
+become relatively insignificant. While the above definition is based on the
+function argument increasing in magnitude, the order notation can also be
+defined when the function argument keeps decreasing in magnitude. Indeed, in
+many applications we are interested in the behavior as some quantitiy <span class="math">\(h\)</span>
+(such as a <em>step size</em> or <em>mesh spacing</em>) becomes very small. We say that</p>
+<div class="math">
+\[f(h) = O(g(h))\]</div>
+<p>if there is a positive constant <span class="math">\(C\)</span> such that</p>
+<div class="math">
+\[\vert f(h)\vert \leq C\vert g(h)\vert\]</div>
+<p>for all sufficient small <span class="math">\(h\)</span>. For example,</p>
+<div class="math">
+\[\frac{1}{1-h} = 1+h+h^2+h^3+\ldots = 1+h+O(h^2)\]</div>
+<p>because as <span class="math">\(h\)</span> becomes small, the omitted terms beyond <span class="math">\(h^2\)</span> become
+relatively insignificant. Note that the above two definitions are equivalent if
+<span class="math">\(h=1/n\)</span>.</p>
 </div>
 
 
@@ -67,15 +87,15 @@ so as to take note of all the programming concepts that are introduced.</p>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="homeworks/homework1.html"
-                        title="previous chapter">1. Homework #1</a></p>
-  <h4>Next topic</h4>
   <p class="topless"><a href="motivation.html"
-                        title="next chapter">1.1. Motivation</a></p>
+                        title="previous chapter">1.1. Motivation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="precision.html"
+                        title="next chapter">1.3. Floating-point Arithmetic</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/intro.rst.txt"
+      <li><a href="_sources/order.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -100,12 +120,13 @@ so as to take note of all the programming concepts that are introduced.</p>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="motivation.html" title="1.1. Motivation"
+          <a href="precision.html" title="1.3. Floating-point Arithmetic"
              >next</a> |</li>
         <li class="right" >
-          <a href="homeworks/homework1.html" title="1. Homework #1"
+          <a href="motivation.html" title="1.1. Motivation"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="intro.html" >1. Introduction</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

@@ -12,5 +12,6 @@ so as to take note of all the programming concepts that are introduced.
     :maxdepth: 2
 
     Motivation <motivation>
+    Order Notation <order>
     Floating-point Arithmetic <precision>
     Error Analysis <error_analysis>
