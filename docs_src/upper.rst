@@ -72,12 +72,34 @@ From the second row, solve :math:`x_2=3` and replace :math:`x_2` in the previous
 
 We can write this procedure formally in code: ::
 
+    import numpy as np
+    
     # Back substitution for upper triangular system
-    for j in range(n,0,-1):
-        if u[j,j] == 0: return        # matrix is singular
-        x[j] = b[j]/u[j,j]
-        for i in range(1,j):
-            b[i] = b[i] - u[i,j]*x[j]
+    def Back_Substitution(A,b,x):
+        m=A.shape[0]
+        n=A.shape[1]
+        if(m!=n):
+            print 'Matrix is not square!'
+            return
+        for j in range(n-1,-1,-1):
+            if A[j,j] == 0:
+                print 'Matrix is singular!'
+                return          # matrix is singular
+            x[j] = b[j]/A[j,j]
+            for i in range(0,j):
+                b[i] = b[i] - A[i,j]*x[j]
+    
+    def main():
+        A=np.matrix([[1,2,2],[0,-4,-6],[0,0,-1]])
+        b=np.array([3,-6,1])
+        x=np.zeros(3)
+        Back_Substitution(A,b,x)
+        print 'x:',
+        for i in range(0,3):
+            print x[i],
+    
+    if __name__ == "__main__":
+        main()
 
 By counting how many times the loops are executed, we see that :math:`n`
 divisions are required, and :math:`\sum_{j=1}^n (j-1) = O(n^2)` multiplications
