@@ -25,14 +25,17 @@ course, we will be covering all the basics in class on an as needed basis. There
 | **Instructor:** `Mridul Aanjaneya <https://www.cs.rutgers.edu/~ma635/>`_
 | **Office:** CBIM Room 18
 | **Office hours:** Monday/Friday (4PM - 5PM)
+| **Email:** mridul.aanjaneya@rutgers.edu
 
 | **TA:** Carlos Muniz
 | **Office:** Hill 270
 | **Office hours:** Tuesday (3PM - 4PM) and also by appointment
+| **Email:** cmm609@scarletmail.rutgers.edu
 
 | **TA:** Mihee Lee
 | **Office:** CBIM-cubic G
 | **Office hours:** Wednesday (3PM - 4PM)  and also by appointment
+| **Email:** ml1323@scarletmail.rutgers.edu
 
 **Email Policy:** You are welcome to email the instructor about class-related
 issues. Please start your subject line with \"**CS 323:**\". However, please do
