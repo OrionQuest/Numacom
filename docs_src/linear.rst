@@ -17,3 +17,5 @@ into an equivalent, but easier system (or systems) to solve.
     :maxdepth: 2
 
     Upper Triangular Systems <upper>
+    Lower Triangular Systems <lower>
+    LU Decomposition <lu_decomp>
