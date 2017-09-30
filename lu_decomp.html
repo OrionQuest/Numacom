@@ -1,0 +1,195 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>4.3. LU Decomposition &#8212; CS 323 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="4.2. Lower Triangular Systems" href="lower.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="lower.html" title="4.2. Lower Triangular Systems"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="linear.html" accesskey="U">4. Linear Systems of Equations</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lu-decomposition">
+<h1>4.3. LU Decomposition<a class="headerlink" href="#lu-decomposition" title="Permalink to this headline">¶</a></h1>
+<p>The forward and backward substitution algorithms can be used to solve a
+<em>non-triangular</em> system by virtue of the following factorization property:</p>
+<div class="topic">
+<p class="topic-title first">Theorem 1</p>
+<p>If <span class="math">\(A\)</span> is an <span class="math">\(n\times n\)</span> matrix, it can be (generally) written as a product</p>
+<div class="math">
+\[A = LU\]</div>
+<p>where <span class="math">\(L\)</span> is a lower triangular matrix and <span class="math">\(U\)</span> is an upper
+triangular matrix. Furthermore, it is possible to construct <span class="math">\(L\)</span> such
+that all diagonal elements <span class="math">\(l_{ii}=1\)</span>.</p>
+</div>
+<p>The code below outlines the <em>Gaussian Elimination</em> algorithm to compute the <span class="math">\(LU\)</span> factorization of an
+<span class="math">\(n\times n\)</span> matrix.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># LU decomposition of square systems</span>
+<span class="k">def</span> <span class="nf">Gaussian_Elimination</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">m</span><span class="o">=</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">n</span><span class="o">=</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">m</span><span class="o">!=</span><span class="n">n</span><span class="p">):</span>
+        <span class="nb">print</span> <span class="s1">&#39;Matrix is not square!&#39;</span>
+        <span class="k">return</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">k</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="o">/</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">k</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+                <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">-=</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Note that the algorithm above executes <em>in-place</em>, i.e., the matrix <span class="math">\(A\)</span> is
+<em>replaced by</em> its <span class="math">\(LU\)</span> factorization, in compact form. More specifically,
+this algorithm produces a factorization <span class="math">\(A=LU\)</span>, where:</p>
+<div class="math">
+\[\begin{split}L=\left[
+\begin{array}{cccccc}
+1 &amp; &amp; &amp; &amp; &amp; \\
+l_{21} &amp; 1 &amp; &amp; &amp; O &amp; \\
+l_{31} &amp; l_{32} &amp; 1 &amp; &amp; &amp; \\
+l_{41} &amp; l_{42} &amp; l_{43} &amp; 1 &amp; &amp; \\
+\vdots &amp; \vdots &amp; \vdots &amp; &amp; \ddots &amp; \\
+l_{n1} &amp; n_{n2} &amp; l_{n3} &amp; \ldots &amp; l_{n,n-1} &amp; 1
+\end{array}
+\right],\enspace\enspace U=\left[
+\begin{array}{ccccc}
+u_{11} &amp; u_{12} &amp; u_{13} &amp; \ldots &amp; u_{1n} \\
+&amp; u_{22} &amp; u_{23} &amp; \ldots &amp; u_{2n} \\
+&amp; &amp; u_{33} &amp; \ldots &amp; u_{3n} \\
+&amp; O &amp; &amp; \ddots &amp; u_{n-1,n} \\
+&amp; &amp; &amp; &amp; u_{nn}
+\end{array}
+\right]\end{split}\]</div>
+<div class="topic">
+<p class="topic-title first">Example</p>
+<p>Consider the matrix shown below.</p>
+<div class="math">
+\[\begin{split}\left[\begin{array}{ccc}
+2 &amp; 4 &amp; -2 \\
+4 &amp; 9 &amp; -3 \\
+-2 &amp; -3 &amp; 7
+\end{array}\right]\end{split}\]</div>
+<p>Let us append the following code to the
+Gaussian Elimination algorithm outlined above to compute the corresponding <span class="math">\(LU\)</span> factorization:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">],[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">]])</span>
+    <span class="n">Gaussian_Elimination</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="n">A</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Upon execution, it produces the following result:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[[</span> <span class="mi">2</span>  <span class="mi">4</span> <span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+ <span class="p">[</span> <span class="mi">2</span>  <span class="mi">1</span>  <span class="mi">1</span><span class="p">]</span>
+ <span class="p">[</span><span class="o">-</span><span class="mi">1</span>  <span class="mi">1</span>  <span class="mi">4</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>As stated above, the factorization is <em>in-place</em>, and so the result should be
+interpreted as:</p>
+<div class="math">
+\[\begin{split}L = \left[\begin{array}{ccc}
+1 &amp; 0 &amp; 0 \\
+2 &amp; 1 &amp; 0 \\
+-1 &amp; 1 &amp; 1
+\end{array}\right],\enspace\enspace\enspace
+U=\left[\begin{array}{ccc}
+2 &amp; 4 &amp; -2 \\
+0 &amp; 1 &amp; 1 \\
+0 &amp; 0 &amp; 4
+\end{array}\right]\end{split}\]</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="lower.html"
+                        title="previous chapter">4.2. Lower Triangular Systems</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/lu_decomp.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="lower.html" title="4.2. Lower Triangular Systems"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="linear.html" >4. Linear Systems of Equations</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+  </body>
+</html>
