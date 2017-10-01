@@ -411,3 +411,50 @@ factorization of :math:`A` is
     0 & 0 & 4
     \end{array}
     \right]=LU
+
+Existence and Uniqueness
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+When computing the :math:`LU` factorization, the algorithm will *halt* if the
+diagonal element :math:`a_{kk}=0`. This can be avoided by swapping rows of
+:math:`A` prior to computing the :math:`LU` factorization. This is done to
+always select the largest :math:`a_{kk}` from the equations that follow. As an
+example, consider the matrix :math:`A` and the action of the permutation matrix
+:math:`P` on it.
+
+.. math::
+    A=\left[
+    \begin{array}{cccc}
+    1 & 2 & 5 & -1 \\
+    0 & 0 & 3 & 1 \\
+    0 & 4 & 1 & -2 \\
+    0 & -6 & 0 & 3
+    \end{array}
+    \right],\enspace\enspace P=\left[
+    \begin{array}{cccc}
+    1 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 1 \\
+    0 & 0 & 1 & 0 \\
+    0 & 1 & 0 & 0
+    \end{array}
+    \right],\enspace\enspace PA=\left[
+    \begin{array}{cccc}
+    1 & 2 & 5 & -1 \\
+    0 & -6 & 0 & 3 \\
+    0 & 4 & 1 & -2 \\
+    0 & 0 & 3 & 1
+    \end{array}
+    \right]
+
+This is *pivoting*: the pivot :math:`a_{kk}` is selected to be non-zero. In this
+process, we can guarantee existence and uniqueness of the :math:`LU` factorization.
+
+.. topic:: Theorem 2
+
+    If :math:`P` is a permutation matrix such that all pivots in the Gaussian
+    Elimination of :math:`PA` are non-zero, then the :math:`LU` factorization
+    exists and is unique.
+
+    .. math::
+        PA = LU
+
