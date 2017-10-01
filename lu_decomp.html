@@ -102,6 +102,18 @@ u_{11} &amp; u_{12} &amp; u_{13} &amp; \ldots &amp; u_{1n} \\
 &amp; &amp; &amp; &amp; u_{nn}
 \end{array}
 \right]\end{split}\]</div>
+<p>After the in-place factorization algorithm completes, <span class="math">\(A\)</span> is replaced by
+the following <em>compacted</em> encoding of <span class="math">\(L\)</span> and <span class="math">\(U\)</span> together:</p>
+<div class="math">
+\[\begin{split}A=\left[
+\begin{array}{ccccc}
+u_{11} &amp; u_{12} &amp; u_{13} &amp; \ldots &amp; u_{1n} \\
+l_{21} &amp; u_{22} &amp; u_{23} &amp; \ldots &amp; u_{2n} \\
+l_{31} &amp; l_{32} &amp; u_{33} &amp; \ldots &amp; u_{3n} \\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+l_{n1} &amp; l_{n2} &amp; \ldots &amp; l_{n-1,n} &amp; u_{nn}
+\end{array}
+\right]\end{split}\]</div>
 <div class="topic">
 <p class="topic-title first">Example</p>
 <p>Consider the matrix shown below.</p>
@@ -142,6 +154,272 @@ U=\left[\begin{array}{ccc}
 0 &amp; 0 &amp; 4
 \end{array}\right]\end{split}\]</div>
 </div>
+<div class="section" id="elimination-matrices">
+<h2>4.3.1. Elimination Matrices<a class="headerlink" href="#elimination-matrices" title="Permalink to this headline">¶</a></h2>
+<p>Here is a slightly different algorithm for computing the <span class="math">\(LU\)</span>
+factorization of an <span class="math">\(n\times n\)</span> matrix by using <em>elimination matrices</em>.
+Define the <span class="math">\(n\times 1\)</span> basis vector <span class="math">\(e_k\)</span> as</p>
+<div class="math">
+\[\begin{split}e_k=\left(
+\begin{array}{c}
+0 \\
+\vdots \\
+0 \\
+1 \\
+0 \\
+\vdots \\
+0
+\end{array}
+\right)\end{split}\]</div>
+<p>where the <span class="math">\(1\)</span> is in the <span class="math">\(k^{th}\)</span> row and the length of
+<span class="math">\(e_k\)</span> is <span class="math">\(n\)</span>. In order to perform Gaussian Elimination on the
+<span class="math">\(k^{th}\)</span> column <span class="math">\(a_k\)</span> of <span class="math">\(A\)</span>, we define the
+<span class="math">\(n\times n\)</span> elimination matrix <span class="math">\(M_k = I-m_ke_k^T\)</span> where</p>
+<div class="math">
+\[\begin{split}m_k=\frac{1}{a_{kk}}\cdot\left(
+\begin{array}{c}
+0 \\
+\vdots \\
+0 \\
+a_{k+1,k} \\
+\vdots \\
+a_{n,k}
+\end{array}
+\right)\end{split}\]</div>
+<p><span class="math">\(M_k\)</span> adds multiples of row <span class="math">\(k\)</span> to rows with index greater than <span class="math">\(k\)</span> in order to create zeroes. As an
+example, for <span class="math">\(a_k=(2,4,-2)^T\)</span></p>
+<div class="math">
+\[\begin{split}M_1a_k=\left[
+\begin{array}{ccc}
+1 &amp; 0 &amp; 0 \\
+-2 &amp; 1 &amp; 0 \\
+1 &amp; 0 &amp; 1
+\end{array}
+\right]
+\left[
+\begin{array}{c}
+2 \\
+4 \\
+-2
+\end{array}
+\right]=\left[
+\begin{array}{c}
+2 \\
+0 \\
+0
+\end{array}
+\right]\end{split}\]</div>
+<p>Similarly,</p>
+<div class="math">
+\[\begin{split}M_2a_k=\left[
+\begin{array}{ccc}
+1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 \\
+0 &amp; 1/2 &amp; 1
+\end{array}
+\right]
+\left[
+\begin{array}{c}
+2 \\
+4 \\
+-2
+\end{array}
+\right]=\left[
+\begin{array}{c}
+2 \\
+4 \\
+0
+\end{array}
+\right]\end{split}\]</div>
+<p>The inverse of an elimination matrix is defined as
+<span class="math">\(L_k=M_k^{-1}=I+m_ke_k^T\)</span>. For example,</p>
+<div class="math">
+\[\begin{split}L_1=M_1^{-1}=\left[
+\begin{array}{ccc}
+1 &amp; 0 &amp; 0 \\
+2 &amp; 1 &amp; 0 \\
+-1 &amp; 0 &amp; 1
+\end{array}
+\right],\enspace\mbox{and}\enspace L_2=M_2^{-1}=\left[
+\begin{array}{ccc}
+1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 \\
+0 &amp; -1/2 &amp; 1
+\end{array}
+\right]\end{split}\]</div>
+<p>The algorithm now proceeds as follows. Consider the example:</p>
+<div class="math">
+\[\begin{split}\left[
+\begin{array}{ccc}
+2 &amp; 4 &amp; -2 \\
+4 &amp; 9 &amp; -3 \\
+-2 &amp; -3 &amp; 7
+\end{array}
+\right]
+\left[
+\begin{array}{c}
+x_1 \\
+x_2 \\
+x_3
+\end{array}
+\right]=\left[
+\begin{array}{c}
+2 \\
+8 \\
+10
+\end{array}
+\right]\end{split}\]</div>
+<p>First, we eliminate the lower triangular portion of <span class="math">\(A\)</span> one column at a time
+using <span class="math">\(M_k\)</span> to get <span class="math">\(U=M_{n-1}\ldots M_1A\)</span>. Note that we also carry out the
+operations on <span class="math">\(b\)</span> to get a new system of equations <span class="math">\(M_2M_1Ax=M_2M_1b\)</span> or
+<span class="math">\(Ux=M_2M_1b\)</span> which can be solved for via back substitution.</p>
+<div class="math">
+\[\begin{split}M_1A=\left[
+\begin{array}{ccc}
+1 &amp; 0 &amp; 0 \\
+-2 &amp; 1 &amp; 0 \\
+1 &amp; 0 &amp; 1
+\end{array}
+\right]\left[
+\begin{array}{ccc}
+2 &amp; 4 &amp; -2 \\
+4 &amp; 9 &amp; -3 \\
+-2 &amp; -3 &amp; 7
+\end{array}
+\right]=\left[
+\begin{array}{ccc}
+2 &amp; 4 &amp; -2 \\
+0 &amp; 1 &amp; 1 \\
+0 &amp; 1 &amp; 5
+\end{array}
+\right]\end{split}\]</div>
+<div class="math">
+\[\begin{split}M_1b=\left[
+\begin{array}{ccc}
+1 &amp; 0 &amp; 0 \\
+-2 &amp; 1 &amp; 0 \\
+1 &amp; 0 &amp; 1
+\end{array}
+\right]\left[
+\begin{array}{c}
+2 \\
+8 \\
+10
+\end{array}
+\right]=\left[
+\begin{array}{c}
+2 \\
+4 \\
+12
+\end{array}
+\right]\end{split}\]</div>
+<div class="math">
+\[\begin{split}M_2M_1A=\left[
+\begin{array}{ccc}
+1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 \\
+0 &amp; -1 &amp; 1
+\end{array}
+\right]\left[
+\begin{array}{ccc}
+2 &amp; 4 &amp; -2 \\
+0 &amp; 1 &amp; 1 \\
+0 &amp; 1 &amp; 5
+\end{array}
+\right]=\left[
+\begin{array}{ccc}
+2 &amp; 4 &amp; -2 \\
+0 &amp; 1 &amp; 1 \\
+0 &amp; 0 &amp; 4
+\end{array}
+\right]\end{split}\]</div>
+<div class="math">
+\[\begin{split}M_2M_1b=\left[
+\begin{array}{ccc}
+1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 \\
+0 &amp; -1 &amp; 1
+\end{array}
+\right]\left[
+\begin{array}{c}
+2 \\
+4 \\
+12
+\end{array}
+\right]=\left[
+\begin{array}{c}
+2 \\
+4 \\
+8
+\end{array}
+\right]\end{split}\]</div>
+<p>Finally, solve the following system via back substitution.</p>
+<div class="math">
+\[\begin{split}\left[
+\begin{array}{ccc}
+2 &amp; 4 &amp; -2 \\
+0 &amp; 1 &amp; 1 \\
+0 &amp; 0 &amp; 4
+\end{array}
+\right]\left[
+\begin{array}{c}
+x \\
+y \\
+z
+\end{array}
+\right]=\left[
+\begin{array}{c}
+2 \\
+4 \\
+8
+\end{array}
+\right]\end{split}\]</div>
+<p>Note that we can write <span class="math">\(LU=(L_1\ldots L_{n-1})(M_{n-1}\ldots M_1A)=A\)</span>
+using the fact that the <span class="math">\(L\)</span> matrices are inverses of the <span class="math">\(M\)</span> matrices,
+where <span class="math">\(L=L_1\ldots L_{n-1}\)</span> can be formed trivially from the <span class="math">\(M_k\)</span> to obtain:</p>
+<div class="math">
+\[\begin{split}L=L_1L_2=\left[
+\begin{array}{ccc}
+1 &amp; 0 &amp; 0 \\
+2 &amp; 1 &amp; 0 \\
+-1 &amp; 0 &amp; 1
+\end{array}
+\right]\left[
+\begin{array}{ccc}
+1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 \\
+0 &amp; 1 &amp; 1
+\end{array}
+\right]=\left[
+\begin{array}{ccc}
+1 &amp; 0 &amp; 0 \\
+2 &amp; 1 &amp; 0 \\
+-1 &amp; 1 &amp; 1
+\end{array}
+\right]\end{split}\]</div>
+<p>And thus, although we never needed it to solve the equations, the <span class="math">\(LU\)</span>
+factorization of <span class="math">\(A\)</span> is</p>
+<div class="math">
+\[\begin{split}A=\left[
+\begin{array}{ccc}
+2 &amp; 4 &amp; -2 \\
+4 &amp; 9 &amp; -3 \\
+-2 &amp; -3 &amp; 7
+\end{array}
+\right]=\left[
+\begin{array}{ccc}
+1 &amp; 0 &amp; 0 \\
+2 &amp; 1 &amp; 0 \\
+-1 &amp; 1 &amp; 1
+\end{array}
+\right]\left[
+\begin{array}{ccc}
+2 &amp; 4 &amp; -2 \\
+0 &amp; 1 &amp; 1 \\
+0 &amp; 0 &amp; 4
+\end{array}
+\right]=LU\end{split}\]</div>
+</div>
 </div>
 
 
@@ -150,6 +428,14 @@ U=\left[\begin{array}{ccc}
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">4.3. LU Decomposition</a><ul>
+<li><a class="reference internal" href="#elimination-matrices">4.3.1. Elimination Matrices</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="lower.html"
                         title="previous chapter">4.2. Lower Triangular Systems</a></p>
