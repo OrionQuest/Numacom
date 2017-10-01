@@ -420,6 +420,48 @@ factorization of <span class="math">\(A\)</span> is</p>
 \end{array}
 \right]=LU\end{split}\]</div>
 </div>
+<div class="section" id="existence-and-uniqueness">
+<h2>4.3.2. Existence and Uniqueness<a class="headerlink" href="#existence-and-uniqueness" title="Permalink to this headline">¶</a></h2>
+<p>When computing the <span class="math">\(LU\)</span> factorization, the algorithm will <em>halt</em> if the
+diagonal element <span class="math">\(a_{kk}=0\)</span>. This can be avoided by swapping rows of
+<span class="math">\(A\)</span> prior to computing the <span class="math">\(LU\)</span> factorization. This is done to
+always select the largest <span class="math">\(a_{kk}\)</span> from the equations that follow. As an
+example, consider the matrix <span class="math">\(A\)</span> and the action of the permutation matrix
+<span class="math">\(P\)</span> on it.</p>
+<div class="math">
+\[\begin{split}A=\left[
+\begin{array}{cccc}
+1 &amp; 2 &amp; 5 &amp; -1 \\
+0 &amp; 0 &amp; 3 &amp; 1 \\
+0 &amp; 4 &amp; 1 &amp; -2 \\
+0 &amp; -6 &amp; 0 &amp; 3
+\end{array}
+\right],\enspace\enspace P=\left[
+\begin{array}{cccc}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0
+\end{array}
+\right],\enspace\enspace PA=\left[
+\begin{array}{cccc}
+1 &amp; 2 &amp; 5 &amp; -1 \\
+0 &amp; -6 &amp; 0 &amp; 3 \\
+0 &amp; 4 &amp; 1 &amp; -2 \\
+0 &amp; 0 &amp; 3 &amp; 1
+\end{array}
+\right]\end{split}\]</div>
+<p>This is <em>pivoting</em>: the pivot <span class="math">\(a_{kk}\)</span> is selected to be non-zero. In this
+process, we can guarantee existence and uniqueness of the <span class="math">\(LU\)</span> factorization.</p>
+<div class="topic">
+<p class="topic-title first">Theorem 2</p>
+<p>If <span class="math">\(P\)</span> is a permutation matrix such that all pivots in the Gaussian
+Elimination of <span class="math">\(PA\)</span> are non-zero, then the <span class="math">\(LU\)</span> factorization
+exists and is unique.</p>
+<div class="math">
+\[PA = LU\]</div>
+</div>
+</div>
 </div>
 
 
@@ -432,6 +474,7 @@ factorization of <span class="math">\(A\)</span> is</p>
   <ul>
 <li><a class="reference internal" href="#">4.3. LU Decomposition</a><ul>
 <li><a class="reference internal" href="#elimination-matrices">4.3.1. Elimination Matrices</a></li>
+<li><a class="reference internal" href="#existence-and-uniqueness">4.3.2. Existence and Uniqueness</a></li>
 </ul>
 </li>
 </ul>
