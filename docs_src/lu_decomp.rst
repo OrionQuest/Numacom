@@ -61,6 +61,20 @@ this algorithm produces a factorization :math:`A=LU`, where:
     \end{array}
     \right]
 
+After the in-place factorization algorithm completes, :math:`A` is replaced by
+the following *compacted* encoding of :math:`L` and :math:`U` together:
+
+.. math::
+    A=\left[
+    \begin{array}{ccccc}
+    u_{11} & u_{12} & u_{13} & \ldots & u_{1n} \\
+    l_{21} & u_{22} & u_{23} & \ldots & u_{2n} \\
+    l_{31} & l_{32} & u_{33} & \ldots & u_{3n} \\
+    \vdots & \vdots & \vdots & \ddots & \vdots \\
+    l_{n1} & l_{n2} & \ldots & l_{n-1,n} & u_{nn}
+    \end{array}
+    \right]
+
 .. topic:: Example
 
     Consider the matrix shown below. 
@@ -103,3 +117,297 @@ this algorithm produces a factorization :math:`A=LU`, where:
         0 & 1 & 1 \\
         0 & 0 & 4
         \end{array}\right]
+
+Elimination Matrices
+~~~~~~~~~~~~~~~~~~~~
+
+Here is a slightly different algorithm for computing the :math:`LU`
+factorization of an :math:`n\times n` matrix by using *elimination matrices*.
+Define the :math:`n\times 1` basis vector :math:`e_k` as
+
+.. math::
+    e_k=\left(
+    \begin{array}{c}
+    0 \\
+    \vdots \\
+    0 \\
+    1 \\
+    0 \\
+    \vdots \\
+    0
+    \end{array}
+    \right)
+
+where the :math:`1` is in the :math:`k^{th}` row and the length of
+:math:`e_k` is :math:`n`. In order to perform Gaussian Elimination on the
+:math:`k^{th}` column :math:`a_k` of :math:`A`, we define the
+:math:`n\times n` elimination matrix :math:`M_k = I-m_ke_k^T` where
+
+.. math::
+    m_k=\frac{1}{a_{kk}}\cdot\left(
+    \begin{array}{c}
+    0 \\
+    \vdots \\
+    0 \\
+    a_{k+1,k} \\
+    \vdots \\
+    a_{n,k}
+    \end{array}
+    \right)
+
+:math:`M_k` adds multiples of row :math:`k` to rows with index greater than :math:`k` in order to create zeroes. As an
+example, for :math:`a_k=(2,4,-2)^T`
+
+.. math::
+    M_1a_k=\left[
+    \begin{array}{ccc}
+    1 & 0 & 0 \\
+    -2 & 1 & 0 \\
+    1 & 0 & 1
+    \end{array}
+    \right]
+    \left[
+    \begin{array}{c}
+    2 \\
+    4 \\
+    -2
+    \end{array}
+    \right]=\left[
+    \begin{array}{c}
+    2 \\
+    0 \\
+    0
+    \end{array}
+    \right]
+
+Similarly,
+
+.. math::
+    M_2a_k=\left[
+    \begin{array}{ccc}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 1/2 & 1
+    \end{array}
+    \right]
+    \left[
+    \begin{array}{c}
+    2 \\
+    4 \\
+    -2
+    \end{array}
+    \right]=\left[
+    \begin{array}{c}
+    2 \\
+    4 \\
+    0
+    \end{array}
+    \right]
+
+The inverse of an elimination matrix is defined as
+:math:`L_k=M_k^{-1}=I+m_ke_k^T`. For example,
+
+.. math::
+    L_1=M_1^{-1}=\left[
+    \begin{array}{ccc}
+    1 & 0 & 0 \\
+    2 & 1 & 0 \\
+    -1 & 0 & 1
+    \end{array}
+    \right],\enspace\mbox{and}\enspace L_2=M_2^{-1}=\left[
+    \begin{array}{ccc}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & -1/2 & 1
+    \end{array}
+    \right]
+
+The algorithm now proceeds as follows. Consider the example:
+
+.. math::
+    \left[
+    \begin{array}{ccc}
+    2 & 4 & -2 \\
+    4 & 9 & -3 \\
+    -2 & -3 & 7
+    \end{array}
+    \right]
+    \left[
+    \begin{array}{c}
+    x_1 \\
+    x_2 \\
+    x_3
+    \end{array}
+    \right]=\left[
+    \begin{array}{c}
+    2 \\
+    8 \\
+    10
+    \end{array}
+    \right]
+
+First, we eliminate the lower triangular portion of :math:`A` one column at a time
+using :math:`M_k` to get :math:`U=M_{n-1}\ldots M_1A`. Note that we also carry out the
+operations on :math:`b` to get a new system of equations :math:`M_2M_1Ax=M_2M_1b` or
+:math:`Ux=M_2M_1b` which can be solved for via back substitution.
+
+.. math::
+    M_1A=\left[
+    \begin{array}{ccc}
+    1 & 0 & 0 \\
+    -2 & 1 & 0 \\
+    1 & 0 & 1
+    \end{array}
+    \right]\left[
+    \begin{array}{ccc}
+    2 & 4 & -2 \\
+    4 & 9 & -3 \\
+    -2 & -3 & 7
+    \end{array}
+    \right]=\left[
+    \begin{array}{ccc}
+    2 & 4 & -2 \\
+    0 & 1 & 1 \\
+    0 & 1 & 5
+    \end{array}
+    \right]
+
+.. math::
+
+    M_1b=\left[
+    \begin{array}{ccc}
+    1 & 0 & 0 \\
+    -2 & 1 & 0 \\
+    1 & 0 & 1
+    \end{array}
+    \right]\left[
+    \begin{array}{c}
+    2 \\
+    8 \\
+    10
+    \end{array}
+    \right]=\left[
+    \begin{array}{c}
+    2 \\
+    4 \\
+    12
+    \end{array}
+    \right]
+
+.. math::
+
+    M_2M_1A=\left[
+    \begin{array}{ccc}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & -1 & 1
+    \end{array}
+    \right]\left[
+    \begin{array}{ccc}
+    2 & 4 & -2 \\
+    0 & 1 & 1 \\
+    0 & 1 & 5
+    \end{array}
+    \right]=\left[
+    \begin{array}{ccc}
+    2 & 4 & -2 \\
+    0 & 1 & 1 \\
+    0 & 0 & 4
+    \end{array}
+    \right]
+
+.. math::
+
+    M_2M_1b=\left[
+    \begin{array}{ccc}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & -1 & 1
+    \end{array}
+    \right]\left[
+    \begin{array}{c}
+    2 \\
+    4 \\
+    12
+    \end{array}
+    \right]=\left[
+    \begin{array}{c}
+    2 \\
+    4 \\
+    8
+    \end{array}
+    \right]
+
+Finally, solve the following system via back substitution.
+
+.. math::
+
+    \left[
+    \begin{array}{ccc}
+    2 & 4 & -2 \\
+    0 & 1 & 1 \\
+    0 & 0 & 4
+    \end{array}
+    \right]\left[
+    \begin{array}{c}
+    x \\
+    y \\
+    z
+    \end{array}
+    \right]=\left[
+    \begin{array}{c}
+    2 \\
+    4 \\
+    8
+    \end{array}
+    \right]
+
+Note that we can write :math:`LU=(L_1\ldots L_{n-1})(M_{n-1}\ldots M_1A)=A`
+using the fact that the :math:`L` matrices are inverses of the :math:`M` matrices,
+where :math:`L=L_1\ldots L_{n-1}` can be formed trivially from the :math:`M_k` to obtain:
+
+.. math::
+
+    L=L_1L_2=\left[
+    \begin{array}{ccc}
+    1 & 0 & 0 \\
+    2 & 1 & 0 \\
+    -1 & 0 & 1
+    \end{array}
+    \right]\left[
+    \begin{array}{ccc}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 1 & 1
+    \end{array}
+    \right]=\left[
+    \begin{array}{ccc}
+    1 & 0 & 0 \\
+    2 & 1 & 0 \\
+    -1 & 1 & 1
+    \end{array}
+    \right]
+
+And thus, although we never needed it to solve the equations, the :math:`LU`
+factorization of :math:`A` is
+
+.. math::
+    A=\left[
+    \begin{array}{ccc}
+    2 & 4 & -2 \\
+    4 & 9 & -3 \\
+    -2 & -3 & 7
+    \end{array}
+    \right]=\left[
+    \begin{array}{ccc}
+    1 & 0 & 0 \\
+    2 & 1 & 0 \\
+    -1 & 1 & 1
+    \end{array}
+    \right]\left[
+    \begin{array}{ccc}
+    2 & 4 & -2 \\
+    0 & 1 & 1 \\
+    0 & 0 & 4
+    \end{array}
+    \right]=LU
