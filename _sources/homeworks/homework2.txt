@@ -6,7 +6,9 @@ solution. Submissions should be made on Sakai.
 
 .. topic:: Problem 1
 
-    Prove that the matrix :math:`L_k  = I + m_ke_k^T` is the inverse of the
+    Let :math:`A\in\mathbb R^{n\times n}` be any matrix, and :math:`I` be the
+    :math:`n\times n` identity matrix.
+    Show that the matrix :math:`L_k  = I + m_ke_k^T` is the inverse of the
     matrix :math:`M_k = I - m_ke_k^T`, where :math:`M_k` is the elimination
     matrix for the :math:`k^{th}` column :math:`a_k` of :math:`A`.
 

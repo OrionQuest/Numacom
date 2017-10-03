@@ -463,6 +463,195 @@ exists and is unique.</p>
 <div class="math">
 \[PA = LU\]</div>
 </div>
+<p>So far, we have seen two ways of solving the system <span class="math">\(Ax=b\)</span>:</p>
+<ul>
+<li><p class="first">Without pivoting:</p>
+<blockquote>
+<div><div class="math">
+\[A = L\underbrace{Ux}_{=y} = b\]</div>
+<ol class="arabic simple">
+<li>Solve <span class="math">\(Ly = b\)</span> through forward substitution.</li>
+<li>Solve <span class="math">\(Ux = y\)</span> through backward substitution to obtain the
+solution <span class="math">\(x\)</span>.</li>
+</ol>
+<p>Note that if we have multiple systems <span class="math">\(Ax_i = b_i\)</span>, we only need to
+incur the cost of computing an <span class="math">\(LU\)</span> decomposition of <span class="math">\(A\)</span> once.</p>
+</div></blockquote>
+</li>
+<li><p class="first">With pivoting:</p>
+<blockquote>
+<div><div class="math">
+\[Ax = b \Longleftrightarrow PAx = Pb\]</div>
+<ol class="arabic simple">
+<li>Solve <span class="math">\(Ly = Pb\)</span> using forward substitution.</li>
+<li>Solve <span class="math">\(Ux = y\)</span> using backward substitution to obtain the solution
+<span class="math">\(x\)</span>.</li>
+</ol>
+</div></blockquote>
+</li>
+</ul>
+<p>Note that switching two rows twice puts the rows back, so <span class="math">\(P\)</span> is its own
+inverse. Also, note that <span class="math">\(P\)</span> is an <em>orthogonal</em> matrix, i.e., <span class="math">\(P^{-1} = P^T\)</span>,
+so in general, <span class="math">\(P^{-1} = P^T = P\)</span>. The process shown above is called
+<em>partial pivoting</em> because it switches rows to always get the largest diagonal
+element. This is in contrast to <em>full pivoting</em> (see below) which can switch
+both rows and columns to obtain the largest diagonal element. Partial pivoting
+gives <span class="math">\(A=LU\)</span>, where <span class="math">\(U=M_{n-1}P_{n-1}\ldots M_1P_1A\)</span> and
+<span class="math">\(L=P_1L_1\ldots P_{n-1}L_{n-1}\)</span>. Note that <span class="math">\(U\)</span> is upper triangular, but
+<span class="math">\(L\)</span> is a permutation of a lower triangular matrix. It turns out that we
+can write <span class="math">\(L\)</span> as <span class="math">\(L=P_1\ldots P_{n-1}L_1^P\ldots L_{n-1}^P\)</span> where
+each <span class="math">\(L_k^P=I+(P_{n-1}\ldots P_{k+1}m_k)e_k^T\)</span> has the same form as
+<span class="math">\(L_k\)</span>. Thus, we can write <span class="math">\(PA = L^PU\)</span> where <span class="math">\(L^P=L_1^P\ldots L_{n-1}^P\)</span>
+is <em>lower triangular</em> and <span class="math">\(P=P_{n-1}\ldots P_1\)</span> is the total permutation
+matrix.</p>
+</div>
+<div class="section" id="full-pivoting">
+<h2>4.3.3. Full Pivoting<a class="headerlink" href="#full-pivoting" title="Permalink to this headline">¶</a></h2>
+<p>In this case, when we are in the <span class="math">\(k^{th}\)</span> step of the Gaussian
+Elimination/<span class="math">\(LU\)</span> procedure, we pick the pivot element among the <em>entire</em>
+<span class="math">\((n-k+1)\times (n-k+1)\)</span> lower rightmost submatrix of <span class="math">\(A\)</span>. For
+example, if <span class="math">\(k=2\)</span> and <span class="math">\(Ax=b\)</span></p>
+<div class="math">
+\[\begin{split}\left[
+\begin{array}{cccc}
+1 &amp; 2 &amp; 5 &amp; -1 \\
+0 &amp; \boxed{0} &amp; 3 &amp; 1 \\
+0 &amp; 4 &amp; 1 &amp; \boxed{-8} \\
+0 &amp; -6 &amp; 0 &amp; 3
+\end{array}
+\right]\left[
+\begin{array}{c}
+x_1 \\
+x_2 \\
+x_3 \\
+x_4
+\end{array}
+\right]=\left[
+\begin{array}{c}
+4 \\
+7 \\
+8 \\
+2
+\end{array}
+\right]\end{split}\]</div>
+<p>In this case, we can bring <span class="math">\((-8)\)</span> to the pivot position <span class="math">\(a_{22}\)</span> by
+permuting <em>both</em> rows <span class="math">\(2-3\)</span> <em>and</em> columns <span class="math">\(2-4\)</span>. Naturally, we will
+respectively swap rows <span class="math">\(2-3\)</span> of the right hand side <span class="math">\(b\)</span>, and rows
+<span class="math">\(2-4\)</span> of the vector of unknowns <span class="math">\(x\)</span>. Thus, the equivalent system
+becomes</p>
+<div class="math">
+\[\begin{split}\left[
+\begin{array}{cccc}
+1 &amp; -1 &amp; 5 &amp; 2 \\
+0 &amp; -8 &amp; 1 &amp; 4 \\
+0 &amp; 1 &amp; 3 &amp; 0 \\
+0 &amp; 3 &amp; 0 &amp; -6
+\end{array}
+\right]\left[
+\begin{array}{c}
+x_1 \\
+x_4 \\
+x_3 \\
+x_2
+\end{array}
+\right]=\left[
+\begin{array}{c}
+4 \\
+8 \\
+7 \\
+2
+\end{array}
+\right]\end{split}\]</div>
+<p>This process is encoded in the LU factorization using <em>two</em> permutation matrices
+<span class="math">\(P\)</span> and <span class="math">\(Q\)</span> such that <span class="math">\(\boxed{PAQ=LU}\)</span>. The solution is then
+computed via</p>
+<div class="math">
+\[Ax=b\Rightarrow PA\underbrace{QQ^T}_{=I}x=Pb\Rightarrow (LU)(Q^Tx)=Pb\]</div>
+<ol class="arabic simple">
+<li>Solve <span class="math">\(Ly = Pb\)</span> using forward substitution.</li>
+<li>Solve <span class="math">\(Uz = y\)</span> using backward substitution.</li>
+<li>Finally, <span class="math">\(Q^Tx = z \Rightarrow QQ^T x = Qz \Rightarrow \boxed{x=Qz}\)</span>
+gives the solution.</li>
+</ol>
+<p>To summarize:</p>
+<ul>
+<li><p class="first"><em>Partial pivoting</em> permutes rows, such that the pivot element in the
+<span class="math">\(k^{th}\)</span> iteration is the largest number in the <span class="math">\((n-k+1)\)</span> lower
+entries of the <span class="math">\(k^{th}\)</span> column. It is written, in the context of
+<span class="math">\(LU\)</span> decomposition as</p>
+<div class="math">
+\[PA=LU\enspace\enspace\enspace\mbox{($P =$ permutation)}\]</div>
+</li>
+<li><p class="first"><em>Full pivoting</em> selects the pivot element in the <span class="math">\(k^{th}\)</span> iteration as
+the largest element of the <span class="math">\((n-k+1)\times (n-k+1)\)</span> lower rightmost
+sub-matrix of <span class="math">\(A\)</span>. It operates by permuting rows <em>and</em> columns and leads
+to an <span class="math">\(LU\)</span> decomposition of</p>
+<div class="math">
+\[PAQ = LU\]</div>
+</li>
+</ul>
+<p>However, there are certain categories of matrices for which we can safely use
+Gaussian elimination or <span class="math">\(LU\)</span> decomposition <em>without</em> the need for pivoting
+(i.e., the pivot elements will never be problematically small).</p>
+<div class="topic">
+<p class="topic-title first">Definition</p>
+<p>A matrix <span class="math">\(A\)</span> is called <em>diagonally dominant
+by columns</em> if the magnitude of every diagonal element is larger than the sum of
+the magnitudes of all other entries in the same column, i.e., for every
+<span class="math">\(i=1,2,\ldots, n\)</span> we have</p>
+<div class="math">
+\[\begin{split}|a_{ii}|&gt;\sum_{j\neq i} |a_{ji}|\end{split}\]</div>
+<p>If the diagonal element exceeds in magnitude the sum of magnitudes of all other
+elements in its <em>row</em>, i.e., for every <span class="math">\(i=1,2,\ldots, n\)</span> we have</p>
+<div class="math">
+\[\begin{split}|a_{ii}|&gt;\sum_{j\neq i} |a_{ij}|\end{split}\]</div>
+<p>then the matrix is called <em>diagonally dominant by rows</em>.</p>
+</div>
+<div class="topic">
+<p class="topic-title first">Definition</p>
+<p>A symmetric matrix <span class="math">\(A\in\mathbb R^{n\times n}\)</span> is
+called <em>positive definite</em> (in short SPD for &#8220;symmetric positive definite&#8221;),
+if for any <span class="math">\(x\in\mathbb R^n, x\neq 0\)</span> we have <span class="math">\(x^TAx&gt;0\)</span>. If for any <span class="math">\(x\in\mathbb R^n, x\neq 0\)</span>
+we have <span class="math">\(x^TAx\geq0\)</span>, the matrix is called positive semi-definite. If the
+respective properties are <span class="math">\(x^TAx&lt;0\)</span> (or <span class="math">\(x^TAx\leq 0\)</span>) the matrix is called
+negative (semi) definite.</p>
+</div>
+<div class="topic">
+<p class="topic-title first">Definition</p>
+<p>The <span class="math">\(k^{th}\)</span> <em>leading principal minor</em> of a
+matrix <span class="math">\(A\in\mathbb R^{n\times n}\)</span> is the determinant of the top-leftmost
+<span class="math">\(k\times k\)</span> sub-matrix of <span class="math">\(A\)</span>. Thus, if we denote this minor by <span class="math">\(M_k\)</span>:</p>
+<div class="math">
+\[\begin{split}M_1=|a_{11}|, \enspace\enspace M_2=
+\left|
+\begin{array}{cc}
+a_{11} &amp; a_{12} \\
+a_{21} &amp; a_{22}
+\end{array}
+\right|,\enspace\enspace \ldots \enspace\enspace
+M_k=\left|
+\begin{array}{ccc}
+a_{11} &amp; \ldots &amp; a_{1k} \\
+\vdots &amp; &amp; \vdots \\
+a_{k1} &amp; \ldots &amp; a_{kk}
+\end{array}
+\right|\end{split}\]</div>
+</div>
+<div class="topic">
+<p class="topic-title first">Theorem 1</p>
+<p>If <em>all</em> leading principal minors (i.e., for <span class="math">\(k=1,2,3,\ldots,n\)</span>) of the
+symmetric matrix <span class="math">\(A\)</span> are positive, then <span class="math">\(A\)</span> is positive definite. If <span class="math">\(M_k&lt;0\)</span> for
+<span class="math">\(k = \mbox{odd}\)</span> and <span class="math">\(M_k&gt;0\)</span> for <span class="math">\(k = \mbox{even}\)</span>, then <span class="math">\(A\)</span> is negative
+definite.</p>
+</div>
+<div class="topic">
+<p class="topic-title first">Theorem 2</p>
+<p>Pivoting is <em>not</em> necessary when <span class="math">\(A\)</span> is diagonally dominant by columns, or
+symmetric and positive (or negative) definite.</p>
+</div>
+<p>These &#8220;special&#8221; classes of matrices (which appear quite often in engineering
+and applied sciences) not only make <span class="math">\(LU\)</span> decomposition more robust, but also
+open some additional possibilities for solving <span class="math">\(Ax=b\)</span>.</p>
 </div>
 </div>
 
@@ -477,6 +666,7 @@ exists and is unique.</p>
 <li><a class="reference internal" href="#">4.3. LU Decomposition</a><ul>
 <li><a class="reference internal" href="#elimination-matrices">4.3.1. Elimination Matrices</a></li>
 <li><a class="reference internal" href="#existence-and-uniqueness">4.3.2. Existence and Uniqueness</a></li>
+<li><a class="reference internal" href="#full-pivoting">4.3.3. Full Pivoting</a></li>
 </ul>
 </li>
 </ul>
