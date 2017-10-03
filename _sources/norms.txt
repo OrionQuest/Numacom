@@ -98,100 +98,79 @@ Here, the second parameter specifies the particular norm that we wish to compute
     >>> np.linalg.norm(v,np.inf)
     7
 
-Matrix Norms
-~~~~~~~~~~~~
+Equivalence of different norms
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We can actually define norms for (square) matrices as well.
+Several inequalities can be proved for the :math:`L_1`, :math:`L_2`, and
+:math:`L_\infty`-norms, respectively. We start by showing that :math:`\lVert
+x\rVert_\infty\leq \lVert x\rVert_1`.
+
+.. math::
+    \lVert x\rVert_\infty = \max_{i=1}^n \vert x_i\vert \leq \sum_{i=1}^n \vert x_i\vert = \lVert x\rVert_1
+
+The inequality above follows from the fact that the sum of the absolute values
+:math:`\sum_{i=1}^n \vert x_i\vert` *contains* the maximum absolute value :math:`\max_{i=1}^n
+\vert x_i\vert`. Furthermore, the absolute value :math:`\vert x_i\vert` of each component
+is less than or equal to the maximum of the absolute values over all components. This allows us to prove an
+inequality in the reverse direction as well, albeit with the multiplicative factor
+of :math:`n`.
+
+.. math::
+    \sum_{i=1}^n \vert x_i\vert \leq \sum_{i=1}^n \max_{i=1}^n \vert x_i\vert = \sum_{i=1}^n \lVert x\rVert_\infty = n\cdot\lVert x\rVert_\infty
+
+The above two inequalities can be compactly written as :math:`\lVert x\rVert_\infty \leq \lVert x\rVert_1\leq n\cdot\lVert x\rVert_\infty`.
+The equality holds when all components of :math:`x` are equal, as can be easily verified.
+
+.. topic:: Example 1
+
+    Consider the vector :math:`v = (5,2,1,4,3)`. The :math:`L_1` and
+    :math:`L_\infty`-norms of :math:`v` are
+
+    .. math::
+        \lVert v\rVert_1 = 15\enspace\enspace\enspace\enspace \mbox{and} \enspace\enspace\enspace\enspace \lVert v\rVert_\infty = 5
+
+    respectively. Note that :math:`\lVert v\rVert_\infty = 5\leq \lVert v\rVert_1 = 15 \leq 5\cdot\lVert v\rVert_\infty = 5\cdot 5 = 25`.
 
 .. topic:: Definition
 
-    A matrix norm is a function :math:`\lVert\cdot\rVert : \mathbb R^{n\times n}\rightarrow \mathbb R` that satisfies:
-
-    1. :math:`\lVert M\rVert\geq 0` for all :math:`M\in\mathbb R^{n\times n}`, :math:`\lVert M\rVert = 0`
-       if and only if :math:`M=O`.
-    2. :math:`\lVert \alpha M\rVert = \vert\alpha\vert\cdot\lVert M\rVert`
-    3. :math:`\lVert M+N\rVert\leq \lVert M\rVert + \lVert N\rVert`
-    4. :math:`\lVert M\cdot N\rVert \leq \lVert M\rVert\cdot\lVert N\rVert`
-
-Property :math:`(4)` above has slightly different flavor than vector
-norms. Although more types of matrix norms exist, one common category is that of
-matrix norms *induced by* vector norms.
-
-.. topic:: Definition
-
-    If :math:`\lVert\cdot\rVert_\star` is a valid vactor norm, its
-    *induced* matrix norm is defined as:
+    Two vector norms :math:`\lVert x\rVert_a` and :math:`\lVert x\rVert_b` are
+    called *equivalent* if there exist real numbers :math:`c,d>0`, such that
 
     .. math::
-        \lVert M\rVert_\star = \max_{x\in\mathbb R^n,x\neq 0} \frac{\lVert Mx\rVert_\star}{\lVert x\rVert_\star}
+        c\lVert x\rVert_a \leq \lVert x\rVert_b \leq \lVert x\rVert_a
 
-    or equivalently,
+It follows from this definition that the :math:`L_1` and :math:`L_\infty`-norms are
+equivalent, as proved above. Now consider the square of the :math:`L_1`-norm
+
+.. math::
+    \lVert x\rVert_1^2 = (\vert x_1\vert + \vert x_2\vert + \ldots + \vert x_n\vert)^2 = \sum_{i=1}^n\vert x_i\vert^2 + 2\sum_{i<j} \vert x_i\vert\cdot\vert x_j\vert \geq \sum_{i=1}^n\vert x_i\vert^2 = \lVert x\rVert_2^2
+
+The above inequality implies that :math:`\lVert x\rVert_1\geq \lVert x\rVert_2`.
+For the reverse direction of the inequality, consider the `AM-GM inequality <https://en.wikipedia.org/wiki/Inequality_of_arithmetic_and_geometric_means>`_:
+
+.. math::
+    2\vert x_i\vert\cdot\vert x_j\vert \enspace &\leq& \enspace \vert x_i\vert^2 + \vert x_j\vert^2 \\
+    \Rightarrow 2\sum_{i<j} \vert x_i\vert\cdot\vert x_j\vert \enspace &\leq& \enspace (n-1)\cdot\sum_{i=1}^n \vert x_i\vert^2
+
+The second inequality follows from the fact that each :math:`x_i` appears with
+*exactly* :math:`n-1` other components :math:`x_j`.
+Using the above inequality with the square of the :math:`L_1`-norm gives
+
+.. math::
+    \lVert x\rVert_1^2 = \sum_{i=1}^n\vert x_i\vert^2 + 2\sum_{i<j} \vert x_i\vert\cdot\vert x_j\vert \leq n\sum_{i=1}^n\vert x_i\vert^2 = n\cdot\lVert x\rVert_2^2
+
+This implies that :math:`\lVert x\rVert_1\leq\sqrt{n}\lVert x\rVert_2`.
+Combining the two inequalities gives :math:`\lVert x\rVert_2\leq\lVert
+x\rVert_1\leq\sqrt{n}\lVert x\rVert_2`, proving that the :math:`L_1` and
+:math:`L_2`-norms are equivalent as well. Again, equality holds when all components of
+:math:`x` are equal.
+
+.. topic:: Example 2
+
+    Consider the same vector :math:`v = (5,2,1,4,3)`. The :math:`L_1` and
+    :math:`L_2`-norms of :math:`v` are
 
     .. math::
-        \lVert M\rVert_\star = \max_{x\in\mathbb R^n,\lVert x\rVert=1} \lVert Mx\rVert_\star
+        \lVert v\rVert_1 = 15 \enspace\enspace\enspace\enspace \mbox{and} \enspace\enspace\enspace\enspace \lVert v\rVert_2 = 7.4162
 
-Note again, that *not all* valid matrix norms are induced by vector norms. One
-notable example is the very commonly used *Frobenius norm*:
-
-.. math::
-    \lVert M\rVert_F = \sqrt{\sum_{i,j=1}^n M_{ij}^2}
-
-We can easily show that induced norms satify properties :math:`(1)` through
-:math:`(4)`. Properties :math:`(1)-(3)` are rather trivial, for example,
-
-.. math::
-    \lVert M+N\rVert &=& \max_{x\neq 0} \frac{\lVert (M+N)x\rVert}{\lVert x\rVert} \leq \max_{x\neq 0} \frac{\lVert Mx\rVert + \lVert Nx\rVert}{\lVert x\rVert} \\
-                     &=& \max_{x\neq 0} \frac{\lVert Mx\rVert}{\lVert x\rVert} + \max_{x\neq 0} \frac{\lVert Nx\rVert}{\lVert x\rVert} = \lVert M\rVert + \lVert N\rVert
-
-Property :math:`(4)` is slightly trickier to show. First, a lemma:
-
-.. topic:: Lemma
-
-    If :math:`\lVert\cdot\rVert` is a matrix norm induced by a vector
-    norm :math:`\lVert\cdot\rVert`, then
-
-    .. math::
-        \lVert Ax\rVert \leq \lVert A\rVert\cdot \lVert x\rVert
-        :label: vector-norm-inequality
-
-    *Proof:* Since :math:`\lVert A\rVert = \max_{x\neq 0}\lVert Ax\rVert/\lVert x\rVert`, we have that for an arbitrary :math:`y\in\mathbb R^n (y\neq 0)`
-
-    .. math::
-        \lVert A\rVert = \max_{x\neq 0}\frac{\lVert Ax\rVert}{\lVert x\rVert}\geq \frac{\lVert Ay\rVert}{\lVert y\rVert} \Rightarrow \lVert Ay\rVert \leq \lVert A\rVert\cdot\lVert y\rVert
-
-    This holds for :math:`y\neq 0`, but we can see that it is also true for :math:`y=0`.
-
-Now property :math:`(4)` can be easily proved using the above lemma:
-
-.. math::
-    \lVert MN\rVert &=& \max_{\lVert x\rVert=1} \lVert MNx\rVert \leq \max_{\lVert x\rVert=1} \lVert M\rVert\cdot \lVert Nx\rVert \\
-                    &=& \lVert M\rVert\cdot \max_{\lVert x\rVert=1} \lVert Nx\rVert = \lVert M\rVert\cdot\lVert N\rVert \\
-    \Rightarrow \lVert MN\rVert &\leq& \lVert M\rVert\cdot\lVert N\rVert
-
-Note that when writing an expression such as :eq:`vector-norm-inequality`, the
-matrix norm :math:`\lVert A\rVert` is understood to be the inferred norm from the
-vector norm used in :math:`\lVert Ax\rVert` and :math:`\lVert x\rVert`. Thus,
-
-.. math::
-    \lVert Ax\rVert_1 \leq \lVert A\rVert_1\cdot \lVert x\rVert_1
-
-and
-
-.. math::
-    \lVert Ax\rVert_\infty \leq \lVert A\rVert_\infty\cdot \lVert x\rVert_\infty
-
-are both valid, but we *cannot* mix and match, for example:
-
-.. math::
-    \lVert Ax\rVert_\infty \leq \lVert A\rVert_2\cdot \lVert x\rVert_1
-
-Although the definition of an induced norm allowed us to prove certain
-properties, it does not necessarily provide a convenient formula for evaluating
-the matrix norm. Fortunately, such formulas do exist for the :math:`L_1` and
-:math:`L_\infty` induced matrix norms. Given here (without proof):
-
-.. math::
-    \lVert A\rVert_1        &=& \max_j \sum_{i=1}^n \vert A_{ij}\vert \enspace\enspace\enspace\mbox{(maximum absolute column sum)} \\
-    \lVert A\rVert_\infty   &=& \max_i \sum_{i=1}^n \vert A_{ij}\vert \enspace\enspace\enspace\mbox{(maximum absolute row sum)}
-
-The formula for the :math:`L_2` induced matrix norm is more complicated. We will see it when we study eigenvalues.
+    respectively. Note that :math:`\lVert v\rVert_2 = 7.4162 \leq \lVert v\rVert_1 = 15 \leq \sqrt{5}\cdot 7.4162 = 16.5831`.

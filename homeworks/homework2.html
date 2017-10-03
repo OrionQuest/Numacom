@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2. Homework #2 &mdash; CS 323 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CS 323 1.0 documentation" href="../index.html" />
+    <link rel="next" title="1. Introduction" href="../intro.html" />
+    <link rel="prev" title="1. Homework #1" href="homework1.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../intro.html" title="1. Introduction"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="homework1.html" title="1. Homework #1"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">CS 323 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="homework-2">
+<h1>2. Homework #2<a class="headerlink" href="#homework-2" title="Permalink to this headline">¶</a></h1>
+<p>For all programming assignments, please turn in your code along with your
+solution. Submissions should be made on Sakai.</p>
+<div class="topic">
+<p class="topic-title first">Problem 1</p>
+<p>Prove that the matrix <span class="math">\(L_k  = I + m_ke_k^T\)</span> is the inverse of the
+matrix <span class="math">\(M_k = I - m_ke_k^T\)</span>, where <span class="math">\(M_k\)</span> is the elimination
+matrix for the <span class="math">\(k^{th}\)</span> column <span class="math">\(a_k\)</span> of <span class="math">\(A\)</span>.</p>
+</div>
+<div class="topic">
+<p class="topic-title first">Problem 2</p>
+<p>Write a program to compute the LU decomposition of a matrix <span class="math">\(A\)</span> using the
+concept of elimination matrices. Use it to solve the following system:</p>
+<div class="math">
+\[\begin{split}A=\left[\begin{array}{ccccccccc}
+21 &amp; 32 &amp; 14 &amp; 8 &amp; 6 &amp; 9 &amp; 11 &amp; 3 &amp; 5 \\
+17 &amp; 2 &amp; 8 &amp; 14 &amp; 55 &amp; 23 &amp; 19 &amp; 1 &amp; 6 \\
+41 &amp; 23 &amp; 13 &amp; 5 &amp; 11 &amp; 22 &amp; 26 &amp; 7 &amp; 9 \\
+12 &amp; 11 &amp; 5 &amp; 8 &amp; 3 &amp; 15 &amp; 7 &amp; 25 &amp; 19 \\
+14 &amp; 7 &amp; 3 &amp; 5 &amp; 11 &amp; 23 &amp; 8 &amp; 7 &amp; 9 \\
+2 &amp; 8 &amp; 5 &amp; 7 &amp; 1 &amp; 13 &amp; 23 &amp; 11 &amp; 17 \\
+11 &amp; 7 &amp; 9 &amp; 5 &amp; 3 &amp; 8 &amp; 26 &amp; 13 &amp; 17 \\
+23 &amp; 1 &amp; 5 &amp; 19 &amp; 11 &amp; 7 &amp; 9 &amp; 4 &amp; 16 \\
+31 &amp; 5 &amp; 12 &amp; 7 &amp; 13 &amp; 17 &amp; 24 &amp; 3 &amp; 11
+\end{array}\right]\left[\begin{array}{c}
+x_1 \\
+x_2 \\
+x_3 \\
+x_4 \\
+x_5 \\
+x_6 \\
+x_7 \\
+x_8 \\
+x_9
+\end{array}\right]=\left[\begin{array}{c}
+2 \\
+5 \\
+7 \\
+1 \\
+6 \\
+9 \\
+4 \\
+8 \\
+3
+\end{array}\right]\end{split}\]</div>
+</div>
+<div class="topic">
+<p class="topic-title first">Problem 3</p>
+<p>Suppose that <span class="math">\(\lVert\cdot\rVert_a\)</span> and <span class="math">\(\lVert\cdot\rVert_b\)</span> are
+two equivalent vector norms in <span class="math">\(\mathbb R^n\)</span>. Thus, by definition, there
+exist two constants <span class="math">\(c,d&gt;0\)</span> such that for any vector
+<span class="math">\(x\in\mathbb R^n\)</span>, we have</p>
+<div class="math">
+\[c\lVert x\rVert_a \leq \lVert x\rVert_b \leq d\lVert x\rVert_a\]</div>
+<p>Prove that their induced matrix norms are also equivalent, i.e., there exist
+two constants <span class="math">\(c',d'&gt;0\)</span> such that for any matrix <span class="math">\(A\in\mathbb
+R^{n\times n}\)</span></p>
+<div class="math">
+\[c'\lVert A\rVert_a \leq \lVert A\rVert_b \leq d'\lVert A\rVert_a\]</div>
+</div>
+<div class="topic">
+<p class="topic-title first">Problem 4</p>
+<ol class="loweralpha simple">
+<li>Use a single-precision routine for Gaussian elimination to solve the system
+<span class="math">\(Ax=b\)</span> defined below</li>
+</ol>
+<div class="math">
+\[\begin{split}\left[\begin{array}{cccc}
+21.0 &amp; 67.0 &amp; 88.0 &amp; 73.0 \\
+76.0 &amp; 63.0 &amp; 7.0 &amp; 20.0 \\
+0.0 &amp; 85.0 &amp; 56.0 &amp; 54.0 \\
+19.3 &amp; 43.0 &amp; 30.2 &amp; 29.4
+\end{array}\right]\left[\begin{array}{c}
+x_1 \\
+x_2 \\
+x_3 \\
+x_4
+\end{array}\right]=\left[\begin{array}{c}
+141.0 \\
+109.0 \\
+218.0 \\
+93.7
+\end{array}\right]\end{split}\]</div>
+<ol class="loweralpha simple" start="2">
+<li>Compute the residual <span class="math">\(r = b - Ax\)</span> using double-precision arithmetic,
+but storing the final result in a single-precision vector <span class="math">\(r\)</span>. (Note
+that the solution routine may destroy the matrix <span class="math">\(A\)</span>, so you may need
+to save a separate copy for computing the residual.)</li>
+<li>Solve the linear system <span class="math">\(Az=r\)</span> to obtain the &#8220;improved&#8221; solution
+<span class="math">\(x+z\)</span>. (Note that the matrix <span class="math">\(A\)</span> need not be refactored.)</li>
+<li>Repeat steps <span class="math">\(b)\)</span> and <span class="math">\(c)\)</span> until no further improvement is
+observed.</li>
+</ol>
+</div>
+<div class="topic">
+<p class="topic-title first">Problem 5</p>
+<p>Use Gaussian elimination <em>without</em> pivoting to solve the linear system</p>
+<div class="math">
+\[\begin{split}\left[\begin{array}{cc}
+\varepsilon &amp; 1 \\
+1 &amp; 1
+\end{array}\right]\left[\begin{array}{c}
+x_1 \\
+x_2
+\end{array}\right] = \left[\begin{array}{c}
+1+\varepsilon \\
+2
+\end{array}\right]\end{split}\]</div>
+<p>for <span class="math">\(\varepsilon=10^{-2k}\)</span>, where <span class="math">\(k=1,2,\ldots,10\)</span>.
+The exact solution is <span class="math">\(x=(1,1)^T\)</span>, independent of the value of
+<span class="math">\(\varepsilon\)</span>. How does the acccuracy of the computed solution behave
+as the value of <span class="math">\(\varepsilon\)</span> decreases?</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="homework1.html"
+                        title="previous chapter">1. Homework #1</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../intro.html"
+                        title="next chapter">1. Introduction</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/homeworks/homework2.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../intro.html" title="1. Introduction"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="homework1.html" title="1. Homework #1"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">CS 323 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

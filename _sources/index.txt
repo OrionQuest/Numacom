@@ -6,8 +6,7 @@
 CS323: Numerical Analysis and Computing
 =======================================
 
-Welcome to CS 323! This course is designed for advanced undergraduates and early
-graduate students, and introduces them to the broad field of numerical
+Welcome to CS 323! This course is an introduction to the broad field of numerical
 algorithms, optimization, and differential equations. Real-world examples from
 different fields such as computer vision, machine learning, and data analysis will
 be given alongside each topic to illustrate the wide applicability of the various
@@ -21,21 +20,30 @@ course, we will be covering all the basics in class on an as needed basis. There
 **no required text** for this course, although some recommendations are given below.
 
 | **Time:** 5PM - 8PM, Tuesdays, Fall 2017
-| **Place:** TBD
-| **Instructor:** `Mridul Aanjaneya <http://pages.cs.wisc.edu/~aanjneya>`_
-| **Office:** TBD
-| **Office hours:** TBD
+| **Place:** Lucy Stone Hall Auditorium
+
+| **Instructor:** `Mridul Aanjaneya <https://www.cs.rutgers.edu/~ma635/>`_
+| **Office:** CBIM Room 18
+| **Office hours:** Monday/Friday (4PM - 5PM)
+| **Email:** mridul.aanjaneya@rutgers.edu
+
+| **TA:** Carlos Muniz
+| **Office:** Hill 270
+| **Office hours:** Tuesday (3PM - 4PM) and also by appointment
+| **Email:** cmm609@scarletmail.rutgers.edu
+
+| **TA:** Mihee Lee
+| **Office:** CBIM-cubic G
+| **Office hours:** Wednesday (3PM - 4PM)  and also by appointment
+| **Email:** ml1323@scarletmail.rutgers.edu
 
 **Email Policy:** You are welcome to email the instructor about class-related
 issues. Please start your subject line with \"**CS 323:**\". However, please do
 not always count on an immediate reply. Although most questions will be answered
 quickly, in the worst case you will receive a reply during (or shortly after)
 the instructors' *next* scheduled office hours. It is also recommended to post
-homework-related questions on the discussion forum instead of emailing the
+homework-related questions on `Piazza <https://piazza.com/class/j76v13g42b15y8>`_ instead of emailing the
 instructor so that other fellow students can benefit from it.
-
-**Appointment Policy:** If you need to approach the instructor or the TA outside
-of their office hours, please schedule an appointment ahead of time.
 
 **Grading Policy:** Grades will be awarded based on class participation, bi-weekly homeworks, two 75
 minute in-class midterms and an **optional final**. The final grade will be computed as follows:
@@ -59,13 +67,37 @@ by helping the instructor improve his set of lecture notes. :-)
 **Homework:** Students are encouraged to collaborate with each other on homework
 problems in teams of size at most 3. However, they must individually turn in
 their solutions and also mention the names of their collaborators on their
-homework. Note that no two people can collaborate with each other on more than
+homework. All homework should be typed, and no two people should collaborate with each other on more than
 two homeworks. We will not consider the lowest homework score when evaluating your
 final grade. Homework problems will be posted every second week on this webpage,
 and will be due at **midnight** on the Tuesday lecture two weeks later. Each
 student is also granted **3 late days** total for submitting their homeworks.
 After this grace period has expired (either for the current homework or from
 previous homeworks) we will subtract 15% for each day that is delayed further.
+
+**Typing resources:** All homework should be typed. Students can choose their favorite
+platform for typing out their homework, some commonly used softwares are
+`Microsoft Word <https://products.office.com/en-us/word>`_, `LaTeX <https://www.latex-project.org/get/>`_,
+and `LyX <http://www.lyx.org/>`_. Thanks to a former student, Alex Ames, here is
+a `LyX guide <https://www.cs.rutgers.edu/~ma635/courses/cs412-s15/lyx_guide/lyx_tips.pdf>`_
+and associated `source files <https://www.cs.rutgers.edu/~ma635/courses/cs412-s15/lyx_guide/lyx_tips.zip>`_
+used to generate it.
+
+News and Announcements:
+-----------------------
+
+* (09/05) Discussion is now open on `Piazza <https://piazza.com/class/j76v13g42b15y8>`_.
+* (09/05) There is no recitation on Thursday (09/07).
+* (09/19) `Homework #1 <homeworks/homework1.html>`_ is out. Due on (10/03).
+* (10/03) `Homework #2 <homeworks/homework2.html>`_ is out. Due on (10/17).
+
+.. toctree::
+    :numbered:
+    :hidden:
+    :maxdepth: 3
+
+    Homework #1 <homeworks/homework1>
+    Homework #2 <homeworks/homework2>
 
 Contents:
 ---------
@@ -76,7 +108,9 @@ Contents:
     :maxdepth: 3
 
     Introduction <intro>
+    Vector and Matrix Algebra <algebra>
     Getting Started with Python <python>
+    Linear Systems of Equations <linear>
 
 Coding Resources:
 -----------------

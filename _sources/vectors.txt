@@ -24,7 +24,7 @@ of :math:`n` real numbers :math:`a_i`, where :math:`1\leq i\leq n`. Each element
 is called a *component* of :math:`v`. In what follows, we will exclusively refer
 to the :math:`i`-th component of a vector :math:`v` as :math:`v_i`, so :math:`v` can be written as :math:`v=(v_1,v_2,\ldots,v_n)`.
 A vector of dimension :math:`1` is commonly referred to as a *scalar*.
-In `Python <https://www.python.org/>`_
+In `Python <https://www.python.org/>`_,
 vectors are particularly easy to define with `NumPy <http://www.numpy.org/>`_
 using ``arrays``. The example below defines a :math:`4`-dimensional vector ``x``: ::
 
@@ -84,30 +84,65 @@ subtracted together to define a new vector :math:`v-w` as:
     v - w = v + (-1)\cdot w = (v_1-w_1,v_2-w_2,\ldots,v_n-w_n)
 
 Again, note that vector subtraction is not defined when the two vectors being
-subtracted have different dimensions. Together, these operations
+subtracted have different dimensions.
+
+Linear Combination, Span, and Linear Independence
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Together, these operations
 allow us to define a *linear combination* of a set :math:`S` of vectors :math:`\{v^k\}`
 as a weighted sum:
 
 .. math::
     w = \sum_k a_k v^k
 
-where :math:`a_k\in\mathbb R` for all :math:`k`. The set of all linear combinations of vectors in
+where :math:`a_k\in\mathbb R` for all :math:`k`.
+
+.. topic:: Example 1
+
+    Consider the unit vectors :math:`(1,0,0)`, :math:`(0,1,0)`, and
+    :math:`(0,0,1)` in three dimensions. Any vector :math:`(u,v,w)` can be
+    written as:
+
+    .. math::
+        (u,v,w) = u(1,0,0) + v(0,1,0) + w(0,0,1)
+
+    Thus, any :math:`3`-dimensional vector is a linear combination of the three
+    unit vectors along the X, Y, and Z axes.
+
+The set of all linear combinations of vectors in
 :math:`S` constitute the *span* of :math:`S`, denoted as :math:`\textsf{span } S`, i.e.,
 
 .. math::
     \textsf{span }S \equiv \{a_1v^1+\ldots+a_kv^k : v^i\in S\mbox{ and }a_i\in\mathbb R\mbox{ for all }1\leq i\leq k\}
 
-Perhaps you may recall that any :math:`3`-dimensional vector :math:`v` can be written as
+From Example 1, any :math:`3`-dimensional vector :math:`v` can be written as
 a linear combination of the three unit vectors :math:`(1,0,0)`, :math:`(0,1,0)`,
 and :math:`(0,0,1)`. Thus, the span of these three unit vectors is the entire
 :math:`3`-dimensional Euclidean space :math:`\mathbb R^3`. The notion of linear
 combination, in turn, allows us to define *linear independence*. A set :math:`S` of vectors :math:`\{v^k\}`
-is said to be linearly independent if every non-trivial linear combination of
+is linearly independent if every non-trivial linear combination of
 vectors in :math:`S` is
-non-zero. More formally, whenever the sum :math:`a_1v^1+\ldots+a_kv^k = 0`, then the coefficients :math:`a_i = 0`
+non-zero, i.e., :math:`0\notin\textsf{span }S`. More formally, whenever the sum
+:math:`a_1v^1+\ldots+a_kv^k = 0`, then the coefficients :math:`a_i = 0`
 for all :math:`1\leq i\leq k`. A set of vectors is said to be *linearly dependent*
-if they are not linearly independent. We will discuss linear
-combinations and linear independence in much more detail when we study :ref:`sec-matrices`.
+if they are not linearly independent.
+
+.. topic:: Example 2
+
+    Consider the three vectors :math:`(2,1,4)`, :math:`(5,2,8)`, and
+    :math:`(1,0,0)` in :math:`\mathbb R^3`. These vectors are not
+    linearly independent (i.e., they are linearly dependent) because
+    of the following identity:
+
+    .. math::
+        2\cdot(2,1,4) - 1\cdot(5,2,8) + 1\cdot(1,0,0) = (0,0,0)
+
+    In this particular case, all the coefficients :math:`2`, :math:`-1`, and
+    :math:`1` are non-zero, so the zero-vector :math:`0\in\textsf{span }S`.
+
+Dot Product
+~~~~~~~~~~~
 
 Finally, the space :math:`\mathbb R^n` also comes equipped with a function
 :math:`f:\mathbb R^n\times\mathbb R^n\rightarrow\mathbb R` called the *dot

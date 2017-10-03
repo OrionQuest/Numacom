@@ -29,7 +29,7 @@ below: ::
     "Come into my parlor", said the spider to the fly.
 
 Two strings can be conveniently concatenated together using the ``+`` operator.
-`Python <https://www.python.org/>`_ provides many in-built functions for string processing also, such as ``title``
+`Python <https://www.python.org/>`_ provides many built-in functions for string processing also, such as ``title``
 which capitalizes the first letter of every word, ``upper`` which capitalizes
 all letters, ``lower`` which converts all characters to lower case, or ``rstrip``
 which deletes all whitespaces, just to name a few. Note that a number can also
