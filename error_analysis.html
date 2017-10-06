@@ -1,35 +1,33 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>1.4. Error Analysis &mdash; CS 323 1.0 documentation</title>
-    
+    <title>1.4. Error Analysis &#8212; CS 323 1.0 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
-    <link rel="up" title="1. Introduction" href="intro.html" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="2. Vector and Matrix Algebra" href="algebra.html" />
     <link rel="prev" title="1.3. Floating-point Arithmetic" href="precision.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -42,8 +40,8 @@
         <li class="right" >
           <a href="precision.html" title="1.3. Floating-point Arithmetic"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">1. Introduction</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">1. Introduction</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -58,10 +56,10 @@
 be their corresponding machine number representations. We will assume that
 whenever <span class="math">\(\bar x\)</span> and <span class="math">\(\bar y\)</span> are combined using an arithmetic
 operation <span class="math">\(\odot\)</span>, the result <span class="math">\(\bar x\odot\bar y\)</span> is first computed <em>exactly</em> and then
-discretized using machine precision. It follows from <a href="#equation-machine-error">(?)</a> that
+discretized using machine precision. It follows from <a class="reference internal" href="precision.html#equation-machine-error">(2)</a> that
 there exist real numbers <span class="math">\(0\leq\delta_1,\delta_2,\delta_3\leq\varepsilon\)</span>, such that:</p>
 <div class="math" id="equation-general-operation">
-<span class="eqno">(1)</span>\[\begin{split}\bar x \enspace &amp;=&amp; \enspace x(1+\delta_1) \\
+<span class="eqno">(1)<a class="headerlink" href="#equation-general-operation" title="Permalink to this equation">¶</a></span>\[\begin{split}\bar x \enspace &amp;=&amp; \enspace x(1+\delta_1) \\
 \bar y \enspace &amp;=&amp; \enspace y(1+\delta_2) \\
 \overline{\bar x\odot\bar y} \enspace &amp;=&amp; \enspace (\bar x\odot\bar y)(1+\delta_3) = (x(1+\delta_1) \odot y(1+\delta_2))(1+\delta_3)\end{split}\]</div>
 <div class="topic">
@@ -86,7 +84,7 @@ x-y \enspace &amp;=&amp;        \enspace -0.92263\times 10^5 \\
 x*y \enspace &amp;=&amp;        \enspace 0.29093\times 10^8 \\
 x/y \enspace &amp;\approx&amp;  \enspace 0.33946\times 10^{-2}\end{split}\]</div>
 <p>The relative errors in these results are <span class="math">\(2.8\times 10^{-6}, 2.8\times
-10^{-6}, 8.5\times 10^{-6},\)</span> and <span class="math">\(6.0\times 10^{-6}\)</span>, respectively &#8211;
+10^{-6}, 8.5\times 10^{-6},\)</span> and <span class="math">\(6.0\times 10^{-6}\)</span>, respectively –
 all less than <span class="math">\(10^{-5}\)</span>.</p>
 </div>
 <p>While the above example gives comparable results for all four operations of addition,
@@ -95,7 +93,7 @@ the size of the relative error. Let us try to theoretically analyze
 each of these operations.</p>
 <div class="section" id="addition">
 <h2>1.4.1. Addition<a class="headerlink" href="#addition" title="Permalink to this headline">¶</a></h2>
-<p>Using equation <a href="#equation-general-operation">(1)</a>, we have</p>
+<p>Using equation <a class="reference internal" href="#equation-general-operation">(1)</a>, we have</p>
 <div class="math">
 \[\overline{\bar x + \bar y} = (x(1+\delta_1)+y(1+\delta_2))(1+\delta_3)\]</div>
 <p>Subsituting <span class="math">\(\delta=\max\{\delta_1,\delta_2,\delta_3\}\)</span> in the above
@@ -141,7 +139,7 @@ value <span class="math">\(9\)</span> in the decimal representation of <span cla
 </div>
 <div class="section" id="multiplication">
 <h2>1.4.3. Multiplication<a class="headerlink" href="#multiplication" title="Permalink to this headline">¶</a></h2>
-<p>Using equation <a href="#equation-general-operation">(1)</a>, we have</p>
+<p>Using equation <a class="reference internal" href="#equation-general-operation">(1)</a>, we have</p>
 <div class="math">
 \[\overline{\bar x\cdot\bar y} = x\cdot y(1+\delta_1)(1+\delta_2)(1+\delta_3)\]</div>
 <p>Subsituting <span class="math">\(\delta=\max\{\delta_1,\delta_2,\delta_3\}\)</span> in the above
@@ -155,15 +153,15 @@ as possible with the available precision.</p>
 </div>
 <div class="section" id="division">
 <h2>1.4.4. Division<a class="headerlink" href="#division" title="Permalink to this headline">¶</a></h2>
-<p>Using equation <a href="#equation-general-operation">(1)</a>, we have</p>
+<p>Using equation <a class="reference internal" href="#equation-general-operation">(1)</a>, we have</p>
 <div class="math" id="equation-division-operation">
-<span class="eqno">(2)</span>\[\overline{\frac{\bar x}{\bar y}} = \frac{x(1+\delta_1)}{y(1+\delta_2)}(1+\delta_3)\]</div>
+<span class="eqno">(2)<a class="headerlink" href="#equation-division-operation" title="Permalink to this equation">¶</a></span>\[\overline{\frac{\bar x}{\bar y}} = \frac{x(1+\delta_1)}{y(1+\delta_2)}(1+\delta_3)\]</div>
 <p>The denominator in the above equation can be eliminated by using the following
 geometric series</p>
 <div class="math">
 \[\frac{1}{1-\theta} = 1+\theta+\theta^2+\theta^3+\ldots\]</div>
 <p>where <span class="math">\(|\theta|&lt;1\)</span>. Substituting the above series in equation
-<a href="#equation-division-operation">(2)</a>, gives</p>
+<a class="reference internal" href="#equation-division-operation">(2)</a>, gives</p>
 <div class="math">
 \[\overline{\frac{\bar x}{\bar y}} = \frac{x}{y}(1+\delta_1)(1+\delta_3)(1-\delta_2+\delta_2^2-\delta_2^3+\delta_4^2-\ldots)\]</div>
 <p>Let <span class="math">\(\delta=\max\{\delta_1,\delta_2,\delta_3\}\)</span>. Computing the relative
@@ -200,21 +198,18 @@ precision.</p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/error_analysis.txt"
+      <li><a href="_sources/error_analysis.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -233,13 +228,13 @@ precision.</p>
         <li class="right" >
           <a href="precision.html" title="1.3. Floating-point Arithmetic"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="intro.html" >1. Introduction</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="intro.html" >1. Introduction</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2017, Mridul Aanjaneya.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+        &#169; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>
