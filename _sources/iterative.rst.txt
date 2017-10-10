@@ -67,7 +67,7 @@ The above equation can be cast into the iteration :math:`\boxed{x^{(k+1)}=D^{-1}
     \end{array}
     \right] \Rightarrow x_i^{(k+1)}=\frac{c_i}{d_i}
 
-* **Convergence** The Jacobi method if *guaranteed* to converge when :math:`A` is
+* **Convergence** The Jacobi method is *guaranteed* to converge when :math:`A` is
   diagonally dominant by rows.
 
 * **Complexity** Each iteration has a cost associated with:
@@ -98,6 +98,55 @@ There are three forms of this algorithm we will see, for different purposes:
    .. math::
 
     x_i^{\textsf{new}} \leftarrow \frac{1}{a_{ii}}\left(b_i-\sum_{j\neq i}a_{ij}x_j\right)
+
+The code below implements the in-place algorithm mentioned in step 3) above. ::
+
+    import numpy as np
+
+    def Jacobi(A,b):
+        m = A.shape[0]
+        n = A.shape[1]
+        if(m!=n):
+            print 'Matrix is not square!'
+            return
+    
+        # initialize x and x_new
+        x = np.zeros(3)
+        x_n = np.zeros(3)
+    
+        # counter for number of iterations
+        iterations = 0
+    
+        # perform Jacobi iterations until convergence
+        while True:
+            for i in range(0,m):
+                x_n[i] = b[i]/A[i,i]
+                sum = 0
+                for j in range(0,m):
+                    if(j!=i): sum+=A[i,j]*x[j]
+                x_n[i] -=sum/A[i,i]
+    
+            # stopping criterion
+            if(np.linalg.norm(x-x_n,2)<.000001): break
+    
+            # copy x_new into x
+            for i in range(0,m):
+                x[i]=x_n[i]
+    
+            # display updated solution
+            print 'x: ',
+            print x
+            iterations+=1
+
+        print 'Iterations: %d'%iterations
+    
+    def main():
+        A = np.matrix([[4.,2.,-2.],[4.,9.,-3.],[-2.,-3.,7.]])
+        b = np.array([2.,8.,10.])
+        Jacobi(A,b)
+    
+    if __name__ == "__main__":
+        main()
 
 The Gauss-Seidel Method
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -140,4 +189,53 @@ number of non-zero entries in :math:`A`. In terms of update, equation
 
 The real difference in performance is that Gauss-Seidel is generally
 *serial* in nature (although parallel variants do exist), while Jacobi is
-*highly parallel*.
+*highly parallel*. The code below implements the in-place Gauss-Seidel update
+mentioned above. ::
+
+    import numpy as np
+
+    def Gauss_Seidel(A,b):
+        m = A.shape[0]
+        n = A.shape[1]
+        if(m!=n):
+            print 'Matrix is not square!'
+            return
+    
+        # initialize x and x_new
+        x = np.zeros(3)
+        x_n = np.zeros(3)
+    
+        # counter for number of iterations
+        iterations = 0
+    
+        # perform Gauss-Seidel iterations until convergence
+        while True:
+            for i in range(0,m):
+                x_n[i] = b[i]/A[i,i]
+                sum = 0
+                for j in range(0,m):
+                    if(j<i): sum+=A[i,j]*x_n[j]
+                    if(j>i): sum+=A[i,j]*x[j]
+                x_n[i] -=sum/A[i,i]
+    
+            # stopping criterion
+            if(np.linalg.norm(x-x_n,2)<.000001): break
+    
+            # copy x_new into x
+            for i in range(0,m):
+                x[i]=x_n[i]
+    
+            # display updated x
+            print 'x: ',
+            print x
+            iterations+=1
+
+        print 'Iterations: %d'%iterations
+    
+    def main():
+        A = np.matrix([[4.,2.,-2.],[4.,9.,-3.],[-2.,-3.,7.]])
+        b = np.array([2.,8.,10.])
+        Gauss_Seidel(A,b)
+    
+    if __name__ == "__main__":
+        main()
