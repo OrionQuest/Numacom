@@ -1,32 +1,34 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>4.5. Overdetermined Systems &#8212; CS 323 1.0 documentation</title>
+    
+    <title>4.5. Overdetermined Systems &mdash; CS 323 1.0 documentation</title>
+    
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
+        HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
+    <link rel="up" title="4. Linear Systems of Equations" href="linear.html" />
     <link rel="prev" title="4.4. Iterative Methods" href="iterative.html" /> 
   </head>
-  <body>
+  <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -36,8 +38,8 @@
         <li class="right" >
           <a href="iterative.html" title="4.4. Iterative Methods"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="linear.html" accesskey="U">4. Linear Systems of Equations</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="linear.html" accesskey="U">4. Linear Systems of Equations</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -51,14 +53,179 @@
 <p>So far, we considered linear systems <span class="math">\(Ax=b\)</span> with the <em>same</em> number of
 equations and unknowns (i.e., <span class="math">\(A\in\mathbb R^{n\times n}\)</span>). In the case where
 <span class="math">\(A\in\mathbb R^{m\times n}\)</span>, with <span class="math">\(m&gt;n\)</span> (more equations than unknowns) the existence of a
-true solution is not guaranteed, in this case we look for the “best possible”
-substitute for a solution. Before analyzing what that means, let’s look at how
+true solution is not guaranteed, in this case we look for the &#8220;best possible&#8221;
+substitute for a solution. Before analyzing what that means, let&#8217;s look at how
 such problems arise.</p>
 <p>As an example, in an experiment, we measure the pressure of a gas in a closed container as a
 function of the temperature. From Physics, we know that</p>
 <div class="math">
 \[\begin{split}pV &amp;=&amp; \enspace nR\frac{5}{9}(T+459.67) \\
 \Rightarrow p&amp;=&amp; \enspace\alpha T+\beta, \enspace\enspace\enspace \alpha=\frac{5nR}{9V}, \beta=\frac{5nR\cdot 459.67}{9V}\end{split}\]</div>
+<p>What are <span class="math">\(\alpha\)</span> and <span class="math">\(\beta\)</span>? Experimentally, the measurements should ideally
+lie on a straight line <span class="math">\(y=c_1x+c_0\)</span>, but do not, due to measurement error. If we
+have <span class="math">\(n\)</span> measurement pairs <span class="math">\((x_1,y_1),\ldots,(x_n,y_n)\)</span> we would have wanted:</p>
+<div class="math">
+\[\begin{split}\left.
+\begin{array}{ccccc}
+y_1 &amp; = &amp; c_1x_1 &amp; + &amp; c_0 \\
+y_2 &amp; = &amp; c_1x_2 &amp; + &amp; c_0 \\
+    &amp; \vdots &amp; &amp; &amp; \\
+y_n &amp; = &amp; c_1x_n &amp; + &amp; c_0
+\end{array}\right\}\Rightarrow\left[
+\begin{array}{cc}
+x_1 &amp; 1 \\
+x_2 &amp; 1 \\
+\vdots &amp; \\
+x_n &amp; 1
+\end{array}
+\right]\left[
+\begin{array}{c}
+c_1 \\
+c_0
+\end{array}
+\right]=\left[
+\begin{array}{c}
+y_1 \\
+y_2 \\
+\vdots \\
+y_n
+\end{array}
+\right]\end{split}\]</div>
+<p>Here, <span class="math">\(A_{n\times2}x_{2\times1}=b_{n\times1}\)</span> is a rectangular system. We cannot
+hope to find a true solution to this system. Instead, lets try to find an
+&#8220;approximate&#8221; solution, such that <span class="math">\(Ax\approx b\)</span>. Lets look at the residual of
+this &#8220;interpolation&#8221;. The residual of the approximation of each data point is:</p>
+<div class="math">
+\[r_i=y_i-f(x_i)=y_i-c_1x_i-c_0\]</div>
+<p>If we write the vector of all residuals:</p>
+<div class="math">
+\[\begin{split}r=\left[
+\begin{array}{c}
+r_1 \\
+r_2 \\
+\vdots \\
+r_n
+\end{array}
+\right]=\left[
+\begin{array}{c}
+y_1-c_1x_1-c_0 \\
+y_2-c_1x_2-c_0 \\
+\vdots \\
+y_n-c_1x_n-c_0 \\
+\end{array}
+\right]=\left[
+\begin{array}{c}
+y_1 \\
+y_2 \\
+\vdots \\
+y_n
+\end{array}
+\right]-\left[
+\begin{array}{cc}
+x_1 &amp; 1 \\
+x_2 &amp; 1 \\
+\vdots &amp; \\
+x_n &amp; 1
+\end{array}
+\right]\left[
+\begin{array}{c}
+c_1 \\
+c_0
+\end{array}
+\right]=b-Ax\end{split}\]</div>
+<p>Although we can&#8217;t find an <span class="math">\(x\)</span> such that <span class="math">\(Ax=b\)</span> (thus, <span class="math">\(r=0\)</span>), we can at least
+try to make <span class="math">\(r\)</span> <em>small</em>. As another example, consider the problem of finding the best parabola
+<span class="math">\(f(x)=c_2x^2+c_1x+c_0\)</span> that fits measurements <span class="math">\((x_1,y_1),\ldots,(x_n,y_n)\)</span>. We
+would like</p>
+<div class="math">
+\[\begin{split}\left.
+\begin{array}{c}
+f(x_1)\approx y_1 \\
+f(x_2)\approx y_2 \\
+\vdots \\
+f(x_n)\approx y_n \\
+\end{array}
+\right\}=
+\left.
+\begin{array}{c}
+c_2x_1^2+c_1x_1+c_0\approx y_1 \\
+c_2x_2^2+c_1x_2+c_0\approx y_2 \\
+\vdots \\
+c_2x_n^2+c_1x_n+c_0\approx y_n \\
+\end{array}
+\right\}\Rightarrow
+\underbrace{
+\left[
+\begin{array}{ccc}
+x_1^2 &amp; x_1 &amp; 1 \\
+x_2^2 &amp; x_2 &amp; 1 \\
+&amp; \vdots &amp; \\
+x_n^2 &amp; x_n &amp; 1 \\
+\end{array}
+\right]}_A\underbrace{\left[
+\begin{array}{c}
+c_2 \\
+c_1 \\
+c_0
+\end{array}
+\right]}_x\approx\underbrace{\left[
+\begin{array}{c}
+y_1 \\
+y_2 \\
+\vdots \\
+y_n
+\end{array}
+\right]}_b\end{split}\]</div>
+<p>Once again, we would like to make <span class="math">\(r=b-Ax\)</span> as small as possible.</p>
+<p>How do we quantify <span class="math">\(r\)</span> being small? <span class="math">\(\Rightarrow\)</span> using a norm! We could ask
+that <span class="math">\(\lVert r\rVert_1, \lVert r\rVert_2\)</span> or <span class="math">\(\lVert r\rVert_\infty\)</span> be as small as possible. Any of these
+norms would be intuitive to consider for minimization (especially <span class="math">\(1\)</span>- and
+<span class="math">\(\infty\)</span>-norms are very intuitive). However, we typically use the <span class="math">\(2\)</span>-norm for
+this purpose, because its the easiest to work with in this problem.</p>
+<div class="topic">
+<p class="topic-title first">Definition</p>
+<p>The <em>least squares solution</em> of the
+overdetermined system <span class="math">\(Ax\approx b\)</span> is the vector <span class="math">\(x\)</span> that minimizes
+<span class="math">\(\lVert r\rVert_2=\lVert b-Ax\rVert_2\)</span>.</p>
+</div>
+<p>Define <span class="math">\(Q(x)=Q(x_1,x_2,\ldots,x_n)=\lVert b-Ax\rVert_2^2\)</span> where
+<span class="math">\(x=(x_1,\ldots,x_n)\)</span> and <span class="math">\(A\in\mathbb R^{m\times n}, b\in\mathbb R^m\)</span> (<span class="math">\(m&gt;n\)</span>).
+The least squares solution is the set of values <span class="math">\(x_1,\ldots,x_n\)</span> that
+<em>minimize</em> <span class="math">\(Q(x_1,x_2,\ldots,x_n)\)</span>.</p>
+<div class="math">
+\[\begin{split}Q(x_1,\ldots,x_n) &amp;=&amp; \enspace \lVert b-Ax\rVert_2^2=\lVert r\rVert_2^2=\sum_{i=1}^m r_i^2 \\
+r = b-Ax \Rightarrow r_i &amp;=&amp; \enspace b_i-(Ax)_i\Rightarrow r_i=b_i-\sum a_{ij}x_j \\
+\Rightarrow Q(x_1,\ldots,x_n) &amp;=&amp; \sum_{i=1}^m\left(b_i-\sum_{j=1}^n a_{ij}x_j\right)^2\end{split}\]</div>
+<p>If <span class="math">\(x_1\ldots,x_n\)</span> are those that <em>minimize</em> <span class="math">\(Q\)</span>, then:</p>
+<div class="math">
+\[\frac{\partial Q}{\partial x_1}=0,\frac{\partial Q}{\partial x_2}=0,\ldots,\frac{\partial Q}{\partial x_n}=0\]</div>
+<p>in order to guarantee a minimum.</p>
+<div class="math">
+\[\begin{split}\frac{\partial Q}{\partial x_k} &amp;=&amp; \frac{\partial}{\partial x_k}\left(\sum_{i=1}^m \left(b_i-\sum_{j=1}^n a_{ij}x_j\right)^2\right) \\
+                                &amp;=&amp; \sum_{i=1}^m \frac{\partial}{\partial x_k}\left(b_i-\sum_{j=1}^n a_{ij}x_j\right)^2 \\
+                                &amp;=&amp; \sum_{i=1}^m 2\underbrace{\left(b_i-\sum_{j=1}^n a_{ij}x_j\right)}_{r_i}\frac{\partial}{\partial x_k}\left(b_i-\sum_{j=1}^n a_{ij}x_j\right) \\
+                                &amp;=&amp; \sum_{i=1}^m -2r_ia_{ik} = -2\sum_{i=1}^m [A^T]_{ki}r_i = -2[A^Tr]_k=0 \\
+                                &amp;\Rightarrow&amp; \enspace [A^Tr]_k=0\end{split}\]</div>
+<p>Thus,</p>
+<div class="math">
+\[\begin{split}\left.
+\begin{array}{ccccccc}
+\partial Q/\partial x_1 &amp; = &amp; 0 &amp; \Rightarrow &amp; [A^Tr]_1 &amp; = &amp; 0 \\
+\partial Q/\partial x_2 &amp; = &amp; 0 &amp; \Rightarrow &amp; [A^Tr]_2 &amp; = &amp; 0 \\
+                                &amp;   &amp;   &amp; \vdots      &amp;          &amp;   &amp; \\
+\partial Q/\partial x_n &amp; = &amp; 0 &amp; \Rightarrow &amp; [A^Tr]_n &amp; = &amp; 0 \\
+\end{array}
+\right\}\Rightarrow
+\boxed{A^Tr=0}\end{split}\]</div>
+<p>Since <span class="math">\(r=b-Ax\)</span>, we have:</p>
+<div class="math">
+\[0=A^Tr=A^T(b-Ax)=A^Tb-A^TAx\Rightarrow\boxed{A^TAx=A^Tb}\]</div>
+<p>The system above is called the <em>normal equations system</em>; it is a <em>square</em>
+system that has as solution the least-squares approximation of <span class="math">\(Ax\approx b\)</span>.</p>
+<div class="math">
+\[\underbrace{A^T_{n\times m}A_{m\times n}}_{n\times n} \underbrace{x_{n\times 1}}_{n\times 1}=\underbrace{A^T_{n\times m}b_{m\times 1}}_{n\times 1}\]</div>
+<p>The normal equations <em>always</em> have a solution (with the simple condition
+that the columns of <span class="math">\(A\)</span> have to be linearly independent, which is usually true).</p>
 </div>
 
 
@@ -73,18 +240,21 @@ function of the temperature. From Physics, we know that</p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/normal.rst.txt"
+      <li><a href="_sources/normal.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -100,13 +270,13 @@ function of the temperature. From Physics, we know that</p>
         <li class="right" >
           <a href="iterative.html" title="4.4. Iterative Methods"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="linear.html" >4. Linear Systems of Equations</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="linear.html" >4. Linear Systems of Equations</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Mridul Aanjaneya.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+        &copy; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
     </div>
   </body>
 </html>

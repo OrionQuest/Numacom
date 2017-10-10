@@ -1,33 +1,35 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>3.6. Dictionaries &#8212; CS 323 1.0 documentation</title>
+    
+    <title>3.6. Dictionaries &mdash; CS 323 1.0 documentation</title>
+    
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
+        HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
+    <link rel="up" title="3. Getting Started with Python" href="python.html" />
     <link rel="next" title="3.7. User Inputs" href="user_input.html" />
     <link rel="prev" title="3.5. if/else Statements" href="if_else.html" /> 
   </head>
-  <body>
+  <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -40,8 +42,8 @@
         <li class="right" >
           <a href="if_else.html" title="3.5. if/else Statements"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="python.html" accesskey="U">3. Getting Started with Python</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="python.html" accesskey="U">3. Getting Started with Python</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -58,7 +60,7 @@ integers, floats, strings, lists, or even another dictionary (although in this
 case it is typically the value that is a dictionary, not the key). Unlike a list, a dictionary begins with
 curly braces <code class="docutils literal"><span class="pre">({})</span></code>, where each key-value pair is specified using the colon <code class="docutils literal"><span class="pre">:</span></code> operator.
 For example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">scorecard</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s1">&#39;CS 323&#39;</span><span class="p">,</span><span class="s1">&#39;hw&#39;</span><span class="p">:</span><span class="mi">92</span><span class="p">,</span><span class="s1">&#39;midterm&#39;</span><span class="p">:</span><span class="mi">85</span><span class="p">,</span><span class="s1">&#39;final&#39;</span><span class="p">:</span><span class="mi">95</span><span class="p">,</span><span class="s1">&#39;grade&#39;</span><span class="p">:</span><span class="s1">&#39;A&#39;</span><span class="p">}</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">scorecard</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s1">&#39;CS 323&#39;</span><span class="p">,</span><span class="s1">&#39;hw&#39;</span><span class="p">:</span><span class="mi">92</span><span class="p">,</span><span class="s1">&#39;midterm&#39;</span><span class="p">:</span><span class="mi">85</span><span class="p">,</span><span class="s1">&#39;final&#39;</span><span class="p">:</span><span class="mi">95</span><span class="p">,</span><span class="s1">&#39;grade&#39;</span><span class="p">:</span><span class="s1">&#39;A&#39;</span><span class="p">}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">scorecard</span>
 <span class="go">{&#39;final&#39;: 95, &#39;grade&#39;: &#39;A&#39;, &#39;midterm&#39;: 85, &#39;class&#39;: &#39;CS 323&#39;, &#39;hw&#39;: 92}</span>
 </pre></div>
@@ -68,7 +70,7 @@ to retrieve the value associated with a given key. If the key is not already
 present in the dictionary, then a new key-value pair is added to it, otherwise the original
 value is modified to the newly specified value. Similar to lists, entries within a dictionary
 can also be deleted using the <code class="docutils literal"><span class="pre">del</span></code> operator.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">scorecard</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">scorecard</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span>
 <span class="go">&#39;CS 323&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">scorecard</span><span class="p">[</span><span class="s1">&#39;hw&#39;</span><span class="p">]</span>
 <span class="go">92</span>
@@ -91,8 +93,8 @@ display. If only the keys are desired, but not the values, then the function
 dictionary. Likewise, if only the values are desired but not the keys, then the
 function <code class="docutils literal"><span class="pre">values</span></code> can be used which returns a list of all values in the
 dictionary.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">scorecard</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-<span class="gp">... </span>    <span class="nb">print</span> <span class="s1">&#39;Key: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;, Value: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">scorecard</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">print</span> <span class="s1">&#39;Key: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;, Value: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 <span class="gp">...</span>
 <span class="go">Key: grade, Value: A</span>
 <span class="go">Key: class-participation, Value: 0</span>
@@ -122,18 +124,21 @@ dictionary.</p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/dictionaries.rst.txt"
+      <li><a href="_sources/dictionaries.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -152,13 +157,13 @@ dictionary.</p>
         <li class="right" >
           <a href="if_else.html" title="3.5. if/else Statements"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="python.html" >3. Getting Started with Python</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="python.html" >3. Getting Started with Python</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Mridul Aanjaneya.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+        &copy; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
     </div>
   </body>
 </html>

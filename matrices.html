@@ -1,33 +1,35 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>2.2. Matrices &#8212; CS 323 1.0 documentation</title>
+    
+    <title>2.2. Matrices &mdash; CS 323 1.0 documentation</title>
+    
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
+        HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
+    <link rel="up" title="2. Vector and Matrix Algebra" href="algebra.html" />
     <link rel="next" title="2.3. Norms" href="norms.html" />
     <link rel="prev" title="2.1. Vectors" href="vectors.html" /> 
   </head>
-  <body>
+  <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -40,8 +42,8 @@
         <li class="right" >
           <a href="vectors.html" title="2.1. Vectors"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="algebra.html" accesskey="U">2. Vector and Matrix Algebra</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="algebra.html" accesskey="U">2. Vector and Matrix Algebra</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -106,7 +108,7 @@ A_{m1} &amp; A_{m2} &amp; \ldots &amp; A_{mn}
 \right)\end{split}\]</div>
 <p>In the example above, <span class="math">\(A_{ij}=v^j_i\)</span>. <a class="reference external" href="http://www.numpy.org/">NumPy</a> has a <code class="docutils literal"><span class="pre">matrix</span></code> class to conveniently define
 <span class="math">\(m\times n\)</span> matrices, as shown below:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]])</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
 <span class="go">    [4, 5, 6],</span>
@@ -154,7 +156,7 @@ is an arbitrary scalar, then it follows that:</p>
 A(\alpha x) &amp;=&amp; \enspace \alpha Ax\end{split}\]</div>
 <p>Matrix-vector products can be computed in <a class="reference external" href="http://www.numpy.org/">NumPy</a> using
 the <code class="docutils literal"><span class="pre">dot</span></code> operator, as shown below:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]])</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 <span class="go">array([ 41,  95, 149])</span>
@@ -167,7 +169,7 @@ provide, we will show an example from image processing where we will
 blur an image by casting the problem as a matrix-vector multiplication.
 However, first we must outline how to read an image in <a class="reference external" href="https://www.python.org/">Python</a>
 using the <code class="docutils literal"><span class="pre">matplotlib</span></code> package. Consider reading this <a class="reference external" href="_images/chill.jpg">image</a>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">I</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;chill.jpg&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
 <span class="go">&lt;matplotlib.image.AxesImage object at 0x7f22b353d390&gt;</span>
@@ -179,9 +181,9 @@ using the <code class="docutils literal"><span class="pre">matplotlib</span></co
 <p>In our case, it is more convenient to operate on grayscale images. We
 will use the <a class="reference external" href="http://www.pythonware.com/products/pil/">PIL</a> package in <a class="reference external" href="https://www.python.org/">Python</a>
 for this purpose.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">PIL</span> <span class="k">import</span> <span class="n">Image</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fname</span><span class="o">=</span><span class="s1">&#39;chill.jpg&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;L&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
@@ -200,11 +202,11 @@ its neighbors:</p>
 <p>Since our blurring code is substantially more complex than anything else we
 have encountered so far, for convenience of execution, we will copy all the
 code into a file named <code class="docutils literal"><span class="pre">blur.py</span></code>, as shown below:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># blur.py</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="k">import</span> <span class="n">Image</span>
-<span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="k">import</span> <span class="n">lil_matrix</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># blur.py</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">lil_matrix</span>
 
 <span class="c1"># read image file</span>
 <span class="n">fname</span> <span class="o">=</span> <span class="s1">&#39;chill.jpg&#39;</span>
@@ -252,7 +254,7 @@ code into a file named <code class="docutils literal"><span class="pre">blur.py<
 <p>Several new concepts have been introduced in the code above. The image array
 <code class="docutils literal"><span class="pre">arr</span></code> can be thought of as a column vector <code class="docutils literal"><span class="pre">x</span></code> so that it can be
 multiplied by a matrix. Here, we see the generality of the concept of a
-vector – an <span class="math">\(m\times n\)</span> image corresponds to a <span class="math">\(mn\)</span>-dimensional
+vector &#8211; an <span class="math">\(m\times n\)</span> image corresponds to a <span class="math">\(mn\)</span>-dimensional
 vector. We first construct a <span class="math">\(mn\times mn\)</span> matrix <span class="math">\(A\)</span> to encode
 the blurring action. Since densely allocating this matrix would incur a
 substantial memory overhead, we allocate a <em>sparse</em> matrix instead using the
@@ -266,7 +268,7 @@ The <code class="docutils literal"><span class="pre">blur</span></code> function
 and stores the result back into the image. We run this function <span class="math">\(20\)</span>
 times to exaggerate the overall effect. To run the above code, simply
 execute the following command:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="n">blur</span><span class="o">.</span><span class="n">py</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="n">blur</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
 <p>This may take some time depending upon the speed of your computer, because
@@ -351,13 +353,13 @@ Algebra:</p>
 <span class="math">\(b\)</span> are dependent on the dimensions of <span class="math">\(A\)</span> and <span class="math">\(x\)</span>:</p>
 <div class="math">
 \[b_{m\times 1} = A_{m\times n}\cdot x_{n\times 1}\]</div>
-<p>The “middle” dimension <span class="math">\(n\)</span> has to be the same for both <span class="math">\(A\)</span> and
+<p>The &#8220;middle&#8221; dimension <span class="math">\(n\)</span> has to be the same for both <span class="math">\(A\)</span> and
 <span class="math">\(x\)</span> and is consumed as a result of the multiplication. This same principle also applies to the case of multiplying two arbitrary matrices,
 i.e., if <span class="math">\(A\in\mathbb R^{m\times n}\)</span> and <span class="math">\(B\in\mathbb R^{n\times
 p}\)</span> are two matrices, then their product <span class="math">\(C=A\cdot B\in\mathbb R^{m\times p}\)</span>. The <code class="docutils literal"><span class="pre">dot</span></code> operator
 in <a class="reference external" href="http://www.numpy.org/">NumPy</a> can also be used for multiplying two
 matrices, as shown below:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">],[</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">]])</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">],[</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <span class="go">matrix([[ 1,  2,  3,  4],</span>
 <span class="go">        [ 5,  6,  7,  8],</span>
@@ -390,7 +392,7 @@ A_{1n} &amp; A_{2n} &amp; \ldots &amp; A_{mn}
 <p>Thus, <span class="math">\((A^T)_{ij}=A_{ji}\)</span>, i.e., the transpose of a matrix is obtained by
 <em>flipping</em> the original matrix over its diagonal. The <code class="docutils literal"><span class="pre">transpose</span></code> operator in <a class="reference external" href="http://www.numpy.org/">NumPy</a>
 can be used for computing the transpose of a given matrix, as shown below:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">],[</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">]])</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">],[</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <span class="go">matrix([[ 1,  2,  3,  4],</span>
 <span class="go">        [ 5,  6,  7,  8],</span>
@@ -433,18 +435,21 @@ of linearly independent rows in <span class="math">\(A\)</span>. Thus, it follow
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/matrices.rst.txt"
+      <li><a href="_sources/matrices.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -463,13 +468,13 @@ of linearly independent rows in <span class="math">\(A\)</span>. Thus, it follow
         <li class="right" >
           <a href="vectors.html" title="2.1. Vectors"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="algebra.html" >2. Vector and Matrix Algebra</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="algebra.html" >2. Vector and Matrix Algebra</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Mridul Aanjaneya.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+        &copy; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
     </div>
   </body>
 </html>

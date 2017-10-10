@@ -1,33 +1,35 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>1.3. Floating-point Arithmetic &#8212; CS 323 1.0 documentation</title>
+    
+    <title>1.3. Floating-point Arithmetic &mdash; CS 323 1.0 documentation</title>
+    
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
+        HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
+    <link rel="up" title="1. Introduction" href="intro.html" />
     <link rel="next" title="1.4. Error Analysis" href="error_analysis.html" />
     <link rel="prev" title="1.2. Order Notation" href="order.html" /> 
   </head>
-  <body>
+  <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -40,8 +42,8 @@
         <li class="right" >
           <a href="order.html" title="1.2. Order Notation"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">1. Introduction</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">1. Introduction</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -60,7 +62,7 @@ numbers <span class="math">\(\mathbb R\)</span> using the <em>scientific notatio
 number <span class="math">\(x\)</span> (assuming <span class="math">\(x\)</span> is a terminating decimal number, with
 finite non-zero digits) we can write:</p>
 <div class="math">
-\[x=a\times 10^b, \enspace\enspace\enspace\mbox{where}\enspace\enspace1\leq\vert a\vert&lt;10\]</div>
+\[\begin{split}x=a\times 10^b, \enspace\enspace\enspace\mbox{where}\enspace\enspace1\leq\vert a\vert&lt;10\end{split}\]</div>
 <p>The only exception is <span class="math">\(x=0\)</span>, where we simply set <span class="math">\(a=b=0\)</span>. Every
 decimal (or base <span class="math">\(10\)</span>) number can be written as:</p>
 <div class="math">
@@ -152,7 +154,7 @@ approximated to <span class="math">\(5\)</span> binary significant digits as <sp
 rounded.</p>
 <p><a class="reference external" href="https://www.python.org/">Python</a> has a built-in function <code class="docutils literal"><span class="pre">round</span></code> for
 rounding decimal numbers, as shown below:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">math</span> <span class="k">import</span> <span class="n">pi</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pi</span>
 <span class="go">3.141592653589793</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="n">pi</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
@@ -164,7 +166,7 @@ rounding decimal numbers, as shown below:</p>
 <p>There are no built-in functions for truncating a number. However, the following
 <code class="docutils literal"><span class="pre">truncate</span></code> function can be readily defined and allows us to truncate numbers similar to the
 <code class="docutils literal"><span class="pre">round</span></code> function shown above.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">math</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">math</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">truncate</span><span class="p">(</span><span class="n">number</span><span class="p">,</span><span class="n">digits</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">stepper</span><span class="o">=</span><span class="nb">pow</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span><span class="n">digits</span><span class="p">)</span>
 <span class="gp">... </span>    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">trunc</span><span class="p">(</span><span class="n">stepper</span><span class="o">*</span><span class="n">number</span><span class="p">)</span><span class="o">/</span><span class="n">stepper</span>
@@ -186,9 +188,9 @@ will define the machine <span class="math">\(\varepsilon\)</span> as the smalles
 number, such that:</p>
 <div class="math">
 \[1 + \varepsilon \neq 1,\enspace\enspace\enspace\enspace\mbox{(on the computer)}\]</div>
-<p>Why isn’t the above inequality always true, for any <span class="math">\(\varepsilon &gt; 0\)</span>? The
+<p>Why isn&#8217;t the above inequality always true, for any <span class="math">\(\varepsilon &gt; 0\)</span>? The
 reason is that when subject to limitations imposed by the computer precision,
-some numbers are “too small” to affect the result of an operation, for example:</p>
+some numbers are &#8220;too small&#8221; to affect the result of an operation, for example:</p>
 <div class="math">
 \[\begin{split}1                       &amp;=&amp; \enspace 1.\underbrace{000\ldots 000}_{\mbox{23 digits}}\times 2^0 \\
 2^{-25}                 &amp;=&amp; \enspace 0.\underbrace{000\ldots 000}_{\mbox{23 digits}}01\times 2^0 \\
@@ -199,7 +201,7 @@ as the representation of the number <span class="math">\(x=1\)</span>! Thus, on 
 <span class="math">\(1+2^{-25} = 1\)</span>, and consequently <span class="math">\(2^{-25}\)</span> is smaller than the
 machine epsilon. Notice that the smallest positive number that would actually
 achieve <span class="math">\(1+\varepsilon\neq 1\)</span> with single precision machine numbers is
-<span class="math">\(\varepsilon=2^{-24}\)</span> (and we are even relying on a “round upwards”
+<span class="math">\(\varepsilon=2^{-24}\)</span> (and we are even relying on a &#8220;round upwards&#8221;
 convention for tie breaking to come up with a value this small), which will be
 called the machine <span class="math">\(\varepsilon\)</span> in this case. For double precision, the
 machine <span class="math">\(\varepsilon\)</span> is <span class="math">\(2^{-53}\)</span>.</p>
@@ -209,18 +211,18 @@ available on the computer. Thus, if <span class="math">\(q&gt;0\)</span> is the 
 quantity, and <span class="math">\(\bar q\)</span> is the closest machine-precision approximation,
 then:</p>
 <div class="math" id="equation-relative-error">
-<span class="eqno">(1)<a class="headerlink" href="#equation-relative-error" title="Permalink to this equation">¶</a></span>\[\left|\frac{q-\bar q}{q}\right| \leq \varepsilon\]</div>
+<span class="eqno">(1)</span>\[\left|\frac{q-\bar q}{q}\right| \leq \varepsilon\]</div>
 <p>where <span class="math">\(\varepsilon\)</span> is the machine epsilon for the degree of precision
 used. By letting <span class="math">\(\delta = (\bar q-q)/q\)</span>, we can write inequality
-<a class="reference internal" href="#equation-relative-error">(1)</a> in the following form:</p>
+<a href="#equation-relative-error">(1)</a> in the following form:</p>
 <div class="math" id="equation-machine-error">
-<span class="eqno">(2)<a class="headerlink" href="#equation-machine-error" title="Permalink to this equation">¶</a></span>\[\bar q = q(1+\delta),\enspace\enspace\enspace |\delta|\leq\varepsilon\]</div>
+<span class="eqno">(2)</span>\[\bar q = q(1+\delta),\enspace\enspace\enspace |\delta|\leq\varepsilon\]</div>
 <p><a class="reference external" href="http://www.numpy.org/">NumPy</a>
 provides the function <code class="docutils literal"><span class="pre">finfo</span></code> to retrieve the machine epsilon, as shown below:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span>     <span class="c1"># single precision</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span>     <span class="c1"># single precision</span>
 <span class="go">1.19209e-07</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span>          <span class="c1"># double precision</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span>          <span class="c1"># double precision</span>
 <span class="go">2.22044604925e-16</span>
 </pre></div>
 </div>
@@ -253,18 +255,21 @@ provides the function <code class="docutils literal"><span class="pre">finfo</sp
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/precision.rst.txt"
+      <li><a href="_sources/precision.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -283,13 +288,13 @@ provides the function <code class="docutils literal"><span class="pre">finfo</sp
         <li class="right" >
           <a href="order.html" title="1.2. Order Notation"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="intro.html" >1. Introduction</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="intro.html" >1. Introduction</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Mridul Aanjaneya.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+        &copy; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
     </div>
   </body>
 </html>

@@ -1,33 +1,35 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>3.1. Variables and Data Types &#8212; CS 323 1.0 documentation</title>
+    
+    <title>3.1. Variables and Data Types &mdash; CS 323 1.0 documentation</title>
+    
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
+        HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
+    <link rel="up" title="3. Getting Started with Python" href="python.html" />
     <link rel="next" title="3.2. Lists" href="lists.html" />
     <link rel="prev" title="3. Getting Started with Python" href="python.html" /> 
   </head>
-  <body>
+  <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -40,8 +42,8 @@
         <li class="right" >
           <a href="python.html" title="3. Getting Started with Python"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="python.html" accesskey="U">3. Getting Started with Python</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="python.html" accesskey="U">3. Getting Started with Python</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -62,7 +64,7 @@ naming variables as <a class="reference external" href="https://en.wikipedia.org
 so we will not repeat them here for brevity. The value of any variable can be
 printed using the <code class="docutils literal"><span class="pre">print</span></code> keyword. Some examples of variable
 assignments are given below:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myint</span> <span class="o">=</span> <span class="mi">7</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">myint</span> <span class="o">=</span> <span class="mi">7</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myfloat</span> <span class="o">=</span> <span class="mf">7.0</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mystring</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span>
 </pre></div>
@@ -73,8 +75,8 @@ assignments are given below:</p>
 double quotes constitute a string in <a class="reference external" href="https://www.python.org/">Python</a>. This
 gives flexibility in using both quotes and apostrophes within strings, as shown
 below:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mystring</span> <span class="o">=</span> <span class="s1">&#39;&quot;Come into my parlor&quot;, said the spider to the fly.&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">mystring</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mystring</span> <span class="o">=</span> <span class="s1">&#39;&quot;Come into my parlor&quot;, said the spider to the fly.&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">mystring</span>
 <span class="go">&quot;Come into my parlor&quot;, said the spider to the fly.</span>
 </pre></div>
 </div>
@@ -84,7 +86,7 @@ which capitalizes the first letter of every word, <code class="docutils literal"
 all letters, <code class="docutils literal"><span class="pre">lower</span></code> which converts all characters to lower case, or <code class="docutils literal"><span class="pre">rstrip</span></code>
 which deletes all whitespaces, just to name a few. Note that a number can also
 be converted into string using the <code class="docutils literal"><span class="pre">str</span></code> keyword, as shown below:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mystring</span> <span class="o">=</span> <span class="s2">&quot;Index &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; has value: &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mystring</span> <span class="o">=</span> <span class="s2">&quot;Index &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; has value: &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mystring</span>
 <span class="go">&#39;Index 23 has value: 1.5&#39;</span>
 </pre></div>
@@ -99,7 +101,7 @@ string processing with <a class="reference external" href="https://www.python.or
 usual addition (<code class="docutils literal"><span class="pre">+</span></code>), subtraction (<code class="docutils literal"><span class="pre">-</span></code>), multiplication (<code class="docutils literal"><span class="pre">*</span></code>),
 division (<code class="docutils literal"><span class="pre">/</span></code>), and modulo (<code class="docutils literal"><span class="pre">%</span></code>) operators. Additionally, one can raise a number to a specified
 power using the double-multiplication (<code class="docutils literal"><span class="pre">**</span></code>) operator.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">+</span><span class="n">b</span>
 <span class="go">8</span>
@@ -119,7 +121,7 @@ power using the double-multiplication (<code class="docutils literal"><span clas
 integers, so the <code class="docutils literal"><span class="pre">/</span></code> operator corresponds to <em>integer division</em>. If we wanted
 a floating-point value, we can explicitly convert one argument to <code class="docutils literal"><span class="pre">float</span></code>, as
 shown below:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">float</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">b</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">float</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">b</span>
 <span class="go">1.6666666666666667</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 <span class="go">1.6666666666666667</span>
@@ -133,7 +135,7 @@ chapter. Such numbers support all the usual arithmetic operators as integers.
 The modulo (<code class="docutils literal"><span class="pre">%</span></code>) operator generalizes to <em>include</em> the fractional part in this case. A floating-point number can be explicitly
 converted to an integer using the <code class="docutils literal"><span class="pre">int</span></code> keyword. This is also useful for
 extracting the fractional part, as shown below:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mf">5.3</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mf">5.3</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>              <span class="c1"># integer part</span>
 <span class="go">5</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">-</span><span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>            <span class="c1"># fractional part</span>
@@ -179,18 +181,21 @@ representations.</p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/variables.rst.txt"
+      <li><a href="_sources/variables.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -209,13 +214,13 @@ representations.</p>
         <li class="right" >
           <a href="python.html" title="3. Getting Started with Python"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="python.html" >3. Getting Started with Python</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="python.html" >3. Getting Started with Python</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Mridul Aanjaneya.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+        &copy; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
     </div>
   </body>
 </html>
