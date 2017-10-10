@@ -20,3 +20,4 @@ into an equivalent, but easier system (or systems) to solve.
     Lower Triangular Systems <lower>
     LU Decomposition <lu_decomp>
     Iterative Methods <iterative>
+    Overdetermined Systems <normal>
