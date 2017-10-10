@@ -1,0 +1,236 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>4.4. Iterative Methods &#8212; CS 323 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="4.3. LU Decomposition" href="lu_decomp.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="lu_decomp.html" title="4.3. LU Decomposition"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="linear.html" accesskey="U">4. Linear Systems of Equations</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="iterative-methods">
+<h1>4.4. Iterative Methods<a class="headerlink" href="#iterative-methods" title="Permalink to this headline">¶</a></h1>
+<p>The general idea for iterative methods proceeds as follows:</p>
+<ul>
+<li><p class="first">We write a (matrix) equation:</p>
+<div class="math">
+\[x = Tx + c\]</div>
+<p>in such a way that this equation is equivalent to solving <span class="math">\(Ax=b\)</span>.</p>
+</li>
+<li><p class="first">We start with an initial guess <span class="math">\(x^{(0)}\)</span> for the solution of <span class="math">\(Ax=b\)</span>.</p>
+</li>
+<li><p class="first">We iterate</p>
+<div class="math">
+\[x^{(k+1)} = Tx^{(k)} + c\]</div>
+</li>
+<li><p class="first">If properly designed the sequence <span class="math">\(x^{(0)},x^{(1)},\ldots,x^{(k)},\ldots\)</span>
+<em>converges</em> to <span class="math">\(x^\star\)</span>, which satisfies <span class="math">\(x^\star = Tx^\star + c\)</span>
+and consequently <span class="math">\(Ax^\star = b\)</span>.</p>
+</li>
+</ul>
+<div class="section" id="the-jacobi-method">
+<h2>4.4.1. The Jacobi Method<a class="headerlink" href="#the-jacobi-method" title="Permalink to this headline">¶</a></h2>
+<p>We decompose</p>
+<div class="math">
+\[A = D - L - U\]</div>
+<p>where <span class="math">\(D\)</span> is the diagonal part, <span class="math">\(L\)</span> is the lower triangular part,
+and <span class="math">\(U\)</span> is the upper triangular part. Substituting this expression in
+<span class="math">\(Ax=b\)</span> gives us the following equation:</p>
+<div class="math">
+\[\begin{split}(D-L-U)x        &amp; = &amp; \enspace b \\
+\Rightarrow Dx  &amp; = &amp; \enspace (L+U)x + b \\
+\Rightarrow x   &amp; = &amp; \enspace \underbrace{D^{-1}(L+U)}_{T}x+\underbrace{D^{-1}b}_c \enspace\enspace\enspace (x=Tx+c)\end{split}\]</div>
+<p>The above equation can be cast into the iteration <span class="math">\(\boxed{x^{(k+1)}=D^{-1}(L+U)x^{(k)}+D^{-1}b}\)</span> or <span class="math">\(\boxed{Dx^{(k+1)}=(L+U)x^{(k)}+b}\)</span></p>
+<ul>
+<li><p class="first"><strong>Solution</strong> Easy, since we need to solve a linear system of equations with diagonal coefficient matrix</p>
+<div class="math">
+\[\begin{split}\left[
+\begin{array}{cccc}
+d_1 &amp; &amp; &amp; \\
+&amp; d_2 &amp; &amp; \\
+&amp; &amp; \ddots &amp; \\
+&amp; &amp; &amp; d_n
+\end{array}
+\right]
+\left[
+\begin{array}{c}
+x_1^{(k+1)} \\
+x_2^{(k+1)} \\
+\vdots \\
+x_n^{(k+1)}
+\end{array}
+\right]=\left[
+\begin{array}{c}
+c_1 \\
+c_2 \\
+\vdots \\
+c_n
+\end{array}
+\right] \Rightarrow x_i^{(k+1)}=\frac{c_i}{d_i}\end{split}\]</div>
+</li>
+<li><p class="first"><strong>Convergence</strong> The Jacobi method if <em>guaranteed</em> to converge when <span class="math">\(A\)</span> is
+diagonally dominant by rows.</p>
+</li>
+<li><p class="first"><strong>Complexity</strong> Each iteration has a cost associated with:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Solving <span class="math">\(Dx^{(k+1)}=c\)</span> which requires <span class="math">\(n\)</span> divisions.</li>
+<li>Computing <span class="math">\(x=(L+U)x^{(k)}+b\)</span> which requires as many additions and
+multiplications as <em>non-zero</em> entries in <span class="math">\(A\)</span> (worst case <span class="math">\(O(n^2)\)</span>, but
+could be <span class="math">\(O(n)\)</span> for sparse matrices).</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Stopping criteria</strong> <span class="math">\(||b-Ax^{(k)}||&lt;\varepsilon\)</span> or <span class="math">\(||x^{(k+1)}-x^{(k)}||&lt;\varepsilon\)</span></p>
+</li>
+</ul>
+<p>There are three forms of this algorithm we will see, for different purposes:</p>
+<ol class="arabic">
+<li><p class="first">Matrix form (for proofs) <span class="math">\(Dx^{(k+1)}=(L+U)x^{(k)}+b\)</span>.</p>
+</li>
+<li><p class="first">Algorithm form (without in-place update). Each row of <span class="math">\(Dx^{(k+1)}=(L+U)x^{(k)}+b\)</span> can be written as:</p>
+<div class="math">
+\[\begin{split}a_{ii}x_i^{(k+1)} &amp;=&amp; \enspace b_i-\sum_{j\neq i} a_{ij}x_j^{(k)} \\
+\Rightarrow x_i^{(k+1)} &amp;=&amp; \enspace \frac{1}{a_{ii}}\left(b_i-\sum_{j\neq i}a_{ij}x_j^{(k)}\right)\end{split}\]</div>
+<p>Note that memory requirements in this version are high, as every iteration
+<span class="math">\(k\)</span> stores a new copy of the solution vector <span class="math">\(x^{(k)}\)</span>.</p>
+</li>
+<li><p class="first">In-place algorithm, maintains two copies <span class="math">\(x, x^\textsf{new}\)</span>
+of the solution vector, and uses the following update rule:</p>
+<div class="math">
+\[x_i^{\textsf{new}} \leftarrow \frac{1}{a_{ii}}\left(b_i-\sum_{j\neq i}a_{ij}x_j\right)\]</div>
+</li>
+</ol>
+</div>
+<div class="section" id="the-gauss-seidel-method">
+<h2>4.4.2. The Gauss-Seidel Method<a class="headerlink" href="#the-gauss-seidel-method" title="Permalink to this headline">¶</a></h2>
+<p>We again employ the decomposition <span class="math">\(A = D-L-U\)</span> for solving <span class="math">\(Ax=b\)</span>:</p>
+<div class="math">
+\[\begin{split}(D-L-U)x            &amp; = &amp; \enspace b \\
+\Rightarrow (D-L)x  &amp; = &amp; \enspace Ux + b\end{split}\]</div>
+<p>At this point, we place <span class="math">\(x^{(k+1)}\)</span> on the left hand side and <span class="math">\(x^{(k)}\)</span> on
+the right hand side</p>
+<div class="math" id="equation-gauss-seidel">
+<span class="eqno">(1)<a class="headerlink" href="#equation-gauss-seidel" title="Permalink to this equation">¶</a></span>\[\boxed{(D-L)x^{(k+1)}=Ux^{(k)}+b}\]</div>
+<p>The benefit of the Gauss-Seidel method <a class="reference internal" href="#equation-gauss-seidel">(1)</a> over Jacobi is
+the improved convergence. In terms of complexity, each iteration of equation
+<a class="reference internal" href="#equation-gauss-seidel">(1)</a> amounts to solving a lower triangular system via forward
+substitution, i.e., it incurs a cost of <span class="math">\(O(k)\)</span>, where <span class="math">\(k\)</span> is the
+number of non-zero entries in <span class="math">\(A\)</span>. In terms of update, equation
+<a class="reference internal" href="#equation-gauss-seidel">(1)</a> takes the following form:</p>
+<ul>
+<li><p class="first">Without in-place update.</p>
+<div class="math">
+\[x_i^{(k+1)} \leftarrow \frac{1}{a_{ii}}\left(b_i-\sum_{j&lt;i}a_{ij}x_j^{(k+1)}-\sum_{j&gt;i}a_{ij}x_j^{(k)}\right)\]</div>
+<p>Once again, this version incurs a high memory overhead because a new solution
+vector <span class="math">\(x^{(k)}\)</span> is created for every iteration <span class="math">\(k\)</span>.</p>
+</li>
+<li><p class="first">In place update, which as before, maintains only two copies
+<span class="math">\(x,x^\textsf{new}\)</span> of the solution vector.</p>
+<div class="math">
+\[x_i^{\textsf{new}} \leftarrow \frac{1}{a_{ii}}\left(b_i-\sum_{j&lt;i}a_{ij}x_j^{\textsf{new}}-\sum_{j&gt;i}a_{ij}x_j\right)\]</div>
+<p>Compare the above in-place update with that for Jacobi.</p>
+</li>
+</ul>
+<p>The real difference in performance is that Gauss-Seidel is generally
+<em>serial</em> in nature (although parallel variants do exist), while Jacobi is
+<em>highly parallel</em>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">4.4. Iterative Methods</a><ul>
+<li><a class="reference internal" href="#the-jacobi-method">4.4.1. The Jacobi Method</a></li>
+<li><a class="reference internal" href="#the-gauss-seidel-method">4.4.2. The Gauss-Seidel Method</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="lu_decomp.html"
+                        title="previous chapter">4.3. LU Decomposition</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/iterative.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="lu_decomp.html" title="4.3. LU Decomposition"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="linear.html" >4. Linear Systems of Equations</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+  </body>
+</html>
