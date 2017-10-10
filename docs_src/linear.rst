@@ -19,3 +19,4 @@ into an equivalent, but easier system (or systems) to solve.
     Upper Triangular Systems <upper>
     Lower Triangular Systems <lower>
     LU Decomposition <lu_decomp>
+    Iterative Methods <iterative>
