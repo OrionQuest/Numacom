@@ -111,8 +111,8 @@ The code below implements the in-place algorithm mentioned in step 3) above. ::
             return
     
         # initialize x and x_new
-        x = np.zeros(3)
-        x_n = np.zeros(3)
+        x = np.zeros(m)
+        x_n = np.zeros(m)
     
         # counter for number of iterations
         iterations = 0
@@ -202,8 +202,8 @@ mentioned above. ::
             return
     
         # initialize x and x_new
-        x = np.zeros(3)
-        x_n = np.zeros(3)
+        x = np.zeros(m)
+        x_n = np.zeros(m)
     
         # counter for number of iterations
         iterations = 0
