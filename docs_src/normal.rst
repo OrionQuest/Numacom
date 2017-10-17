@@ -205,3 +205,84 @@ system that has as solution the least-squares approximation of :math:`Ax\approx 
 
 The normal equations *always* have a solution (with the simple condition
 that the columns of :math:`A` have to be linearly independent, which is usually true).
+
+:math:`QR` factorization
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+While the normal equations can adequately compute the least squares solution,
+the condition number of :math:`A^TA` is the *square* of that of :math:`A` (if
+:math:`A` was a square matrix). An alternative method that does not suffer from
+this problematic conditioning is :math:`QR` factorization.
+
+.. topic:: Definition
+
+    An :math:`n\times n` matrix :math:`Q` is called *orthonormal* if and only if
+
+    .. math::
+
+        Q^TQ=QQ^T=I
+
+.. topic:: Theorem
+
+    Let :math:`A\in\mathbb R^{m\times n}` (:math:`m>n`) have linearly independent columns. Then
+    a decomposition :math:`A=QR` exists, such that :math:`Q\in\mathbb R^{m\times m}` is
+    orthonormal and :math:`R\in\mathbb R^{m\times n}` is upper triangular, i.e.,
+
+    .. math::
+        
+        R=\left(
+        \begin{array}{c}
+        \hat R \\
+        O
+        \end{array}
+        \right)
+
+    where :math:`\hat R` is an :math:`n\times n` upper triangular matrix. Additionally, given
+    that :math:`A` has linearly independent columns, all diagonal elements :math:`r_{ii}\neq 0`.
+
+Now, let us write
+
+.. math::
+    
+    Q=\left[
+    \begin{array}{c|c}
+    \hat Q & Q^\star
+    \end{array}
+    \right]
+
+where :math:`\hat Q\in\mathbb R^{m\times n}` contains the first :math:`n` columns of :math:`Q` and
+:math:`Q^\star\in\mathbb R^{m\times (m-n)}`  contains the last :math:`(m-n)` columns.
+Respectively, we write:
+
+.. math::
+
+    R=\left(
+    \begin{array}{c}
+    \hat R \\
+    O
+    \end{array}
+    \right)
+
+where :math:`\hat R\in\mathbb R^{n\times n}` (and upper triangular) contains the first
+:math:`n` rows of :math:`R`. :math:`\hat R` is also *non-singular* because it has linearly
+independent columns. We can verify the following:
+
+.. math::
+
+    \hat Q^T\hat Q=I_{n\times n}\enspace\enspace\enspace(\mbox{although } \hat Q\hat Q^T\neq I_{m\times m}!)
+
+The factorization :math:`A=\hat Q\hat R` is the so-called *economy size* :math:`QR`
+factorization. Once we have :math:`\hat Q` and :math:`\hat R` computed, we observe that the
+normal equations can be written as:
+
+.. math::
+
+    A^TAx &=& \enspace A^Tb \nonumber \\
+    \Rightarrow \hat R^T\underbrace{\hat Q^T\hat Q}_{=I_{m\times m}}\hat R &=& \enspace \hat R^T\hat Q^Tb \nonumber \\
+    \Rightarrow \hat R^T\hat R &=& \enspace \hat R^T\hat Q^Tb \nonumber \\
+    \Rightarrow \boxed{\hat Rx=\hat Q^Tb}
+
+The last equality follows because :math:`\hat R` is invertible. The benefit of using the :math:`QR` factorization
+is that :math:`\textsf{cond}(A^TA)=[\textsf{cond}(\hat R)]^2`.
+Thus, the resulting equation is *much better* conditioned than the
+normal equations.
