@@ -226,6 +226,68 @@ system that has as solution the least-squares approximation of <span class="math
 \[\underbrace{A^T_{n\times m}A_{m\times n}}_{n\times n} \underbrace{x_{n\times 1}}_{n\times 1}=\underbrace{A^T_{n\times m}b_{m\times 1}}_{n\times 1}\]</div>
 <p>The normal equations <em>always</em> have a solution (with the simple condition
 that the columns of <span class="math">\(A\)</span> have to be linearly independent, which is usually true).</p>
+<div class="section" id="factorization">
+<h2>4.5.1. <span class="math">\(QR\)</span> factorization<a class="headerlink" href="#factorization" title="Permalink to this headline">¶</a></h2>
+<p>While the normal equations can adequately compute the least squares solution,
+the condition number of <span class="math">\(A^TA\)</span> is the <em>square</em> of that of <span class="math">\(A\)</span> (if
+<span class="math">\(A\)</span> was a square matrix). An alternative method that does not suffer from
+this problematic conditioning is <span class="math">\(QR\)</span> factorization.</p>
+<div class="topic">
+<p class="topic-title first">Definition</p>
+<p>An <span class="math">\(n\times n\)</span> matrix <span class="math">\(Q\)</span> is called <em>orthonormal</em> if and only if</p>
+<div class="math">
+\[Q^TQ=QQ^T=I\]</div>
+</div>
+<div class="topic">
+<p class="topic-title first">Theorem</p>
+<p>Let <span class="math">\(A\in\mathbb R^{m\times n}\)</span> (<span class="math">\(m&gt;n\)</span>) have linearly independent columns. Then
+a decomposition <span class="math">\(A=QR\)</span> exists, such that <span class="math">\(Q\in\mathbb R^{m\times m}\)</span> is
+orthonormal and <span class="math">\(R\in\mathbb R^{m\times n}\)</span> is upper triangular, i.e.,</p>
+<div class="math">
+\[\begin{split}R=\left(
+\begin{array}{c}
+\hat R \\
+O
+\end{array}
+\right)\end{split}\]</div>
+<p>where <span class="math">\(\hat R\)</span> is an <span class="math">\(n\times n\)</span> upper triangular matrix. Additionally, given
+that <span class="math">\(A\)</span> has linearly independent columns, all diagonal elements <span class="math">\(r_{ii}\neq 0\)</span>.</p>
+</div>
+<p>Now, let us write</p>
+<div class="math">
+\[\begin{split}Q=\left[
+\begin{array}{c|c}
+\hat Q &amp; Q^\star
+\end{array}
+\right]\end{split}\]</div>
+<p>where <span class="math">\(\hat Q\in\mathbb R^{m\times n}\)</span> contains the first <span class="math">\(n\)</span> columns of <span class="math">\(Q\)</span> and
+<span class="math">\(Q^\star\in\mathbb R^{m\times (m-n)}\)</span>  contains the last <span class="math">\((m-n)\)</span> columns.
+Respectively, we write:</p>
+<div class="math">
+\[\begin{split}R=\left(
+\begin{array}{c}
+\hat R \\
+O
+\end{array}
+\right)\end{split}\]</div>
+<p>where <span class="math">\(\hat R\in\mathbb R^{n\times n}\)</span> (and upper triangular) contains the first
+<span class="math">\(n\)</span> rows of <span class="math">\(R\)</span>. <span class="math">\(\hat R\)</span> is also <em>non-singular</em> because it has linearly
+independent columns. We can verify the following:</p>
+<div class="math">
+\[\hat Q^T\hat Q=I_{n\times n}\enspace\enspace\enspace(\mbox{although } \hat Q\hat Q^T\neq I_{m\times m}!)\]</div>
+<p>The factorization <span class="math">\(A=\hat Q\hat R\)</span> is the so-called <em>economy size</em> <span class="math">\(QR\)</span>
+factorization. Once we have <span class="math">\(\hat Q\)</span> and <span class="math">\(\hat R\)</span> computed, we observe that the
+normal equations can be written as:</p>
+<div class="math">
+\[\begin{split}A^TAx &amp;=&amp; \enspace A^Tb \nonumber \\
+\Rightarrow \hat R^T\underbrace{\hat Q^T\hat Q}_{=I_{m\times m}}\hat R &amp;=&amp; \enspace \hat R^T\hat Q^Tb \nonumber \\
+\Rightarrow \hat R^T\hat R &amp;=&amp; \enspace \hat R^T\hat Q^Tb \nonumber \\
+\Rightarrow \boxed{\hat Rx=\hat Q^Tb}\end{split}\]</div>
+<p>The last equality follows because <span class="math">\(\hat R\)</span> is invertible. The benefit of using the <span class="math">\(QR\)</span> factorization
+is that <span class="math">\(\textsf{cond}(A^TA)=[\textsf{cond}(\hat R)]^2\)</span>.
+Thus, the resulting equation is <em>much better</em> conditioned than the
+normal equations.</p>
+</div>
 </div>
 
 
@@ -234,6 +296,14 @@ that the columns of <span class="math">\(A\)</span> have to be linearly independ
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">4.5. Overdetermined Systems</a><ul>
+<li><a class="reference internal" href="#factorization">4.5.1. <span class="math">\(QR\)</span> factorization</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="iterative.html"
                         title="previous chapter">4.4. Iterative Methods</a></p>
