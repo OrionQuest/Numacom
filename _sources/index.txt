@@ -111,6 +111,7 @@ Contents:
     Vector and Matrix Algebra <algebra>
     Getting Started with Python <python>
     Linear Systems of Equations <linear>
+    Non-linear Equations <nonlinear>
 
 Coding Resources:
 -----------------
