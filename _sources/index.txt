@@ -90,6 +90,7 @@ News and Announcements:
 * (09/05) There is no recitation on Thursday (09/07).
 * (09/19) `Homework #1 <homeworks/homework1.html>`_ is out. Due on (10/03).
 * (10/03) `Homework #2 <homeworks/homework2.html>`_ is out. Due on (10/17).
+* (10/19) `Homework #1 Solutions <homeworks/hw1_solutions.pdf>`_ have been posted.
 
 .. toctree::
     :numbered:
