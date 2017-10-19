@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3. Homework #3 &mdash; CS 323 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CS 323 1.0 documentation" href="../index.html" />
+    <link rel="next" title="1. Introduction" href="../intro.html" />
+    <link rel="prev" title="2. Homework #2" href="homework2.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../intro.html" title="1. Introduction"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="homework2.html" title="2. Homework #2"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">CS 323 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="homework-3">
+<h1>3. Homework #3<a class="headerlink" href="#homework-3" title="Permalink to this headline">¶</a></h1>
+<p>For all programming assignments, please turn in your code along with your
+solution. Submissions should be made on Sakai.</p>
+<div class="topic">
+<p class="topic-title first">Problem 1</p>
+<p>In this problem, you will construct a proof that the Jacobi method converges
+when applied to matrices that are diagonally dominant. In the following
+subproblems, you are free to use any of the individual questions (even if
+you did not prove it) to answer the ones that come after it.</p>
+<ol class="loweralpha">
+<li><p class="first">If <span class="math">\(x\in\mathbb R^n\)</span> and <span class="math">\(T\)</span> is an <span class="math">\(n\times n\)</span> matrix,
+show that for any positive integer <span class="math">\(k\)</span> the following inequality
+holds:</p>
+<div class="math">
+\[\lVert T^k x\rVert \leq \lVert T\rVert^k \lVert x\rVert\]</div>
+</li>
+<li><p class="first">Show that the Jacobi method can be written as:</p>
+<div class="math">
+\[x^{(k+1)} = Tx^{(k)} + c\]</div>
+<p>where <span class="math">\(T=D^{-1}(L+U)\)</span> (using the decomposition <span class="math">\(A = D - L - U\)</span>).</p>
+</li>
+<li><p class="first">Define the <em>error</em> after the <span class="math">\(k^{th}\)</span> iteration to be <span class="math">\(e^{(k)} = x^{(k)} - x^\star\)</span>,
+where <span class="math">\(x^\star\)</span> is the <em>exact</em> solution to the equation <span class="math">\(Ax=b\)</span>. Show that:</p>
+<div class="math">
+\[e^{(k+1)} = Te^{(k)}\]</div>
+<p><strong>Hint:</strong> You can use (after explaining why it is true) that <span class="math">\(x^\star = Tx^\star+c\)</span>.</p>
+</li>
+<li><p class="first">If <span class="math">\(A\)</span> is diagonally dominant by rows, and <span class="math">\(T\)</span> is the matrix
+defined in (b) above, show that <span class="math">\(\lVert T\rVert_\infty &lt; 1\)</span>.</p>
+<p><strong>Hint:</strong> The way to prove this question may become more apparent if you
+write out explicitly what the first few rows of <span class="math">\(T = D^{-1}(L+U)\)</span>
+look like.</p>
+</li>
+<li><p class="first">Show that when <span class="math">\(A\)</span> is diagonally dominant by rows, then:</p>
+<div class="math">
+\[\lVert e^{(k)}\rVert_\infty \leq \lVert T\rVert^k_\infty \lVert e^{(0)}\rVert_\infty\]</div>
+<p>Explain why this result implies that the Jacobi method is guaranteed to
+converge for matrices that are diagonally dominant with rows.</p>
+</li>
+</ol>
+</div>
+<div class="topic">
+<p class="topic-title first">Problem 2</p>
+<p>A polynomial <span class="math">\(p(t)\)</span> of degree <span class="math">\(n\)</span> is defined as:</p>
+<div class="math">
+\[p(t) = a_nt^n + a_{n-1}t^{n-1} + \ldots + a_1t + a_0\]</div>
+<p>For <span class="math">\(n = 0,1,\ldots,5\)</span>, fit a polynomial of degree <span class="math">\(n\)</span> by least
+squares to the following data:</p>
+<div class="math">
+\[\begin{split}\begin{array}{ccccccc}
+t &amp; 0.0 &amp; 1.0 &amp; 2.0 &amp; 3.0 &amp; 4.0 &amp; 5.0 \\
+y &amp; 1.0 &amp; 2.7 &amp; 5.8 &amp; 6.6 &amp; 7.5 &amp; 9.9
+\end{array}\end{split}\]</div>
+<p>Make a plot of the original data points along with each resulting polynomial
+curve (you may make separate graphs for each curve, or a single graph
+containing all of the curves). Which polynomial would you say captures the
+general trend of the data better?</p>
+</div>
+<div class="topic">
+<p class="topic-title first">Problem 3</p>
+<ol class="loweralpha">
+<li><p class="first">Solve the following least squares problem using the normal equations:</p>
+<div class="math">
+\[\begin{split}\left[\begin{array}{cc}
+0.16 &amp; 0.10 \\
+0.17 &amp; 0.11 \\
+2.02 &amp; 1.29
+\end{array}\right]\left[\begin{array}{c}
+x_1 \\
+x_2
+\end{array}\right] \cong \left[\begin{array}{c}
+0.26 \\
+0.28 \\
+3.31
+\end{array}\right]\end{split}\]</div>
+</li>
+<li><p class="first">Now solve the same least squares problem again, but this time use the
+slightly perturbed right-hand side:</p>
+<div class="math">
+\[\begin{split}b = \left[\begin{array}{c}
+0.27 \\
+0.25 \\
+3.33
+\end{array}\right]\end{split}\]</div>
+</li>
+<li><p class="first">Compare your results from parts (a) and (b). Can you explain this
+difference?</p>
+<p><strong>Hint:</strong> Use the function <code class="docutils literal"><span class="pre">np.linalg.cond</span></code> to compute the condition
+number of <span class="math">\(A^TA\)</span> in different norms.</p>
+</li>
+</ol>
+</div>
+<div class="topic">
+<p class="topic-title first">Problem 4</p>
+<ol class="loweralpha">
+<li><p class="first">Show that the matrix</p>
+<div class="math">
+\[\begin{split}A = \left[\begin{array}{ccc}
+0.1 &amp; 0.2 &amp; 0.3 \\
+0.4 &amp; 0.5 &amp; 0.6 \\
+0.7 &amp; 0.8 &amp; 0.9
+\end{array}\right]\end{split}\]</div>
+<p>is singular. Describe the set of solutions to the system <span class="math">\(Ax = b\)</span> if</p>
+<div class="math">
+\[\begin{split}b = \left[\begin{array}{c}
+0.1 \\
+0.3 \\
+0.5
+\end{array}\right]\end{split}\]</div>
+</li>
+<li><p class="first">If we were to use Gaussian Elimination with partial pivoting to solve
+this system using <em>exact</em> arithmetic, at what point would the process
+fail?</p>
+</li>
+<li><p class="first">Because some of the entries of <span class="math">\(A\)</span> are not exactly representable
+in a binary floating-point system, the matrix is no longer exactly
+singular when entered into a computer. Thus, solving the system by
+Gaussian Elimination will not necessarily fail. Compare the computed
+solution with your description of the solution set in part (a). What is
+the estimated value of the condition number <span class="math">\(\kappa(A)\)</span>? How many
+digits of accuracy would this lead you to expect?</p>
+</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="homework2.html"
+                        title="previous chapter">2. Homework #2</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../intro.html"
+                        title="next chapter">1. Introduction</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/homeworks/homework3.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../intro.html" title="1. Introduction"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="homework2.html" title="2. Homework #2"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">CS 323 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>
