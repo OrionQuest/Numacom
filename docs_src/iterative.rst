@@ -30,7 +30,8 @@ We decompose
     A = D - L - U
 
 where :math:`D` is the diagonal part, :math:`L` is the lower triangular part,
-and :math:`U` is the upper triangular part. Substituting this expression in
+and :math:`U` is the upper triangular part. Note that all diagonal elements in :math:`L` and :math:`U`
+are zero. Substituting this expression in
 :math:`Ax=b` gives us the following equation:
 
 .. math::
