@@ -1,35 +1,33 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>4.4. Iterative Methods &mdash; CS 323 1.0 documentation</title>
-    
+    <title>4.4. Iterative Methods &#8212; CS 323 1.0 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
-    <link rel="up" title="4. Linear Systems of Equations" href="linear.html" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="4.5. Overdetermined Systems" href="normal.html" />
     <link rel="prev" title="4.3. LU Decomposition" href="lu_decomp.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -42,8 +40,8 @@
         <li class="right" >
           <a href="lu_decomp.html" title="4.3. LU Decomposition"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="linear.html" accesskey="U">4. Linear Systems of Equations</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="linear.html" accesskey="U">4. Linear Systems of Equations</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -78,7 +76,8 @@ and consequently <span class="math">\(Ax^\star = b\)</span>.</p>
 <div class="math">
 \[A = D - L - U\]</div>
 <p>where <span class="math">\(D\)</span> is the diagonal part, <span class="math">\(L\)</span> is the lower triangular part,
-and <span class="math">\(U\)</span> is the upper triangular part. Substituting this expression in
+and <span class="math">\(U\)</span> is the upper triangular part. Note that all diagonal elements in <span class="math">\(L\)</span> and <span class="math">\(U\)</span>
+are zero. Substituting this expression in
 <span class="math">\(Ax=b\)</span> gives us the following equation:</p>
 <div class="math">
 \[\begin{split}(D-L-U)x        &amp; = &amp; \enspace b \\
@@ -146,13 +145,13 @@ of the solution vector, and uses the following update rule:</p>
 </li>
 </ol>
 <p>The code below implements the in-place algorithm mentioned in step 3) above.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="k">def</span> <span class="nf">Jacobi</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
     <span class="n">m</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">n</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">if</span><span class="p">(</span><span class="n">m</span><span class="o">!=</span><span class="n">n</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s1">&#39;Matrix is not square!&#39;</span>
+        <span class="nb">print</span> <span class="s1">&#39;Matrix is not square!&#39;</span>
         <span class="k">return</span>
 
     <span class="c1"># initialize x and x_new</span>
@@ -163,7 +162,7 @@ of the solution vector, and uses the following update rule:</p>
     <span class="n">iterations</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="c1"># perform Jacobi iterations until convergence</span>
-    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">m</span><span class="p">):</span>
             <span class="n">x_n</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">]</span>
             <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
@@ -172,25 +171,25 @@ of the solution vector, and uses the following update rule:</p>
             <span class="n">x_n</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-=</span><span class="nb">sum</span><span class="o">/</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">]</span>
 
         <span class="c1"># stopping criterion</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">x_n</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">&lt;.</span><span class="mo">000001</span><span class="p">):</span> <span class="k">break</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">x_n</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">&lt;.</span><span class="mi">000001</span><span class="p">):</span> <span class="k">break</span>
 
         <span class="c1"># copy x_new into x</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">m</span><span class="p">):</span>
             <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">x_n</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
         <span class="c1"># display updated solution</span>
-        <span class="k">print</span> <span class="s1">&#39;x: &#39;</span><span class="p">,</span>
-        <span class="k">print</span> <span class="n">x</span>
+        <span class="nb">print</span> <span class="s1">&#39;x: &#39;</span><span class="p">,</span>
+        <span class="nb">print</span> <span class="n">x</span>
         <span class="n">iterations</span><span class="o">+=</span><span class="mi">1</span>
 
-    <span class="k">print</span> <span class="s1">&#39;Iterations: </span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">iterations</span>
+    <span class="nb">print</span> <span class="s1">&#39;Iterations: </span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">iterations</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">4.</span><span class="p">,</span><span class="mf">2.</span><span class="p">,</span><span class="o">-</span><span class="mf">2.</span><span class="p">],[</span><span class="mf">4.</span><span class="p">,</span><span class="mf">9.</span><span class="p">,</span><span class="o">-</span><span class="mf">3.</span><span class="p">],[</span><span class="o">-</span><span class="mf">2.</span><span class="p">,</span><span class="o">-</span><span class="mf">3.</span><span class="p">,</span><span class="mf">7.</span><span class="p">]])</span>
     <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.</span><span class="p">,</span><span class="mf">8.</span><span class="p">,</span><span class="mf">10.</span><span class="p">])</span>
     <span class="n">Jacobi</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -204,24 +203,24 @@ of the solution vector, and uses the following update rule:</p>
 <p>At this point, we place <span class="math">\(x^{(k+1)}\)</span> on the left hand side and <span class="math">\(x^{(k)}\)</span> on
 the right hand side</p>
 <div class="math" id="equation-gauss-seidel">
-<span class="eqno">(1)</span>\[\boxed{(D-L)x^{(k+1)}=Ux^{(k)}+b}\]</div>
-<p>The benefit of the Gauss-Seidel method <a href="#equation-gauss-seidel">(1)</a> over Jacobi is
+<span class="eqno">(1)<a class="headerlink" href="#equation-gauss-seidel" title="Permalink to this equation">¶</a></span>\[\boxed{(D-L)x^{(k+1)}=Ux^{(k)}+b}\]</div>
+<p>The benefit of the Gauss-Seidel method <a class="reference internal" href="#equation-gauss-seidel">(1)</a> over Jacobi is
 the improved convergence. In terms of complexity, each iteration of equation
-<a href="#equation-gauss-seidel">(1)</a> amounts to solving a lower triangular system via forward
+<a class="reference internal" href="#equation-gauss-seidel">(1)</a> amounts to solving a lower triangular system via forward
 substitution, i.e., it incurs a cost of <span class="math">\(O(k)\)</span>, where <span class="math">\(k\)</span> is the
 number of non-zero entries in <span class="math">\(A\)</span>. In terms of update, equation
-<a href="#equation-gauss-seidel">(1)</a> takes the following form:</p>
+<a class="reference internal" href="#equation-gauss-seidel">(1)</a> takes the following form:</p>
 <ul>
 <li><p class="first">Without in-place update.</p>
 <div class="math">
-\[\begin{split}x_i^{(k+1)} \leftarrow \frac{1}{a_{ii}}\left(b_i-\sum_{j&lt;i}a_{ij}x_j^{(k+1)}-\sum_{j&gt;i}a_{ij}x_j^{(k)}\right)\end{split}\]</div>
+\[x_i^{(k+1)} \leftarrow \frac{1}{a_{ii}}\left(b_i-\sum_{j&lt;i}a_{ij}x_j^{(k+1)}-\sum_{j&gt;i}a_{ij}x_j^{(k)}\right)\]</div>
 <p>Once again, this version incurs a high memory overhead because a new solution
 vector <span class="math">\(x^{(k)}\)</span> is created for every iteration <span class="math">\(k\)</span>.</p>
 </li>
 <li><p class="first">In place update, which as before, maintains only two copies
 <span class="math">\(x,x^\textsf{new}\)</span> of the solution vector.</p>
 <div class="math">
-\[\begin{split}x_i^{\textsf{new}} \leftarrow \frac{1}{a_{ii}}\left(b_i-\sum_{j&lt;i}a_{ij}x_j^{\textsf{new}}-\sum_{j&gt;i}a_{ij}x_j\right)\end{split}\]</div>
+\[x_i^{\textsf{new}} \leftarrow \frac{1}{a_{ii}}\left(b_i-\sum_{j&lt;i}a_{ij}x_j^{\textsf{new}}-\sum_{j&gt;i}a_{ij}x_j\right)\]</div>
 <p>Compare the above in-place update with that for Jacobi.</p>
 </li>
 </ul>
@@ -229,13 +228,13 @@ vector <span class="math">\(x^{(k)}\)</span> is created for every iteration <spa
 <em>serial</em> in nature (although parallel variants do exist), while Jacobi is
 <em>highly parallel</em>. The code below implements the in-place Gauss-Seidel update
 mentioned above.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="k">def</span> <span class="nf">Gauss_Seidel</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
     <span class="n">m</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">n</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">if</span><span class="p">(</span><span class="n">m</span><span class="o">!=</span><span class="n">n</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s1">&#39;Matrix is not square!&#39;</span>
+        <span class="nb">print</span> <span class="s1">&#39;Matrix is not square!&#39;</span>
         <span class="k">return</span>
 
     <span class="c1"># initialize x and x_new</span>
@@ -246,7 +245,7 @@ mentioned above.</p>
     <span class="n">iterations</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="c1"># perform Gauss-Seidel iterations until convergence</span>
-    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">m</span><span class="p">):</span>
             <span class="n">x_n</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">]</span>
             <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
@@ -256,25 +255,25 @@ mentioned above.</p>
             <span class="n">x_n</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-=</span><span class="nb">sum</span><span class="o">/</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">]</span>
 
         <span class="c1"># stopping criterion</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">x_n</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">&lt;.</span><span class="mo">000001</span><span class="p">):</span> <span class="k">break</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">x_n</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">&lt;.</span><span class="mi">000001</span><span class="p">):</span> <span class="k">break</span>
 
         <span class="c1"># copy x_new into x</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">m</span><span class="p">):</span>
             <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">x_n</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
         <span class="c1"># display updated x</span>
-        <span class="k">print</span> <span class="s1">&#39;x: &#39;</span><span class="p">,</span>
-        <span class="k">print</span> <span class="n">x</span>
+        <span class="nb">print</span> <span class="s1">&#39;x: &#39;</span><span class="p">,</span>
+        <span class="nb">print</span> <span class="n">x</span>
         <span class="n">iterations</span><span class="o">+=</span><span class="mi">1</span>
 
-    <span class="k">print</span> <span class="s1">&#39;Iterations: </span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">iterations</span>
+    <span class="nb">print</span> <span class="s1">&#39;Iterations: </span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">iterations</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">4.</span><span class="p">,</span><span class="mf">2.</span><span class="p">,</span><span class="o">-</span><span class="mf">2.</span><span class="p">],[</span><span class="mf">4.</span><span class="p">,</span><span class="mf">9.</span><span class="p">,</span><span class="o">-</span><span class="mf">3.</span><span class="p">],[</span><span class="o">-</span><span class="mf">2.</span><span class="p">,</span><span class="o">-</span><span class="mf">3.</span><span class="p">,</span><span class="mf">7.</span><span class="p">]])</span>
     <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.</span><span class="p">,</span><span class="mf">8.</span><span class="p">,</span><span class="mf">10.</span><span class="p">])</span>
     <span class="n">Gauss_Seidel</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -305,21 +304,18 @@ mentioned above.</p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/iterative.txt"
+      <li><a href="_sources/iterative.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -338,13 +334,13 @@ mentioned above.</p>
         <li class="right" >
           <a href="lu_decomp.html" title="4.3. LU Decomposition"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="linear.html" >4. Linear Systems of Equations</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="linear.html" >4. Linear Systems of Equations</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2017, Mridul Aanjaneya.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+        &#169; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>

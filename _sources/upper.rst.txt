@@ -66,7 +66,7 @@ From the second row, solve :math:`x_2=3` and replace :math:`x_2` in the previous
     x_3
     \end{array}\right]=\left[\begin{array}{c}
     -1 \\
-    -3 \\
+    3 \\
     -1
     \end{array}\right]
 
