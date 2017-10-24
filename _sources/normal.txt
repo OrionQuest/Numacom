@@ -278,8 +278,8 @@ normal equations can be written as:
 .. math::
 
     A^TAx &=& \enspace A^Tb \nonumber \\
-    \Rightarrow \hat R^T\underbrace{\hat Q^T\hat Q}_{=I_{m\times m}}\hat R &=& \enspace \hat R^T\hat Q^Tb \nonumber \\
-    \Rightarrow \hat R^T\hat R &=& \enspace \hat R^T\hat Q^Tb \nonumber \\
+    \Rightarrow \hat R^T\underbrace{\hat Q^T\hat Q}_{=I_{m\times m}}\hat Rx &=& \enspace \hat R^T\hat Q^Tb \nonumber \\
+    \Rightarrow \hat R^T\hat Rx &=& \enspace \hat R^T\hat Q^Tb \nonumber \\
     \Rightarrow \boxed{\hat Rx=\hat Q^Tb}
 
 The last equality follows because :math:`\hat R` is invertible. The benefit of using the :math:`QR` factorization
