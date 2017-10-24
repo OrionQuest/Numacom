@@ -107,6 +107,7 @@ News and Announcements:
 * (10/03) `Homework #2 <homeworks/homework2.html>`_ is out. Due on (10/17).
 * (10/19) `Homework #1 Solutions <homeworks/hw1_solutions.pdf>`_ have been posted.
 * (10/19) `Homework #3 <homeworks/homework3.html>`_ is out. Due on (11/01).
+* (10/24) `Practice Midterm #1 <exams/practice_midterm1.pdf>`_ has been posted.
 
 .. toctree::
     :numbered:
