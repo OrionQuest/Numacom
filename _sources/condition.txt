@@ -37,6 +37,20 @@ matrix norms *induced by* vector norms.
     .. math::
         \lVert M\rVert_\star = \max_{x\in\mathbb R^n,\lVert x\rVert=1} \lVert Mx\rVert_\star
 
+    *Proof:* Choose a vector :math:`y = \alpha x`, where :math:`\alpha = 1/\lVert x\rVert_\star`. Then,
+
+    .. math::
+
+        \lVert y\rVert_\star = \lVert \alpha x\rVert_\star = |\alpha|\cdot\lVert x\rVert_\star = \frac{1}{\lVert x\rVert_\star}\cdot\lVert x\rVert_\star = 1
+
+    Also, from the definition of norms, the following relation holds
+
+    .. math::
+
+        \lVert My\rVert_\star = \frac{\lVert My\rVert_\star}{1} = \frac{\lVert My\rVert_\star}{\lVert y\rVert_\star} = \frac{\lVert M\alpha x\rVert_\star}{\lVert \alpha x\rVert_\star} = \frac{|\alpha |}{|\alpha |}\cdot\frac{\lVert Mx\rVert_\star}{\lVert x\rVert_\star} = \frac{\lVert Mx\rVert_\star}{\lVert x\rVert_\star}
+
+    Thus, the two definitions above are equivalent.
+
 Note again, that *not all* valid matrix norms are induced by vector norms. One
 notable example is the very commonly used *Frobenius norm*:
 

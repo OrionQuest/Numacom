@@ -56,7 +56,22 @@ midterm2. When computing your
 final grade, we will consider the **best** of the final and the corresponding
 midterm score. This means that you can choose to *replace* either your score for midterm1,
 or midterm2, or both by taking the final exam. However, if you do not perform
-well in the final, your previous midterm scores will be used.
+well in the final, your previous midterm scores will be used. The dates/times
+for the midterm and final exams are listed below:
+
+    * **Midterm 1:**
+        * In-class Part (70%): 10/31 (5:15PM - 6:30PM)
+        * Take-home Programming Part (30%): 11/03 (12PM) - 11/05 (11:55PM)
+    * **Midterm 2:**
+        * In-class Part (70%): 12/05 (5:15PM - 6:30PM)
+        * Take-home Programming Part (30%): 12/08 (12PM) - 12/10 (11:55PM)
+    * **Final:** 12/20 (12PM - 3PM)
+
+The in-class part of the midterm exams constitutes for 70% of
+the midterm score, while the programming part constitutes for 30% of the midterm
+score. Please note that the midterm and final exams are **open notes**, but all such
+notes must be brought in **printed form**. The use of laptop computers, cell
+phones, tablets, and other hand-held electronic devices is **strictly forbidden**.
 
 **Class participation:** Participation in class will be
 evaluated based on the number of classes attended, enthusiasm for answering the
@@ -92,6 +107,8 @@ News and Announcements:
 * (10/03) `Homework #2 <homeworks/homework2.html>`_ is out. Due on (10/17).
 * (10/19) `Homework #1 Solutions <homeworks/hw1_solutions.pdf>`_ have been posted.
 * (10/19) `Homework #3 <homeworks/homework3.html>`_ is out. Due on (11/01).
+* (10/24) `Practice Midterm #1 <exams/practice_midterm1.pdf>`_ has been posted.
+* (10/24) `Practice Midterm #1 Solutions <exams/practice_midterm1_solutions.pdf>`_ have been posted.
 
 .. toctree::
     :numbered:

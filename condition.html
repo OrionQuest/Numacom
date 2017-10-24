@@ -1,33 +1,35 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>2.4. Matrix Norms and Condition Numbers &#8212; CS 323 1.0 documentation</title>
+    
+    <title>2.4. Matrix Norms and Condition Numbers &mdash; CS 323 1.0 documentation</title>
+    
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
+        HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
+    <link rel="up" title="2. Vector and Matrix Algebra" href="algebra.html" />
     <link rel="next" title="3. Getting Started with Python" href="python.html" />
     <link rel="prev" title="2.3. Norms" href="norms.html" /> 
   </head>
-  <body>
+  <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -40,8 +42,8 @@
         <li class="right" >
           <a href="norms.html" title="2.3. Norms"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="algebra.html" accesskey="U">2. Vector and Matrix Algebra</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="algebra.html" accesskey="U">2. Vector and Matrix Algebra</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -105,7 +107,7 @@ notable example is the very commonly used <em>Frobenius norm</em>:</p>
 <p>If <span class="math">\(\lVert\cdot\rVert\)</span> is a matrix norm induced by a vector
 norm <span class="math">\(\lVert\cdot\rVert\)</span>, then</p>
 <div class="math" id="equation-vector-norm-inequality">
-<span class="eqno">(1)<a class="headerlink" href="#equation-vector-norm-inequality" title="Permalink to this equation">¶</a></span>\[\lVert Ax\rVert \leq \lVert A\rVert\cdot \lVert x\rVert\]</div>
+<span class="eqno">(1)</span>\[\lVert Ax\rVert \leq \lVert A\rVert\cdot \lVert x\rVert\]</div>
 <p><em>Proof:</em> Since <span class="math">\(\lVert A\rVert = \max_{x\neq 0}\lVert Ax\rVert/\lVert x\rVert\)</span>, we have that for an arbitrary <span class="math">\(y\in\mathbb R^n (y\neq 0)\)</span></p>
 <div class="math">
 \[\lVert A\rVert = \max_{x\neq 0}\frac{\lVert Ax\rVert}{\lVert x\rVert}\geq \frac{\lVert Ay\rVert}{\lVert y\rVert} \Rightarrow \lVert Ay\rVert \leq \lVert A\rVert\cdot\lVert y\rVert\]</div>
@@ -116,7 +118,7 @@ norm <span class="math">\(\lVert\cdot\rVert\)</span>, then</p>
 \[\begin{split}\lVert MN\rVert &amp;=&amp; \max_{\lVert x\rVert=1} \lVert MNx\rVert \leq \max_{\lVert x\rVert=1} \lVert M\rVert\cdot \lVert Nx\rVert \\
                 &amp;=&amp; \lVert M\rVert\cdot \max_{\lVert x\rVert=1} \lVert Nx\rVert = \lVert M\rVert\cdot\lVert N\rVert \\
 \Rightarrow \lVert MN\rVert &amp;\leq&amp; \lVert M\rVert\cdot\lVert N\rVert\end{split}\]</div>
-<p>Note that when writing an expression such as <a class="reference internal" href="#equation-vector-norm-inequality">(1)</a>, the
+<p>Note that when writing an expression such as <a href="#equation-vector-norm-inequality">(1)</a>, the
 matrix norm <span class="math">\(\lVert A\rVert\)</span> is understood to be the inferred norm from the
 vector norm used in <span class="math">\(\lVert Ax\rVert\)</span> and <span class="math">\(\lVert x\rVert\)</span>. Thus,</p>
 <div class="math">
@@ -154,13 +156,13 @@ One remedy is offered via the <em>residual vector</em> defined as:</p>
 <p>The vector <span class="math">\(r\)</span> is something we <em>can</em> compute practically since it involves
 only the known quantities <span class="math">\(b, A, x_\textsf{approx}\)</span>. Moreover, we have:</p>
 <div class="math" id="equation-error-vs-residual">
-<span class="eqno">(2)<a class="headerlink" href="#equation-error-vs-residual" title="Permalink to this equation">¶</a></span>\[\begin{split}r               \enspace &amp;=&amp; \enspace b-Ax_\textsf{approx} \nonumber \\
+<span class="eqno">(2)</span>\[\begin{split}r               \enspace &amp;=&amp; \enspace b-Ax_\textsf{approx} \nonumber \\
                 \enspace &amp;=&amp; \enspace Ax_\textsf{exact} - Ax_\textsf{approx} \\
                 \enspace &amp;=&amp; \enspace -A(x_\textsf{approx} - x_\textsf{exact}) \\
                 \enspace &amp;=&amp; \enspace -Ae \\
 \Rightarrow r   \enspace &amp;=&amp; \enspace -Ae \\
 \Rightarrow e   \enspace &amp;=&amp; \enspace -A^{-1}r\end{split}\]</div>
-<p>Equation <a class="reference internal" href="#equation-error-vs-residual">(2)</a> links the error with the residual. This allows
+<p>Equation <a href="#equation-error-vs-residual">(2)</a> links the error with the residual. This allows
 us to write:</p>
 <div class="math">
 \[\lVert e\rVert = \lVert A^{-1}r\rVert \leq \lVert A^{-1}\rVert\cdot\lVert r\rVert\]</div>
@@ -194,18 +196,18 @@ A\delta x               \enspace &amp;=&amp; \enspace \delta b \\
 \Rightarrow \delta x    \enspace &amp;=&amp; \enspace A^{-1}\delta b\end{split}\]</div>
 <p>Taking norms,</p>
 <div class="math" id="equation-error-norm">
-<span class="eqno">(3)<a class="headerlink" href="#equation-error-norm" title="Permalink to this equation">¶</a></span>\[\lVert \delta x\rVert = \lVert A^{-1}\delta b\rVert \leq \lVert A^{-1}\rVert\cdot\lVert \delta b\rVert\]</div>
+<span class="eqno">(3)</span>\[\lVert \delta x\rVert = \lVert A^{-1}\delta b\rVert \leq \lVert A^{-1}\rVert\cdot\lVert \delta b\rVert\]</div>
 <p>Thus, the error in the computed solution <span class="math">\(\delta x\)</span> is proportional to the
 error in <span class="math">\(b\)</span>. An even more relevant question is: how does the <em>relative</em>
 error <span class="math">\(\lVert \delta x\rVert/\lVert x\rVert = \lVert
 x^\star-x\rVert/\lVert x\rVert\)</span> compare to the relative error in <span class="math">\(b\)</span>
 (<span class="math">\(\lVert\delta b\rVert/\lVert b\rVert\)</span>)? This may be more useful to know,
-since <span class="math">\(\lVert\delta b\rVert\)</span> may be impossible to compute (if we don’t
+since <span class="math">\(\lVert\delta b\rVert\)</span> may be impossible to compute (if we don&#8217;t
 know the real <span class="math">\(b\)</span>). For this, we write:</p>
 <div class="math" id="equation-error-reciprocal">
-<span class="eqno">(4)<a class="headerlink" href="#equation-error-reciprocal" title="Permalink to this equation">¶</a></span>\[\begin{split}Ax = b  &amp;\Rightarrow&amp; \lVert b\rVert = \lVert Ax\rVert \leq \lVert A\rVert\cdot\lVert x\rVert \\
+<span class="eqno">(4)</span>\[\begin{split}Ax = b  &amp;\Rightarrow&amp; \lVert b\rVert = \lVert Ax\rVert \leq \lVert A\rVert\cdot\lVert x\rVert \\
         &amp;\Rightarrow&amp; \frac{1}{\lVert x\rVert} \leq \lVert A\rVert\cdot\frac{1}{\lVert b\rVert}\end{split}\]</div>
-<p>Multiplying equation <a class="reference internal" href="#equation-error-norm">(3)</a> and <a class="reference internal" href="#equation-error-reciprocal">(4)</a> gives</p>
+<p>Multiplying equation <a href="#equation-error-norm">(3)</a> and <a href="#equation-error-reciprocal">(4)</a> gives</p>
 <div class="math">
 \[\frac{\lVert\delta x\rVert}{\lVert x\rVert} \leq \underbrace{\lVert A\rVert\cdot\lVert A^{-1}\rVert}_{\kappa (A)}\cdot\frac{\lVert \delta b\rVert}{\lVert b\rVert}\]</div>
 <p>Thus, the relative error in <span class="math">\(x\)</span> is bounded by a multiple of the relative
@@ -258,13 +260,13 @@ question, a lemma:</p>
 <p>Using property (4) of matrix norms, we have:</p>
 <div class="math">
 \[I = A\cdot A^{-1} \Rightarrow 1 = \lVert I\rVert = \lVert A\cdot A^{-1}\rVert \leq \lVert A\rVert\cdot\lVert A^{-1}\rVert\]</div>
-<p>Thus, <span class="math">\(\kappa (A)\geq 1\)</span>. The “best” conditioned matrices are of the form
+<p>Thus, <span class="math">\(\kappa (A)\geq 1\)</span>. The &#8220;best&#8221; conditioned matrices are of the form
 <span class="math">\(A=c\cdot I\)</span>, where <span class="math">\(c\in\mathbb R\)</span> is a non-zero constant, and have
 <span class="math">\(\kappa (A)=1\)</span>. The <code class="docutils literal"><span class="pre">linalg</span></code> package of <a class="reference external" href="http://www.numpy.org/">NumPy</a>
 has an in-built function <code class="docutils literal"><span class="pre">cond</span></code> for computing the condition number of any square matrix, as
 shown below. The second parameter specifies the particular norm to use
 for evaluating the condition number.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <span class="go">matrix([[ 1,  0, -1],</span>
 <span class="go">        [ 0,  1,  0],</span>
@@ -306,18 +308,21 @@ for evaluating the condition number.</p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/condition.rst.txt"
+      <li><a href="_sources/condition.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -336,13 +341,13 @@ for evaluating the condition number.</p>
         <li class="right" >
           <a href="norms.html" title="2.3. Norms"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="algebra.html" >2. Vector and Matrix Algebra</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="algebra.html" >2. Vector and Matrix Algebra</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Mridul Aanjaneya.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+        &copy; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
     </div>
   </body>
 </html>

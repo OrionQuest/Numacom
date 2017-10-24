@@ -1,33 +1,35 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>1.1. Motivation &#8212; CS 323 1.0 documentation</title>
+    
+    <title>1.1. Motivation &mdash; CS 323 1.0 documentation</title>
+    
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
+        HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
+    <link rel="up" title="1. Introduction" href="intro.html" />
     <link rel="next" title="1.2. Order Notation" href="order.html" />
     <link rel="prev" title="1. Introduction" href="intro.html" /> 
   </head>
-  <body>
+  <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -40,8 +42,8 @@
         <li class="right" >
           <a href="intro.html" title="1. Introduction"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">1. Introduction</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">1. Introduction</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -53,14 +55,14 @@
   <div class="section" id="motivation">
 <h1>1.1. Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h1>
 <p>In many instances, we are faced with mathematical problems where the conventional
-method “on paper” does not perform as well when implemented on the computer.
+method &#8220;on paper&#8221; does not perform as well when implemented on the computer.
 Take, for example, the quadratic equation:</p>
 <div class="math">
 \[ax^2 + bx + c = 0\]</div>
 <p>In theory, we have a perfectly conclusive method for determining the roots of
 this equation; simply use the quadratic formula:</p>
 <div class="math" id="equation-quadratic">
-<span class="eqno">(1)<a class="headerlink" href="#equation-quadratic" title="Permalink to this equation">¶</a></span>\[x_{1,2} = \frac{-b\pm\sqrt{b^2-4ac}}{2a}\]</div>
+<span class="eqno">(1)</span>\[x_{1,2} = \frac{-b\pm\sqrt{b^2-4ac}}{2a}\]</div>
 <p>In fact, let us consider a very specific example:</p>
 <div class="math">
 \[0.0501x^2 -98.78x +5.015 = 0\]</div>
@@ -68,7 +70,7 @@ this equation; simply use the quadratic formula:</p>
 are:</p>
 <div class="math">
 \[x_1 = 1971.605916, \enspace\enspace\enspace\enspace x_2 = 0.05077069387\]</div>
-<p>We then proceed to evaluate formula <a class="reference internal" href="#equation-quadratic">(1)</a> on the computer. Let us assume
+<p>We then proceed to evaluate formula <a href="#equation-quadratic">(1)</a> on the computer. Let us assume
 that the computer stores all intermediate results of this computation with
 <span class="math">\(4\)</span> <a class="reference external" href="https://www.google.com/">significant digits</a>. Thus, we obtain the following answers:</p>
 <div class="math">
@@ -93,17 +95,17 @@ a small number <em>amplifies</em> it.</p>
 <p>So, subtracting two nearly equal quantities is risky <span class="math">\(\ldots\)</span> can we avoid
 doing so? There is, in fact, an alternative formulation:</p>
 <div class="math" id="equation-derationalized">
-<span class="eqno">(2)<a class="headerlink" href="#equation-derationalized" title="Permalink to this equation">¶</a></span>\[\begin{split}x_{1,2} &amp;=&amp; \frac{(-b\pm\sqrt{b^2-4ac})(-b\mp\sqrt{b^2-4ac})}{2a(-b\mp\sqrt{b^2-4ac})} \\
+<span class="eqno">(2)</span>\[\begin{split}x_{1,2} &amp;=&amp; \frac{(-b\pm\sqrt{b^2-4ac})(-b\mp\sqrt{b^2-4ac})}{2a(-b\mp\sqrt{b^2-4ac})} \\
         &amp;=&amp; \frac{b^2-(b^2-4ac)}{2a(-b\mp\sqrt{b^2-4ac})} = \frac{4ac}{2a(-b\mp\sqrt{b^2-4ac})} \\
         &amp;=&amp; \frac{2c}{-b\mp\sqrt{b^2-4ac}}\end{split}\]</div>
-<p>Equation <a class="reference internal" href="#equation-derationalized">(2)</a> subtracts two quantities in the denominator,
-whereas <a class="reference internal" href="#equation-quadratic">(1)</a> adds them (and vice-versa). This technique is called
+<p>Equation <a href="#equation-derationalized">(2)</a> subtracts two quantities in the denominator,
+whereas <a href="#equation-quadratic">(1)</a> adds them (and vice-versa). This technique is called
 <em>derationalization</em>. Applying this approach, we obtain:</p>
 <div class="math">
 \[x_1 = 1003, \enspace\enspace\enspace\enspace x_2=0.05077\]</div>
 <p>Here the roles are reversed, <span class="math">\(x_2\)</span> is quite accurate, but <span class="math">\(x_1\)</span> is
 off by about <span class="math">\(50\%\)</span> from the intended value. One might suggest that we
-“selectively” use either <a class="reference internal" href="#equation-quadratic">(1)</a> or <a class="reference internal" href="#equation-derationalized">(2)</a> to compute
+&#8220;selectively&#8221; use either <a href="#equation-quadratic">(1)</a> or <a href="#equation-derationalized">(2)</a> to compute
 <span class="math">\(x_1\)</span> or <span class="math">\(x_2\)</span> respectively, and avoid the subtraction-induced
 inaccuracies. Although this may be reaslistic in this isolated example, in more
 complex problems that arise in practice, performing such a case-by-case handling
@@ -121,7 +123,7 @@ gives:</p>
 <p>Note that we computed <span class="math">\(\sqrt{a}\)</span> with just addition, multiplication, and
 division operations! The same principle can be applied to solve a quadratic
 equation as well. Consider the following scheme (which is a special case of what
-we will later describe as Newton’s method):</p>
+we will later describe as Newton&#8217;s method):</p>
 <ul class="simple">
 <li>Start with an initial guess <span class="math">\(x_0\)</span> of the solution.</li>
 <li>Iterate</li>
@@ -139,14 +141,14 @@ significant digits! Let us aim for the other solution by setting <span class="ma
 <div class="math">
 \[x_0=2000, \enspace\enspace x_1=1972.003\ldots, \enspace\enspace x_2=1971.60599\ldots\]</div>
 <p>As is typically the case, there are trade-offs to consider: with this iterative
-method, we require an “initial guess”, and there is little guidance offered on
+method, we require an &#8220;initial guess&#8221;, and there is little guidance offered on
 how to pick a good one. Also, we need a few iterations before we can obtain an
 excellent approximation. On the other hand, the method does not require any
 square roots, thus being significantly cheaper in terms of computation cost per
 iteration. In general, the two different methodologies that we have seen fall
 into two broad classes:</p>
 <ul class="simple">
-<li><strong>Direct methods:</strong> These methods give a “recipe” for directly obtaining the
+<li><strong>Direct methods:</strong> These methods give a &#8220;recipe&#8221; for directly obtaining the
 final solution. The closed-form formulas we saw above for the roots of a
 quadratic equation fall in this category.</li>
 <li><strong>Iterative methods:</strong> These methods obtain better approximations to the
@@ -172,18 +174,21 @@ computing</em>.</p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/motivation.rst.txt"
+      <li><a href="_sources/motivation.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -202,13 +207,13 @@ computing</em>.</p>
         <li class="right" >
           <a href="intro.html" title="1. Introduction"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="intro.html" >1. Introduction</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="intro.html" >1. Introduction</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Mridul Aanjaneya.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+        &copy; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
     </div>
   </body>
 </html>
