@@ -67,7 +67,7 @@ solution. Submissions should be made on Sakai.
 
         \begin{array}{ccccccc}
         t & 0.0 & 1.0 & 2.0 & 3.0 & 4.0 & 5.0 \\
-        y & 1.0 & 2.7 & 5.8 & 6.6 & 7.5 & 9.9
+        p(t) & 1.0 & 2.7 & 5.8 & 6.6 & 7.5 & 9.9
         \end{array}
 
     Make a plot of the original data points along with each resulting polynomial
