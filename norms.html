@@ -1,35 +1,33 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>2.3. Norms &mdash; CS 323 1.0 documentation</title>
-    
+    <title>2.3. Norms &#8212; CS 323 1.0 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
-    <link rel="up" title="2. Vector and Matrix Algebra" href="algebra.html" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="2.4. Matrix Norms and Condition Numbers" href="condition.html" />
     <link rel="prev" title="2.2. Matrices" href="matrices.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -42,8 +40,8 @@
         <li class="right" >
           <a href="matrices.html" title="2.2. Matrices"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="algebra.html" accesskey="U">2. Vector and Matrix Algebra</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="algebra.html" accesskey="U">2. Vector and Matrix Algebra</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -70,7 +68,7 @@ all <span class="math">\(\alpha\in\mathbb R,x\in\mathbb R^n\)</span>.</li>
 <span class="math">\(x,y\in\mathbb R^n\)</span>.</li>
 </ol>
 </div>
-<p>Note that the properties above do not determine a <em>unique</em> form of a &#8220;norm&#8221;
+<p>Note that the properties above do not determine a <em>unique</em> form of a “norm”
 function. In fact, many different valid norms exist. Typically, we will use
 subscripts (for example, <span class="math">\(\lVert \cdot\rVert_a\)</span>) to denote different types
 of norms.</p>
@@ -78,12 +76,12 @@ of norms.</p>
 <h2>2.3.1. Why are vector norms needed?<a class="headerlink" href="#why-are-vector-norms-needed" title="Permalink to this headline">¶</a></h2>
 <p>In many applications, such as the solution of a nonlinear equation <span class="math">\(f(x)=0\)</span>,
 the error <span class="math">\(e=x_\textsf{approx}-x_\textsf{exact}\)</span> is a single number. Thus,
-the absolute value of <span class="math">\(\vert e\vert\)</span> gives us a good idea of the &#8220;extent&#8221;
+the absolute value of <span class="math">\(\vert e\vert\)</span> gives us a good idea of the “extent”
 of the error.</p>
 <p>When solving a system of linear equations <span class="math">\(Ax=b\)</span>, the exact solution
 <span class="math">\(x_\textsf{exact}\)</span> as well as any approximation <span class="math">\(x_\textsf{approx}\)</span>
 are vectors, and the error <span class="math">\(e=x_\textsf{approx}-x_\textsf{exact}\)</span> is a
-vector too. It is not as straightforward to assess the &#8220;magnitude&#8221; of such a
+vector too. It is not as straightforward to assess the “magnitude” of such a
 vector-valued error. For example, consider <span class="math">\(e_1,e_2\in\mathbb R^{1000}\)</span>,
 and</p>
 <div class="math">
@@ -135,7 +133,7 @@ properties of vector norms are:</p>
 to directly compute all these different kinds of norms for a given vector, as shown below.
 Here, the second parameter specifies the particular norm that we wish to compute
 (in our case, the <span class="math">\(L_1\)</span> norm, <span class="math">\(L_2\)</span> norm, or <span class="math">\(L_\infty\)</span> norm, respectively):</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">7</span><span class="p">])</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">7</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="go">22</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
@@ -180,7 +178,7 @@ called <em>equivalent</em> if there exist real numbers <span class="math">\(c,d&
 <p>It follows from this definition that the <span class="math">\(L_1\)</span> and <span class="math">\(L_\infty\)</span>-norms are
 equivalent, as proved above. Now consider the square of the <span class="math">\(L_1\)</span>-norm</p>
 <div class="math">
-\[\begin{split}\lVert x\rVert_1^2 = (\vert x_1\vert + \vert x_2\vert + \ldots + \vert x_n\vert)^2 = \sum_{i=1}^n\vert x_i\vert^2 + 2\sum_{i&lt;j} \vert x_i\vert\cdot\vert x_j\vert \geq \sum_{i=1}^n\vert x_i\vert^2 = \lVert x\rVert_2^2\end{split}\]</div>
+\[\lVert x\rVert_1^2 = (\vert x_1\vert + \vert x_2\vert + \ldots + \vert x_n\vert)^2 = \sum_{i=1}^n\vert x_i\vert^2 + 2\sum_{i&lt;j} \vert x_i\vert\cdot\vert x_j\vert \geq \sum_{i=1}^n\vert x_i\vert^2 = \lVert x\rVert_2^2\]</div>
 <p>The above inequality implies that <span class="math">\(\lVert x\rVert_1\geq \lVert x\rVert_2\)</span>.
 For the reverse direction of the inequality, consider the <a class="reference external" href="https://en.wikipedia.org/wiki/Inequality_of_arithmetic_and_geometric_means">AM-GM inequality</a>:</p>
 <div class="math">
@@ -190,7 +188,7 @@ For the reverse direction of the inequality, consider the <a class="reference ex
 <em>exactly</em> <span class="math">\(n-1\)</span> other components <span class="math">\(x_j\)</span>.
 Using the above inequality with the square of the <span class="math">\(L_1\)</span>-norm gives</p>
 <div class="math">
-\[\begin{split}\lVert x\rVert_1^2 = \sum_{i=1}^n\vert x_i\vert^2 + 2\sum_{i&lt;j} \vert x_i\vert\cdot\vert x_j\vert \leq n\sum_{i=1}^n\vert x_i\vert^2 = n\cdot\lVert x\rVert_2^2\end{split}\]</div>
+\[\lVert x\rVert_1^2 = \sum_{i=1}^n\vert x_i\vert^2 + 2\sum_{i&lt;j} \vert x_i\vert\cdot\vert x_j\vert \leq n\sum_{i=1}^n\vert x_i\vert^2 = n\cdot\lVert x\rVert_2^2\]</div>
 <p>This implies that <span class="math">\(\lVert x\rVert_1\leq\sqrt{n}\lVert x\rVert_2\)</span>.
 Combining the two inequalities gives <span class="math">\(\lVert x\rVert_2\leq\lVert
 x\rVert_1\leq\sqrt{n}\lVert x\rVert_2\)</span>, proving that the <span class="math">\(L_1\)</span> and
@@ -232,21 +230,18 @@ x\rVert_1\leq\sqrt{n}\lVert x\rVert_2\)</span>, proving that the <span class="ma
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/norms.txt"
+      <li><a href="_sources/norms.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -265,13 +260,13 @@ x\rVert_1\leq\sqrt{n}\lVert x\rVert_2\)</span>, proving that the <span class="ma
         <li class="right" >
           <a href="matrices.html" title="2.2. Matrices"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="algebra.html" >2. Vector and Matrix Algebra</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="algebra.html" >2. Vector and Matrix Algebra</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2017, Mridul Aanjaneya.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+        &#169; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>
