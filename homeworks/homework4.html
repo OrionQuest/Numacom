@@ -1,0 +1,179 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>4. Homework #4 &#8212; CS 323 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1. Introduction" href="../intro.html" />
+    <link rel="prev" title="3. Homework #3" href="homework3.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../intro.html" title="1. Introduction"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="homework3.html" title="3. Homework #3"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">CS 323 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="homework-4">
+<h1>4. Homework #4<a class="headerlink" href="#homework-4" title="Permalink to this headline">¶</a></h1>
+<p>For all programming assignments, please turn in your code along with your
+solution. Submissions should be made on Sakai.</p>
+<div class="topic">
+<p class="topic-title first">Problem 1</p>
+<p>Consider the following procedure for solving the nonlinear equation
+<span class="math">\(f(x)=0\)</span>:</p>
+<ul>
+<li><p class="first">Start with an initial guess <span class="math">\(x_0\)</span>.</p>
+</li>
+<li><p class="first">For <span class="math">\(k=0,1,2,\ldots\)</span> do the following:</p>
+<ul>
+<li><p class="first">Compute the value that standard Newton’s method would provide, and
+call it <span class="math">\(\hat x_{k+1}\)</span>, i.e.,</p>
+<div class="math">
+\[\hat x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)}\]</div>
+</li>
+<li><p class="first">Compute the next approximation <span class="math">\(x_{k+1}\)</span> by averaging
+<span class="math">\(x_k\)</span> and <span class="math">\(\hat x_{k+1}\)</span>, i.e.,</p>
+<div class="math">
+\[x_{k+1} = \frac{x_k + \hat x_{k+1}}{2}\]</div>
+</li>
+</ul>
+</li>
+</ul>
+<ol class="loweralpha simple">
+<li>Show that if this method converges, it will converge to a solution of <span class="math">\(f(x)=0\)</span>.</li>
+<li>Show that this method converges under the same conditions as Newton’s method.</li>
+<li>Determine the order of convergence of this method.</li>
+</ol>
+</div>
+<div class="topic">
+<p class="topic-title first">Problem 2</p>
+<p>For the equation</p>
+<div class="math">
+\[f(x) = x^2 - 3x + 2 = 0\]</div>
+<p>each of the following functions yields an equivalent fixed-point problem:</p>
+<div class="math">
+\[\begin{split}g_1(x)  &amp; = &amp; \enspace  (x^2+2)/3 \\
+g_2(x)  &amp; = &amp; \enspace  \sqrt{3x-2} \\
+g_3(x)  &amp; = &amp; \enspace 3 - 2/x \\
+g_4(x)  &amp; = &amp; \enspace (x^2 - 2)/(2x - 3)\end{split}\]</div>
+<ol class="loweralpha simple">
+<li>Analyze the convergence properties of each of the corresponding
+fixed-point iteration schemes for the root <span class="math">\(x=2\)</span> by considering
+<span class="math">\(\lvert g_i'(2) \rvert\)</span>.</li>
+<li>Confirm your analysis by implementing each of the schemes and verifying
+its convergence (or lack thereof) and approximate convergence rate.</li>
+</ol>
+</div>
+<div class="topic">
+<p class="topic-title first">Problem 3</p>
+<p>Implement the bisection, Newton, and secant methods for solving nonlinear
+equations in one dimension, and test your implementations by finding at
+least one root for each of the following equations. What termination
+criterion should you use? What convergence rate is achieved in each case?</p>
+<ol class="loweralpha simple">
+<li><span class="math">\(x^3 - 2x - 5 = 0\)</span>.</li>
+<li><span class="math">\(e^{-x} = x\)</span>.</li>
+<li><span class="math">\(x \sin x = 1\)</span>.</li>
+<li><span class="math">\(x^3 - 3x^2 + 3x - 1 = 0\)</span>.</li>
+</ol>
+</div>
+<div class="topic">
+<p class="topic-title first">Problem 4</p>
+<p>Suppose you are using the Secant method to find a root <span class="math">\(x^\star\)</span> of a
+nonlinear equation <span class="math">\(f(x) = 0\)</span>. Show that if at any iteration it
+happens to be the case that either <span class="math">\(x_k = x^\star\)</span> or <span class="math">\(x_{k-1} =
+x^\star\)</span> (but not both), then it will also be true that <span class="math">\(x_{k+1} =
+x^\star\)</span>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="homework3.html"
+                        title="previous chapter">3. Homework #3</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../intro.html"
+                        title="next chapter">1. Introduction</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/homeworks/homework4.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../intro.html" title="1. Introduction"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="homework3.html" title="3. Homework #3"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">CS 323 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+  </body>
+</html>
