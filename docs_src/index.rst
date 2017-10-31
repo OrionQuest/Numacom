@@ -109,6 +109,8 @@ News and Announcements:
 * (10/19) `Homework #3 <homeworks/homework3.html>`_ is out. Due on (11/01).
 * (10/24) `Practice Midterm #1 <exams/practice_midterm1.pdf>`_ has been posted.
 * (10/24) `Practice Midterm #1 Solutions <exams/practice_midterm1_solutions.pdf>`_ have been posted.
+* (10/30) `Homework #2 Solutions <homeworks/hw2_solutions.pdf>`_ have been posted.
+* (10/31) `Homework #4 <homeworks/homework4.html>`_ is out. Due on (11/14).
 
 .. toctree::
     :numbered:
@@ -118,6 +120,7 @@ News and Announcements:
     Homework #1 <homeworks/homework1>
     Homework #2 <homeworks/homework2>
     Homework #3 <homeworks/homework3>
+    Homework #4 <homeworks/homework4>
 
 Contents:
 ---------
