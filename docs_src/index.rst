@@ -112,6 +112,7 @@ News and Announcements:
 * (10/30) `Homework #2 Solutions <homeworks/hw2_solutions.pdf>`_ have been posted.
 * (10/31) `Homework #4 <homeworks/homework4.html>`_ is out. Due on (11/14).
 * (11/01) `Midterm #1 <exams/midterm1.pdf>`_ has been posted.
+* (11/02) `Midterm #1 Solutions <exams/midterm1_solutions.pdf>`_ have been posted.
 
 .. toctree::
     :numbered:
