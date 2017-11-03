@@ -137,7 +137,7 @@ The equality holds when all components of :math:`x` are equal, as can be easily 
     called *equivalent* if there exist real numbers :math:`c,d>0`, such that
 
     .. math::
-        c\lVert x\rVert_a \leq \lVert x\rVert_b \leq \lVert x\rVert_a
+        c\lVert x\rVert_a \leq \lVert x\rVert_b \leq d\lVert x\rVert_a
 
 It follows from this definition that the :math:`L_1` and :math:`L_\infty`-norms are
 equivalent, as proved above. Now consider the square of the :math:`L_1`-norm

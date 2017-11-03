@@ -142,5 +142,4 @@ solution. Submissions should be made on Sakai.
         singular when entered into a computer. Thus, solving the system by
         Gaussian Elimination will not necessarily fail. Compare the computed
         solution with your description of the solution set in part (a). What is
-        the estimated value of the condition number :math:`\kappa(A)`? How many
-        digits of accuracy would this lead you to expect?
+        the estimated value of the condition number :math:`\kappa(A)`?

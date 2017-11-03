@@ -1,32 +1,33 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>5. Non-linear Equations &#8212; CS 323 1.0 documentation</title>
+    
+    <title>5. Non-linear Equations &mdash; CS 323 1.0 documentation</title>
+    
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
+        HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
     <link rel="prev" title="4.5. Overdetermined Systems" href="normal.html" /> 
   </head>
-  <body>
+  <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -36,7 +37,7 @@
         <li class="right" >
           <a href="normal.html" title="4.5. Overdetermined Systems"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -54,7 +55,7 @@ discussed the potential hazards of using the seemingly straightforward quadratic
 solution formula. We will start our discussion with an even simpler non-linear
 equation:</p>
 <div class="math">
-\[x^2-a=0, \enspace\enspace a&gt;0\]</div>
+\[\begin{split}x^2-a=0, \enspace\enspace a&gt;0\end{split}\]</div>
 <p>The solution is obvious, <span class="math">\(x=\pm\sqrt{a}\)</span> (assuming, of course, that we have a
 subroutine at our disposal that computes square roots). Let us, however,
 consider a different approach:</p>
@@ -64,7 +65,7 @@ consider a different approach:</p>
 <li><p class="first">Iterate the sequence</p>
 <blockquote>
 <div><div class="math" id="equation-iteration">
-<span class="eqno">(1)<a class="headerlink" href="#equation-iteration" title="Permalink to this equation">¶</a></span>\[x_{k+1}=\frac{x_k^2+a}{2x_k}\]</div>
+<span class="eqno">(1)</span>\[x_{k+1}=\frac{x_k^2+a}{2x_k}\]</div>
 </div></blockquote>
 </li>
 </ul>
@@ -74,7 +75,7 @@ iterations. Let us, however, attempt to analyze this process from a theoretical
 standpoint. If we assume that the sequence <span class="math">\(x_0, x_1, x_2,\ldots\)</span> defined by this method has
 a limit, how does that limit relate to the problem at hand? Assume
 <span class="math">\(\lim_{k\rightarrow\infty}=A\)</span>. Then, taking limits on equation
-<a class="reference internal" href="#equation-iteration">(1)</a> gives</p>
+<a href="#equation-iteration">(1)</a> gives</p>
 <div class="math">
 \[\lim_{k\rightarrow\infty} x_{k+1}=\lim_{k\rightarrow\infty}\frac{x_k^2+a}{2x_k}
 \Rightarrow A=\frac{A^2+a}{2A}\Rightarrow 2A^2=A^2+a\Rightarrow A^2=a\Rightarrow
@@ -82,7 +83,7 @@ A=\pm\sqrt{a}\]</div>
 <p>Thus, if the iteration converges, the limit is the solution of the nonlinear
 equation <span class="math">\(x^2-a=0\)</span>. The second question is whether it may be possible to
 guarantee that the described iteration <em>will</em> converge. For this, we
-manipulate equation <a class="reference internal" href="#equation-iteration">(1)</a> as follows</p>
+manipulate equation <a href="#equation-iteration">(1)</a> as follows</p>
 <div class="math">
 \[x_{k+1}=\frac{x_k^2+a}{2x_k}\Rightarrow
 x_{k+1}-\sqrt{a}=\frac{x_k^2+a}{2x_k}-\sqrt{a}=\frac{x_k^2-2x_k\sqrt{a}+a}{2x_k}=\frac{[x_k-\sqrt{a}]^2}{2x_k}\]</div>
@@ -98,12 +99,12 @@ enough</em> to the solution, we not only converge to the desired value, but actu
 double the number of correct significant digits in each iteration. We defer the
 detailed proof until after we have introduced the more general method.</p>
 <div class="section" id="newton-s-method">
-<h2>5.1. Newton’s Method<a class="headerlink" href="#newton-s-method" title="Permalink to this headline">¶</a></h2>
+<h2>5.1. Newton&#8217;s Method<a class="headerlink" href="#newton-s-method" title="Permalink to this headline">¶</a></h2>
 <p>This example is a special case of an algorithm for solving nonlinear equations
-known as Newton’s method (also called the <em>Newton-Raphson</em> method). The
-general idea is as follows: if we “zoom” close enough to any smooth function,
+known as Newton&#8217;s method (also called the <em>Newton-Raphson</em> method). The
+general idea is as follows: if we &#8220;zoom&#8221; close enough to any smooth function,
 its graph looks more and more like a straight line (specifically, the
-<em>tangent</em> line to the curve). Newton’s method suggests: if after <span class="math">\(k\)</span> iterations we have approximated the
+<em>tangent</em> line to the curve). Newton&#8217;s method suggests: if after <span class="math">\(k\)</span> iterations we have approximated the
 solution of <span class="math">\(f(x)=0\)</span> (a general nonlinear equation) as <span class="math">\(x_k\)</span>, then:</p>
 <blockquote>
 <div><a class="reference internal image-reference" href="_images/newton.png"><img alt="_images/newton.png" class="align-center" src="_images/newton.png" style="width: 612.0px; height: 319.5px;" /></a>
@@ -122,16 +123,16 @@ solution of <span class="math">\(f(x)=0\)</span> (a general nonlinear equation) 
 <p>Setting <span class="math">\(y=0\)</span> gives</p>
 <div class="math">
 \[-f(x_n)=f'(x_n)(x-x_n)\Rightarrow x=x_n-\frac{f(x_n)}{f'(x_n)}=x_{n+1}\]</div>
-<p>Ultimately, Newton’s method reduces to:</p>
+<p>Ultimately, Newton&#8217;s method reduces to:</p>
 <div class="math" id="equation-newton">
-<span class="eqno">(2)<a class="headerlink" href="#equation-newton" title="Permalink to this equation">¶</a></span>\[x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)}\]</div>
-<p>Our previous example (square root of <span class="math">\(a\)</span>) is just an application of Newton’s
+<span class="eqno">(2)</span>\[x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)}\]</div>
+<p>Our previous example (square root of <span class="math">\(a\)</span>) is just an application of Newton&#8217;s
 method to the nonlinear equation <span class="math">\(f(x)=x^2-a=0\)</span>. Applying equation
-<a class="reference internal" href="#equation-newton">(2)</a> gives:</p>
+<a href="#equation-newton">(2)</a> gives:</p>
 <div class="math">
 \[x_{k+1}=x_k-\frac{f(x_k)}{f'(x_k)}=x_k-\frac{x_k^2-a}{2x_k}=\frac{2x_k^2-x_k^2+a}{2x_k}=\frac{x_k^2+a}{2x_k}\]</div>
 <p>which is the same iteration we considered previously.
-A few comments about Newton’s method:</p>
+A few comments about Newton&#8217;s method:</p>
 <ul>
 <li><p class="first">It requires the function <span class="math">\(f(x)\)</span> to be not only continuous, but differentiable as
 well. We will later see variants that do not <em>explicitly</em> require knowledge
@@ -152,7 +153,7 @@ may be far from guaranteed.</p>
 </div>
 <div class="section" id="fixed-point-iteration">
 <h2>5.2. Fixed Point Iteration<a class="headerlink" href="#fixed-point-iteration" title="Permalink to this headline">¶</a></h2>
-<p>Newton’s method is in itself a special case of a broader category of methods for
+<p>Newton&#8217;s method is in itself a special case of a broader category of methods for
 solving nonlinear equations called <em>fixed point iteration</em> methods.
 Generally, if <span class="math">\(f(x)=0\)</span> is the nonlinear equation we seek to solve, a fixed point
 iteration method proceeds as follows:</p>
@@ -199,7 +200,7 @@ words, <span class="math">\(f(a)=0\)</span>) is if we construct <span class="mat
 <p>or</p>
 <div class="math">
 \[f(x)=0\Leftrightarrow -\frac{f(x)}{f'(x)}=0\Leftrightarrow x-\frac{f(x)}{f'(x)}=x\Leftrightarrow g(x)=x, \enspace\enspace \mbox{where} \enspace\enspace g(x)\equiv x-\frac{f(x)}{f'(x)}\]</div>
-<p>The last example is exactly Newton’s method; substituting the definition of
+<p>The last example is exactly Newton&#8217;s method; substituting the definition of
 <span class="math">\(g(x)\)</span> above into the iteration <span class="math">\(x_{k+1}=g(x_k)\)</span> yields the familiar Newton
 update equation. Thus, we know that if fixed point iteration converges, it will be to
 a solution of <span class="math">\(f(x)=0\)</span>. From above, it should be apparent that the choice
@@ -266,7 +267,7 @@ where <span class="math">\(\delta\)</span> is an arbitrary positive number. If <
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">5. Non-linear Equations</a><ul>
-<li><a class="reference internal" href="#newton-s-method">5.1. Newton’s Method</a></li>
+<li><a class="reference internal" href="#newton-s-method">5.1. Newton&#8217;s Method</a></li>
 <li><a class="reference internal" href="#fixed-point-iteration">5.2. Fixed Point Iteration</a></li>
 </ul>
 </li>
@@ -278,18 +279,21 @@ where <span class="math">\(\delta\)</span> is an arbitrary positive number. If <
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/nonlinear.rst.txt"
+      <li><a href="_sources/nonlinear.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -305,12 +309,12 @@ where <span class="math">\(\delta\)</span> is an arbitrary positive number. If <
         <li class="right" >
           <a href="normal.html" title="4.5. Overdetermined Systems"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Mridul Aanjaneya.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+        &copy; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
     </div>
   </body>
 </html>

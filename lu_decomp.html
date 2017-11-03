@@ -1,33 +1,35 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>4.3. LU Decomposition &#8212; CS 323 1.0 documentation</title>
+    
+    <title>4.3. LU Decomposition &mdash; CS 323 1.0 documentation</title>
+    
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
+        HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
+    <link rel="up" title="4. Linear Systems of Equations" href="linear.html" />
     <link rel="next" title="4.4. Iterative Methods" href="iterative.html" />
     <link rel="prev" title="4.2. Lower Triangular Systems" href="lower.html" /> 
   </head>
-  <body>
+  <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -40,8 +42,8 @@
         <li class="right" >
           <a href="lower.html" title="4.2. Lower Triangular Systems"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="linear.html" accesskey="U">4. Linear Systems of Equations</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="linear.html" accesskey="U">4. Linear Systems of Equations</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -65,14 +67,14 @@ that all diagonal elements <span class="math">\(l_{ii}=1\)</span>.</p>
 </div>
 <p>The code below outlines the <em>Gaussian Elimination</em> algorithm to compute the <span class="math">\(LU\)</span> factorization of an
 <span class="math">\(n\times n\)</span> matrix.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
 <span class="c1"># LU decomposition of square systems</span>
 <span class="k">def</span> <span class="nf">Gaussian_Elimination</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
     <span class="n">m</span><span class="o">=</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">n</span><span class="o">=</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">if</span><span class="p">(</span><span class="n">m</span><span class="o">!=</span><span class="n">n</span><span class="p">):</span>
-        <span class="nb">print</span> <span class="s1">&#39;Matrix is not square!&#39;</span>
+        <span class="k">print</span> <span class="s1">&#39;Matrix is not square!&#39;</span>
         <span class="k">return</span>
     <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">k</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -129,19 +131,19 @@ l_{n1} &amp; l_{n2} &amp; \ldots &amp; l_{n-1,n} &amp; u_{nn}
 \end{array}\right]\end{split}\]</div>
 <p>Let us append the following code to the
 Gaussian Elimination algorithm outlined above to compute the corresponding <span class="math">\(LU\)</span> factorization:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="n">A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">],[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">]])</span>
     <span class="n">Gaussian_Elimination</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-    <span class="nb">print</span> <span class="n">A</span>
+    <span class="k">print</span> <span class="n">A</span>
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Upon execution, it produces the following result:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[[</span> <span class="mi">2</span>  <span class="mi">4</span> <span class="o">-</span><span class="mi">2</span><span class="p">]</span>
- <span class="p">[</span> <span class="mi">2</span>  <span class="mi">1</span>  <span class="mi">1</span><span class="p">]</span>
- <span class="p">[</span><span class="o">-</span><span class="mi">1</span>  <span class="mi">1</span>  <span class="mi">4</span><span class="p">]]</span>
+<div class="highlight-python"><div class="highlight"><pre>[[ 2  4 -2]
+ [ 2  1  1]
+ [-1  1  4]]
 </pre></div>
 </div>
 <p>As stated above, the factorization is <em>in-place</em>, and so the result should be
@@ -602,17 +604,17 @@ by columns</em> if the magnitude of every diagonal element is larger than the su
 the magnitudes of all other entries in the same column, i.e., for every
 <span class="math">\(i=1,2,\ldots, n\)</span> we have</p>
 <div class="math">
-\[|a_{ii}|&gt;\sum_{j\neq i} |a_{ji}|\]</div>
+\[\begin{split}|a_{ii}|&gt;\sum_{j\neq i} |a_{ji}|\end{split}\]</div>
 <p>If the diagonal element exceeds in magnitude the sum of magnitudes of all other
 elements in its <em>row</em>, i.e., for every <span class="math">\(i=1,2,\ldots, n\)</span> we have</p>
 <div class="math">
-\[|a_{ii}|&gt;\sum_{j\neq i} |a_{ij}|\]</div>
+\[\begin{split}|a_{ii}|&gt;\sum_{j\neq i} |a_{ij}|\end{split}\]</div>
 <p>then the matrix is called <em>diagonally dominant by rows</em>.</p>
 </div>
 <div class="topic">
 <p class="topic-title first">Definition</p>
 <p>A symmetric matrix <span class="math">\(A\in\mathbb R^{n\times n}\)</span> is
-called <em>positive definite</em> (in short SPD for “symmetric positive definite”),
+called <em>positive definite</em> (in short SPD for &#8220;symmetric positive definite&#8221;),
 if for any <span class="math">\(x\in\mathbb R^n, x\neq 0\)</span> we have <span class="math">\(x^TAx&gt;0\)</span>. If for any <span class="math">\(x\in\mathbb R^n, x\neq 0\)</span>
 we have <span class="math">\(x^TAx\geq0\)</span>, the matrix is called positive semi-definite. If the
 respective properties are <span class="math">\(x^TAx&lt;0\)</span> (or <span class="math">\(x^TAx\leq 0\)</span>) the matrix is called
@@ -651,7 +653,7 @@ definite.</p>
 <p>Pivoting is <em>not</em> necessary when <span class="math">\(A\)</span> is diagonally dominant by columns, or
 symmetric and positive (or negative) definite.</p>
 </div>
-<p>These “special” classes of matrices (which appear quite often in engineering
+<p>These &#8220;special&#8221; classes of matrices (which appear quite often in engineering
 and applied sciences) not only make <span class="math">\(LU\)</span> decomposition more robust, but also
 open some additional possibilities for solving <span class="math">\(Ax=b\)</span>.</p>
 </div>
@@ -682,18 +684,21 @@ open some additional possibilities for solving <span class="math">\(Ax=b\)</span
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/lu_decomp.rst.txt"
+      <li><a href="_sources/lu_decomp.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -712,13 +717,13 @@ open some additional possibilities for solving <span class="math">\(Ax=b\)</span
         <li class="right" >
           <a href="lower.html" title="4.2. Lower Triangular Systems"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="linear.html" >4. Linear Systems of Equations</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="linear.html" >4. Linear Systems of Equations</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Mridul Aanjaneya.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+        &copy; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
     </div>
   </body>
 </html>

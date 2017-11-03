@@ -1,33 +1,35 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>4.5. Overdetermined Systems &#8212; CS 323 1.0 documentation</title>
+    
+    <title>4.5. Overdetermined Systems &mdash; CS 323 1.0 documentation</title>
+    
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
+        HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
+    <link rel="up" title="4. Linear Systems of Equations" href="linear.html" />
     <link rel="next" title="5. Non-linear Equations" href="nonlinear.html" />
     <link rel="prev" title="4.4. Iterative Methods" href="iterative.html" /> 
   </head>
-  <body>
+  <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -40,8 +42,8 @@
         <li class="right" >
           <a href="iterative.html" title="4.4. Iterative Methods"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="linear.html" accesskey="U">4. Linear Systems of Equations</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="linear.html" accesskey="U">4. Linear Systems of Equations</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -55,8 +57,8 @@
 <p>So far, we considered linear systems <span class="math">\(Ax=b\)</span> with the <em>same</em> number of
 equations and unknowns (i.e., <span class="math">\(A\in\mathbb R^{n\times n}\)</span>). In the case where
 <span class="math">\(A\in\mathbb R^{m\times n}\)</span>, with <span class="math">\(m&gt;n\)</span> (more equations than unknowns) the existence of a
-true solution is not guaranteed, in this case we look for the “best possible”
-substitute for a solution. Before analyzing what that means, let’s look at how
+true solution is not guaranteed, in this case we look for the &#8220;best possible&#8221;
+substitute for a solution. Before analyzing what that means, let&#8217;s look at how
 such problems arise.</p>
 <p>As an example, in an experiment, we measure the pressure of a gas in a closed container as a
 function of the temperature. From Physics, we know that</p>
@@ -95,8 +97,8 @@ y_n
 \right]\end{split}\]</div>
 <p>Here, <span class="math">\(A_{n\times2}x_{2\times1}=b_{n\times1}\)</span> is a rectangular system. We cannot
 hope to find a true solution to this system. Instead, lets try to find an
-“approximate” solution, such that <span class="math">\(Ax\approx b\)</span>. Lets look at the residual of
-this “interpolation”. The residual of the approximation of each data point is:</p>
+&#8220;approximate&#8221; solution, such that <span class="math">\(Ax\approx b\)</span>. Lets look at the residual of
+this &#8220;interpolation&#8221;. The residual of the approximation of each data point is:</p>
 <div class="math">
 \[r_i=y_i-f(x_i)=y_i-c_1x_i-c_0\]</div>
 <p>If we write the vector of all residuals:</p>
@@ -135,7 +137,7 @@ c_1 \\
 c_0
 \end{array}
 \right]=b-Ax\end{split}\]</div>
-<p>Although we can’t find an <span class="math">\(x\)</span> such that <span class="math">\(Ax=b\)</span> (thus, <span class="math">\(r=0\)</span>), we can at least
+<p>Although we can&#8217;t find an <span class="math">\(x\)</span> such that <span class="math">\(Ax=b\)</span> (thus, <span class="math">\(r=0\)</span>), we can at least
 try to make <span class="math">\(r\)</span> <em>small</em>. As another example, consider the problem of finding the best parabola
 <span class="math">\(f(x)=c_2x^2+c_1x+c_0\)</span> that fits measurements <span class="math">\((x_1,y_1),\ldots,(x_n,y_n)\)</span>. We
 would like</p>
@@ -257,11 +259,11 @@ that <span class="math">\(A\)</span> has linearly independent columns, all diago
 </div>
 <p>Now, let us write</p>
 <div class="math">
-\[Q=\left[
+\[\begin{split}Q=\left[
 \begin{array}{c|c}
 \hat Q &amp; Q^\star
 \end{array}
-\right]\]</div>
+\right]\end{split}\]</div>
 <p>where <span class="math">\(\hat Q\in\mathbb R^{m\times n}\)</span> contains the first <span class="math">\(n\)</span> columns of <span class="math">\(Q\)</span> and
 <span class="math">\(Q^\star\in\mathbb R^{m\times (m-n)}\)</span>  contains the last <span class="math">\((m-n)\)</span> columns.
 Respectively, we write:</p>
@@ -315,18 +317,21 @@ normal equations.</p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/normal.rst.txt"
+      <li><a href="_sources/normal.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -345,13 +350,13 @@ normal equations.</p>
         <li class="right" >
           <a href="iterative.html" title="4.4. Iterative Methods"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="linear.html" >4. Linear Systems of Equations</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="linear.html" >4. Linear Systems of Equations</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Mridul Aanjaneya.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+        &copy; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
     </div>
   </body>
 </html>
