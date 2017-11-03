@@ -1,0 +1,181 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>5. Midterm #1 Programming &#8212; CS 323 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1. Introduction" href="../intro.html" />
+    <link rel="prev" title="4. Homework #4" href="../homeworks/homework4.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../intro.html" title="1. Introduction"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../homeworks/homework4.html" title="4. Homework #4"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">CS 323 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="midterm-1-programming">
+<h1>5. Midterm #1 Programming<a class="headerlink" href="#midterm-1-programming" title="Permalink to this headline">¶</a></h1>
+<p>This is the take-home programming part of Midterm #1. You are <strong>not allowed</strong> to
+collaborate with any other student, failure to comply would result in a score of
+<strong>zero</strong> in the <strong>entire</strong> exam!</p>
+<p>Please turn in your code along with your solution. Submissions should be made on Sakai.</p>
+<div class="topic">
+<p class="topic-title first">Problem</p>
+<p>Write a routine for estimating the condition number <span class="math">\(\kappa(A)\)</span> of a
+matrix <span class="math">\(A\)</span> using the <span class="math">\(L_1\)</span>-norm. You will need to compute
+<span class="math">\(\lVert A\rVert_1\)</span>, which should be easy, and estimate <span class="math">\(\lVert
+A^{-1}\rVert_1\)</span>, which is more challenging. Note that we only want to
+<strong>estimate</strong> <span class="math">\(\lVert A^{-1}\rVert_1\)</span>, not compute it exactly (up to finite precision). One way
+to estimate <span class="math">\(\lVert A^{-1}\rVert_1\)</span> is to choose a vector <span class="math">\(y\)</span>
+such that the ratio <span class="math">\(\lVert z\rVert/\lVert y\rVert\)</span> is large, where
+<span class="math">\(z\)</span> is the solution to <span class="math">\(Az=y\)</span>. Try two different approaches to
+choosing <span class="math">\(y\)</span>:</p>
+<ol class="loweralpha">
+<li><p class="first">Choose <span class="math">\(y\)</span> as the solution to the system <span class="math">\(A^Ty = c\)</span>, where
+<span class="math">\(c\)</span> is a vector each of whose components is <span class="math">\(\pm 1\)</span>, with the
+sign for each component chosen by the following heuristic. Using the
+factorization <span class="math">\(A = LU\)</span>, the system <span class="math">\(A^Ty=c\)</span> is solved in two
+stages, successively solving the triangular systems <span class="math">\(U^Tv = c\)</span> and
+<span class="math">\(L^Ty = v\)</span>. At each step of the first triangular solution, choose the
+corresponding component of <span class="math">\(c\)</span> to be either <span class="math">\(1\)</span> or <span class="math">\(-1\)</span>,
+depending on which will make the resulting component of <span class="math">\(v\)</span> <em>larger</em>
+in magnitude. (You will need to write a custom triangular solution routine
+to implement this.) Then solve the second triangular system in the usual way
+for <span class="math">\(y\)</span>.</p>
+<p>The idea here is that any ill-conditioning in <span class="math">\(A\)</span> will be
+reflected in <span class="math">\(U\)</span>, resulting in a relatively large <span class="math">\(v\)</span>. The
+relatively well-conditioned unit triangular matrix <span class="math">\(L\)</span> will then
+preserve this relationship, resulting in a relatively large <span class="math">\(y\)</span>.</p>
+</li>
+<li><p class="first">Choose five different vectors <span class="math">\(y\)</span> <em>randomly</em> and use the one
+producing the largest ratio <span class="math">\(\lVert z\rVert/\lVert y\rVert\)</span>.</p>
+</li>
+</ol>
+<p>Test both the approaches described in parts (a) and (b) on each of the
+following two matrices:</p>
+<div class="math">
+\[\begin{split}A_1 &amp;=&amp; \enspace \left[\begin{array}{ccc} -10 &amp; 7 &amp; 0 \\ 5 &amp; -1 &amp; 5 \\ -3 &amp; 2 &amp; 6 \end{array}\right] \\
+A_2 &amp;=&amp; \enspace \left[\begin{array}{ccc} 92 &amp; 66 &amp; 25 \\ -73 &amp; 78 &amp; 24 \\ -80 &amp; 37 &amp; 10 \end{array}\right]\end{split}\]</div>
+<p>Report your results using these two methods. Check the quality of your
+estimates using the function <code class="docutils literal"><span class="pre">np.linalg.cond(A,1)</span></code> and report your results.</p>
+<p>For solving the linear system <span class="math">\(Ax = b\)</span>, you can use the
+following code:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Note:</strong> The only place where you <strong>should not</strong> use this routine is when solving
+the system <span class="math">\(U^Tv = c\)</span>, where you need to adjust each component of <span class="math">\(c\)</span>
+depending on the magnitude of the corresponding component of <span class="math">\(v\)</span>.</p>
+<p>For computing the <span class="math">\(LU\)</span> decomposition of a matrix <span class="math">\(A\)</span>, you can
+use the following code:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="k">import</span> <span class="n">lu</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">10.</span><span class="p">,</span><span class="o">-</span><span class="mf">7.</span><span class="p">,</span><span class="mf">0.</span><span class="p">],[</span><span class="mf">5.</span><span class="p">,</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span><span class="mf">5.</span><span class="p">],[</span><span class="o">-</span><span class="mf">3.</span><span class="p">,</span><span class="mf">2.</span><span class="p">,</span><span class="mf">6.</span><span class="p">]])</span>
+<span class="n">P</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">U</span> <span class="o">=</span> <span class="n">lu</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">permute_l</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Both the matrices <span class="math">\(A_1\)</span> and <span class="math">\(A_2\)</span> have been chosen such that the
+permutation matrix <span class="math">\(P = I_{3\times 3}\)</span>, the identity matrix. So you <strong>do not</strong> need to worry
+about pivoting in this problem. Finally, to generate a random vector <span class="math">\(y\)</span> using <a class="reference external" href="http://www.numpy.org/">NumPy</a>,
+you can use the following code:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">array([[ 0.16823198],</span>
+<span class="go">       [ 0.91167363],</span>
+<span class="go">       [ 0.34837631]])</span>
+</pre></div>
+</div>
+<p>Needless to say, you <strong>cannot</strong> use the function <code class="docutils literal"><span class="pre">np.linalg.norm</span></code> in this problem. Please use double precision,
+which is the default precision in <a class="reference external" href="https://www.python.org/">Python</a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../homeworks/homework4.html"
+                        title="previous chapter">4. Homework #4</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../intro.html"
+                        title="next chapter">1. Introduction</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/exams/midterm1_programming.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../intro.html" title="1. Introduction"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../homeworks/homework4.html" title="4. Homework #4"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">CS 323 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+  </body>
+</html>
