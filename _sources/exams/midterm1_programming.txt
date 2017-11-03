@@ -3,7 +3,7 @@ Midterm #1 Programming
 
 This is the take-home programming part of Midterm #1. You are **not allowed** to
 collaborate with any other student, failure to comply will result in a score of
-**zero** in the **entire** exam.
+**zero** on the **entire** exam.
 
 Please turn in your code along with your solution. Submissions should be made on Sakai.
 
