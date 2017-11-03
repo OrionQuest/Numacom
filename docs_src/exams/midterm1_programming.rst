@@ -2,7 +2,7 @@ Midterm #1 Programming
 ======================
 
 This is the take-home programming part of Midterm #1. You are **not allowed** to
-collaborate with any other student, failure to comply would result in a score of
+collaborate with any other student, failure to comply will result in a score of
 **zero** in the **entire** exam.
 
 Please turn in your code along with your solution. Submissions should be made on Sakai.
@@ -77,5 +77,6 @@ Please turn in your code along with your solution. Submissions should be made on
                [ 0.91167363],
                [ 0.34837631]])
 
-    Needless to say, you **cannot** use the function ``np.linalg.norm`` in this problem. Please use double precision,
+    Needless to say, you **cannot** use the function ``np.linalg.norm`` in this problem to compute the norm of a matrix. However,
+    you **can** (and should) use it to compute the norm of a vector. Please use double precision,
     which is the default precision in `Python <https://www.python.org/>`_.
