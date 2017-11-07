@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>5.3. Order of Convergence &mdash; CS 323 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
+    <link rel="up" title="5. Non-linear Equations" href="nonlinear.html" />
+    <link rel="prev" title="5.2. Fixed Point Iteration" href="fixed.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="fixed.html" title="5.2. Fixed Point Iteration"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="nonlinear.html" accesskey="U">5. Non-linear Equations</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="order-of-convergence">
+<h1>5.3. Order of Convergence<a class="headerlink" href="#order-of-convergence" title="Permalink to this headline">¶</a></h1>
+<p>We previously used the hypothesis that <span class="math">\(g\)</span> (in the fixed point iteration <span class="math">\(x_{k+1}=g(x_k)\)</span>)
+is a contraction to show that <span class="math">\(|x_k-a|\xrightarrow{k\rightarrow\infty}0\)</span>.
+Remember that the quantity</p>
+<div class="math">
+\[e=x_\texttt{approximate}-x_\texttt{exact}\]</div>
+<p>was previously defined as the (absolute) error. In this case, let us define
+<span class="math">\(e_k=x_k-a\)</span> (<span class="math">\(a\)</span> is the solution, i.e., <span class="math">\(f(a)=0\)</span>) as the error after the <span class="math">\(k\)</span>-th
+iteration. If <span class="math">\(g\)</span> is a contraction, we have</p>
+<div class="math">
+\[|e_{k+1}|=|x_{k+1}-a|=|g(x_k)-g(a)|\leq L|x_k-a|=L|e_k|\]</div>
+<p>Since <span class="math">\(L&lt;1\)</span>, the error shrinks at least by a constant factor at each iteration.
+In some cases, we can do even better. Remember the following theorem:</p>
+<div class="topic">
+<p class="topic-title first">Theorem</p>
+<p>If a function <span class="math">\(g\)</span> is <span class="math">\(k\)</span>-times differentiable, then:</p>
+<div class="math">
+\[g(y)=g(x) + g'(x)(y-x)+\frac{g''(x)}{2!}(y-x)^2+\frac{g'''(x)}{3!}(y-x)^3 + \ldots + \frac{g^{(k-1)}(x)}{(k-1)!}(y-x)^{k-1}+\frac{g^{(k)}(c)}{k!}(y-x)^k\]</div>
+<p>for some number <span class="math">\(c\)</span> between <span class="math">\(x\)</span> and <span class="math">\(y\)</span>.</p>
+</div>
+<p>For <span class="math">\(k=1\)</span>, we simply obtain the mean value theorem:</p>
+<div class="math">
+\[g(y)=g(x)+g'(c)(y-x)\Leftrightarrow \frac{g(y)-g(x)}{y-x}=g'(c)\]</div>
+<p>(for some <span class="math">\(c\)</span> between <span class="math">\(x\)</span> and <span class="math">\(y\)</span>), which we used before to show that
+<span class="math">\(|g'(x)|\leq L&lt;1\)</span> implies that <span class="math">\(g\)</span> is a contraction.
+We will now use the theorem in the case <span class="math">\(k=2\)</span>:</p>
+<div class="math" id="equation-taylor-2">
+<span class="eqno">(1)</span>\[g(y)=g(x)+g'(x)(y-x)+\frac{g''(c)}{2}(y-x)^2 \enspace\enspace \mbox{for some $c$ between $x$ and $y$}\]</div>
+<p>Let <span class="math">\(g(x)=x-f(x)/f'(x)\)</span> (as in Newton&#8217;s method). Now, let us make the following
+substitutions in the equation above:</p>
+<div class="math">
+\[x\leftarrow a \enspace \mbox{(the solution), and} \enspace y\leftarrow x_k\]</div>
+<p>If <span class="math">\(f'(a)\neq 0\)</span> and <span class="math">\(f''(a)\)</span> is defined, then</p>
+<div class="math">
+\[g'(a)=\frac{\overbrace{f(a)}^{=0}f''(a)}{[f'(a)]^2}=0\]</div>
+<p>Thus, equation <a href="#equation-taylor-2">(1)</a> becomes</p>
+<div class="math">
+\[\begin{split}&amp;g(x_k)&amp; = g(a)+\frac{g''(c)}{2}(x_k-a)^2 \\
+&amp;\Rightarrow&amp; x_{k+1}=a+\frac{g''(c)}{2}(x_k-a)^2 \\
+&amp;\Rightarrow&amp; |x_{k+1}-a|=\left|\frac{g''(c)}{2}\right||x_k-a|^2\end{split}\]</div>
+<div class="math" id="equation-taylor-2-error">
+<span class="eqno">(2)</span>\[\Rightarrow |e_{k+1}|\leq C|e_k|^2 \enspace\enspace \mbox{note the exponent!}\]</div>
+<p>where</p>
+<div class="math">
+\[C\equiv \max\left|\frac{g''(x)}{2}\right|_{\mbox{$x$ between $a$ and $x_k$}}\]</div>
+<p>Compare equation <a href="#equation-taylor-2-error">(2)</a> with the general guarantee</p>
+<div class="math" id="equation-error-series">
+<span class="eqno">(3)</span>\[|e_{k+1}|\leq L|e_k|\]</div>
+<p>for contractions:</p>
+<ul>
+<li><p class="first">Equation <a href="#equation-error-series">(3)</a> depends on <span class="math">\(L&lt;1\)</span> to reduce the error. In
+equation <a href="#equation-taylor-2-error">(2)</a>, even if <span class="math">\(C\)</span> is larger than one, if <span class="math">\(e_k\)</span>
+is small enough then <span class="math">\(e_{k+1}\)</span> will be reduced. Consider for example, the case
+<span class="math">\(C=10\)</span>, <span class="math">\(|e_k|=10^{-3}\)</span> which will guarantee <span class="math">\(|e_{k+1}|\leq 10^{-5}\)</span>, and
+<span class="math">\(|e_{k+2}|\leq 10^{-9}\)</span> in the next iteration.</p>
+</li>
+<li><p class="first">Equation <a href="#equation-error-series">(3)</a> implies that every iteration adds a fixed
+number (or, a fixed fraction) of correct significant digits. For example, if
+<span class="math">\(L=0.3\)</span>:</p>
+<div class="math">
+\[|e_{k+2}|\leq 0.3|e_{k+1}|\leq 0.09|e_k|\]</div>
+<p>Thus, we gain <span class="math">\(1\)</span> significant digit every <span class="math">\(2\)</span> iterations.</p>
+</li>
+</ul>
+<p>More generally, if an iterative scheme for solving <span class="math">\(f(x)=0\)</span> can guarantee that</p>
+<div class="math">
+\[|e_{k+1}|\leq L|e_k|^d\]</div>
+<p>then the exponent <span class="math">\(d\)</span> (which can be a fractional number too) is called the
+<em>order of convergence</em>.  Specifically:</p>
+<ul class="simple">
+<li>If <span class="math">\(d=1\)</span>, we shall also require that <span class="math">\(L&lt;1\)</span> in order to guarantee that the error
+<span class="math">\(e_k\)</span> is being reduced. In this case, we say that the method exhibits
+<em>linear</em> convergence.</li>
+<li>If <span class="math">\(d&gt;1\)</span>, we no longer need <span class="math">\(L&lt;1\)</span> as a strict condition for convergence
+(although we need to be &#8220;close enough&#8221; to the solution to guarantee progress).
+This case is described as <em>superlinear</em> convergence. The case <span class="math">\(d=2\)</span> is
+referred to as <em>quadratic</em> convergence, the case <span class="math">\(d=3\)</span> is referred to as
+<em>cubic</em> convergence, and so on.</li>
+</ul>
+<p>We previously saw that Newton&#8217;s method converges quadratically. More generally,
+for the fixed point iteration <span class="math">\(x_{k+1}=g(x_k)\)</span>, if we can show that <span class="math">\(g'(a)=0\)</span>
+(where <span class="math">\(a\)</span> is the solution), then Taylor&#8217;s second order formula yields the same result
+as in equation <a href="#equation-taylor-2-error">(2)</a>, and the fixed point iteration converges quadratically.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="fixed.html"
+                        title="previous chapter">5.2. Fixed Point Iteration</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/convergence.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="fixed.html" title="5.2. Fixed Point Iteration"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="nonlinear.html" >5. Non-linear Equations</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

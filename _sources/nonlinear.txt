@@ -68,3 +68,4 @@ detailed proof until after we have introduced the more general method.
 
     Newton's Method <newton>
     Fixed Point Iteration <fixed>
+    Order of Convergence <convergence>
