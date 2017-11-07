@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>5.5. The Bisection Method &mdash; CS 323 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
+    <link rel="up" title="5. Non-linear Equations" href="nonlinear.html" />
+    <link rel="prev" title="5.4. Multiple Roots" href="multiple.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="multiple.html" title="5.4. Multiple Roots"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="nonlinear.html" accesskey="U">5. Non-linear Equations</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="the-bisection-method">
+<h1>5.5. The Bisection Method<a class="headerlink" href="#the-bisection-method" title="Permalink to this headline">¶</a></h1>
+<p>Newton&#8217;s method is a popular technique for the solution of nonlinear equations,
+but alternative methods exist which may be preferable in certain situations. The
+<em>Bisection method</em> is yet another technique for finding a solution to the
+nonlinear equation <span class="math">\(f(x)=0\)</span>, which can be used provided that the function <span class="math">\(f\)</span> is
+continuous. The motivation for this technique is drawn from  Bolzano&#8217;s theorem
+for continuous functions:</p>
+<div class="topic">
+<p class="topic-title first">Theorem (Bolzano)</p>
+<p>If the function <span class="math">\(f(x)\)</span> is continuous in <span class="math">\([a,b]\)</span> and
+<span class="math">\(f(a)f(b)&lt;0\)</span> (i.e., the function has values with different signs at <span class="math">\(a\)</span> and
+<span class="math">\(b\)</span>), then a value <span class="math">\(c\in (a,b)\)</span> exists such that <span class="math">\(f(c)=0\)</span>.</p>
+</div>
+<a class="reference internal image-reference" href="_images/bisection.png"><img alt="_images/bisection.png" class="align-center" src="_images/bisection.png" style="width: 603.0px; height: 469.2px;" /></a>
+<p>The bisection algorithm attempts to locate the value <span class="math">\(c\)</span> where the graph of <span class="math">\(f\)</span>
+crosses over zero, by checking whether it belongs to either of the two
+sub-intervals <span class="math">\([a,x_m]\)</span>, <span class="math">\([x_m,b]\)</span>, where <span class="math">\(x_m\)</span> is the midpoint</p>
+<div class="math">
+\[x_m=\frac{a+b}{2}\]</div>
+<p>The algorithm proceeds as follows:</p>
+<ul>
+<li><p class="first">If <span class="math">\(f(x_m)=0\)</span>, we have our solution <span class="math">\((x_m)\)</span> and the algorithm terminates.</p>
+</li>
+<li><p class="first">In the much more likely case that <span class="math">\(f(x_m)\neq 0\)</span>, we observe that <span class="math">\(f(x_m)\)</span>
+<em>must</em> have the opposite sign than one of <span class="math">\(f(a)\)</span> or <span class="math">\(f(b)\)</span> (since they have
+opposite signs themselves). Thus,</p>
+<ul class="simple">
+<li>Either <span class="math">\(f(a)f(x_m)&lt;0\)</span>, or</li>
+<li><span class="math">\(f(x_m)f(b)&lt;0\)</span>.</li>
+</ul>
+<p>We pick whichever of these two intervals satisfies the condition, and continue the bisection process with it.</p>
+</li>
+</ul>
+<p><strong>Convergence:</strong> Let us conventionally define the &#8220;approximation&#8221; at <span class="math">\(x_k\)</span>
+after the <span class="math">\(k\)</span>-th iteration as the midpoint</p>
+<div class="math">
+\[x_k=\frac{a_k+b_k}{2}\]</div>
+<p>of <span class="math">\(I_k\)</span>. Since the actual solution <span class="math">\(f(c)=0\)</span> satisfies <span class="math">\(c\in I_k\)</span>, we have</p>
+<div class="math">
+\[|x_k-c|\leq\frac{1}{2}|I_k|\]</div>
+<p>where <span class="math">\(|I_k|\)</span> symbolizes the length of the interval <span class="math">\(I_k\)</span>. Since the length of
+the current search interval gets divided in half in each iteration, we have</p>
+<div class="math">
+\[|e_k|=|x_k-c|\leq \left(\frac{1}{2}\right)^k|I_0|\]</div>
+<p>We interpret this behavior as <em>linear</em> convergence; although we cannot
+strictly guarantee that <span class="math">\(|e_{k+1}|\leq L|e_k|\)</span> (<span class="math">\(L&lt;1\)</span>) at each iteration, this
+definition can also be iterated to yield</p>
+<div class="math">
+\[|e_k|\leq L^k|e_0|\]</div>
+<p>which is qualitatively equivalent to the expression for bisection. Since the
+order of convergence is linear, we expect to gain a fixed number (or fixed
+fraction) of significant digits at each iteration; since <span class="math">\(0.5^{10}\approx 0.001\)</span>
+we can actually say that the bisection method yields about <span class="math">\(3\)</span> additional
+correct significant digits after every <span class="math">\(10\)</span> iterations.</p>
+<p>The bisection procedure is very robust, by virtue of Bolzano&#8217;s theorem, and
+despite having only linear convergence can be used to find an approximation
+within any desired error tolerance. It is often used to localize a good initial
+guess which can then be rapidly improved with a fixed point iteration method
+such as Newton&#8217;s method. <em>Note that bisection search is not a fixed point
+iteration itself!</em></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="multiple.html"
+                        title="previous chapter">5.4. Multiple Roots</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/bisection.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="multiple.html" title="5.4. Multiple Roots"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="nonlinear.html" >5. Non-linear Equations</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

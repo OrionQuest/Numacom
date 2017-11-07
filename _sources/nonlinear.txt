@@ -70,3 +70,4 @@ detailed proof until after we have introduced the more general method.
     Fixed Point Iteration <fixed>
     Order of Convergence <convergence>
     Multiple Roots <multiple>
+    The Bisection Method <bisection>
