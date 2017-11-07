@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>5.6. The Secant Method &mdash; CS 323 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
+    <link rel="up" title="5. Non-linear Equations" href="nonlinear.html" />
+    <link rel="prev" title="5.5. The Bisection Method" href="bisection.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="bisection.html" title="5.5. The Bisection Method"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="nonlinear.html" accesskey="U">5. Non-linear Equations</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="the-secant-method">
+<h1>5.6. The Secant Method<a class="headerlink" href="#the-secant-method" title="Permalink to this headline">¶</a></h1>
+<p>The <em>secant method</em> is yet another iterative technique for solving
+nonlinear equations; it closely mimics Newton&#8217;s method, but relaxes the
+requirement that an analytic expression for the derivative <span class="math">\(f'(x)\)</span> must be
+provided. It operates as follows:</p>
+<ul>
+<li><p class="first">We bootstrap the iteration not only with one initial guess <span class="math">\((x_0)\)</span>, but also with
+a second improved approximation <span class="math">\(x_1\)</span>.</p>
+</li>
+<li><p class="first">At the <span class="math">\(k\)</span>-th step of the iteration, we first approximate</p>
+<div class="math">
+\[f'(x_k)\approx\frac{f(x_k)-f(x_{k-1})}{x_k-x_{k-1}}\]</div>
+<p>Remember that since</p>
+<div class="math">
+\[f'(x_k)=\lim_{y\rightarrow x_k}\frac{f(x_k)-f(y)}{x_k-y}\]</div>
+<p>as the iterates <span class="math">\(x_{k-1}\)</span>, <span class="math">\(x_k\)</span> get closer to one another (while they both
+approach the solution) this approximation becomes more and more accurate.
+We then replace this particular approximation for <span class="math">\(f'(x_k)\)</span> in Newton&#8217;s method
+<span class="math">\(x_{k+1}=x_k-f(x_k)/f'(x_k)\)</span> to obtain:</p>
+<div class="math">
+\[x_{k+1}=x_k-\frac{f(x_k)}{\frac{f(x_k)-f(x_{k-1})}{x_k-x_{k-1}}}\]</div>
+</li>
+</ul>
+<p>Geometrically, Newton&#8217;s method approximates <span class="math">\(f(x)\)</span> at each step by the
+<em>tangent</em> line to the graph of <span class="math">\(f(x)\)</span>, while the method we just described
+approximates <span class="math">\(f\)</span> by the <em>secant</em> line as illustrated below:</p>
+<a class="reference internal image-reference" href="_images/secant.png"><img alt="_images/secant.png" class="align-center" src="_images/secant.png" style="width: 788.9px; height: 289.1px;" /></a>
+<p>We can show that, once we are &#8220;close enough&#8221; to the solution, the error <span class="math">\(e_k\)</span>
+for the secant method satisfies</p>
+<div class="math">
+\[|e_{k+1}|\leq c|e_k|^d,\enspace\enspace\mbox{where $d=\frac{1+\sqrt{5}}{2}\approx 1.6$}\]</div>
+<p>Thus, the secant method provides <em>superlinear</em> convergence. In practice, it
+may need a few more iterations (about <span class="math">\(50\%\)</span> more?) than Newton&#8217;s method, but we
+need to weigh in the fact that each iteration is likely cheaper, since no
+derivatives of <span class="math">\(f\)</span> need to be evaluated.</p>
+<p><em>Order of convergence:</em> Let the exact solution be <span class="math">\(a\)</span>, i.e., <span class="math">\(f(a)=0\)</span>. Define <span class="math">\(e_k=x_k-a\)</span> and <span class="math">\(f_k=f(x_k)\)</span>. Then,</p>
+<div class="math">
+\[\begin{split}e_{k+1}=x_{k+1}-a &amp;=&amp; \enspace x_k-\frac{x_k-x_{k-1}}{f_k-f_{k-1}}f_k-a \\
+                  &amp;=&amp; \enspace \frac{(x_{k-1}-a)f_k-(x_k-a)f_{k-1}}{f_k-f_{k-1}} \\
+                  &amp;=&amp; \enspace \frac{e_{k-1}f_k-e_kf_{k-1}}{f_k-f_{k-1}} \\
+                  &amp;=&amp; \enspace \frac{e_{k-1}f(a+e_k)-e_kf(a+e_{k-1})}{f_k-f_{k-1}}\end{split}\]</div>
+<p>Expanding <span class="math">\(f(a+e_k)\)</span> using Taylor&#8217;s series gives</p>
+<div class="math">
+\[\begin{split}e_{k+1} &amp;=&amp; \enspace \frac{e_{k-1}(e_kf'(a)+e_k^2f''(a)/2+O(e_k^3))-e_k(e_{k-1}f'(a)+e_{k-1}^2f''(a)/2+O(e_{k-1}^3))}{e_kf'(a)+e_k^2f''(a)/2+O(e_k^3)-(e_{k-1}f'(a)+e^2_{k-1}f''(a)/2+O(e_{k-1}^3))} \nonumber \\
+        &amp;=&amp; \enspace \frac{e_{k-1}e_kf''(a)(e_k-e_{k-1})/2+O(e_{k-1}^4)}{(e_k-e_{k-1})(f'(a)+(e_k+e_{k-1})f''(a)/2+O(e_{k-1}^2))}\end{split}\]</div>
+<div class="math" id="equation-error">
+<span class="eqno">(1)</span>\[\Rightarrow e_{k+1} = \frac{e_{k-1}e_kf''(a)}{2f'(a)}+O(e_{k-1}^3)\]</div>
+<p>We want to find <span class="math">\(\alpha\)</span> such that <span class="math">\(|e_{k+1}|=C|e_k|^\alpha\)</span>.
+Since the first term in equation <a href="#equation-error">(1)</a> dominates the error, we
+ignore the cubic term and solve</p>
+<div class="math" id="equation-error-convergence-C">
+<span class="eqno">(2)</span>\[\left|\frac{e_{k-1}e_kf''(a)}{2f'(a)}\right|=C|e_k|^\alpha\]</div>
+<p>Canceling <span class="math">\(e_k\)</span> from both sides and changing <span class="math">\(k\)</span> to <span class="math">\(k+1\)</span> gives
+<span class="math">\(|e_{k+1}|^{\alpha-1}=D|e_k|\)</span>, where <span class="math">\(D=|f''(a)/(2Cf'(a))|\)</span>. Raising both sides
+by the power <span class="math">\(\alpha\)</span> gives</p>
+<div class="math" id="equation-error-convergence-D">
+<span class="eqno">(3)</span>\[|e_{k+1}|^{\alpha (\alpha-1)}=D^\alpha|e_k^\alpha|\]</div>
+<p>Equating equations <a href="#equation-error-convergence-C">(2)</a> and
+<a href="#equation-error-convergence-D">(3)</a> gives, <span class="math">\(C=D^\alpha\)</span> and <span class="math">\(\alpha (\alpha-1)=1\)</span>.
+The negative solution can be discarded because we know that the order of convergence is positive. Thus, the order
+of convergence is <span class="math">\(\alpha=(1+\sqrt{5})/2\approx1.618\)</span>.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="bisection.html"
+                        title="previous chapter">5.5. The Bisection Method</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/secant.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="bisection.html" title="5.5. The Bisection Method"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="nonlinear.html" >5. Non-linear Equations</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

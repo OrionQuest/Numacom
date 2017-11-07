@@ -71,3 +71,4 @@ detailed proof until after we have introduced the more general method.
     Order of Convergence <convergence>
     Multiple Roots <multiple>
     The Bisection Method <bisection>
+    The Secant Method <secant>
