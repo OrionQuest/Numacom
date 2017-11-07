@@ -248,7 +248,7 @@ Examples:
 *   :math:`g(x)=x^2`, in :math:`[0.1,0.2]`:
 
     .. math::
-        |g(x)-g(y)|=|x^2-y^2|=|x+y||x-y|\leq 0.3|x-y|
+        |g(x)-g(y)|=|x^2-y^2|=|x+y||x-y|\leq 0.4|x-y|
 
     for :math:`x,y\in[0.1,0.2]` (in this case this condition is essential!)
 
@@ -271,3 +271,81 @@ If we can establish that the function :math:`g` in the fixed point iteration
 
     Since :math:`L<1`, we have :math:`\lim_{k\rightarrow\infty} |x_k-a|=0`, i.e.,
     :math:`x_k\rightarrow a`.
+
+In some cases, it can be cumbersome to apply the definition directly to show
+that a given function :math:`g` is a contraction. However, if we can compute the
+derivative :math:`g'(x)` we have a simpler criterion:
+
+.. topic:: Theoreom
+
+    If :math:`g` is differentiable and a number :math:`L\in[0,1)` exists such
+    that :math:`|g'(x)|\leq L` for all :math:`x\in[a,b]`, then :math:`g` is a contraction on :math:`[a,b]`.
+
+    *Proof:* Let :math:`x,y\in[a,b]` and, without loss of generality, assume :math:`x<y`. The mean value
+    theorem states that
+
+    .. math::
+        \frac{g(x)-g(y)}{x-y}=g'(c) \enspace\enspace \mbox{for some $c\in(x,y)$.}
+
+    Now, if :math:`|g'(x)|\leq L` for all :math:`x\in[a,b]`, then regardless of the exact value
+    of :math:`c` we have
+
+    .. math::
+        |g'(c)|\leq L\Rightarrow \left|\frac{g(x)-g(y)}{x-y}\right|\leq L\Rightarrow |g(x)-g(y)|\leq L|x-y|
+
+Examples:
+
+*   Let :math:`g(x)=\sin(\frac{2x}{3})`. Then
+
+    .. math::
+        |g'(x)|=\frac{2}{3}\left|\cos\left(\frac{2x}{3}\right)\right|\leq \frac{2}{3}<1
+
+    Thus, :math:`g` is a contraction.
+
+*   Let us try to apply the derivative criterion to see if the function
+
+    .. math::
+        g(x)=x-\frac{f(x)}{f'(x)}
+
+    which defines Newton's method is a contraction:
+
+    .. math::
+        g'(x)=1-\frac{f'(x)f'(x)-f(x)f''(x)}{[f'(x)]^2}=\frac{f(x)f''(x)}{[f'(x)]^2}
+
+    Now let us assume that
+
+    *   :math:`f(a)=0`, i.e., :math:`a` is a solution of :math:`f(x)=0`,
+    *   :math:`f'(a)\neq 0`, and
+    *   :math:`f''` is *bounded* near :math:`a` (for example, if :math:`f''` is continuous).
+
+    Then
+
+    .. math::
+        \lim_{x\rightarrow a} g'(x)=\frac{f(a)f''(a)}{[f'(a)]^2}=0
+
+    This means that there is an interval :math:`(a-\delta,a+\delta)` where :math:`|g'(x)|` is
+    *small* (since :math:`\lim_{x\rightarrow a} g'(x)=0`). Specifically, we can find
+    an :math:`L<1` such that :math:`|g'(x)|\leq L` when :math:`|x-a|<\delta`. This means that :math:`g` is a
+    contraction on :math:`(a-\delta,a+\delta)`, and if the initial guess also falls in
+    that interval, the iteration is guaranteed to converge to the solution :math:`a`.
+
+Let us revisit Newton's method once again. The equality we showed previously
+
+.. math::
+    g'(x)=\frac{f(x)f''(x)}{[f'(x)]^2}
+
+can give us some insights about certain cases, where convergence is more likely,
+and others where convergence may be at risk:
+
+*   If :math:`f''` is small, :math:`g'(x)` will also tend to be small. In the limit case where
+    :math:`f''(x)=0`, convergence is instantaneous. Of course, this is of limited interest
+    because it would imply that the equation of interest is in fact linear, or :math:`f(x)=ax+b`.
+    However, when :math:`f''(x)\approx 0`, we can expect very rapid convergence.
+
+*   If :math:`f'(x)` is large, convergence will typically occur more easily. Of course,
+    sometimes this fact coincides with :math:`f''` being large, in which case the two
+    factors compete or cancel one another.
+
+*   Another consequence is that, when :math:`f'(x)\approx 0` (i.e., the graph of :math:`f` is
+    mostly ``flat"), convergence will be less certain. Compare this with our
+    intuitive graphical explanation of ``flat" tangents in Newton's method.
