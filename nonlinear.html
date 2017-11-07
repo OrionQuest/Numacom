@@ -235,7 +235,7 @@ the interval</em> <span class="math">\([a,b]\)</span>, if there exists a number 
 </li>
 <li><p class="first"><span class="math">\(g(x)=x^2\)</span>, in <span class="math">\([0.1,0.2]\)</span>:</p>
 <div class="math">
-\[|g(x)-g(y)|=|x^2-y^2|=|x+y||x-y|\leq 0.3|x-y|\]</div>
+\[|g(x)-g(y)|=|x^2-y^2|=|x+y||x-y|\leq 0.4|x-y|\]</div>
 <p>for <span class="math">\(x,y\in[0.1,0.2]\)</span> (in this case this condition is essential!)</p>
 </li>
 </ul>
@@ -255,6 +255,68 @@ where <span class="math">\(\delta\)</span> is an arbitrary positive number. If <
 <p>Since <span class="math">\(L&lt;1\)</span>, we have <span class="math">\(\lim_{k\rightarrow\infty} |x_k-a|=0\)</span>, i.e.,
 <span class="math">\(x_k\rightarrow a\)</span>.</p>
 </div>
+<p>In some cases, it can be cumbersome to apply the definition directly to show
+that a given function <span class="math">\(g\)</span> is a contraction. However, if we can compute the
+derivative <span class="math">\(g'(x)\)</span> we have a simpler criterion:</p>
+<div class="topic">
+<p class="topic-title first">Theoreom</p>
+<p>If <span class="math">\(g\)</span> is differentiable and a number <span class="math">\(L\in[0,1)\)</span> exists such
+that <span class="math">\(|g'(x)|\leq L\)</span> for all <span class="math">\(x\in[a,b]\)</span>, then <span class="math">\(g\)</span> is a contraction on <span class="math">\([a,b]\)</span>.</p>
+<p><em>Proof:</em> Let <span class="math">\(x,y\in[a,b]\)</span> and, without loss of generality, assume <span class="math">\(x&lt;y\)</span>. The mean value
+theorem states that</p>
+<div class="math">
+\[\frac{g(x)-g(y)}{x-y}=g'(c) \enspace\enspace \mbox{for some $c\in(x,y)$.}\]</div>
+<p>Now, if <span class="math">\(|g'(x)|\leq L\)</span> for all <span class="math">\(x\in[a,b]\)</span>, then regardless of the exact value
+of <span class="math">\(c\)</span> we have</p>
+<div class="math">
+\[|g'(c)|\leq L\Rightarrow \left|\frac{g(x)-g(y)}{x-y}\right|\leq L\Rightarrow |g(x)-g(y)|\leq L|x-y|\]</div>
+</div>
+<p>Examples:</p>
+<ul>
+<li><p class="first">Let <span class="math">\(g(x)=\sin(\frac{2x}{3})\)</span>. Then</p>
+<div class="math">
+\[\begin{split}|g'(x)|=\frac{2}{3}\left|\cos\left(\frac{2x}{3}\right)\right|\leq \frac{2}{3}&lt;1\end{split}\]</div>
+<p>Thus, <span class="math">\(g\)</span> is a contraction.</p>
+</li>
+<li><p class="first">Let us try to apply the derivative criterion to see if the function</p>
+<div class="math">
+\[g(x)=x-\frac{f(x)}{f'(x)}\]</div>
+<p>which defines Newton&#8217;s method is a contraction:</p>
+<div class="math">
+\[g'(x)=1-\frac{f'(x)f'(x)-f(x)f''(x)}{[f'(x)]^2}=\frac{f(x)f''(x)}{[f'(x)]^2}\]</div>
+<p>Now let us assume that</p>
+<ul class="simple">
+<li><span class="math">\(f(a)=0\)</span>, i.e., <span class="math">\(a\)</span> is a solution of <span class="math">\(f(x)=0\)</span>,</li>
+<li><span class="math">\(f'(a)\neq 0\)</span>, and</li>
+<li><span class="math">\(f''\)</span> is <em>bounded</em> near <span class="math">\(a\)</span> (for example, if <span class="math">\(f''\)</span> is continuous).</li>
+</ul>
+<p>Then</p>
+<div class="math">
+\[\lim_{x\rightarrow a} g'(x)=\frac{f(a)f''(a)}{[f'(a)]^2}=0\]</div>
+<p>This means that there is an interval <span class="math">\((a-\delta,a+\delta)\)</span> where <span class="math">\(|g'(x)|\)</span> is
+<em>small</em> (since <span class="math">\(\lim_{x\rightarrow a} g'(x)=0\)</span>). Specifically, we can find
+an <span class="math">\(L&lt;1\)</span> such that <span class="math">\(|g'(x)|\leq L\)</span> when <span class="math">\(|x-a|&lt;\delta\)</span>. This means that <span class="math">\(g\)</span> is a
+contraction on <span class="math">\((a-\delta,a+\delta)\)</span>, and if the initial guess also falls in
+that interval, the iteration is guaranteed to converge to the solution <span class="math">\(a\)</span>.</p>
+</li>
+</ul>
+<p>Let us revisit Newton&#8217;s method once again. The equality we showed previously</p>
+<div class="math">
+\[g'(x)=\frac{f(x)f''(x)}{[f'(x)]^2}\]</div>
+<p>can give us some insights about certain cases, where convergence is more likely,
+and others where convergence may be at risk:</p>
+<ul class="simple">
+<li>If <span class="math">\(f''\)</span> is small, <span class="math">\(g'(x)\)</span> will also tend to be small. In the limit case where
+<span class="math">\(f''(x)=0\)</span>, convergence is instantaneous. Of course, this is of limited interest
+because it would imply that the equation of interest is in fact linear, or <span class="math">\(f(x)=ax+b\)</span>.
+However, when <span class="math">\(f''(x)\approx 0\)</span>, we can expect very rapid convergence.</li>
+<li>If <span class="math">\(f'(x)\)</span> is large, convergence will typically occur more easily. Of course,
+sometimes this fact coincides with <span class="math">\(f''\)</span> being large, in which case the two
+factors compete or cancel one another.</li>
+<li>Another consequence is that, when <span class="math">\(f'(x)\approx 0\)</span> (i.e., the graph of <span class="math">\(f\)</span> is
+mostly <a href="#id1"><span class="problematic" id="id2">``</span></a>flat&#8221;), convergence will be less certain. Compare this with our
+intuitive graphical explanation of <a href="#id3"><span class="problematic" id="id4">``</span></a>flat&#8221; tangents in Newton&#8217;s method.</li>
+</ul>
 </div>
 </div>
 
