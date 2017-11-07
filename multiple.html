@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>5.4. Multiple Roots &mdash; CS 323 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
+    <link rel="up" title="5. Non-linear Equations" href="nonlinear.html" />
+    <link rel="prev" title="5.3. Order of Convergence" href="convergence.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="convergence.html" title="5.3. Order of Convergence"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="nonlinear.html" accesskey="U">5. Non-linear Equations</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="multiple-roots">
+<h1>5.4. Multiple Roots<a class="headerlink" href="#multiple-roots" title="Permalink to this headline">¶</a></h1>
+<p>So far we have ignored the case <span class="math">\(f'(a)=0\)</span>. This case is typically described as a
+<em>multiple root</em> because if <span class="math">\(f(x)\)</span> is a polynomial and
+<span class="math">\(f(a)=f'(a)=f''(a)=\ldots =f^{(k-1)}(a)=0\)</span>, this would imply that <span class="math">\((x-a)^k\)</span> is a
+factor of <span class="math">\(f(x)\)</span> (in other words, <span class="math">\(a\)</span> is a root with multiplicity of <span class="math">\(k\)</span>).
+Let us now assume that <span class="math">\(f(a)=f'(a)=f''(a)=\ldots =f^{(k-1)}(a)=0\)</span>, but
+<span class="math">\(f^{(k)}(a)\neq 0\)</span>. At first, it may appear that Newton&#8217;s method would be
+inapplicable in this case, because the denominator <span class="math">\(f'(x)\)</span> becomes near-zero
+close to the solution. Consider, however, the example:</p>
+<div class="math">
+\[f(x)=(x-1)^3(x+2)\]</div>
+<p>Newton&#8217;s method would give:</p>
+<div class="math">
+\[g(x)=x-\frac{f(x)}{f'(x)}=x-\frac{(x-1)^3(x+2)}{3(x-1)^2(x+2)+(x-1)^3}=x-\frac{(x-1)(x+2)}{4x+5}\]</div>
+<p>whose denominator remains non-zero near the solution <span class="math">\(x=1\)</span>. In fact, we can show
+that <span class="math">\(g\)</span> remains a contraction near <span class="math">\(a\)</span> in this case.</p>
+<blockquote>
+<div><p><em>Proof:</em> Remember that</p>
+<div class="math">
+\[g'(x)=\frac{f(x)f''(x)}{[f'(x)]^2}\]</div>
+<p>Taylor&#8217;s theorem applied on <span class="math">\(f(x)\)</span> yields:</p>
+<div class="math">
+\[f(x)=\underbrace{f(a)}_{=0}+\underbrace{f'(a)}_{=0}(x-a)+\ldots +\underbrace{\frac{f^{(k-1)}(a)}{(k-1)!}}_{=0}(x-a)^{k-1}+\underbrace{\frac{f^{(k)}(c_1)}{k!}}_{\neq 0}(x-a)^k\]</div>
+<p>Applying Taylor&#8217;s formula on the <em>derivative</em> <span class="math">\(f'(x)\)</span> gives</p>
+<div class="math">
+\[f'(x)=\underbrace{f'(a)}_{=0}+\underbrace{f''(a)}_{=0}(x-a)+\ldots +\underbrace{\frac{f^{(k-1)}(a)}{(k-2)!}}_{=0}(x-a)^{k-2}+\underbrace{\frac{f^{(k)}(c_2)}{(k-1)!}}_{\neq 0}(x-a)^{k-1}\]</div>
+<p>And one more on the second derivative <span class="math">\(f''(x)\)</span></p>
+<div class="math">
+\[f''(x)=\underbrace{f''(a)}_{=0}+\underbrace{f'''(a)}_{=0}(x-a)+\ldots +\underbrace{\frac{f^{(k-1)}(a)}{(k-3)!}}_{=0}(x-a)^{k-3}+\underbrace{\frac{f^{(k)}(c_3)}{(k-2)!}}_{\neq 0}(x-a)^{k-2}\]</div>
+<p>where <span class="math">\(c_1, c_2, c_3\)</span> are some numbers between <span class="math">\(x\)</span> and <span class="math">\(a\)</span>. Combining the last three
+equations gives</p>
+<div class="math">
+\[g'(x)=\frac{\frac{f^{(k)}(c_1)}{k!}(x-a)^k\frac{f^{(k)}(c_3)}{(k-2)!}(x-a)^{k-2}}{\left[\frac{f^{(k)}(c_2)}{(k-1)!}(x-a)^{k-1}\right]^2}\xrightarrow{x\rightarrow a}\frac{\left[f^{(k)}(a)\right]^2}{\left[f^{(k)}(a)\right]^2}\frac{[(k-1)!]^2}{k!(k-2)!}=\frac{k-1}{k}\]</div>
+<p>Since <span class="math">\(g'(a)=(k-1)/k&lt;1\)</span>, there is an interval <span class="math">\((a-\delta,a+\delta)\)</span> where <span class="math">\(|g'(x)|\leq L&lt;1\)</span> and thus, <span class="math">\(g\)</span> is a contraction.</p>
+</div></blockquote>
+<p>However, in all these cases, convergence is limited to be <em>only linear</em>,
+since <span class="math">\(g'(a)\neq 0\)</span>.</p>
+<p><strong>Caution:</strong> If we know, or suspect, that <span class="math">\(f(x)\)</span> may have a multiple root,
+then Newton&#8217;s method is only safe (albeit slow) when we can write an analytic
+formula for <span class="math">\(f(x)/f'(x)\)</span> and perform any cancellations &#8220;on paper&#8221; to avoid
+division by zero. Otherwise, for example in the case where both <span class="math">\(f\)</span> and <span class="math">\(f'\)</span> are
+given as black-box computer functions, any roundoff error in the value of the
+numerator or denominator could cause severe instabilities, by dividing two
+(inaccurate) near-zero quantities.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="convergence.html"
+                        title="previous chapter">5.3. Order of Convergence</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/multiple.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="convergence.html" title="5.3. Order of Convergence"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="nonlinear.html" >5. Non-linear Equations</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>
