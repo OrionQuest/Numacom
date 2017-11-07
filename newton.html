@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>5.1. Newton’s Method &mdash; CS 323 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CS 323 1.0 documentation" href="index.html" />
+    <link rel="up" title="5. Non-linear Equations" href="nonlinear.html" />
+    <link rel="next" title="5.2. Fixed Point Iteration" href="fixed.html" />
+    <link rel="prev" title="5. Non-linear Equations" href="nonlinear.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="fixed.html" title="5.2. Fixed Point Iteration"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="nonlinear.html" title="5. Non-linear Equations"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="nonlinear.html" accesskey="U">5. Non-linear Equations</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="newton-s-method">
+<h1>5.1. Newton&#8217;s Method<a class="headerlink" href="#newton-s-method" title="Permalink to this headline">¶</a></h1>
+<p>This example is a special case of an algorithm for solving nonlinear equations
+known as Newton&#8217;s method (also called the <em>Newton-Raphson</em> method). The
+general idea is as follows: if we &#8220;zoom&#8221; close enough to any smooth function,
+its graph looks more and more like a straight line (specifically, the
+<em>tangent</em> line to the curve). Newton&#8217;s method suggests: if after <span class="math">\(k\)</span> iterations we have approximated the
+solution of <span class="math">\(f(x)=0\)</span> (a general nonlinear equation) as <span class="math">\(x_k\)</span>, then:</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/newton.png"><img alt="_images/newton.png" class="align-center" src="_images/newton.png" style="width: 612.0px; height: 319.5px;" /></a>
+</div></blockquote>
+<ul class="simple">
+<li>Form the tangent line at <span class="math">\((x_k,f(x_k))\)</span>.</li>
+<li>Select <span class="math">\(x_{k+1}\)</span> as the intersection of the tangent line with the horizontal axis (<span class="math">\(y=0\)</span>).</li>
+</ul>
+<p>If <span class="math">\((x_n,y_n)=(x_n,f(x_n))\)</span>, the tangent line to the plot of <span class="math">\(f(x)\)</span> at <span class="math">\((x_n,y_n)\)</span> is:</p>
+<div class="math">
+\[y-y_n=\lambda(x-x_n), \enspace\enspace \mbox{where $\lambda=f'(x_n)$ is the slope}\]</div>
+<p>Thus, the tangent line has equation <span class="math">\(y-y_n=f'(x_n)(x-x_n)\)</span>.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/newton-iteration.png"><img alt="_images/newton-iteration.png" class="align-center" src="_images/newton-iteration.png" style="width: 675.75px; height: 546.0px;" /></a>
+</div></blockquote>
+<p>Setting <span class="math">\(y=0\)</span> gives</p>
+<div class="math">
+\[-f(x_n)=f'(x_n)(x-x_n)\Rightarrow x=x_n-\frac{f(x_n)}{f'(x_n)}=x_{n+1}\]</div>
+<p>Ultimately, Newton&#8217;s method reduces to:</p>
+<div class="math" id="equation-newton">
+<span class="eqno">(1)</span>\[x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)}\]</div>
+<p>Our previous example (square root of <span class="math">\(a\)</span>) is just an application of Newton&#8217;s
+method to the nonlinear equation <span class="math">\(f(x)=x^2-a=0\)</span>. Applying equation
+<a href="#equation-newton">(1)</a> gives:</p>
+<div class="math">
+\[x_{k+1}=x_k-\frac{f(x_k)}{f'(x_k)}=x_k-\frac{x_k^2-a}{2x_k}=\frac{2x_k^2-x_k^2+a}{2x_k}=\frac{x_k^2+a}{2x_k}\]</div>
+<p>which is the same iteration we considered previously.
+A few comments about Newton&#8217;s method:</p>
+<ul>
+<li><p class="first">It requires the function <span class="math">\(f(x)\)</span> to be not only continuous, but differentiable as
+well. We will later see variants that do not <em>explicitly</em> require knowledge
+of <span class="math">\(f'\)</span>. This would be an important consideration if the formula for <span class="math">\(f'(x)\)</span> is
+significantly more complex and expensive to evaluate than <span class="math">\(f(x)\)</span>, or if we
+simply do not possess an analytic expression for <span class="math">\(f'\)</span> (this could be the case if
+<span class="math">\(f(x)\)</span> is not given to us via an explicit formula, but only defined via a
+black-box computer function that computes the value).</p>
+</li>
+<li><p class="first">If we ever have an approximation <span class="math">\(x_k\)</span> with <span class="math">\(f'(x_k)\approx 0\)</span>, we should expect
+problems, especially if we are not close to a solution (we would be nearly
+dividing by zero). In such cases, the tangent line is almost (or exactly)
+horizontal. Thus, the next iterate can be a very remote value and convergence
+may be far from guaranteed.</p>
+<a class="reference internal image-reference" href="_images/newton-convergence.png"><img alt="_images/newton-convergence.png" class="align-center" src="_images/newton-convergence.png" style="width: 609.0px; height: 383.0px;" /></a>
+</li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="nonlinear.html"
+                        title="previous chapter">5. Non-linear Equations</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="fixed.html"
+                        title="next chapter">5.2. Fixed Point Iteration</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/newton.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="fixed.html" title="5.2. Fixed Point Iteration"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="nonlinear.html" title="5. Non-linear Equations"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CS 323 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="nonlinear.html" >5. Non-linear Equations</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>
