@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>5. Homework #5 &mdash; CS 323 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CS 323 1.0 documentation" href="../index.html" />
+    <link rel="next" title="6. Midterm #1 Programming" href="../exams/midterm1_programming.html" />
+    <link rel="prev" title="4. Homework #4" href="homework4.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../exams/midterm1_programming.html" title="6. Midterm #1 Programming"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="homework4.html" title="4. Homework #4"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">CS 323 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="homework-5">
+<h1>5. Homework #5<a class="headerlink" href="#homework-5" title="Permalink to this headline">¶</a></h1>
+<p>For all programming assignments, please turn in your code along with your
+solution. Submissions should be made on Sakai.</p>
+<div class="topic">
+<p class="topic-title first">Problem 1</p>
+<p>Express the following polynomial in the correct form for evaluation by
+Horner&#8217;s method:</p>
+<div class="math">
+\[p(t) = 5t^3 - 3t^2 + 7t  - 2\]</div>
+</div>
+<div class="topic">
+<p class="topic-title first">Problem 2</p>
+<p>How many multiplications are required to evaluate a polynomial <span class="math">\(p(t)\)</span>
+of degree <span class="math">\(n-1\)</span> at a given point <span class="math">\(t\)</span></p>
+<ol class="loweralpha simple">
+<li>Represented in the monomial basis?</li>
+<li>Represented in the Lagrange basis?</li>
+<li>Represented in the Newton basis?</li>
+</ol>
+</div>
+<div class="topic">
+<p class="topic-title first">Problem 3</p>
+<ol class="loweralpha">
+<li><p class="first">Determine the polynomial interpolant to the data</p>
+<div class="math">
+\[\begin{split}\begin{array}{ccccc}
+t &amp; 1 &amp; 2 &amp; 3 &amp; 4 \\
+p(t) &amp; 11 &amp; 29 &amp; 65 &amp; 125
+\end{array}\end{split}\]</div>
+<p>using the monomial basis.</p>
+</li>
+<li><p class="first">Determine the Lagrange polynomial interpolant to the same data and show
+that the resulting polynomial is equivalent to that obtained in part (a).</p>
+</li>
+<li><p class="first">Compute the Newton polynomial interpolant to the same data using each of
+the three methods discussed in class (triangular matrix, incremental
+interpolation, and divided differences) and show that each produces the
+same result as the previous two methods.</p>
+</li>
+</ol>
+</div>
+<div class="topic">
+<p class="topic-title first">Problem 4</p>
+<ol class="loweralpha">
+<li><p class="first">For a given set of data points <span class="math">\(t_1,\ldots,t_n\)</span>, define the function
+<span class="math">\(\pi(t)\)</span> by</p>
+<div class="math">
+\[\pi(t) = (t-t_1)(t-t_2)\ldots (t-t_n)\]</div>
+<p>Show that</p>
+<div class="math">
+\[\pi'(t_j) = (t_j - t_1)\ldots (t_j - t_{j-1})(t_j - t_{j+1})\ldots (t_j - t_n)\]</div>
+<p><strong>Hint:</strong> If <span class="math">\(f_1,\ldots,f_n\)</span> are functions of a variable <span class="math">\(t\)</span>, then</p>
+<div class="math">
+\[\frac{d}{dt} \prod_{i=1}^n f_i = \sum_{i=1}^n f_i' \prod_{j\neq i} f_j\]</div>
+</li>
+<li><p class="first">Use the result of part (a) to show that the <span class="math">\(j^{th}\)</span> Lagrange
+basis function can be expressed as</p>
+<div class="math">
+\[l_j(t) = \frac{\pi(t)}{(t-t_j)\pi'(t_j)}\]</div>
+</li>
+</ol>
+</div>
+<div class="topic">
+<p class="topic-title first">Problem 5 (Extra Credit)</p>
+<p>Horner&#8217;s rule provides an efficient method for evaluating a polynomial
+<span class="math">\(p(t) = \sum_{i=0}^n a_i t^i\)</span> of degree <span class="math">\(n\)</span> at any <span class="math">\(t=t_0\)</span>. In this exercise, we will develop a
+procedure for computing its derivative <span class="math">\(p'(t)\)</span> at <span class="math">\(t_0\)</span>.
+Notice that for any <span class="math">\(t_0\)</span>, we can divide <span class="math">\(p(t)\)</span> by <span class="math">\((t-t_0)\)</span>
+to get quotient and remainder:</p>
+<div class="math" id="equation-factor">
+<span class="eqno">(1)</span>\[p(t) = q(t)(t-t_0) + p(t_0)\]</div>
+<p>where the quotient polynomial <span class="math">\(q(t)\)</span> has degree <span class="math">\(n-1\)</span>:</p>
+<div class="math">
+\[q(t) = \sum_{i=0}^{n-1} b_i t^i\]</div>
+<p>One can easily verify that <span class="math">\(p'(t_0) = q(t_0)\)</span>. So if we can find the
+coefficients <span class="math">\(b_i\)</span> of the quotient polynomial <span class="math">\(q(t)\)</span>, we can use
+Horner&#8217;s rule to compute <span class="math">\(p'(t_0)\)</span>. If we substitute the expressions of <span class="math">\(p(t)\)</span> and
+<span class="math">\(q(t)\)</span> in equation <a href="#equation-factor">(1)</a> and equate the coefficients of
+<span class="math">\(t^i\)</span> on the LHS and RHS, and solve for the coefficients
+<span class="math">\(b_i\)</span> and remainder <span class="math">\(p(t_0)\)</span>, we get a series of equations that
+can be organized as a recursion relation:</p>
+<div class="math">
+\[\begin{split}\begin{eqnarray*}
+b_{n-1} &amp;=&amp; a_n \\
+b_{i-1} &amp;=&amp; a_i + t_0b_i \enspace \mbox{for } i=1\ldots n-1 \\
+p(t_0) &amp;=&amp; a_0 + t_0b_0
+\end{eqnarray*}\end{split}\]</div>
+<p>Write a program that uses the above recursion relation to evaluate both the
+polynomial <span class="math">\(p(t)\)</span> and it&#8217;s derivative <span class="math">\(p'(t)\)</span> at
+<span class="math">\(t=t_0\)</span>. Show its output on few example polynomial functions (which you
+are free to choose).</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="homework4.html"
+                        title="previous chapter">4. Homework #4</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../exams/midterm1_programming.html"
+                        title="next chapter">6. Midterm #1 Programming</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/homeworks/homework5.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../exams/midterm1_programming.html" title="6. Midterm #1 Programming"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="homework4.html" title="4. Homework #4"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">CS 323 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, Mridul Aanjaneya.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>
