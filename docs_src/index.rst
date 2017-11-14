@@ -115,6 +115,7 @@ News and Announcements:
 * (11/02) `Midterm #1 Solutions <exams/midterm1_solutions.pdf>`_ have been posted.
 * (11/03) `Midterm #1 Programming <exams/midterm1_programming.html>`_ is out. Due on (11/05).
 * (11/13) `Homework #3 Solutions <homeworks/hw3_solutions.pdf>`_ have been posted.
+* (11/14) `Homework #5 <homeworks/homework5.html>`_ is out. Due on (11/28).
 
 .. toctree::
     :numbered:
@@ -125,6 +126,7 @@ News and Announcements:
     Homework #2 <homeworks/homework2>
     Homework #3 <homeworks/homework3>
     Homework #4 <homeworks/homework4>
+    Homework #5 <homeworks/homework5>
     Midterm #1 Programming <exams/midterm1_programming>
 
 Contents:
