@@ -114,6 +114,7 @@ News and Announcements:
 * (11/01) `Midterm #1 <exams/midterm1.pdf>`_ has been posted.
 * (11/02) `Midterm #1 Solutions <exams/midterm1_solutions.pdf>`_ have been posted.
 * (11/03) `Midterm #1 Programming <exams/midterm1_programming.html>`_ is out. Due on (11/05).
+* (11/13) `Homework #3 Solutions <homeworks/hw3_solutions.pdf>`_ have been posted.
 
 .. toctree::
     :numbered:
