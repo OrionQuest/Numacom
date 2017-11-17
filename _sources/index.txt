@@ -142,6 +142,7 @@ Contents:
     Getting Started with Python <python>
     Linear Systems of Equations <linear>
     Non-linear Equations <nonlinear>
+    Numerical Interpolation <interpolation>
 
 Coding Resources:
 -----------------
