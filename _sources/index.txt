@@ -144,6 +144,7 @@ Contents:
     Linear Systems of Equations <linear>
     Non-linear Equations <nonlinear>
     Numerical Interpolation <interpolation>
+    Accuracy of Interpolation and Splines <splines>
 
 Coding Resources:
 -----------------
