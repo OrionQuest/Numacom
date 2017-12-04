@@ -62,9 +62,7 @@ for the midterm and final exams are listed below:
     * **Midterm 1:**
         * In-class Part (70%): 10/31 (5:15PM - 6:30PM)
         * Take-home Programming Part (30%): 11/03 (12PM) - 11/05 (11:55PM)
-    * **Midterm 2:**
-        * In-class Part (70%): 12/05 (5:15PM - 6:30PM)
-        * Take-home Programming Part (30%): 12/08 (12PM) - 12/10 (11:55PM)
+    * **Midterm 2:** 12/05 (5:15PM - 6:30PM)
     * **Final:** 12/20 (12PM - 3PM)
 
 The in-class part of the midterm exams constitutes for 70% of
