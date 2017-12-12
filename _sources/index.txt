@@ -119,6 +119,7 @@ News and Announcements:
 * (11/30) `Practice Midterm #2 Solutions <exams/practice_midterm2_solutions.pdf>`_ have been posted.
 * (12/06) `Midterm #2 <exams/midterm2.pdf>`_ has been posted.
 * (12/06) `Midterm #2 Solutions <exams/midterm2_solutions.pdf>`_ have been posted.
+* (12/12) `Homework #5 Solutions <homeworks/hw5_solutions.pdf>`_ have been posted.
 
 .. toctree::
     :numbered:
